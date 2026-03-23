@@ -9,11 +9,9 @@ function App() {
 
   return (
       <div>
-        <h2>My name is Zackypee</h2>
-        <h2>JMS</h2> 
+        <h1>My name is Zackypee</h1>
+        <h1>JMS</h1> 
         <p>I love my work</p>
-
-        
       </div>
   )
 }
