@@ -8,6 +8,7 @@ const LandingPage = () => {
       <header className="header">
         <h1>Welcome to Our Service</h1>
         <p>A simple, effective landing page built with React.</p>
+        <p>Added</p>
       </header>
 
       </div>
