@@ -6,12 +6,13 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
   return (
       <div>
         <h1>My name is Zackypee</h1>
         <h1>JMS</h1> 
         <p>I love my work</p>
+        <p>Hi guys</p>
+        <h3>Hotel Team</h3>
       </div>
   )
 }
