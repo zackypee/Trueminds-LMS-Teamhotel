@@ -5,7 +5,7 @@ import emailIcon from '../../../assets/email-icon.svg';
 
 export const ResetPasswordForm = () => {    
     return (
-        <div className="reset-password-form" role='form'>
+        <div className="reset-password-form bg-[#F9FAFB] w-[45%]" role='form'>
             <h2>Reset Your Password</h2>
             <p>Enter your email address and we'll send you instructions to reset your password.</p>
             <form>
