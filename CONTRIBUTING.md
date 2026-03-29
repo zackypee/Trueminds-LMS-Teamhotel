@@ -33,9 +33,9 @@ git pull origin stagingBranch
 
 ---
 
-## Step 4 — Switch Back to Your Branch and Stage the changes
+## Step 4 — Switch Back to Your Branch 
 ```bash
-git checkout branchName & git add .
+git checkout branchName 
 ```
 
 ---
