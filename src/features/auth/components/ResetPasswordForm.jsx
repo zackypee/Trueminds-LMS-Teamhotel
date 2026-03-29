@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import forwardIcon from '../../assets/forward-icon.svg';
-import backwardIcon from '../../assets/backward-icon.svg';
-import emailIcon from '../../assets/email-icon.svg';    
+import forwardIcon from '../../../assets/forward-icon.svg';
+import backwardIcon from '../../../assets/backward-icon.svg';
+import emailIcon from '../../../assets/email-icon.svg';    
 
 export const ResetPasswordForm = () => {    
     return (
@@ -19,12 +19,12 @@ export const ResetPasswordForm = () => {
                   <img src={forwardIcon} alt="Forward" />
                 </button>
             </form>
-           <Link to="/login">
+           <Link to="/">
                 <img src={backwardIcon} alt="Back" />
                 Back to Login
            </Link>
 
-           <p>Need help? <Link to="/contact">Contact TalentFlow Support</Link></p>
+           <p>Need help? <Link to="/">Contact TalentFlow Support</Link></p>
         </div>
     );
 }
