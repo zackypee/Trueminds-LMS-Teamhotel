@@ -1,13 +1,16 @@
 import { useState } from 'react'
-import { BrowserRouter, Route } from "react-router-dom";
-import Footer from './components/Footer';
+import { BrowserRouter } from "react-router-dom";
+import './App.css';
 
 function App() {
+
   return (
-   <BrowserRouter>
-   <Footer />
-   </BrowserRouter>
+    <BrowserRouter>
+      
+      
+    </BrowserRouter>
   )
 }
 
 export default App
+
