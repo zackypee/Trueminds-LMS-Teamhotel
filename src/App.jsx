@@ -1,4 +1,4 @@
-import Inbox from './features/auth/pages/check-inbox'
+import Inbox from './features/auth/pages/checkInbox'
 import './App.css'
 
 function App() {
