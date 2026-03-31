@@ -4,7 +4,7 @@ import UserLogo from "../../../assets/userlogo.png";
 
 export default function AuthenticationOne() {
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#F3F4F6]">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row ">
       {/* Left Side: Brand/Image Section (Hidden on small mobile, or shown as a header) */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 ">
         <div className="max-w-xl w-full">
@@ -23,7 +23,7 @@ export default function AuthenticationOne() {
           <img
             src={AuthenticationOneImage}
             alt="LMS"
-            className="w-48 h-auto object-contain"
+            className="w-[400px] h-auto object-contain"
           />
         </div>
 
@@ -36,7 +36,6 @@ export default function AuthenticationOne() {
             </h1>
 
             <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
               <img
                 src={UserLogo}
                 alt="User Logo"
@@ -60,7 +59,7 @@ export default function AuthenticationOne() {
 
           {/* Action Area */}
           <div className="mt-10 space-y-4">
-            <button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
+            <button className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
               Continue
             </button>
 
@@ -73,7 +72,7 @@ export default function AuthenticationOne() {
           <div className="mt-8 pt-8 border-t border-gray-200 text-center">
             <p className="text-gray-600 text-sm font-medium">
               Don't have an account?
-              <span className="text-orange-600 font-bold cursor-pointer hover:text-orange-700 ml-1 transition-colors">
+              <span className="text-[#7C3AED] font-bold cursor-pointer hover:text-[#3a1b70] ml-1 transition-colors">
                 Sign up
               </span>
             </p>
