@@ -19,7 +19,6 @@ export const ResetPasswordForm = () => {
             items-center 
             justify-center 
             py-12
-            h-full
             " role="form"
         >
             <div className="form-container  w-[90%] min-[500px]:w-95 m-auto  ">

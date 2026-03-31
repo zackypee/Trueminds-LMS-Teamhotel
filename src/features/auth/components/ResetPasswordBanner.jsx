@@ -27,7 +27,7 @@ export const ResetPasswordBanner = () => {
       </div>
       <div className="text-container font-[Inter] tracking-normal hidden w-[90%] max-w-xl mx-auto min-[900px]:block  m-auto mt-7.5  ">
         <h1 className='reset-password-header font-extrabold leading-[52.8px]  w-full m-auto text-[#001C3B] mb-2.5 text-[clamp(1.5rem,3.5vw,2.5rem)] lg:text-[clamp(30px,4vw,48px)]'>Ensure optimal <span className="text-[#7C3AED]">security</span></h1>
-        <p className='reset-password-paragraph font-normal text-[18px] leading-[29.25px] w-[90%] lg:w-[420.72px] text-[#4A4455' >Access high-end learning resources without a hassle..</p>
+        <p className='reset-password-paragraph font-normal text-[18px] leading-[29.25px] w-[90%] lg:w-[420.72px] text-[#4A4455]' >Access high-end learning resources without a hassle..</p>
       </div>
       </div>
     </div>
