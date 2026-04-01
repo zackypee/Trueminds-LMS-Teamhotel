@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
 
+
 export const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ export const LoginForm = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       if (formData.email === "user@example.com" && formData.password === "password") {
-        navigate("/dashboard");
+        navigate("/welcomeBack");
       } else {
         setErrors({
           general: "Invalid email or password. Please try again."
@@ -162,7 +163,7 @@ export const LoginForm = () => {
           <div className="flex justify-end">
             <button
               type="button"
-              onClick={() => navigate("/reset-password")}
+              onClick={() => navigate("/forget-password")}
               className="text-[14px] font-semibold text-[#7C3AED] leading-[21px] hover:underline cursor-pointer"
             >
               Forgot Password?
