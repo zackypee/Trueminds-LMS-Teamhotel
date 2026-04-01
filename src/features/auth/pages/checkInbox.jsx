@@ -1,14 +1,12 @@
 import { useState } from "react";
 export default function Inbox(){
+
 const [code, setCode] = useState("");
 const handleSubmit = (finalCode) => {
 console.log("Submitting code:", finalCode);
 //  login / API call here
 
 };
-
-
-
 const handleChange = (e) => {
 let value = e.target.value;
 // Remove non-numbers
@@ -31,7 +29,7 @@ handleSubmit(value);
 
 <div className="">
 
-<img src="/images/truemind.png" alt="image" className="w-[400px] mx-auto md:mx-0"/>
+<img src="/images/truemind.png" alt="image" className=" mx-auto md:mx-0 w-full h-auto object-contain rounded-2xl shadow-xl transition-transform duration-700 hover:scale-[1.02]" />
 
 </div>
 
