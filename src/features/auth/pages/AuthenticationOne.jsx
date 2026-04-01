@@ -59,7 +59,7 @@ export default function AuthenticationOne() {
 
           {/* Action Area */}
           <div className="mt-10 space-y-4">
-            <button className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
+            <button className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl  transition-all active:scale-[0.98]">
               Continue
             </button>
 
