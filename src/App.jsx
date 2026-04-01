@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { ResetPasswordPage } from "./features/auth/pages/ResetPasswordPage";
+import ResetPasswordPage  from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import CheckInbox from "./features/auth/pages/checkInbox";
+import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
+import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/" element={<ResetPasswordAuthPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
