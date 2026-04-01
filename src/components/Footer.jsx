@@ -40,7 +40,7 @@ const Footer = () => {
             </li>
           </ul>
           <small className="text-[#94A3B8] text-xs">
-            © 2024 TalentFlow LMS{" "}
+            © 2026 TalentFlow LMS{" "}
           </small>
         </div>
       ) : (
@@ -94,7 +94,7 @@ const Footer = () => {
             <hr className=" border-[#F1F5F9]" />
             <div className="flex justify-between py-6">
               <small className="text-[#94A3B8] text-xs">
-                © 2024 TalentFlow LMS. All rights reserved.
+                © 2026 TalentFlow LMS. All rights reserved.
               </small>
               <button className="flex items-center gap-2 text-xs border border-[#E2E8F0] px-4 py-2 rounded-lg">
                 <img src="/icons/Vector.png" className="size-4" /> English
