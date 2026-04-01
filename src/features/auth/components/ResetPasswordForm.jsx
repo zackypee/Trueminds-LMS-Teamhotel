@@ -53,7 +53,7 @@ export const ResetPasswordForm = () => {
                           onClick={togglePasswordVisibility}
                         />
                         <input type={showPassword ? "text" : "password"} id="reset-password" name="reset-password" required placeholder="********" 
-                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11" 
+                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
                         /> 
                     </div>
 
@@ -69,7 +69,7 @@ export const ResetPasswordForm = () => {
                         />
                         
                         <input type={showConfirmPassword ? "text" : "password"} id="confirm-password" name="confirm-password" required placeholder="********" 
-                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11" 
+                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
                         /> 
                     </div>
                     <Button type="submit" className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25">

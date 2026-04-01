@@ -66,6 +66,7 @@ export const ResetPasswordAuthForm = () => {
                             onChange={(e) => handleChange(e, index)}
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             className="border border-[#E5E7EB] rounded-sm  text-center w-12.5 h-13.25  focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+                            required
                         />
                         ))}
                     </div>
@@ -74,7 +75,7 @@ export const ResetPasswordAuthForm = () => {
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
-                <Link to="/login" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
+                <Link to="/" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>
