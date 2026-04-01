@@ -68,7 +68,7 @@ export default function AuthenticationOne() {
               Continue
             </button>
 
-            <button className="w-full text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+            <button className="w-full text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors" onClick={()=>navigate("/")}>
               Log in to a different account
             </button>
           </div>

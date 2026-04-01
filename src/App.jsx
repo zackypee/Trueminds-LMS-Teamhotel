@@ -5,7 +5,7 @@ import ResetPasswordPage  from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-import CheckInbox from "./features/auth/pages/checkInbox";
+import CheckInbox from "./features/auth/pages/CheckInbox";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 
