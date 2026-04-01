@@ -1,8 +1,10 @@
 import React from "react";
 import AuthenticationOneImage from "../../../assets/AuthenticationOne Image.png";
 import UserLogo from "../../../assets/userlogo.png";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AuthenticationOne() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row ">
       {/* Left Side: Brand/Image Section (Hidden on small mobile, or shown as a header) */}
@@ -59,7 +61,9 @@ export default function AuthenticationOne() {
 
           {/* Action Area */}
           <div className="mt-10 space-y-4">
-            <button className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
+            <button 
+              onClick={() => navigate("/check-inbox")}
+              className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
               Continue
             </button>
 
@@ -72,9 +76,9 @@ export default function AuthenticationOne() {
           <div className="mt-8 pt-8 border-t border-gray-200 text-center">
             <p className="text-gray-600 text-sm font-medium">
               Don't have an account?
-              <span className="text-[#7C3AED] font-bold cursor-pointer hover:text-[#3a1b70] ml-1 transition-colors">
+              <Link to="/sign-up" className="text-[#7C3AED] font-bold cursor-pointer hover:text-[#3a1b70] ml-1 transition-colors">
                 Sign up
-              </span>
+              </Link>
             </p>
           </div>
         </div>

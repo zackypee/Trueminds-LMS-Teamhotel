@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 
+
 export const useResetPasswordOTP = (length = 4) => {
   const inputsRef = useRef([]);
   const [otp, setOtp] = useState(Array(length).fill(""));
+  
 
   const handleChange = (e, index) => {
     const value = e.target.value;

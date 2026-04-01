@@ -3,8 +3,10 @@ import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
 import { useResetPasswordOTP } from "../useResetPasswordOTP"; 
 import { Button } from "../../../components/Button";  
+import { useNavigate } from "react-router-dom";
 
 export const ResetPasswordAuthForm = () => {  
+    const navigate = useNavigate() ;
     
     const {
         otp,
@@ -25,6 +27,7 @@ export const ResetPasswordAuthForm = () => {
 
     
         resetOtp();
+        navigate("/reset-password");
        
     };
 
@@ -71,7 +74,7 @@ export const ResetPasswordAuthForm = () => {
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
-                <Link to="/" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
+                <Link to="/login" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>
