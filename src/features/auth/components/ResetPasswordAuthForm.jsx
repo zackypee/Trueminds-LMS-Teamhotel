@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
-import { useResetPasswordOTP } from "../useResetPasswordOTP"; 
+import { useResetPasswordOTP } from "../hooks/useResetPasswordOTP"; 
 import { Button } from "../../../components/Button";  
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 export const ResetPasswordAuthForm = () => {  
     const navigate = useNavigate() ;
-    
+    const [errorMessage, setErrorMessage] = useState("");
+
     const {
         otp,
         inputsRef,
@@ -20,9 +23,11 @@ export const ResetPasswordAuthForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        setErrorMessage("")
+
         if (combinedOtp.length < 4) {
-        alert("Incomplete OTP");
-        return;
+         setErrorMessage("Please enter the complete 4-digit OTP."); 
+         return;
         }
 
     
@@ -54,7 +59,7 @@ export const ResetPasswordAuthForm = () => {
                 <p className="form-description text-[16px] leading-6 text-center w-[259.5px] m-auto  min-[500px]:w-full my-[10px_30px] text-[#4A4455] min-[900px]:text-left">Enter the 4-digit OTP sent to your email.</p>
                 <form className="otp-form font-[Inter] tracking-normal w-full" onSubmit={handleSubmit}>
                     <label className="label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="reset-password-otp">OTP</label>
-                    <div className="flex justify-between gap-4 mt-2 mb-10">
+                    <div className="flex justify-between gap-4 mt-2 mb-2">
                         {otp.map((digit, index) => (
                         <input
                             key={index}
@@ -65,12 +70,12 @@ export const ResetPasswordAuthForm = () => {
                             ref={(el) => (inputsRef.current[index] = el)}
                             onChange={(e) => handleChange(e, index)}
                             onKeyDown={(e) => handleKeyDown(e, index)}
-                            className="border border-[#E5E7EB] rounded-sm  text-center w-12.5 h-13.25  focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
-                            required
+                            className={`border ${errorMessage ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm  text-center w-12.5 h-13.25  focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`}
                         />
                         ))}
                     </div>
-                    <Button type="submit" className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25">
+                    {<ErrorMessage message={errorMessage} />} 
+                    <Button type="submit" className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25">
                         Confirm 
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>

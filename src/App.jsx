@@ -8,6 +8,8 @@ import Login from "./features/auth/pages/Login";
 import CheckInbox from "./features/auth/pages/CheckInbox";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
+import ResetPasswordRoute from "./features/auth/protectedRoute/ResetPasswordRoute"; 
+
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
+        <Route element={<ResetPasswordRoute />} >
+          <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
+        </Route>
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/welcomeback" element={<AuthenticationOne />} />
