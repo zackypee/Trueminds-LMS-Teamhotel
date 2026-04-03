@@ -30,6 +30,7 @@ export const ForgetPasswordForm = () => {
 
         if(result){
             navigate("/reset-password-auth") ;
+    
         } 
 
     }

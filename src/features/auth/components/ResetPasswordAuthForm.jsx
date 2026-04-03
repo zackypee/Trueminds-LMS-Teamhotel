@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
-import { useResetPasswordOTP } from "../hooks/useResetPasswordOTP"; 
+import { useResetPasswordOtp } from "../hooks/useResetPasswordOtp"; 
 import { Button } from "../../../components/Button";  
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ErrorMessage from "../../../components/ErrorMessage";
+import useVerifyResetOtp from "../hooks/useVerifyResetOtp";
 
 export const ResetPasswordAuthForm = () => {  
     const navigate = useNavigate() ;
-    const [errorMessage, setErrorMessage] = useState("");
+    const [inputValError, setInputValError] = useState("");
+    const {error, isLoading, handleVerifyResetOtp} = useVerifyResetOtp();
 
     const {
         otp,
@@ -18,23 +20,31 @@ export const ResetPasswordAuthForm = () => {
         handleKeyDown,
         combinedOtp,
         resetOtp
-    } = useResetPasswordOTP(4);
+    } = useResetPasswordOtp(4);
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
 
-        setErrorMessage("")
+        setInputValError("")
+        const email = sessionStorage.getItem("resetEmail");
+
 
         if (combinedOtp.length < 4) {
-         setErrorMessage("Please enter the complete 4-digit OTP."); 
+         setInputValError("Please enter the complete 4-digit OTP."); 
          return;
         }
 
-    
-        resetOtp();
-        navigate("/reset-password");
-       
+        const result = await handleVerifyResetOtp({ otp: combinedOtp, email: email });
+
+        if(result){
+            resetOtp();
+            navigate("/reset-password");
+
+        }
+        
     };
+
+    const errorMessage = inputValError || error;
 
     
     return (
@@ -75,8 +85,12 @@ export const ResetPasswordAuthForm = () => {
                         ))}
                     </div>
                     {<ErrorMessage message={errorMessage} />} 
-                    <Button type="submit" className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25">
-                        Confirm 
+                    <Button 
+                      disabled={isLoading}
+                      type="submit" 
+                      className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25"
+                    >
+                        {isLoading ? 'Confirming OTP...' : 'Confirm'}
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>

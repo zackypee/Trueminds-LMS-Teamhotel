@@ -10,7 +10,8 @@ const useAuthReqPasswordReset =  () => {
            
             setIsLoading(true);
             setError(null);
-            sessionStorage.removeItem("forgetPasswordSuccess")
+            sessionStorage.removeItem("forgetPasswordSuccess");
+            sessionStorage.removeItem("resetEmail");
             
             const response = await authReqPasswordReset(email);
 
@@ -18,14 +19,15 @@ const useAuthReqPasswordReset =  () => {
                 throw new Error(response.message);
             }
 
-            sessionStorage.setItem("forgetPasswordSuccess", response.success);
+            sessionStorage.setItem("forgetPasswordSuccess", "true");
             sessionStorage.setItem("resetEmail", email);
 
-            return response.success
+            return true
     
         }catch(err){
             setError(err.message);
             sessionStorage.removeItem("forgetPasswordSuccess")
+            sessionStorage.removeItem("resetEmail");
             return false
         }finally{
             setIsLoading(false);

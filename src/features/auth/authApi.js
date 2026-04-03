@@ -39,7 +39,7 @@ export const authReqPasswordReset = async (email) => {
 };
 
 
-const verifyResetOtp = async(data) => {
+const realverifyResetOtp = async(data) => {
 
     const response = await api.post("/auth/verify-otp", data);
 
@@ -47,6 +47,41 @@ const verifyResetOtp = async(data) => {
 
 
 }
+
+const verifyResetOtp = async (data) => {
+  console.log("Mock OTP request:", data);
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const { otp } = data;
+
+      // ✅ SUCCESS CASE
+      if (otp === "1234") {
+        resolve({
+          success: true,
+          message: "OTP verified successfully",
+          data: {
+            userId: "123",
+          },
+        });
+      }
+
+      // ❌ INVALID OTP
+      else if (otp !== "1234") {
+        resolve({
+          success: false,
+          message: "Invalid OTP",
+        });
+      }
+
+      // ❌ NETWORK ERROR SIMULATION (optional)
+      // reject(new Error("Network Error"));
+
+    }, 1000); // simulate delay
+  });
+};
+
+
 
 export default verifyResetOtp;
 
