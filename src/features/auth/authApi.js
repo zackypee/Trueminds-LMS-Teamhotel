@@ -37,3 +37,16 @@ export const authReqPasswordReset = async (email) => {
     },
   };
 };
+
+
+const verifyResetOtp = async(data) => {
+
+    const response = await api.post("/auth/verify-otp", data);
+
+    return response.data;
+
+
+}
+
+export default verifyResetOtp;
+
