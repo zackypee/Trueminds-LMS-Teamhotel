@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 
 export const useResetPasswordOtp = (length = 4) => {
@@ -45,3 +45,4 @@ export const useResetPasswordOtp = (length = 4) => {
     resetOtp,
   };
 };
+

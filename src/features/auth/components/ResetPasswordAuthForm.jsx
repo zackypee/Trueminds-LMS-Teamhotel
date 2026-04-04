@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
-import { useResetPasswordOtp } from "../hooks/useResetPasswordOtp"; 
+import useVerifyResetOtp from "../hooks/useVerifyResetOtp";
 import { Button } from "../../../components/Button";  
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ErrorMessage from "../../../components/ErrorMessage";
-import useVerifyResetOtp from "../hooks/useVerifyResetOtp";
+import { useResetPasswordOtp } from "../hooks/useResetPasswordOtp";
+
 
 export const ResetPasswordAuthForm = () => {  
     const navigate = useNavigate() ;

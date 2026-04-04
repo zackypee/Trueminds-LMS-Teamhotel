@@ -6,7 +6,6 @@ import lockIcon from '../../../assets/lock-icon.svg';
 import noticeIcon from '../../../assets/notice-icon.svg';
 import showPasswordIcon from '../../../assets/eye-closed-icon.svg';
 import hidePasswordIcon from '../../../assets/icons8-eye-20.png';
-
 import { Button } from "../../../components/Button";  
 
 export const ResetPasswordForm = () => { 
@@ -20,6 +19,8 @@ export const ResetPasswordForm = () => {
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(prevState => !prevState) ;
     }
+
+    
     
     return (
         <div className="

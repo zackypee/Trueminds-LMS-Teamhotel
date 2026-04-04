@@ -41,14 +41,23 @@ export const authReqPasswordReset = async (email) => {
 
 const realverifyResetOtp = async(data) => {
 
-    const response = await api.post("/auth/verify-otp", data);
+  const response = await api.post("/auth/verify-otp", data);
 
-    return response.data;
+  return response.data;
 
 
 }
 
-const verifyResetOtp = async (data) => {
+export const resetPassword = async(data) => {
+
+  const response = await api.post("/auth/reset-password", data);
+
+  return response.data;
+
+
+}
+
+export const verifyResetOtp = async (data) => {
   console.log("Mock OTP request:", data);
 
   return new Promise((resolve, reject) => {
@@ -83,5 +92,5 @@ const verifyResetOtp = async (data) => {
 
 
 
-export default verifyResetOtp;
+
 

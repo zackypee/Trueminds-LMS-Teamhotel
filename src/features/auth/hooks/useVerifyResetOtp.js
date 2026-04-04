@@ -19,6 +19,7 @@ const useVerifyResetOtp = () => {
             }
 
             sessionStorage.setItem("verifyResetOtp", "true");
+            localStorage.setItem("token", response.data.token);
             return true;
 
         }catch(err){
