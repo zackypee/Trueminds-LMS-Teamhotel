@@ -5,6 +5,7 @@ import { resetPassword } from "../authApi";
 const useResetPassword = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("")
     
 
     const handleResetPassword = async (newPasswordData) => {
@@ -12,6 +13,7 @@ const useResetPassword = () => {
         try{
             setIsLoading(true);
             setError(null);
+            setMessage("")
             sessionStorage.removeItem("resetPasswordSuccess");
 
             const response = await resetPassword(newPasswordData);
@@ -21,6 +23,7 @@ const useResetPassword = () => {
             }
 
             sessionStorage.setItem("resetPasswordSuccess", "true");
+            setMessage(response.message);
             return true;
         }catch(err){
             const message = err.response?.data?.message 
@@ -35,7 +38,9 @@ const useResetPassword = () => {
         }
     }
 
-    return {error, isLoading, handleResetPassword};
+    const clearError = () => setError(null);
+
+    return {error, isLoading, handleResetPassword, clearError, message};
 }
 
 export default useResetPassword;

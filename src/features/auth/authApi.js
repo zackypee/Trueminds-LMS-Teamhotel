@@ -48,14 +48,7 @@ const realverifyResetOtp = async(data) => {
 
 }
 
-export const resetPassword = async(data) => {
 
-  const response = await api.post("/auth/reset-password", data);
-
-  return response.data;
-
-
-}
 
 export const verifyResetOtp = async (data) => {
   console.log("Mock OTP request:", data);
@@ -91,6 +84,81 @@ export const verifyResetOtp = async (data) => {
 };
 
 
+export const realresetPassword = async(data) => {
+
+  const response = await api.post("/auth/reset-password", data);
+
+  return response.data;
 
 
+}
+
+/*export const resetPassword = async (newPasswordData) => {
+  console.log("Request payload:", newPasswordData);
+
+  // simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  // 🔀 CHANGE THIS TO TEST DIFFERENT SCENARIOS
+  const scenario = "apiError"; 
+  // "success" | "apiError" | "networkError"
+
+  if (scenario === "networkError") {
+    throw { message: "Network Error" };
+  }
+
+  if (scenario === "apiError") {
+    throw {
+      response: {
+        data: {
+          success: false,
+          message: "Invalid or expired OTP",
+        },
+      },
+    };
+  }
+
+  // ✅ success response
+  return {
+    data: {
+      success: true,
+      message: "Password reset successful",
+      token: "mock-token-12345",
+      user: {
+        id: "1",
+        email: newPasswordData.email,
+      },
+    },
+  };
+};*/
+
+export const resetPassword = async (newPasswordData) => {
+  console.log("Request payload:", newPasswordData);
+
+  // simulate delay
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  const scenario = "success"; 
+  // "success" | "apiError" | "networkError"
+
+  if (scenario === "networkError") {
+    throw { message: "Network Error" };
+  }
+
+  if (scenario === "apiError") {
+    throw {
+      response: {
+        data: {
+          message: "Invalid or expired OTP",
+        },
+      },
+    };
+  }
+
+  // ✅ MATCHES YOUR HOOK
+  return {
+    success: true,
+    message: "Password reset successful",
+  };
+};
 

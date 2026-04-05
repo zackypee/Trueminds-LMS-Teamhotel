@@ -22,7 +22,7 @@ function App() {
         <Route element={<ResetPasswordProtectedRoute check={isEmailVerified} redirectTo="/forget-password" />} >
           <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
         </Route>
-        <Route element={<ResetPasswordProtectedRoute check={isOtpVerified} redirectTo="/forget-password" />} >
+        <Route element={<ResetPasswordProtectedRoute check={() => isOtpVerified() && isEmailVerified()} redirectTo="/forget-password" />} >
           <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Route> 
         <Route path="/forget-password" element={<ForgetPasswordPage />} />

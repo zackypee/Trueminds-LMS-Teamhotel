@@ -31,19 +31,43 @@ const inputValidation = (formData) => {
     // PASSWORD
 
     if("password" in formData){
-    const password = formData.password;
+        const password = formData.password;
 
-    if (!password) {
-    newErrors.password = "Password is required";
-    } else if (password.length < 8) {
-    newErrors.password = "Password must be at least 8 characters";
-    } else if (!/[A-Z]/.test(password)) {
-    newErrors.password = "Must include at least one uppercase letter";
-    } else if (!/[a-z]/.test(password)) {
-    newErrors.password = "Must include at least one lowercase letter";
-    } else if (!/[0-9]/.test(password)) {
-    newErrors.password = "Must include at least one number";
+        if (!password) {
+        newErrors.password = "Password is required";
+        } else if (password.length < 8) {
+        newErrors.password = "Password must be at least 8 characters";
+        } else if (!/[A-Z]/.test(password)) {
+        newErrors.password = "Must include at least one uppercase letter";
+        } else if (!/[a-z]/.test(password)) {
+        newErrors.password = "Must include at least one lowercase letter";
+        } else if (!/[0-9]/.test(password)) {
+        newErrors.password = "Must include at least one number";
+        }
     }
+
+    if("confirmPassword" in formData){   
+        const confirmPassword = formData.confirmPassword;
+
+
+        if (!confirmPassword) {
+        newErrors.confirmPassword = "Password is required";
+        } else if (confirmPassword.length < 8) {
+        newErrors.confirmPassword = "Password must be at least 8 characters";
+        } else if (!/[A-Z]/.test(confirmPassword)) {
+        newErrors.confirmPassword= "Must include at least one uppercase letter";
+        } else if (!/[a-z]/.test(confirmPassword)) {
+        newErrors.confirmPassword = "Must include at least one lowercase letter";
+        } else if (!/[0-9]/.test(confirmPassword)) {
+        newErrors.confirmPassword = "Must include at least one number";
+        }
+    }
+
+    if("password" in formData && "confirmPassword" in formData ){
+        const password = formData.password;
+        const confirmPassword = formData.confirmPassword
+
+        if(!(password === confirmPassword)) newErrors.matchPassword = "Passwords not match";
     }
 
 

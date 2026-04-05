@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
-import useVerifyResetOtp from "../hooks/useVerifyResetOtp";
+import {useVerifyResetOtp} from "../hooks/useVerifyResetOtp";
 import { Button } from "../../../components/Button";  
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -28,6 +28,7 @@ export const ResetPasswordAuthForm = () => {
 
         setInputValError("")
         const email = sessionStorage.getItem("resetEmail");
+        console.log("Email from sessionStorage:", email);
 
 
         if (combinedOtp.length < 4) {
