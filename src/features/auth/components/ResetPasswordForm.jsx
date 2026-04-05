@@ -104,7 +104,7 @@ export const ResetPasswordForm = () => {
                 {message? <p className="text-green-500">{message}</p> : <ErrorMessage message={error} />}
                 <form className="reset-form font-[Inter] tracking-normal w-full" onSubmit={(e) => handleSubmit(e)}>
                     <label className="reset-label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="password">New Password</label>
-                    <div className="input-container relative w-full  mt-2 mb-10" >
+                    <div className="input-container relative w-full  mt-2 mb-2" >
                         <img src={lockIcon} alt="Lock icon"  className="reset-mail-icon absolute top-[35%] left-[5%] "/>
                        {inputValError.password || inputValError.matchPassword ? <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/> : null}
                         <img 
@@ -118,14 +118,14 @@ export const ResetPasswordForm = () => {
                           id="password" 
                           name="password"  
                           placeholder="********" 
-                          onChange={handleOnChangeFormData}
-                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
+                          onChange={(e) => handleOnChangeFormData(e)}
+                        className={`reset-input border ${inputValError.password || inputValError.matchPassword ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`} 
                         /> 
-                        <ErrorMessage message={inputValError.password} />
                     </div>
+                    <ErrorMessage message={inputValError.password} />
 
                     <label className="label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="confirmPassword">Confirm New Password</label>
-                    <div className="input-container relative w-full  mt-2 mb-10" >
+                    <div className="input-container relative w-full  mt-2 mb-2" >
                         <img src={lockIcon} alt="Lock icon"  className="reset-mail-icon absolute top-[35%] left-[5%] "/>
                         {inputValError.confirmPassword || inputValError.matchPassword ? <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/> : null}
                         <img 
@@ -139,16 +139,17 @@ export const ResetPasswordForm = () => {
                           type={showConfirmPassword ? "text" : "password"} 
                           id="confirmPassword"
                           name="confirmPassword" 
-                          onChange={handleOnChangeFormData}
+                          onChange={(e) => handleOnChangeFormData(e)}
                           placeholder="********"        
-                          className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
+                          className={`reset-input border ${inputValError.confirmPassword || inputValError.matchPassword ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`} 
                         /> 
-                        <ErrorMessage message={inputValError.confirmPassword} />
+                        
                     </div>
+                    <ErrorMessage message={inputValError.confirmPassword} />
                     <ErrorMessage message={inputValError.matchPassword} />
                     <Button 
                       type="submit" 
-                      className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25"
+                      className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25 mt-10"
                       disabled={isLoading}
                     >
                         {isLoading ? 'Resetting Password...' : 'Reset Password'}

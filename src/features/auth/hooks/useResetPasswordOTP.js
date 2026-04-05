@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 
-
-export const useResetPasswordOtp = (length = 4) => {
+const useResetPasswordOtp = (length = 4) => {
   const inputsRef = useRef([]);
   const [otp, setOtp] = useState(Array(length).fill(""));
  
@@ -46,3 +45,4 @@ export const useResetPasswordOtp = (length = 4) => {
   };
 };
 
+export default useResetPasswordOtp

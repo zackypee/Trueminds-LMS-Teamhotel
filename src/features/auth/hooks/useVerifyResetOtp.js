@@ -2,7 +2,7 @@ import { useState } from "react";
 import {verifyResetOtp} from "../authApi";
 
 
-export const useVerifyResetOtp = () => {
+const useVerifyResetOtp = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -37,6 +37,10 @@ export const useVerifyResetOtp = () => {
 
     }
 
-    return { error, isLoading, handleVerifyResetOtp};
+    const clearError = () => setError(null);
+
+    return { error, isLoading, handleVerifyResetOtp, clearError};
 
 }
+
+export default useVerifyResetOtp;

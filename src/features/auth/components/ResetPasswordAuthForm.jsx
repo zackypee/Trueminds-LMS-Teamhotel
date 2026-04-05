@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
 import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
-import {useVerifyResetOtp} from "../hooks/useVerifyResetOtp";
+import useVerifyResetOtp from "../hooks/useVerifyResetOtp";
 import { Button } from "../../../components/Button";  
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ErrorMessage from "../../../components/ErrorMessage";
-import { useResetPasswordOtp } from "../hooks/useResetPasswordOtp";
+import useResetPasswordOtp from "../hooks/useResetPasswordOtp";
+import useAuthReqPasswordReset from "../hooks/useAuthReqPasswordReset";
+
 
 
 export const ResetPasswordAuthForm = () => {  
     const navigate = useNavigate() ;
     const [inputValError, setInputValError] = useState("");
-    const {error, isLoading, handleVerifyResetOtp} = useVerifyResetOtp();
+    const {error, isLoading, handleVerifyResetOtp, clearError} = useVerifyResetOtp();
+    const { handleAuthReqPasswordReset } = useAuthReqPasswordReset();
 
     const {
         otp,
@@ -25,8 +28,7 @@ export const ResetPasswordAuthForm = () => {
 
     const handleSubmit =  async (e) => {
         e.preventDefault();
-
-        setInputValError("")
+        clearError();
         const email = sessionStorage.getItem("resetEmail");
         console.log("Email from sessionStorage:", email);
 
@@ -80,7 +82,7 @@ export const ResetPasswordAuthForm = () => {
                             maxLength={1}
                             value={digit}
                             ref={(el) => (inputsRef.current[index] = el)}
-                            onChange={(e) => handleChange(e, index)}
+                            onChange={(e) => {handleChange(e, index); setInputValError("")}}
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             className={`border ${errorMessage ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm  text-center w-12.5 h-13.25  focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`}
                         />
@@ -100,7 +102,20 @@ export const ResetPasswordAuthForm = () => {
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>
-                <p className="resend-otp-link text-center text-[#7B7487] text-[14px] mb-12 leading-5.25 font-semibold">Didn't receive the code? <button type="button" className="text-[#4A4455]">Resend Code</button></p>
+                <p className="resend-otp-link text-center text-[#7B7487] text-[14px] mb-12 leading-5.25 font-semibold"
+                >
+                    Didn't receive the code? {" "} 
+                    <button 
+                      type="button" 
+                      className="text-[#4A4455]"
+                        onClick={async () => {
+                            await handleAuthReqPasswordReset(sessionStorage.getItem("resetEmail"));
+                            resetOtp();
+                        }}
+                    > 
+                     Resend Code
+                    </button>
+                </p>
                 <p className="support-link text-center text-[#7B7487] text-[14px] leading-5.25 font-semibold">Need help? <Link to="/" className="text-[#4A4455]">Contact TalentFlow Support</Link></p>
           </div>
         </div>

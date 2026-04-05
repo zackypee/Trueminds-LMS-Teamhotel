@@ -25,15 +25,20 @@ const useAuthReqPasswordReset =  () => {
             return true
     
         }catch(err){
-            setError(err.message);
-            sessionStorage.removeItem("forgetPasswordSuccess")
+            const message = response?.data?.message
+            || (err.message === "Network Error"? err.message : err.message)
+            || "Something went wrong, please try again.";
+
+            setError(message);
+            sessionStorage.removeItem("forgetPasswordSuccess");
             sessionStorage.removeItem("resetEmail");
             return false
         }finally{
             setIsLoading(false);
         }
     }
-  return {error, isLoading, handleAuthReqPasswordReset}
+    const clearError = () => setError(null);
+   return {error, isLoading, handleAuthReqPasswordReset, clearError}
 
 }
 

@@ -4,9 +4,7 @@ const inputValidation = (formData) => {
 
     const newErrors = {};
 
-
     // NAME
-
     if("name" in formData){
         if (!formData.name || !formData.name.trim()) {
         newErrors.name = "Name is required";
@@ -18,7 +16,6 @@ const inputValidation = (formData) => {
     // EMAIL
     if("email" in formData){
         const email = formData.email?.trim();
-        //const emailRegex = /^(?=.*[0-9])[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!email) {
@@ -29,7 +26,6 @@ const inputValidation = (formData) => {
     }
 
     // PASSWORD
-
     if("password" in formData){
         const password = formData.password;
 
@@ -49,7 +45,6 @@ const inputValidation = (formData) => {
     if("confirmPassword" in formData){   
         const confirmPassword = formData.confirmPassword;
 
-
         if (!confirmPassword) {
         newErrors.confirmPassword = "Password is required";
         } else if (confirmPassword.length < 8) {
@@ -65,11 +60,10 @@ const inputValidation = (formData) => {
 
     if("password" in formData && "confirmPassword" in formData ){
         const password = formData.password;
-        const confirmPassword = formData.confirmPassword
+        const confirmPassword = formData.confirmPassword;
 
-        if(!(password === confirmPassword)) newErrors.matchPassword = "Passwords not match";
+        if(!(password === confirmPassword)) newErrors.matchPassword = "Passwords do not match";
     }
-
 
     return newErrors;
     
