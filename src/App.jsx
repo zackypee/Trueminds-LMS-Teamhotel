@@ -8,6 +8,9 @@ import Login from "./features/auth/pages/Login";
 import CheckInbox from "./features/auth/pages/CheckInbox";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
+import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute"; 
+import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
+
 
 function App() {
   return (
@@ -15,8 +18,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
+        
+        <Route element={<ResetPasswordProtectedRoute check={isEmailVerified} redirectTo="/forget-password" />} >
+          <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
+        </Route>
+        <Route element={<ResetPasswordProtectedRoute check={() => isOtpVerified() && isEmailVerified()} redirectTo="/forget-password" />} >
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route> 
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/welcomeback" element={<AuthenticationOne />} />

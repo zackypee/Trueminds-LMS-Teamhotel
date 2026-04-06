@@ -4,14 +4,71 @@ import forwardIcon from '../../../assets/forward-icon.svg';
 import backwardIcon from '../../../assets/backward-icon.svg';
 import lockIcon from '../../../assets/lock-icon.svg';  
 import noticeIcon from '../../../assets/notice-icon.svg';
-import showPasswordIcon from '../../../assets/eye-closed-icon.svg';
-import hidePasswordIcon from '../../../assets/icons8-eye-20.png';
-
-import { Button } from "../../../components/Button";  
+import hidePasswordIcon from '../../../assets/eye-closed-icon.svg';
+import showPasswordIcon from '../../../assets/icons8-eye-20.png';
+import useResetPassword from "../hooks/useResetPassword";
+import { Button } from "../../../components/Button"; 
+import inputValidation from "../utils/inputValidation"; 
+import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 export const ResetPasswordForm = () => { 
     const [showPassword, setShowPassword] = useState(false) ;
     const [showConfirmPassword, setShowConfirmPassword] = useState(false) ;
+    const [formData, setFormData] = useState({password:"", confirmPassword:""});
+    const [inputValError, setInputValError] = useState({});
+    const {error, isLoading, handleResetPassword, clearError, message} = useResetPassword();
+    const navigate = useNavigate();
+   
+
+    
+
+
+    const handleOnChangeFormData = (e) => {
+       const { name, value } = e.target;
+        setFormData({...formData, [name]:value})
+
+        setInputValError({});
+        
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        clearError();
+        
+        console.log(formData);
+
+        const validationErrors = inputValidation(formData);
+
+        if (Object.keys(validationErrors).length > 0) {
+            setInputValError(validationErrors);
+            return;
+        }
+
+        const email = sessionStorage.getItem("resetEmail");
+
+        if (!email) {
+            console.error("No reset email found");
+            return;
+        }
+
+        const success = await handleResetPassword({
+            newPassword: formData.password,
+            email,
+        });
+
+        if (success) {
+            setTimeout(() => {
+                navigate("/", { replace: true });   
+            }, 1500);
+
+            sessionStorage.removeItem("resetEmail");
+            sessionStorage.removeItem("verifyResetOtp");
+            sessionStorage.removeItem("forgetPasswordSuccess");
+            localStorage.removeItem("token");
+        }
+        
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(prevState => !prevState) ;
@@ -20,6 +77,8 @@ export const ResetPasswordForm = () => {
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(prevState => !prevState) ;
     }
+
+    
     
     return (
         <div className="
@@ -41,26 +100,34 @@ export const ResetPasswordForm = () => {
             <div className="form-container  w-[90%] min-[500px]:w-95 m-auto  ">
                 <h2 className=" form-header w-full leading-9.75 font-bold text-center m-auto text-[clamp(1.5rem,5vw,2rem)]  min-[900px]:text-[30px] min-[900px]:text-left text-[#1F2937]">Reset Your Password</h2>
                 <p className="form-description text-[16px] leading-6 text-center w-[259.5px] m-auto  min-[500px]:w-full my-[10px_30px] text-[#4A4455] min-[900px]:text-left">Enter your new password and confirm it to reset your password.</p>
-                <form className="reset-form font-[Inter] tracking-normal w-full">
-                    <label className="reset-label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="reset-password">New Password</label>
-                    <div className="input-container relative w-full  mt-2 mb-10" >
+                
+                {message? <p className="text-green-500">{message}</p> : <ErrorMessage message={error} />}
+                <form className="reset-form font-[Inter] tracking-normal w-full" onSubmit={(e) => handleSubmit(e)}>
+                    <label className="reset-label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="password">New Password</label>
+                    <div className="input-container relative w-full  mt-2 mb-2" >
                         <img src={lockIcon} alt="Lock icon"  className="reset-mail-icon absolute top-[35%] left-[5%] "/>
-                        <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/>
+                       {inputValError.password || inputValError.matchPassword ? <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/> : null}
                         <img 
                           src={showPassword ? hidePasswordIcon : showPasswordIcon} 
                           alt={showPassword ? "Hide password Icon" : "Show password"}  
                           className="password-toggle-icon absolute top-[35%] right-[5%] "
                           onClick={togglePasswordVisibility}
                         />
-                        <input type={showPassword ? "text" : "password"} id="reset-password" name="reset-password" required placeholder="********" 
-                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
+                        <input 
+                          type={showPassword ? "text" : "password"} 
+                          id="password" 
+                          name="password"  
+                          placeholder="********" 
+                          onChange={(e) => handleOnChangeFormData(e)}
+                        className={`reset-input border ${inputValError.password || inputValError.matchPassword ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`} 
                         /> 
                     </div>
+                    <ErrorMessage message={inputValError.password} />
 
-                    <label className="label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="confirm-password">Confirm New Password</label>
-                    <div className="input-container relative w-full  mt-2 mb-10" >
+                    <label className="label text-[14px] leading-5.25 text-left w-full  text-[#1F2937] " htmlFor="confirmPassword">Confirm New Password</label>
+                    <div className="input-container relative w-full  mt-2 mb-2" >
                         <img src={lockIcon} alt="Lock icon"  className="reset-mail-icon absolute top-[35%] left-[5%] "/>
-                        <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/>
+                        {inputValError.confirmPassword || inputValError.matchPassword ? <img src={noticeIcon} alt="Notice icon"  className="notice-icon absolute top-[-35%] right-0 "/> : null}
                         <img 
                           src={showConfirmPassword ? hidePasswordIcon : showPasswordIcon} 
                           alt={showConfirmPassword ? "Hide password Icon" : "Show password"}  
@@ -68,12 +135,24 @@ export const ResetPasswordForm = () => {
                           onClick={toggleConfirmPasswordVisibility}
                         />
                         
-                        <input type={showConfirmPassword ? "text" : "password"} id="confirm-password" name="confirm-password" required placeholder="********" 
-                        className="reset-input border border-[#E5E7EB] rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]" 
+                        <input 
+                          type={showConfirmPassword ? "text" : "password"} 
+                          id="confirmPassword"
+                          name="confirmPassword" 
+                          onChange={(e) => handleOnChangeFormData(e)}
+                          placeholder="********"        
+                          className={`reset-input border ${inputValError.confirmPassword || inputValError.matchPassword ? 'border-red-500' : 'border-[#E5E7EB]'} rounded-sm w-full py-4 pl-11 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]`} 
                         /> 
+                        
                     </div>
-                    <Button type="submit" className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25">
-                        Reset Password
+                    <ErrorMessage message={inputValError.confirmPassword} />
+                    <ErrorMessage message={inputValError.matchPassword} />
+                    <Button 
+                      type="submit" 
+                      className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25 mt-10"
+                      disabled={isLoading}
+                    >
+                        {isLoading ? 'Resetting Password...' : 'Reset Password'}
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
