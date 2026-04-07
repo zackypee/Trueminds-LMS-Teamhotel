@@ -13,7 +13,7 @@ const useLogin = () => {
     try {
       const { user } = await loginUser(email, password);
       setUser(user);
-      navigate("/dashboard"); // ← redirect straight to dashboard on success
+      navigate("/dashboard"); // redirect straight to dashboard on success
     } catch (err) {
       if (err.validationErrors) {
         // Empty fields or bad format → show under the input

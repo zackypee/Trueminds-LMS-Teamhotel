@@ -1,16 +1,18 @@
 import { useRef, useState } from "react";
 
-
-export const useResetPasswordOTP = (length = 4) => {
+const useResetPasswordOtp = (length = 4) => {
   const inputsRef = useRef([]);
   const [otp, setOtp] = useState(Array(length).fill(""));
+ 
   
 
   const handleChange = (e, index) => {
     const value = e.target.value;
 
+    //Input Validation
     if (!/^[0-9]?$/.test(value)) return;
-
+    
+    //Input State
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -42,3 +44,5 @@ export const useResetPasswordOTP = (length = 4) => {
     resetOtp,
   };
 };
+
+export default useResetPasswordOtp
