@@ -10,7 +10,7 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import InstructorDashboard from "./features/Instructor/pages/InstructorDashboard";
+import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 
 function App() {
   return (
