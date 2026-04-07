@@ -1,33 +1,33 @@
-// import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../context/authLoginContext";
-// import { loginUser } from "../authServices";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authLoginContext";
+import { loginUser } from "../authServices";
 
-// const useLogin = () => {
-//   const { setUser, setLoading, setError } = useAuth();
-//   const navigate = useNavigate();
+const useLogin = () => {
+  const { setUser, setLoading, setError } = useAuth();
+  const navigate = useNavigate();
 
-//   const authLogin = async (email, password, setFieldErrors) => {
-//     setLoading(true);
-//     setError(null);
+  const authLogin = async (email, password, setFieldErrors) => {
+    setLoading(true);
+    setError(null);
 
-//     try {
-//       const { user } = await loginUser(email, password);
-//       setUser(user);
-//       navigate("/dashboard");
-//     } catch (err) {
-//       if (err.validationErrors) {
-//         // Field-level errors (empty fields, bad format) go back to the form
-//         setFieldErrors(err.validationErrors);
-//       } else {
-//         // API/network errors go to context (shown as general error banner)
-//         setError(err.message);
-//       }
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+    try {
+      const { user } = await loginUser(email, password);
+      setUser(user);
+      navigate("/dashboard"); // ← redirect straight to dashboard on success
+    } catch (err) {
+      if (err.validationErrors) {
+        // Empty fields or bad format → show under the input
+        setFieldErrors(err.validationErrors);
+      } else {
+        // Wrong credentials or network error → show general banner
+        setError(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   return { authLogin };
-// };
+  return { authLogin };
+};
 
-// export default useLogin;
+export default useLogin;
