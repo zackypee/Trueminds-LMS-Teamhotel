@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { authReqPasswordReset } from "../authApi";  
+// import { authReqPasswordReset } from "../authApi"; check this  
+import { authReqPasswordReset } from "../authServices";
 
 const useAuthReqPasswordReset =  () => {
     const [error, setError] = useState(null);
@@ -25,7 +26,7 @@ const useAuthReqPasswordReset =  () => {
             return true
     
         }catch(err){
-            const message = response?.data?.message
+            const message = err.response?.data?.message
             || (err.message === "Network Error"? err.message : err.message)
             || "Something went wrong, please try again.";
 

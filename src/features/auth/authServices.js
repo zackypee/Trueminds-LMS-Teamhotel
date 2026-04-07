@@ -40,3 +40,21 @@ export const loginUser = async (email, password) => {
   return { token, user };
 };
 
+// zackypee Added resetPassword
+export const resetPassword = async (newPasswordData) => {
+  const response = await api.post("/auth/reset-password", newPasswordData);
+  return response.data; // expects { success: true, message: "..." }
+};
+
+//zacky added authReqPasswordReset
+export const authReqPasswordReset = async (email) => {
+  const response = await api.post("/auth/forgot-password", { email });
+  return response.data; // expects { success: true, message: "..." }
+};
+
+
+//zacky added verifyResetOtp
+export const verifyResetOtp = async (data) => {
+  const response = await api.post("/auth/verify-reset-otp", data);
+  return response.data; // expects { success: true, data: { token: "..." } }
+};
