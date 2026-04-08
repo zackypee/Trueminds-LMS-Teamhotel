@@ -11,12 +11,21 @@ import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import AdminLayout from "./layouts/AdminLayout";
+import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+
+        <Route path="admin" element={<AdminLayout />} >
+          <Route  index element={<TeamAllocationPage />} />
+        </Route>
+
+
+        <Route path="/ login" element={<Login />} />
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
 
         <Route

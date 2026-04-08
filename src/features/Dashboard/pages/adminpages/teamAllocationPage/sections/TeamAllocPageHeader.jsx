@@ -2,7 +2,7 @@ const TeamAllocPageHeader = () => {
   return (
     <section className="team-alloc-page-header font-[Inter] tracking-normal flex  items-end justify-between ">
        <div className="content tracking-normal b"> 
-          <h1 className=" font-semibold font-[Inter] text-[24px] leading-[33.6px] text-[#1F2937]">Team Allocation</h1>
+          <h2 className=" font-semibold font-[Inter] text-[24px] leading-[33.6px] text-[#1F2937]">Team Allocation</h2>
           <p className="alloc-page-description text-[#6B7280] text-[14px] leading-5.25">Assign interns to specialized squads and manage onboarding workflows.</p>
        </div>
       
