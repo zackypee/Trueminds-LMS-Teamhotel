@@ -1,11 +1,9 @@
-import AssignmentForm from "../components/AssignmentForm";
-import CourseMaterialForm from "../components/CourseMaterialForm";
+import InstructorDashMenuBar from "../components/InstructorDashMenuBar";
 
 function InstructorDashboard() {
   return (
     <div>
-      <AssignmentForm />
-      <CourseMaterialForm />
+      <InstructorDashMenuBar />
     </div>
   );
 }
