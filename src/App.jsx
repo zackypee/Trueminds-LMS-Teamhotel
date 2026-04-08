@@ -11,6 +11,7 @@ import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import InstructorDashboard from "./features/Instructor/pages/InstructorDashboard";
+import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+        <Route path="/course-catalogue" element={<CourseCatalogue />} />
 
         <Route
           element={
