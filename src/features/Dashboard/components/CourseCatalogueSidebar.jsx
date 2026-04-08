@@ -19,7 +19,7 @@ const CourseCatalogueSidebar = ({ selectedCategory, setCategory }) => {
   ];
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 hidden md:block">
       <div className="md:w-80 w-16 border-r border-[#00000033]  min-h-screen py-4  px-20  flex flex-col">
         {menuItems.map((item) => {
           return (
