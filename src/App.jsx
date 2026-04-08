@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
@@ -9,9 +10,9 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
-import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
+import DashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
 import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
-import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import InstructorDashboard from "./features/Dashboard/components/InstructorDashboard";
 import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 
@@ -24,10 +25,10 @@ function App() {
           <Route path="/" element={<Login />} />
 
           {/* Dashboard Layout — nested routes render inside Outlet */}
-          <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
-            <Route index element={<InstructorDashboard />} />                
-            <Route path="assignments" element={<AssignmentForm />} />      
-            <Route path="upload" element={<CourseMaterialForm />} />      
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<InstructorDashboard />} />                {/* /dashboard */}
+            <Route path="assignments" element={<AssignmentForm />} />       {/* /dashboard/assignments */}
+            <Route path="upload" element={<CourseMaterialForm />} />        {/* /dashboard/upload */}
           </Route>
 
           <Route
