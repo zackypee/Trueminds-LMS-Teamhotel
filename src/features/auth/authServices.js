@@ -1,6 +1,6 @@
 import api from "./authApi";
 
-// Validate email and password only
+// Validate email and password only !!note this 
 const validateInputs = (email, password) => {
   const errors = {};
 
@@ -17,6 +17,7 @@ const validateInputs = (email, password) => {
   return errors;
 };
 
+//check this
 const storeSession = (token, user) => {
   sessionStorage.setItem("authToken", token);
   sessionStorage.setItem("user", JSON.stringify(user));

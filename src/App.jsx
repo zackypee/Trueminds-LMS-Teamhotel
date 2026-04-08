@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
@@ -9,44 +8,57 @@ import CheckInbox from "./features/auth/pages/CheckInbox";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
-import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
+import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
+import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
+import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
+import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+      <AuthLoginProvider>
+        <Routes>
 
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={isEmailVerified}
-              redirectTo="/forget-password"
-            />
-          }
-        >
+          <Route path="/" element={<Login />} />
+
+          {/* Dashboard Layout — nested routes render inside Outlet */}
+          <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
+            <Route index element={<InstructorDashboard />} />                
+            <Route path="assignments" element={<AssignmentForm />} />      
+            <Route path="upload" element={<CourseMaterialForm />} />      
+          </Route>
+
           <Route
-            path="/reset-password-auth"
-            element={<ResetPasswordAuthPage />}
-          />
-        </Route>
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={() => isOtpVerified() && isEmailVerified()}
-              redirectTo="/forget-password"
-            />
-          }
-        >
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-        </Route>
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcomeback" element={<AuthenticationOne />} />
-        <Route path="/check-inbox" element={<CheckInbox />} />
-      </Routes>
+            element={
+              <ResetPasswordProtectedRoute
+                check={isEmailVerified}
+                redirectTo="/forget-password"
+              />
+            }
+          >
+            <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
+          </Route>
+
+          <Route
+            element={
+              <ResetPasswordProtectedRoute
+                check={() => isOtpVerified() && isEmailVerified()}
+                redirectTo="/forget-password"
+              />
+            }
+          >
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+          </Route>
+
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/welcomeback" element={<AuthenticationOne />} />
+          <Route path="/check-inbox" element={<CheckInbox />} />
+
+        </Routes>
+      </AuthLoginProvider>
     </BrowserRouter>
   );
 }
