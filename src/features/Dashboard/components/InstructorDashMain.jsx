@@ -10,7 +10,7 @@ export default function InstrucDashMain() {
     <div className="flex flex-col flex-1 bg-white">
 
       {/* Search Bar */}
-      <div className="flex items-center gap-2 border border-[#E5E7EB] rounded-lg px-4 py-2 mx-6 mt-4 max-w-md">
+      <div className="flex items-center gap-2 border border-[#E5E7EB] rounded-lg px-4 py-2 mx-4 md:mx-6 mt-4 max-w-md">
         <img src={searchIcon} alt="search icon" className="w-4 h-4" />
         <input
           type="text"
@@ -20,35 +20,35 @@ export default function InstrucDashMain() {
       </div>
 
       {/* Main Content */}
-      <div className="px-6 py-6 flex flex-col gap-6">
+      <div className="px-4 md:px-6 py-6 flex flex-col gap-6">
 
         {/* Header */}
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
-            <h1 className="text-[36px] font-bold text-[#001C3B]">Instructor Dashboard</h1>
-            <p className="text-[16px]  text-[#6B7280] mt-1">
+            <h1 className="text-[24px] md:text-[36px] font-bold text-[#001C3B]">Instructor Dashboard</h1>
+            <p className="text-[14px] md:text-[16px] text-[#6B7280] mt-1">
               Welcome back, Instructor. Your learners are making great progress today.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 text-sm font-medium text-[#7C3AED] shadow-sm py-4 px-4 rounded-lg">
+            <button className="flex items-center gap-2 text-sm font-medium text-[#7C3AED] shadow-sm py-2 md:py-4 px-3 md:px-4 rounded-lg">
               <img src={historyIcon} alt="" className="w-4 h-4" />
               View History
             </button>
-            <button className="bg-[#7C3AED] text-white text-sm font-semibold px-4 py-4 rounded-lg hover:bg-[#6D2ED9] transition-colors">
+            <button className="bg-[#7C3AED] text-white text-sm font-semibold px-3 md:px-4 py-2 md:py-4 rounded-lg hover:bg-[#6D2ED9] transition-colors">
               Full Report
             </button>
           </div>
         </div>
 
         {/* Cards + Pending Feedback */}
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
 
           {/* Left — Action Cards + Stats */}
           <div className="flex flex-col gap-6 flex-1">
 
             {/* Action Cards */}
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
 
               {/* Upload Materials */}
               <div className="flex-1 bg-[#7C3AED] rounded-2xl p-6 flex flex-col gap-4">
@@ -56,7 +56,7 @@ export default function InstrucDashMain() {
                   <img src={cloudIcon} alt="" />
                 </div>
                 <div>
-                  <h2 className="text-white font-extrabold text-[24px]">Upload Materials</h2>
+                  <h2 className="text-white font-extrabold text-[20px] md:text-[24px]">Upload Materials</h2>
                   <p className="text-[#F9FAFB] text-sm mt-2">
                     Add new videos, PDFs, or interactive lessons to your course library.
                   </p>
@@ -67,12 +67,12 @@ export default function InstrucDashMain() {
               </div>
 
               {/* Create Assignment */}
-              <div className="flex-1 bg-gradient-to-br  from-[#0D9488] to-[#455F87] rounded-2xl p-6 flex flex-col gap-4">
-                <div className="w-[28.5px] h-[30px]  rounded-xl flex items-center justify-center">
+              <div className="flex-1 bg-gradient-to-br from-[#0D9488] to-[#455F87] rounded-2xl p-6 flex flex-col gap-4">
+                <div className="w-[28.5px] h-[30px] rounded-xl flex items-center justify-center">
                   <img src={noteIcon} alt="" />
                 </div>
                 <div>
-                  <h2 className="text-[#F9FAFB] font-extrabold text-[24px]">Create Assignment</h2>
+                  <h2 className="text-[#F9FAFB] font-extrabold text-[20px] md:text-[24px]">Create Assignment</h2>
                   <p className="text-[#F9FAFB] text-sm mt-2">
                     Design quizzes, peer reviews, or final projects for your current modules.
                   </p>
@@ -85,20 +85,20 @@ export default function InstrucDashMain() {
             </div>
 
             {/* Stats Row */}
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8 flex-wrap">
               <div>
                 <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">Total Students</p>
-                <p className="text-2xl font-bold text-[#0F172A] mt-1">
+                <p className="text-xl md:text-2xl font-bold text-[#0F172A] mt-1">
                   1,284 <span className="text-sm font-semibold text-green-500">+12%</span>
                 </p>
               </div>
               <div>
                 <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide">Active Courses</p>
-                <p className="text-2xl font-bold text-[#0F172A] mt-1">14</p>
+                <p className="text-xl md:text-2xl font-bold text-[#0F172A] mt-1">14</p>
               </div>
               <div>
                 <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide">Avg. Progress</p>
-                <p className="text-2xl font-bold text-[#0F172A] mt-1">
+                <p className="text-xl md:text-2xl font-bold text-[#0F172A] mt-1">
                   68% <span className="text-sm font-semibold text-green-500">+4%</span>
                 </p>
               </div>
@@ -107,10 +107,10 @@ export default function InstrucDashMain() {
           </div>
 
           {/* Right — Pending Feedback */}
-          <div className="bg-[#FFDBCC] rounded-2xl max-w-[300px] px-6 py-6 flex flex-col gap-4">
+          <div className="bg-[#FFDBCC] rounded-2xl w-full md:max-w-[300px] px-6 py-6 flex flex-col gap-4">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-[#D97706] font-semibold text-[24px]  leading-tight">Pending Feedback</p>
+                <p className="text-[#D97706] font-semibold text-[20px] md:text-[24px] leading-tight">Pending Feedback</p>
                 <p className="text-sm text-[#7B2F00] mt-1">12 Assignments waiting</p>
               </div>
               <span className="bg-[#D97706] text-white text-[16px] font-extrabold px-2.5 py-1 rounded-lg">12</span>
@@ -140,9 +140,6 @@ export default function InstrucDashMain() {
           </div>
 
         </div>
-
-       
-
       </div>
     </div>
   );

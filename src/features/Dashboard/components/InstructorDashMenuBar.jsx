@@ -11,9 +11,9 @@ export default function InstrucDashMenuBar() {
   const location = useLocation(); // ← tracks current URL
 
   const navItems = [
-    { id: "dashboard", label: "Dashboard", icon: dashboardIcon, path: "/dashboard" },
-    { id: "upload", label: "Upload Courses", icon: uploadIcon, path: "/dashboard/upload" },
-    { id: "assignments", label: "Assignments", icon: assignmentLogo, path: "/dashboard/assignments" },
+    { id: "dashboard", label: "Dashboard", icon: dashboardIcon, path: "/instructor-dashboard" },
+    { id: "upload", label: "Upload Courses", icon: uploadIcon, path: "/instructor-dashboard/upload" },
+    { id: "assignments", label: "Assignments", icon: assignmentLogo, path: "/instructor-dashboard/assignments" },
   ];
 
   const SidebarContent = () => (

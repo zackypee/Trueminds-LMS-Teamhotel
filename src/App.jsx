@@ -10,11 +10,11 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
-import DashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
+import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout"
 import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
-import InstructorDashboard from "./features/Dashboard/components/InstructorDashboard";
 import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
+import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 
 function App() {
   return (
@@ -25,12 +25,11 @@ function App() {
           <Route path="/" element={<Login />} />
 
           {/* Dashboard Layout — nested routes render inside Outlet */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
             <Route index element={<InstructorDashboard />} />                {/* /dashboard */}
             <Route path="assignments" element={<AssignmentForm />} />       {/* /dashboard/assignments */}
             <Route path="upload" element={<CourseMaterialForm />} />        {/* /dashboard/upload */}
           </Route>
-
           <Route
             element={
               <ResetPasswordProtectedRoute

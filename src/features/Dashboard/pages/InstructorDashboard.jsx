@@ -4,7 +4,7 @@ import LearningActivityTable from "../components/LearningActivityTable";
 
 function InstructorDashboard() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <InstrucDashMain/>
       <LearningActivityTable />
     </div>
