@@ -10,6 +10,7 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
+import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
@@ -27,6 +28,7 @@ function App() {
 
         <Route path="/ login" element={<Login />} />
         <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+        <Route path="/course-catalogue" element={<CourseCatalogue />} />
 
         <Route
           element={
