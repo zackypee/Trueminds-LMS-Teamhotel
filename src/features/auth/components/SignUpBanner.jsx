@@ -1,13 +1,16 @@
 import education from "../../../assets/education-Online-Learning-02.png";
 import back from "../../../assets/back-icon.png";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpBanner = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center items-center bg-[#F9FAFB] w-full md:w-1/2 p-12 relative">
       <img
         src={back}
         alt="Back"
         className="absolute  top-8 left-8 w-4 h-4 md:w-7 md:h-6"
+        onClick={() => navigate(-1)}
       />
       <h3 className="md:hidden absolute top-8 text-[18px] text-[#1F2937] font-extrabold">
         Create Account
