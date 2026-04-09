@@ -4,11 +4,11 @@ import AdminTopBar from "../features/Dashboard/components/adminComponents/AdminT
 
 const AdminLayout = () => {
   return (
-    <div className="admin-layout flex">
-      <AdminSidebar /> 
-      <div className="admin-content flex-1 " >      
-        <AdminTopBar />
-        <main className="admin-main p-5">
+    <div className="admin-layout flex relative ">
+      <AdminSidebar/> 
+      <div className="admin-content flex-1  pl-64 relative w-full " >      
+        <AdminTopBar/>
+        <main className="admin-main p-5 ">
           <Outlet />
         </main>
       </div>
