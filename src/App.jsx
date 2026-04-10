@@ -16,6 +16,7 @@ import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialFo
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import CourseOutline from "./features/Dashboard/components/CourseOutline";
 
 function App() {
   return (
@@ -66,7 +67,7 @@ function App() {
 
           <Route path="/welcomeback" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
-
+          
         </Routes>
       </AuthLoginProvider>
     </BrowserRouter>
