@@ -192,7 +192,7 @@ const Courses = ({ selectedCategory, searchQuery }) => {
             {ongoingClasses.map((cls, index) => (
               <div
                 key={index}
-                className="w-75 h-95 border border-[#E5E7EB] shadow-sm rounded-lg "
+                className="w-75  border border-[#E5E7EB] shadow-sm rounded-lg "
               >
                 <img
                   src={cls.imgg}
@@ -200,7 +200,7 @@ const Courses = ({ selectedCategory, searchQuery }) => {
                   className="w-full h-40 rounded-tr-lg rounded-tl-lg"
                 />
                 <div className="p-4">
-                  <h2 className="text-[16px] font-semibold text-[#1F2937]">
+                  <h2 className="text-[16px] font-semibold text-[#1F2937] line-clamp-2">
                     {cls.topic}
                   </h2>
                   <p className="text-[#1F2937] font-normal text-[14px] my-3 ">
@@ -239,7 +239,7 @@ const Courses = ({ selectedCategory, searchQuery }) => {
         {filteredCourses.map((course, index) => (
           <div
             key={index}
-            className=" bg-[#FFFFFF] w-75 h-95 border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5 "
+            className=" bg-[#FFFFFF] w-75 h-90 border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5 "
           >
             <img
               src={course.imgg}
@@ -247,7 +247,7 @@ const Courses = ({ selectedCategory, searchQuery }) => {
               className="w-full h-39.25 rounded-tr-lg rounded-tl-lg"
             />
             <div className="p-4 relative">
-              <h2 className="text-[16px] font-semibold text-[#1F2937] w-59.25">
+              <h2 className="text-[16px] font-semibold text-[#1F2937] w-59.25 line-clamp-2">
                 {course.title}
               </h2>
               <button
@@ -262,18 +262,18 @@ const Courses = ({ selectedCategory, searchQuery }) => {
                   <CiBookmark size={20} />
                 )}
               </button>
-              <p className="text-[#1F2937] font-normal text-[14px] my-3 ">
+              <p className="text-[#1F2937] font-normal text-[14px] mt-3 mb-5 ">
                 {course.instructor}
               </p>
               {course.tools.map((tool, idx) => (
                 <span
                   key={idx}
-                  className={` text-[#1F2937] font-semibold text-[14px] p-2.5 rounded-2xl mr-2 ${idx !== course.tools.length - 1 ? "bg-[#EDE9FE]" : ""}`}
+                  className={` text-[#1F2937] font-semibold text-[14px] p-2.5 rounded-2xl mr-2  ${idx !== course.tools.length - 1 ? "bg-[#EDE9FE]" : ""}`}
                 >
                   {tool}
                 </span>
               ))}
-              <div className="flex items-center justify-between mt-5 text-[14px] font-semibold ">
+              <div className="flex items-center justify-between mt-6 text-[14px] font-semibold ">
                 <p className="flex items-center gap-2">
                   <IoMdStar /> <span>{course.rating}</span>
                 </p>
