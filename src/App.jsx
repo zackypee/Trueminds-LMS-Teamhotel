@@ -15,6 +15,7 @@ import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
+import Profile from "./features/Dashboard/pages/Profile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 
 function App() {
@@ -67,6 +68,39 @@ function App() {
           <Route path="/check-inbox" element={<CheckInbox />} />
         </Routes>
       </AuthLoginProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/instructor-dashboard" element={<InstructorDashboard />} /> */}
+
+        <Route
+          element={
+            <ResetPasswordProtectedRoute
+              check={isEmailVerified}
+              redirectTo="/forget-password"
+            />
+          }
+        >
+          <Route
+            path="/reset-password-auth"
+            element={<ResetPasswordAuthPage />}
+          />
+        </Route>
+        <Route
+          element={
+            <ResetPasswordProtectedRoute
+              check={() => isOtpVerified() && isEmailVerified()}
+              redirectTo="/forget-password"
+            />
+          }
+        >
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route>
+        <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/welcomeback" element={<AuthenticationOne />} />
+        <Route path="/check-inbox" element={<CheckInbox />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </BrowserRouter>
   );
 }
