@@ -6,7 +6,6 @@ import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
 import CheckInbox from "./features/auth/pages/checkInbox";
 import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
-import CheckInbox from "./features/auth/pages/CheckInbox";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
@@ -17,7 +16,9 @@ import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialFo
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
->>>>>>> 400d8f76739dea54914d2e045ee81a245f80b232
+import UserDashboard from "./features/Dashboard/pages/UserDashboard";
+
+
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/welcomeback" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
         </Routes>
       </AuthLoginProvider>
     </BrowserRouter>

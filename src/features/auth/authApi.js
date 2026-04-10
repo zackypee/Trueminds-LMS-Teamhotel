@@ -67,6 +67,7 @@
 //     body: JSON.stringify({ email, otp }),
 //   });
 // };
+
 import axios from "axios";
 
 const api = axios.create({
