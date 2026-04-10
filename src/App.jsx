@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-import CheckInbox from "./features/auth/pages/CheckInbox";
+import CheckInbox from "./features/auth/pages/checkInbox";
+import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
@@ -17,10 +17,24 @@ import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import Profile from "./features/Dashboard/pages/Profile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
+import UserDashboard from "./features/Dashboard/pages/UserDashboard";
+import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
+
+
 
 function App() {
   return (
     <BrowserRouter>
+      <Routes>
+         <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/welcomeback" element={<AuthenticationOne />} />
+        <Route path="/check-inbox" element={<CheckInbox />} />
+        <Route path="/new-password" element={<NewPasswordPage />} />
+      </Routes>
+      
       <AuthLoginProvider>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -36,6 +50,15 @@ function App() {
             <Route path="upload" element={<CourseMaterialForm />} />{" "}
             {/* /dashboard/upload */}
           </Route>
+
+          <Route
+            path="/dashboard"
+            element={<UserDashboardLayout />}
+          >
+            <Route index element={<UserDashboardContent />} />
+            
+          </Route>
+
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
           <Route
             element={
