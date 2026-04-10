@@ -10,14 +10,15 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import InstructorDashboard from "./features/Instructor/pages/InstructorDashboard";
+import Profile from "./features/Dashboard/pages/Profile";
+// import InstructorDashboard from "./features/Instructor/pages/InstructorDashboard";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+        {/* <Route path="/instructor-dashboard" element={<InstructorDashboard />} /> */}
 
         <Route
           element={
@@ -46,6 +47,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/welcomeback" element={<AuthenticationOne />} />
         <Route path="/check-inbox" element={<CheckInbox />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
