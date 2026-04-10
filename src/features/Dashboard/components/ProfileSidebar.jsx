@@ -6,9 +6,8 @@ import ProfileLogo from "../../../assets/profilelogo.png";
 import LiveLogo from "../../../assets/livelogo.png";
 import AssignmentLogo from "../../../assets/assignmentlogo.png";
 
-export default function ProfileSidebar() {
+export default function ProfileSidebar({ activeLink, setActiveLink }) {
   // 1. Store the name of the active link instead of just true/false
-  const [activeLink, setActiveLink] = React.useState("Dashboard");
 
   const menuItems = [
     { name: "Dashboard", icon: DashboardLogo },
@@ -22,7 +21,7 @@ export default function ProfileSidebar() {
     <aside
       className="
   /* 1. Dimensions & Positioning */
-  hidden md:flex flex-col 
+  hidden lg:flex flex-col 
   w-64 lg:w-150 min-h-screen 
   
   
@@ -53,7 +52,9 @@ export default function ProfileSidebar() {
               aria-hidden="true"
               className="w-6 h-6 mr-3"
             />
-            <span className="text-sm font-medium">{item.name}</span>
+            <button className="text-sm font-medium cursor-pointer">
+              {item.name}
+            </button>
           </span>
         ))}
       </div>
@@ -74,7 +75,9 @@ export default function ProfileSidebar() {
             aria-hidden="true"
             className="w-4 h-4 mr-3"
           />
-          <span className="text-sm font-medium">View Profile</span>
+          <button className="text-sm font-medium cursor-pointer">
+            View Profile
+          </button>
         </span>
       </div>
     </aside>

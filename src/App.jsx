@@ -16,7 +16,7 @@ import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialFo
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import Profile from "./features/Dashboard/pages/Profile";
-// import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 
 function App() {
   return (

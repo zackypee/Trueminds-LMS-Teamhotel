@@ -20,15 +20,17 @@ export default function ProfileView() {
   function DetailItem({ label, value }) {
     return (
       <div>
-        <p className="uppercase text-xs font-bold text-gray-500 tracking-wider">
+        <p className="uppercase text-xs font-bold text-[#7B7488] tracking-wider">
           {label}:
         </p>
-        <p className="font-medium text-gray-800 break-words">{value}</p>
+        <p className="font-medium text-gray-800 break-words truncate">
+          {value}
+        </p>
       </div>
     );
   }
   return (
-    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-[#CCC3D91A] rounded-md">
+    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-[#CCC3D91A] rounded-3xl">
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
@@ -78,7 +80,7 @@ export default function ProfileView() {
         </span>
 
         {/* Responsive Grid: 1 column on mobile, 2 columns on tablets/desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
           <DetailItem label="Email Address" value={user.email} />
           <DetailItem label="Phone Number" value={user.phone} />
           <DetailItem label="Location" value={user.location} />
@@ -86,7 +88,7 @@ export default function ProfileView() {
         </div>
 
         <div className="mt-8">
-          <p className="uppercase text-xs font-bold text-gray-500 mb-2 tracking-wider">
+          <p className="uppercase text-xs font-bold text-[#7B7488] mb-2 tracking-wider">
             Bio:
           </p>
           <p className="text-gray-700 leading-relaxed">{user.bio}</p>

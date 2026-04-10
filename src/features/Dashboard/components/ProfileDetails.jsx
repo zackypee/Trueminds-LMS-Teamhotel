@@ -20,21 +20,27 @@ export default function ProfileDetails() {
             <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
               <img src={BadgeLogo} alt="badge" className="w-6 h-6 " />
             </div>
-            <h2 className="text-sm mt-2">Quick Learner</h2>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Quick Learner
+            </h2>
           </span>
 
           <span className="text-center flex flex-col items-center">
             <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
               <img src={TeamPlayer} alt="badge" className="w-6 h-6" />
             </div>
-            <h2 className="text-sm mt-2">Team Player</h2>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Team Player
+            </h2>
           </span>
 
           <span className="text-center flex flex-col items-center">
             <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
               <img src={CalenderLogo} alt="badge" className="w-6 h-6" />
             </div>
-            <h2 className="text-sm mt-2">Consistent</h2>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Consistent
+            </h2>
           </span>
 
           <span className="text-center flex flex-col items-center">
@@ -70,7 +76,7 @@ export default function ProfileDetails() {
           </span>
 
           {/* grid-cols-1 for mobile, grid-cols-2 for desktop */}
-          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="mt-5 grid grid-cols-2 sm:grid-cols-2 gap-6">
             <span>
               <p className="uppercase mt-4 text-xs text-[#7B7488]">
                 Experience level
@@ -97,7 +103,7 @@ export default function ProfileDetails() {
           <p className=" font-bold text-lg">Talent Flow Details</p>
         </span>
 
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-2 gap-6">
           <span>
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
               Assigned Mentor
@@ -108,7 +114,7 @@ export default function ProfileDetails() {
                 alt="mentorlogo"
                 className="w-6 h-6 bg-[#F3EBFA] p-1 rounded-2xl"
               />
-              <p className="font-medium"> Dr. Silas Okeke </p>
+              <p className="font-medium truncate"> Dr. Silas Okeke </p>
             </span>
           </span>
           <span>
