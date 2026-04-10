@@ -16,7 +16,9 @@ import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialFo
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboard from "./features/Dashboard/pages/UserDashboard";
+import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 
 
 
@@ -47,6 +49,15 @@ function App() {
             <Route path="upload" element={<CourseMaterialForm />} />{" "}
             {/* /dashboard/upload */}
           </Route>
+
+          <Route
+            path="/dashboard"
+            element={<UserDashboardLayout />}
+          >
+            <Route index element={<UserDashboardContent />} />
+            
+          </Route>
+
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
           <Route
             element={
@@ -77,7 +88,6 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/welcomeback" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
-          <Route path="/dashboard" element={<UserDashboard />} />
         </Routes>
       </AuthLoginProvider>
     </BrowserRouter>
