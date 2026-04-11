@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
-import SidebarPanel from "../components/SidebarPanel";
+import SidebarPanel from "../components/UserSidebarPanel";
 import UserDashboardNavbar from "../components/UserDashboardNavBar";
-// import SidePanel from "../components/SidePanel";  // ← Add this import
 
 export default function UserDashboardLayout() {
   

@@ -1,5 +1,4 @@
 import InstrucDashMain from "../components/InstructorDashMain";
-import InstructorDashMenuBar from "../components/InstructorDashMenuBar";
 import LearningActivityTable from "../components/LearningActivityTable";
 
 function InstructorDashboard() {

@@ -11,57 +11,47 @@ import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
 import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
-import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
-import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
+import CourseMaterialForm from "./features/Dashboard/components/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
-import Profile from "./features/Dashboard/pages/Profile";
+import UserProfile from "./features/Dashboard/pages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
-import UserDashboard from "./features/Dashboard/pages/UserDashboard";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
-
-
-c2fa93c86ed70c6f9e416c33612af9dc54445eee
+import InstructorAssignmentForm from "./features/Dashboard/components/InstructorAssignmentForm";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-         <Route path="/login" element={<Login />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcomeback" element={<AuthenticationOne />} />
-        <Route path="/check-inbox" element={<CheckInbox />} />
-        <Route path="/new-password" element={<NewPasswordPage />} />
-      </Routes>
-      
       <AuthLoginProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
 
-          {/* Dashboard Layout — nested routes render inside Outlet */}
-          <Route
-            path="/instructor-dashboard"
-            element={<InstructorDashboardLayout />}
-          >
-            <Route index element={<InstructorDashboard />} /> {/* /dashboard */}
-            <Route path="assignments" element={<AssignmentForm />} />{" "}
-            {/* /dashboard/assignments */}
-            <Route path="upload" element={<CourseMaterialForm />} />{" "}
-            {/* /dashboard/upload */}
-          </Route>
-
-          <Route
-            path="/dashboard"
-            element={<UserDashboardLayout />}
-          >
-            <Route index element={<UserDashboardContent />} />
-            
-          </Route>
-
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/welcomeback" element={<AuthenticationOne />} />
+          <Route path="/check-inbox" element={<CheckInbox />} />
+          <Route path="/new-password" element={<NewPasswordPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+
+          {/* Instructor Dashboard */}
+          <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
+            <Route index element={<InstructorDashboard />} />
+            <Route path="assignments" element={<InstructorAssignmentForm/>} />
+            <Route path="upload" element={<CourseMaterialForm />} />
+          </Route>
+
+          {/* User Dashboard */}
+          <Route path="/user-dashboard" element={<UserDashboardLayout />}>
+            <Route index element={<UserDashboardContent />} />
+            <Route path="user-profile" element={<UserProfile />}/>
+          </Route>
+
+          {/* Protected Reset Password Routes */}
           <Route
             element={
               <ResetPasswordProtectedRoute
@@ -70,10 +60,7 @@ function App() {
               />
             }
           >
-            <Route
-              path="/reset-password-auth"
-              element={<ResetPasswordAuthPage />}
-            />
+            <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
           </Route>
 
           <Route
@@ -86,47 +73,8 @@ function App() {
           >
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
-
-          <Route path="/forget-password" element={<ForgetPasswordPage />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/welcomeback" element={<AuthenticationOne />} />
-          <Route path="/check-inbox" element={<CheckInbox />} />
-          <Route path="/landing" element={<LandingPage />} />
         </Routes>
       </AuthLoginProvider>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        {/* <Route path="/instructor-dashboard" element={<InstructorDashboard />} /> */}
-
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={isEmailVerified}
-              redirectTo="/forget-password"
-            />
-          }
-        >
-          <Route
-            path="/reset-password-auth"
-            element={<ResetPasswordAuthPage />}
-          />
-        </Route>
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={() => isOtpVerified() && isEmailVerified()}
-              redirectTo="/forget-password"
-            />
-          }
-        >
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-        </Route>
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcomeback" element={<AuthenticationOne />} />
-        <Route path="/check-inbox" element={<CheckInbox />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
     </BrowserRouter>
   );
 }

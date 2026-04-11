@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CourseMaterialForm() {
+function InstructorCourseMaterialForm() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -150,4 +150,4 @@ function CourseMaterialForm() {
   );
 }
 
-export default CourseMaterialForm;
+export default InstructorCourseMaterialForm;

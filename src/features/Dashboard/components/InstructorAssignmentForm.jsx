@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AssignmentForm() {
+function InstructorAssignmentForm() {
   const [formData, setFormData] = useState({
     title: "",
     instructions: "",
@@ -172,4 +172,4 @@ function AssignmentForm() {
   );
 }
 
-export default AssignmentForm;
+export default InstructorAssignmentForm;
