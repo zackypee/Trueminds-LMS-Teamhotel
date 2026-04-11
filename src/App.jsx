@@ -36,7 +36,6 @@ function App() {
           <Route path="/new-password" element={<NewPasswordPage />} />
           <Route path="/forget-password" element={<ForgetPasswordPage />} />
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
-          <Route path="/user-profile" element={<UserProfile />} />
 
           {/* Instructor Dashboard */}
           <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
