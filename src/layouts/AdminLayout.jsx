@@ -6,12 +6,12 @@ const AdminLayout = () => {
   return (
     <div className="admin-layout flex relative ">
       <AdminSidebar/> 
-      <div className="admin-content flex-1  pl-64 relative w-full " >      
+      <div className="admin-content flex-1 pl-64 pt-16 relative" >      
         <AdminTopBar/>
         <main className="admin-main p-5 ">
           <Outlet />
         </main>
-      </div>
+      </div> 
     </div>
   );
 };

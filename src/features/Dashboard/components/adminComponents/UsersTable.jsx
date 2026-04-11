@@ -1,18 +1,18 @@
-const UsersTable = ({ users, selectedUsers, handleSelectAll, handleSelectUser, handleAssign }) => {
+const UsersTable = ({ users, currentUsers, selectedUsers, handleSelectAll, handleSelectUser, handleAssign }) => {
     const tableHeaders = ["Name & Identity", "Role", "Current Team", "Status", "Actions"];
 
 
     return (
-        <table className="w-full">
+        <table className=" hidden w-full min-[1150px]:block min-[1150px]:border border-yellow-500">
             <thead className="bg-[#F0F3FF1A]">
                 <tr className="text-left">
                     <th className="pl-20">
                         <input
-                            className=" accent-purple-600 border border-[#E5E7EB] rounded"
-                            name="select-all"
+                           className=" accent-purple-600 border border-[#E5E7EB] rounded"
+                            
                             type="checkbox"
-                            onChange={handleSelectAll}
                             checked={selectedUsers.length === users.length}
+                            onChange={handleSelectAll}
                             aria-label="Select all users"
                         />
                     </th>
@@ -24,7 +24,7 @@ const UsersTable = ({ users, selectedUsers, handleSelectAll, handleSelectUser, h
                 </tr>
             </thead>
             <tbody>
-                {users.map((user) => (
+                {currentUsers.map((user) => (
                     <tr key={user.id} className="border-b border-[#CCC3D81A] hover:bg-gray-50 ">
                         {/* Checkbox */}
                         <td className="pl-20">
@@ -89,6 +89,7 @@ const UsersTable = ({ users, selectedUsers, handleSelectAll, handleSelectUser, h
                             >
                                 Assign
                             </button>
+
                         </td>
                     </tr>
                 ))}

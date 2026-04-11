@@ -1,14 +1,19 @@
 import searchIcon from "../../../../assets/search-icon.svg";
+import { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({handleOnChangeSearch, value, setToggleFilterButton}) => {
+    
     return (
-        <div className=" relative px-4 py-2 border border-[#E5E7EB] rounded-xl" >
+        <div className=" relative border border-[#E5E7EB] rounded-xl" >
             <input
-             placeholder=" Search for Interns..."
-             className=" w-full pl-8 text-[14px] font-semibold leading-5.25"
+             value={value}
+             placeholder={" Search for Interns..."}
+             className=" w-full pr-4 py-2  pl-12 text-[14px] font-semibold leading-5.25 focus:outline-none rounded-xl focus:ring-2 focus:ring-[#0029F5]"
+             onChange={handleOnChangeSearch}
+             onFocus={()=>setToggleFilterButton(false)}
 
             />
-            <img src={searchIcon} alt="Search Icon" className="absolute top-[30%]" />
+            <img src={searchIcon} alt="Search Icon" className="absolute top-[30%] left-[7%]" />
         </div>
     );
 };
