@@ -17,13 +17,14 @@ import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import UserProfile from "./features/Dashboard/pages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import AdminLayout from "./layouts/AdminLayout";
+import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboard from "./features/Dashboard/pages/UserDashboard";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
 
-// c2fa93c86ed70c6f9e416c33612af9dc54445eee;
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
       <AuthLoginProvider>
         <Routes>
           <Route path="/" element={<Login />} />
+          
+          <Route path="admin" element={<AdminLayout/>}>
+            <Route index element={<TeamAllocationPage/>}/>
+          </Route>
 
           {/* Dashboard Layout — nested routes render inside Outlet */}
           <Route
