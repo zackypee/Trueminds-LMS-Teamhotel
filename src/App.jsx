@@ -17,11 +17,13 @@ import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import Profile from "./features/Dashboard/pages/Profile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboard from "./features/Dashboard/pages/UserDashboard";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 
 
+c2fa93c86ed70c6f9e416c33612af9dc54445eee
 
 function App() {
   return (
@@ -89,6 +91,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/welcomeback" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
+          <Route path="/landing" element={<LandingPage />} />
         </Routes>
       </AuthLoginProvider>
       <Routes>
