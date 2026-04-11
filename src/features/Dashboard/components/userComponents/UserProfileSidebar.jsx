@@ -1,20 +1,19 @@
 import React from "react";
-import DashboardLogo from "../../../assets/dashboardlogo.png";
-import UploadIcon from "../../../assets/uploadicon.png";
-import ProfileLogo from "../../../assets/profilelogo.png";
-import LiveLogo from "../../../assets/livelogo.png";
-import AssignmentLogo from "../../../assets/assignmentlogo.png";
+import DashboardLogo from "../../../../assets/dashboardlogo.png";
+import CoursesLogo from "../../../../assets/courseslogo.png";
+import ProgressLogo from "../../../../assets/progresslogo.png";
+import ProfileLogo from "../../../../assets/profilelogo.png";
+import LiveLogo from "../../../../assets/livelogo.png";
+import AssignmentLogo from "../../../../assets/assignmentlogo.png";
 
-export default function InstructorProfileSidebar({
-  activeLink,
-  setActiveLink,
-}) {
+export default function ProfileSidebar({ activeLink, setActiveLink }) {
   // 1. Store the name of the active link instead of just true/false
 
   const menuItems = [
     { name: "Dashboard", icon: DashboardLogo },
-    { name: "Upload Courses", icon: UploadIcon },
+    { name: "Courses", icon: CoursesLogo },
     { name: "Assignment", icon: AssignmentLogo },
+    { name: "My Progress", icon: ProgressLogo },
     { name: "Live Sessions", icon: LiveLogo },
   ];
 
@@ -53,7 +52,7 @@ export default function InstructorProfileSidebar({
               aria-hidden="true"
               className="w-6 h-6 mr-3"
             />
-            <button className="text-sm font-medium cursor-pointer truncate">
+            <button className="text-sm font-medium cursor-pointer">
               {item.name}
             </button>
           </span>

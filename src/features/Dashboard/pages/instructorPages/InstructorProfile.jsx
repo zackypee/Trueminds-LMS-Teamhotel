@@ -1,7 +1,7 @@
 import React from "react";
-import InstructorProfileSidebar from "../components/InstructorProfileSidebar";
-import InstructorProfileView from "../components/InstructorProfileView";
-import InstructorProfileDetails from "../components/InstructorProfileDetails";
+import InstructorProfileSidebar from "../../components/instructorComponents/InstructorProfileSidebar";
+import InstructorProfileView from "../../components/instructorComponents/InstructorProfileView";
+import InstructorProfileDetails from "../../components/instructorComponents/InstructorProfileDetails";
 
 export default function InstructorProfile() {
   const [activeLink, setActiveLink] = React.useState("Dashboard");

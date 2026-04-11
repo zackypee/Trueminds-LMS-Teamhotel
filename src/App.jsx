@@ -10,30 +10,25 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
-import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
-import CourseMaterialForm from "./features/Dashboard/components/InstructorCourseMaterialForm";
+import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
+import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
+import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
-import UserProfile from "./features/Dashboard/pages/UserProfile";
-import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import CourseCatalogue from "./features/Dashboard/pages/userPages/CourseCatalogue";
+import UserProfile from "./features/Dashboard/pages/userpages/UserProfile";
+import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
-import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
-import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
-import InstructorAssignmentForm from "./features/Dashboard/components/InstructorAssignmentForm";
-import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
-
+import UserDashboardLayout from "./layouts/UserDashboardLayout";
+import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthLoginProvider>
-        <Routes>     
-          {/* Admin Dashboard */}
-          <Route path="admin" element={<AdminLayout/>}>
-            <Route index element={<TeamAllocationPage/>}/>
-          </Route>
+        <Routes>
 
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
@@ -45,10 +40,15 @@ function App() {
           <Route path="/forget-password" element={<ForgetPasswordPage />} />
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
 
+          {/* Admin Dashboard */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<TeamAllocationPage />} />
+          </Route>
+
           {/* Instructor Dashboard */}
           <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
             <Route index element={<InstructorDashboard />} />
-            <Route path="assignments" element={<InstructorAssignmentForm/>} />
+            <Route path="assignments" element={<AssignmentForm />} />
             <Route path="upload" element={<CourseMaterialForm />} />
             <Route path="instructor-profile" element={<InstructorProfile />} />
           </Route>
@@ -56,7 +56,7 @@ function App() {
           {/* User Dashboard */}
           <Route path="/user-dashboard" element={<UserDashboardLayout />}>
             <Route index element={<UserDashboardContent />} />
-            <Route path="user-profile" element={<UserProfile />}/>
+            <Route path="user-profile" element={<UserProfile />} />
           </Route>
 
           {/* Protected Reset Password Routes */}
@@ -81,6 +81,7 @@ function App() {
           >
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
+
         </Routes>
       </AuthLoginProvider>
     </BrowserRouter>

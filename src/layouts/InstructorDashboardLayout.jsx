@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import InstrucDashMenuBar from "../components/InstructorDashMenuBar";
+import InstrucDashMenuBar from "../features/Dashboard/components/instructorComponents/InstructorDashMenuBar";
 
 export default function InstructorDashboardLayout() {
   return (

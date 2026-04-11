@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+<<<<<<< HEAD:src/features/Dashboard/components/InstructorDashMenuBar.jsx
 import assignmentLogo from "../../../assets/assignment-icon.png";
 import logOutLogo from "../../../assets/logout-icon.png";
 import profileImg from "../../../assets/profile-img.png";
 import dashboardIcon from "../../../assets/dashboard-icon.png";
 import uploadIcon from "../../../assets/upload-icon.png";
 import userIcon from "../../../assets/user-profile-logo.png";
+=======
+import assignmentLogo from "../../../../assets/assignment-icon.png"
+import logOutLogo from "../../../../assets/logout-icon.png"
+import profileImg from "../../../../assets/profile-img.png"
+import dashboardIcon from "../../../../assets/dashboard-icon.png"
+import uploadIcon from "../../../../assets/upload-icon.png"
+>>>>>>> f5902d212f54aae8d8830c1138dbdbb01b6c7d9d:src/features/Dashboard/components/instructorComponents/InstructorDashMenuBar.jsx
 
 export default function InstrucDashMenuBar() {
   const [mobileOpen, setMobileOpen] = useState(false);

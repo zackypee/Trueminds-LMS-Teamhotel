@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import CourseCatalogueSidebar from "../components/CourseCatalogueSidebar";
-import Courses from "../components/Courses";
+import Navbar from "../../components/Navbar";
+import CourseCatalogueSidebar from "../../components/userComponents/UserCourseCatalogueSidebar";
+import Courses from "../../components/userComponents/UserCourses";
 
 const CourseCatalogue = () => {
   const [category, setCategory] = useState("All");

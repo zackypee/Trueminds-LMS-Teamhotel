@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import userAvatar from '../../../assets/user-avatar.png'
+import userAvatar from '../../../../assets/user-avatar.png'
 
 const mockData = [
   {

@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState } from "react";
 
-const useSelectedUsers = () => {
+
+const useSelectedUsers = (usersData) => {
 
     const [selectedUsers, setSelectedUsers] = useState([]);
 
@@ -12,10 +13,10 @@ const useSelectedUsers = () => {
         ); 
     };
     const handleSelectAll = () => {
-        if (selectedUsers.length === users.length) {
+        if (selectedUsers.length === usersData.length) {
             setSelectedUsers([]);
         } else {
-            setSelectedUsers(users.map((user) => user.id));
+            setSelectedUsers(usersData.map((user) => user.id));
         }
     };
 
