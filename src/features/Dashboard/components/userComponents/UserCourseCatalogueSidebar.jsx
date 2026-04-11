@@ -28,8 +28,8 @@ const CourseCatalogueSidebar = ({ selectedCategory, setCategory }) => {
               onClick={() => setCategory(item)}
               className={`py-3 cursor-pointer text-[#6B7280] font-normal text-[14px] ${
                 selectedCategory === item
-                  ? "bg-[#EDE9FE] rounded-sm w-47.25 h-10.75 py-1.5 px-3 text-[12px] text-[#7C3AED]"
-                  : "hover:bg-gray-100 w-47.25 h-10.75 py-1.5 text-[12px] hover:text-[#7C3AED]"
+                  ? "bg-[#EDE9FE] rounded-sm w-47.25  py-1.5 px-4 text-[12px] text-[#7C3AED]"
+                  : "hover:bg-gray-100 w-47.25  py-1.5 text-[12px] hover:text-[#7C3AED]"
               }`}
             >
               {item}

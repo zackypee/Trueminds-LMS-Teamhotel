@@ -34,7 +34,7 @@ function Navbar() {
       {/* Desktop Auth Buttons */}
       <div className="hidden md:flex gap-3 items-center">
         <Link
-          to="/"
+          to="/login"
           className="text-lg text-[#6B7280] hover:text-[#0029F5] px-4 py-2"
         >
           Sign In

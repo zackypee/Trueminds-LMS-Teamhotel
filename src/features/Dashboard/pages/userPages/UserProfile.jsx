@@ -1,26 +1,12 @@
 import React from "react";
-import ProfileSidebar from "../../components/userComponents/UserProfileSidebar";
-import ProfileView from "../../components/userComponents/UserProfileView";
-import ProfileDetails from "../../components/userComponents/UserProfileDetails";
+import UserProfileView from "../../components/userComponents/UserProfileView";
+import UserProfileDetails from "../../components/userComponents/UserProfileDetails";
 export default function UserProfile() {
-  const [activeLink, setActiveLink] = React.useState("Dashboard");
 
   return (
-    <div className="flex w-full gap-5">
-      <ProfileSidebar activeLink={activeLink} setActiveLink={setActiveLink} />
-
-      {activeLink === "Profile" ? (
-        <div className="md:grid grid-cols-2">
-          <ProfileView />
-          <ProfileDetails />
-        </div>
-      ) : (
-        <div className="w-full h-96 flex items-center justify-center">
-          <p className="text-gray-500 text-lg text-center">
-            Select "Profile" from the sidebar to view details.
-          </p>
-        </div>
-      )}
+    <div className="flex w-full mt-16 gap-5">
+      <UserProfileView />
+      <UserProfileDetails />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import ProfileImage from "../../../../assets/profileimage.jpg"; // Import a prof
 import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile image
 import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 
-export default function ProfileView() {
+export default function UserProfileView() {
   const user = {
     name: "Chika Okafor",
     id: "UI/2026/050",
