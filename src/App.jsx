@@ -16,17 +16,25 @@ import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import UserProfile from "./features/Dashboard/pages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import AdminLayout from "./layouts/AdminLayout";
+import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 import InstructorAssignmentForm from "./features/Dashboard/components/InstructorAssignmentForm";
 import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
 
+
 function App() {
   return (
     <BrowserRouter>
       <AuthLoginProvider>
         <Routes>
+          <Route path="/" element={<Login />} />
+          
+          <Route path="admin" element={<AdminLayout/>}>
+            <Route index element={<TeamAllocationPage/>}/>
+          </Route>
 
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />

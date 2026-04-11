@@ -36,7 +36,7 @@ export default function ProfileView() {
         <img
           src={user.profileImage}
           alt={user.name}
-          className="w-24 h-24 md:w-35 md:h-35 rounded-full object-cover border-4 border-white shadow-sm"
+          className="w-24 h-24 flex md:w-35 md:h-35 rounded-full object-cover shadow-sm"
         />
 
         <div className="text-center md:text-left flex-1">
