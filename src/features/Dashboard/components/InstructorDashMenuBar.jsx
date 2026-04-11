@@ -14,6 +14,7 @@ export default function InstrucDashMenuBar() {
     { id: "dashboard", label: "Dashboard", icon: dashboardIcon, path: "/instructor-dashboard" },
     { id: "upload", label: "Upload Courses", icon: uploadIcon, path: "/instructor-dashboard/upload" },
     { id: "assignments", label: "Assignments", icon: assignmentLogo, path: "/instructor-dashboard/assignments" },
+    { id: "viewProfile", label: "View Profile", icon: assignmentLogo, path: "/instructor-dashboard/instructor-profile" },
   ];
 
   const SidebarContent = () => (

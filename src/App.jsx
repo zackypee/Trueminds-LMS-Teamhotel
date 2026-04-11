@@ -20,6 +20,7 @@ import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 import InstructorAssignmentForm from "./features/Dashboard/components/InstructorAssignmentForm";
+import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route index element={<InstructorDashboard />} />
             <Route path="assignments" element={<InstructorAssignmentForm/>} />
             <Route path="upload" element={<CourseMaterialForm />} />
+            <Route path="instructor-profile" element={<InstructorProfile />} />
           </Route>
 
           {/* User Dashboard */}
