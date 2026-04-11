@@ -1,34 +1,21 @@
 import React, { useState } from "react";
-<<<<<<< HEAD:src/features/Dashboard/components/Courses.jsx
-import class1 from "../../../assets/class1.png";
-import class2 from "../../../assets/class2.png";
-import class3 from "../../../assets/class3.png";
-import { Line } from "rc-progress";
-import topPick1 from "../../../assets/topPick1.png";
-import topPick2 from "../../../assets/topPick2.png";
-import topPick3 from "../../../assets/topPick3.png";
-import topPick4 from "../../../assets/topPick4.png";
-import topPick5 from "../../../assets/topPick5.png";
-import topPick6 from "../../../assets/topPick6.png";
-=======
 import class1 from "../../../../assets/class1.png";
 import class2 from "../../../../assets/class2.png";
 import class3 from "../../../../assets/class3.png";
-// import { Line } from "rc-progress";
 import topPick1 from "../../../../assets/topPick1.png";
 import topPick2 from "../../../../assets/topPick2.png";
 import topPick3 from "../../../../assets/topPick3.png";
 import topPick4 from "../../../../assets/topPick4.png";
 import topPick5 from "../../../../assets/topPick5.png";
 import topPick6 from "../../../../assets/topPick6.png";
->>>>>>> f5902d212f54aae8d8830c1138dbdbb01b6c7d9d:src/features/Dashboard/components/userComponents/UserCourses.jsx
+import { Line } from "rc-progress";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { IoMdStar } from "react-icons/io";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { HiClock } from "react-icons/hi2";
 
-const Courses = ({ selectedCategory, searchQuery }) => {
+const UserCourses = ({ selectedCategory, searchQuery }) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
 
   const ongoingClasses = [
@@ -308,4 +295,4 @@ const Courses = ({ selectedCategory, searchQuery }) => {
   );
 };
 
-export default Courses;
+export default UserCourses;
