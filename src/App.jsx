@@ -29,9 +29,8 @@ function App() {
   return (
     <BrowserRouter>
       <AuthLoginProvider>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          
+        <Routes>     
+          {/* Admin Dashboard */}
           <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<TeamAllocationPage/>}/>
           </Route>
