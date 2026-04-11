@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { users } from "../../pages/adminpages/teamAllocationPage/sections/TeamOverview";
+import { usersData } from "../../pages/adminpages/teamAllocationPage/sections/TeamOverview";
 
 const useUserFilters = () => {
   const [searchByName, setSearchByName] = useState("");
@@ -32,7 +32,7 @@ const useUserFilters = () => {
 
   // ✅ THE ONLY FILTER YOU NEED
   const filteredUsers = useMemo(() => {
-    return users.filter((user) => {
+    return usersData.filter((user) => {
       const nameMatch = searchByName
         ? user.name.toLowerCase().includes(searchByName)
         : true;

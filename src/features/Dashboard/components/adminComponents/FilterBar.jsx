@@ -1,6 +1,6 @@
 const FilterBar = ({ filters, handleFilterChange }) => {
   return (
-    <div className="flex flex-wrap gap-2 absolute left-[35%] top-[72%]">
+    <div className="flex flex-wrap gap-2 absolute left-[15%] top-full">
 
       {/* Role */}
       

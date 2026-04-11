@@ -22,7 +22,7 @@ const AdminSideBar = () => {
   ];
 
   return (
-    <aside className="flex flex-col justify-between h-screen bg-[#F8FAFC] w-[256px] px-4 py-6 shadow-md fixed ">
+    <aside className="hidden min-[768px]:flex min-[768px]:flex-col min-[768px]:justify-between h-screen bg-[#F8FAFC] w-[256px] px-4 py-6 shadow-md min-[768px]:fixed " >
       
       {/* Top Section */}
       <div className="flex flex-col gap-8">
