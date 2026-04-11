@@ -4,7 +4,7 @@ import { useState } from "react";
 const SearchBar = ({handleOnChangeSearch, value, setToggleFilterButton}) => {
     
     return (
-        <div className=" relative border border-[#E5E7EB] rounded-xl" >
+        <div className=" relative  max-[1150px]:w-[384px] border border-[#E5E7EB] rounded-xl " >
             <input
              value={value}
              placeholder={" Search for Interns..."}

@@ -19,3 +19,4 @@ export const updateUser = (id, data) => {
 export const deleteUser = (id) => {
   return api.delete(`/users/${id}`);
 };
+

@@ -1,10 +1,56 @@
 import React from "react";
-import PortfolioLogo from "../../../assets/portfoliologo.png"; // Import a portfolio icon for showcasing work
-import MentorLogo from "../../../assets/mentorlogo.png"; // Import a mentor icon for guidance
-import FlowLogo from "../../../assets/flowlogo.png"; // Import a flow icon for workflow
+import BadgeLogo from "../../../../assets/badgelogo.png"; // Import a badge icon for achievements
+import CalenderLogo from "../../../../assets/calenderlogo.png"; // Import a calendar icon for events
+import TeamPlayer from "../../../../assets/teamplayerlogo.png"; // Import a team player icon for collaboration
+import PlusLogo from "../../../../assets/pluslogo.png"; // Import a plus icon for adding new items
+import PortfolioLogo from "../../../../assets/portfoliologo.png"; // Import a portfolio icon for showcasing work
+import MentorLogo from "../../../../assets/mentorlogo.png"; // Import a mentor icon for guidance
+import FlowLogo from "../../../../assets/flowlogo.png"; // Import a flow icon for workflow
 export default function ProfileDetails() {
   return (
     <main className="max-w-full w-full flex flex-col gap-6 p-4 md:p-5">
+      {/* Earned Badges Section */}
+      <div className="bg-[#EDE9FE] p-4 md:p-6 rounded-3xl">
+        <p className="mb-5 font-medium">Earned Badges</p>
+
+        {/* Changed to grid-cols-1 on small mobile, grid-cols-2 on tablet/desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
+          <span className="text-center flex flex-col items-center">
+            {/* Replaced px-20 with w-full to prevent overflow */}
+            <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
+              <img src={BadgeLogo} alt="badge" className="w-6 h-6 " />
+            </div>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Quick Learner
+            </h2>
+          </span>
+
+          <span className="text-center flex flex-col items-center">
+            <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
+              <img src={TeamPlayer} alt="badge" className="w-6 h-6" />
+            </div>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Team Player
+            </h2>
+          </span>
+
+          <span className="text-center flex flex-col items-center">
+            <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
+              <img src={CalenderLogo} alt="badge" className="w-6 h-6" />
+            </div>
+            <h2 className="text-xs mt-2 uppercase text-[#7B7488]">
+              Consistent
+            </h2>
+          </span>
+
+          <span className="text-center flex flex-col items-center">
+            <div className="bg-[#FFFFFF] py-5 w-full flex justify-center rounded-2xl">
+              <img src={PlusLogo} alt="badge" className="w-6 h-6" />
+            </div>
+          </span>
+        </div>
+      </div>
+
       {/* Professional Details Section */}
       <div className="bg-[#FFFFFF] p-5 rounded-2xl shadow-sm border border-gray-100">
         <span className="flex gap-4">
@@ -35,7 +81,7 @@ export default function ProfileDetails() {
               <p className="uppercase mt-4 text-xs text-[#7B7488]">
                 Experience level
               </p>
-              <p className="font-semibold"> Instructor </p>
+              <p className="font-semibold"> junior(intern) </p>
             </span>
             <span>
               <p className="uppercase mt-4 text-xs text-[#7B7488]">
@@ -43,7 +89,7 @@ export default function ProfileDetails() {
               </p>
               <p className="font-semibold text-[#660FE6] break-all">
                 {" "}
-                Ade.portfolio
+                Chika.intern
               </p>
             </span>
           </div>
@@ -60,7 +106,7 @@ export default function ProfileDetails() {
         <div className="mt-5 grid grid-cols-2 sm:grid-cols-2 gap-6">
           <span>
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
-              Assigned class
+              Assigned Mentor
             </p>
             <span className="flex items-center gap-3">
               <img
@@ -73,7 +119,7 @@ export default function ProfileDetails() {
           </span>
           <span>
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
-              Current Cohort
+              Cohort Group
             </p>
             <p className="font-medium"> Nexus Spring 2026 </p>
           </span>

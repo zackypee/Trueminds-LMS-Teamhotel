@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import chika from '../../../assets/chika.jpg'; 
-import ejike from '../../../assets/ejike.jpg';
-import frontend from '../../../assets/frontend.jpg';
-import languages from '../../../assets/languages.jpg';
+import chika from '../../../../assets/chika.jpg'; 
+import ejike from '../../../../assets/ejike.jpg';
+import frontend from '../../../../assets/frontend.jpg';
+import languages from '../../../../assets/languages.jpg';
 
 
 const UserDashboardContent = () => {

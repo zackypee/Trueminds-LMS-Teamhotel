@@ -10,20 +10,20 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
-import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
-import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
-import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
+import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
+import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
+import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
-import UserProfile from "./features/Dashboard/pages/UserProfile";
-import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import CourseCatalogue from "./features/Dashboard/pages/userPages/CourseCatalogue";
+import UserProfile from "./features/Dashboard/pages/userpages/UserProfile";
+import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
-import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
-import UserDashboard from "./features/Dashboard/pages/UserDashboard";
-import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
-import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
+import UserDashboardLayout from "./layouts/UserDashboardLayout";
+import UserDashboard from "./features/Dashboard/pages/userPages/UserDashboard";
+import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 
 
 function App() {
@@ -40,8 +40,6 @@ function App() {
 
       <AuthLoginProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
-          
           <Route path="admin" element={<AdminLayout/>}>
             <Route index element={<TeamAllocationPage/>}/>
           </Route>

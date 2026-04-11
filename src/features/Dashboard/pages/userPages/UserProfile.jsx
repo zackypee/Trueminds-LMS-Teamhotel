@@ -1,7 +1,7 @@
 import React from "react";
-import ProfileSidebar from "../components/UserProfileSidebar";
-import ProfileView from "../components/UserProfileView";
-import ProfileDetails from "../components/UserProfileDetails";
+import ProfileSidebar from "../../components/userComponents/UserProfileSidebar";
+import ProfileView from "../../components/userComponents/UserProfileView";
+import ProfileDetails from "../../components/userComponents/UserProfileDetails";
 export default function UserProfile() {
   const [activeLink, setActiveLink] = React.useState("Dashboard");
 

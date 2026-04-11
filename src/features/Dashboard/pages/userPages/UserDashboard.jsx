@@ -1,4 +1,4 @@
-import UserDashboardContent from "../components/UserDashboardContent";
+import UserDashboardContent from "../../components/userComponents/UserDashboardContent";
 
 function UserDashboard() {
   return <UserDashboardContent />;

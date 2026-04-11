@@ -1,7 +1,7 @@
 import React from "react";
-import InstructorImage from "../../../assets/instructorimage.png"; // Import a profile image
-import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
-import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile icon for the details section
+import InstructorImage from "../../../../assets/instructorimage.png"; // Import a profile image
+import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
+import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile icon for the details section
 
 export default function ProfileView() {
   const user = {
