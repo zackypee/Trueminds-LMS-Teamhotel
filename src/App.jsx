@@ -15,28 +15,28 @@ import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
-import Profile from "./features/Dashboard/pages/Profile";
+import UserProfile from "./features/Dashboard/pages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
 import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
 import UserDashboard from "./features/Dashboard/pages/UserDashboard";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
+import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
 
-
-c2fa93c86ed70c6f9e416c33612af9dc54445eee
+// c2fa93c86ed70c6f9e416c33612af9dc54445eee;
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-         <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/welcomeback" element={<AuthenticationOne />} />
         <Route path="/check-inbox" element={<CheckInbox />} />
         <Route path="/new-password" element={<NewPasswordPage />} />
       </Routes>
-      
+
       <AuthLoginProvider>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -53,12 +53,8 @@ function App() {
             {/* /dashboard/upload */}
           </Route>
 
-          <Route
-            path="/dashboard"
-            element={<UserDashboardLayout />}
-          >
+          <Route path="/dashboard" element={<UserDashboardLayout />}>
             <Route index element={<UserDashboardContent />} />
-            
           </Route>
 
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
@@ -123,9 +119,10 @@ function App() {
         </Route>
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcomeback" element={<AuthenticationOne />} />
+        <Route path="/welcome-back" element={<AuthenticationOne />} />
         <Route path="/check-inbox" element={<CheckInbox />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/instructor-profile" element={<InstructorProfile />} />
       </Routes>
     </BrowserRouter>
   );
