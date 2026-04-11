@@ -8,7 +8,7 @@ const CourseCatalogue = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="overflow-y-scroll overflow-x-scroll scrollbar-hide">
+    <div className="min-h-screen">
       <Navbar setSearchQuery={setSearchQuery} />
 
       <div className="flex">
@@ -17,7 +17,9 @@ const CourseCatalogue = () => {
           selectedCategory={category}
         />
 
-        <Courses selectedCategory={category} searchQuery={searchQuery} />
+        <div className=" ml-80">
+          <Courses selectedCategory={category} searchQuery={searchQuery} />
+        </div>
       </div>
     </div>
   );

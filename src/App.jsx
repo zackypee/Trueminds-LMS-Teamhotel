@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-import CheckInbox from "./features/auth/pages/CheckInbox";
+import CheckInbox from "./features/auth/pages/checkInbox";
+import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
@@ -15,15 +15,37 @@ import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
+import UserProfile from "./features/Dashboard/pages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
-import CourseOutline from "./features/Dashboard/components/CourseOutline";
+
+import AdminLayout from "./layouts/AdminLayout";
+import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+import LandingPage from "./features/LandingPage/pages/LandingPage";
+import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
+import UserDashboard from "./features/Dashboard/pages/UserDashboard";
+import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
+import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
+
 
 function App() {
   return (
     <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/welcomeback" element={<AuthenticationOne />} />
+        <Route path="/check-inbox" element={<CheckInbox />} />
+        <Route path="/new-password" element={<NewPasswordPage />} />
+      </Routes>
+
       <AuthLoginProvider>
         <Routes>
           <Route path="/" element={<Login />} />
+          
+          <Route path="admin" element={<AdminLayout/>}>
+            <Route index element={<TeamAllocationPage/>}/>
+          </Route>
 
           {/* Dashboard Layout — nested routes render inside Outlet */}
           <Route
@@ -36,6 +58,11 @@ function App() {
             <Route path="upload" element={<CourseMaterialForm />} />{" "}
             {/* /dashboard/upload */}
           </Route>
+
+          <Route path="/dashboard" element={<UserDashboardLayout />}>
+            <Route index element={<UserDashboardContent />} />
+          </Route>
+
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
           <Route
             element={
@@ -67,9 +94,45 @@ function App() {
 
           <Route path="/welcomeback" element={<AuthenticationOne />} />
           <Route path="/check-inbox" element={<CheckInbox />} />
-          
+
+          <Route path="/landing" element={<LandingPage />} />
+
         </Routes>
       </AuthLoginProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/instructor-dashboard" element={<InstructorDashboard />} /> */}
+
+        <Route
+          element={
+            <ResetPasswordProtectedRoute
+              check={isEmailVerified}
+              redirectTo="/forget-password"
+            />
+          }
+        >
+          <Route
+            path="/reset-password-auth"
+            element={<ResetPasswordAuthPage />}
+          />
+        </Route>
+        <Route
+          element={
+            <ResetPasswordProtectedRoute
+              check={() => isOtpVerified() && isEmailVerified()}
+              redirectTo="/forget-password"
+            />
+          }
+        >
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+        </Route>
+        <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/welcome-back" element={<AuthenticationOne />} />
+        <Route path="/check-inbox" element={<CheckInbox />} />
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/instructor-profile" element={<InstructorProfile />} />
+      </Routes>
     </BrowserRouter>
   );
 }
