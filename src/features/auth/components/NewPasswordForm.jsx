@@ -338,7 +338,7 @@ export const NewPasswordForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#7C3AED] text-white py-4 mt-10 rounded-md font-semibold hover:bg-[#6D2ED9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full bg-[#0029F5] text-white py-4 mt-10 rounded-md font-semibold hover:bg-[#6D2ED9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
           >
             {loading ? (
               <>

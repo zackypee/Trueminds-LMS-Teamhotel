@@ -59,13 +59,13 @@ export default function CheckInbox() {
             placeholder="6-digit-code"
           />
 
-          <button className="bg-[#7C3AED] text-white rounded w-full py-4 cursor-pointer">
+          <button className="bg-[#0029F5] text-white rounded w-full py-4 cursor-pointer">
             Log in
           </button>
         </div>
 
         <div className="mt-6 md:mt-12 flex flex-col items-center md:items-center gap-8">
-          <p className="text-[#7C3AED] text-center md:text-center font-semibold cursor-pointer"
+          <p className="text-[#0029F5] text-center md:text-center font-semibold cursor-pointer"
               onClick={() => navigate("/login")}
           > 
             Log into a different account
