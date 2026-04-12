@@ -1,10 +1,11 @@
 const UserCard = ({user, selectedUsers, handleSelectUser, handleAssign}) => {
     return(
         <div  className=" block w-[70%] 
+            relative
             border border-[#E5E7EB] py-3 px-4 rounded-xl md:px-6 
             md:py-6
             m-auto mt-4 min-[1150px]:hidden">
-            <div className="flex items-center gap-3 pl-4 md:pl-8">
+            <div className="flex mb-3 items-center gap-3 pl-4 md:pl-8">
                 <img src={user.img} alt={`${user.name}'s avatar`} className="w-8 h-8 rounded-full object-cover" />
                 <div>
                     <p className="text-[#001C3B] text-[14px] font-semibold tracking-normal leading-5">{user.name}</p>
@@ -13,13 +14,13 @@ const UserCard = ({user, selectedUsers, handleSelectUser, handleAssign}) => {
                 </div>
             </div>
             <input
-                className=" accent-purple-600 border border-[#E5E7EB] rounded"
+                className=" accent-purple-600 border border-[#E5E7EB] rounded absolute top-[20%]"
                 type="checkbox"
                 checked={selectedUsers.includes(user.id)}
                 onChange={() => handleSelectUser(user.id)}
                 aria-label={`Select ${user.name}`}
             />
-            <div className="grid grid-rows-2 border border-amber-400 grid-cols-2 gap-2 md:pl-8">
+            <div className="grid grid-cols-2 gap-2 md:pl-8">
 
                 <label className="text-[#6B7280] text-[14px]  tracking-normal leading-5.25 ">
                     Role
@@ -61,7 +62,7 @@ const UserCard = ({user, selectedUsers, handleSelectUser, handleAssign}) => {
 
                 <button
                     type="button"
-                    className={`w-fit ml-10 justify-end tracking-normal font-bold text-[12px] leading-4  px-4 py-1.5 hover:underline ${!user.isActive? `bg-[#0029F5] text-[#FFFFFF] rounded-lg` : `text-[#0029F5] `}`}
+                    className={`w-fit ml-auto self-end justify-self-end tracking-normal font-bold text-[12px]  px-4 py-1.5 leading-4  hover:underline ${!user.isActive? `bg-[#0029F5] text-[#FFFFFF] rounded-lg` : `text-[#0029F5] `}`}
                     onClick={() => handleAssign(user.id)}
                 >
                   Assign

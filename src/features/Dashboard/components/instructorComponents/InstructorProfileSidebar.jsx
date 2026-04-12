@@ -1,9 +1,9 @@
 import React from "react";
-import DashboardLogo from "../../../assets/dashboardlogo.png";
-import UploadIcon from "../../../assets/uploadicon.png";
-import ProfileLogo from "../../../assets/profilelogo.png";
-import LiveLogo from "../../../assets/livelogo.png";
-import AssignmentLogo from "../../../assets/assignmentlogo.png";
+import DashboardLogo from "../../../../assets/dashboardlogo.png";
+import UploadIcon from "../../../../assets/uploadicon.png";
+import ProfileLogo from "../../../../assets/profilelogo.png";
+import LiveLogo from "../../../../assets/livelogo.png";
+import AssignmentLogo from "../../../../assets/assignmentlogo.png";
 
 export default function InstructorProfileSidebar({
   activeLink,

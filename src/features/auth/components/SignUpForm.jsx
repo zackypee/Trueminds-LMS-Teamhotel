@@ -3,6 +3,7 @@ import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
   const [role, setRole] = useState("learner");
@@ -177,7 +178,7 @@ export const SignUpForm = () => {
 
           <p className="text-sm text-gray-500 text-center font-normal max-sm:mt-10">
             Already have an account?{" "}
-            <span className="text-[#7C3AED]">Log in</span>
+            <span className="text-[#7C3AED]"><Link to="/login">Log in</Link></span>
           </p>
 
           <p className="hidden md:block mt-5 font-semibold text-sm text-center text-[#6A6F73]">

@@ -1,9 +1,9 @@
 import React from "react";
-import searchIcon from "../../../assets/search-icon.png";
-import historyIcon from "../../../assets/history-icon.png";
-import cloudIcon from "../../../assets/cloud-icon.png"
-import noteIcon from "../../../assets/note-icon.png"
-import arrowIcon from "../../../assets/arrow-icon.png"
+import searchIcon from "../../../../assets/search-icon.png";
+import historyIcon from "../../../../assets/history-icon.png";
+import cloudIcon from "../../../../assets/cloud-icon.png"
+import noteIcon from "../../../../assets/note-icon.png"
+import arrowIcon from "../../../../assets/arrow-icon.png"
 
 export default function InstrucDashMain() {
   return (

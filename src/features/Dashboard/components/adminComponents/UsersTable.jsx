@@ -3,7 +3,7 @@ const UsersTable = ({ users, currentUsers, selectedUsers, handleSelectAll, handl
 
 
     return (
-        <table className=" hidden w-full min-[1150px]:block min-[1150px]:border border-yellow-500">
+        <table className=" hidden w-full min-[1150px]:block ">
             <thead className="bg-[#F0F3FF1A]">
                 <tr className="text-left">
                     <th className="pl-20">

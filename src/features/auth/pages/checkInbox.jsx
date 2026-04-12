@@ -65,9 +65,9 @@ export default function CheckInbox() {
         </div>
 
         <div className="mt-6 md:mt-12 flex flex-col items-center md:items-center gap-8">
-          <p className="text-[#7C3AED] text-center md:text-center font-semibold"
-              onClick={() => navigate("/")}
-          >
+          <p className="text-[#7C3AED] text-center md:text-center font-semibold cursor-pointer"
+              onClick={() => navigate("/login")}
+          > 
             Log into a different account
           </p> 
 

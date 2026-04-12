@@ -1,8 +1,9 @@
 import heroImage from "../../../assets/hero-image.jpg";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-between px-6 py-16 md:px-16 md:py-60 bg-white gap-12">
+    <section className="flex flex-col md:flex-row items-center justify-between px-6 py-16 md:px-16 md:py-20 bg-white gap-12">
       {/* Left Side */}
       <div className="max-w-4xl">
         <p className="text-[#0D9488] text-sm font-semibold uppercase tracking-widest mb-4">
@@ -17,9 +18,9 @@ function HeroSection() {
           high-end editorial learning experience designed for focus and
           retention.
         </p>
-        <button className="bg-[#0029FD] text-white font-medium text-base px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
+        <Link to="/login" className="bg-[#0029FD] text-white font-medium text-base px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
           Get Started →
-        </button>
+        </Link>
       </div>
 
       {/* Right Side */}

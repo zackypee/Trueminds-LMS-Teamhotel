@@ -1,7 +1,7 @@
 import React from "react";
-import PortfolioLogo from "../../../assets/portfoliologo.png"; // Import a portfolio icon for showcasing work
-import MentorLogo from "../../../assets/mentorlogo.png"; // Import a mentor icon for guidance
-import FlowLogo from "../../../assets/flowlogo.png"; // Import a flow icon for workflow
+import PortfolioLogo from "../../../../assets/portfoliologo.png"; // Import a portfolio icon for showcasing work
+import MentorLogo from "../../../../assets/mentorlogo.png"; // Import a mentor icon for guidance
+import FlowLogo from "../../../../assets/flowlogo.png"; // Import a flow icon for workflow
 export default function ProfileDetails() {
   return (
     <main className="max-w-full w-full flex flex-col gap-6 p-4 md:p-5">

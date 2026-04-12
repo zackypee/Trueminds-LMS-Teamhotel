@@ -1,10 +1,10 @@
 import React from "react";
-import DashboardLogo from "../../../assets/dashboardlogo.png";
-import CoursesLogo from "../../../assets/courseslogo.png";
-import ProgressLogo from "../../../assets/progresslogo.png";
-import ProfileLogo from "../../../assets/profilelogo.png";
-import LiveLogo from "../../../assets/livelogo.png";
-import AssignmentLogo from "../../../assets/assignmentlogo.png";
+import DashboardLogo from "../../../../assets/dashboardlogo.png";
+import CoursesLogo from "../../../../assets/courseslogo.png";
+import ProgressLogo from "../../../../assets/progresslogo.png";
+import ProfileLogo from "../../../../assets/profilelogo.png";
+import LiveLogo from "../../../../assets/livelogo.png";
+import AssignmentLogo from "../../../../assets/assignmentlogo.png";
 
 export default function ProfileSidebar({ activeLink, setActiveLink }) {
   // 1. Store the name of the active link instead of just true/false

@@ -1,20 +1,20 @@
 import React from "react";
-import InstructorImage from "../../../assets/instructorimage.png"; // Import a profile image
-import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
-import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile icon for the details section
+import ProfileImage from "../../../../assets/profileimage.jpg"; // Import a profile image
+import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile image
+import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 
-export default function ProfileView() {
+export default function UserProfileView() {
   const user = {
-    name: "Tunde Adeyemi",
-    id: "UI/INS/01",
-    email: "tundeadeyemi@gmail.com",
-    phone: "+234 806 348 6459",
+    name: "Chika Okafor",
+    id: "UI/2026/050",
+    email: "chikaokafor91@gmail.com",
+    phone: "+234 812 345 6789",
     location: "Lagos, Nigeria",
-    dob: "14 October 1991",
-    bio: "Tunde is a senior Product Designer with 8 years of experience. He mentors 10 design interns at TrueMinds while managing his own projects. He’s passionate about teaching but frustrated by chunky LMS platforms that waste his time on administrative tasks instead of actual mentorship.",
-    profileImage: InstructorImage,
-    role: "Senior PD&M",
-    status: "Instructor",
+    dob: "14 october 1998",
+    bio: "Passionate UI/UX designer focused on creating accessible and delightful digital experiences. Currently honing skills in user research and motion design.",
+    profileImage: ProfileImage,
+    role: "UI/UX Designer",
+    status: "Learner Intern",
   };
 
   function DetailItem({ label, value }) {
