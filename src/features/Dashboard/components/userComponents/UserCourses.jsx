@@ -296,8 +296,6 @@ const UserCourses = ({ selectedCategory, searchQuery }) => {
   );
 };
 
-<<<<<<< HEAD:src/features/Dashboard/components/Courses.jsx
-export default Courses;
-=======
+
 export default UserCourses;
->>>>>>> b0dcf91398cc73c82e51407899e1822151c33c4f:src/features/Dashboard/components/userComponents/UserCourses.jsx
+

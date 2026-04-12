@@ -32,6 +32,7 @@ function App() {
 
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/welcomeback" element={<AuthenticationOne />} />
@@ -51,6 +52,7 @@ function App() {
             <Route path="assignments" element={<AssignmentForm />} />
             <Route path="upload" element={<CourseMaterialForm />} />
             <Route path="instructor-profile" element={<InstructorProfile />} />
+            <Route path="/" element={<CollaborationHub />} />
           </Route>
 
           {/* User Dashboard */}
