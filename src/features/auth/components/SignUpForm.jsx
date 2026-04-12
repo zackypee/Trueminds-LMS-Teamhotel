@@ -139,14 +139,14 @@ export const SignUpForm = () => {
             <button
               type="button"
               onClick={() => setRole("learner")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Learner
             </button>
             <button
               type="button"
               onClick={() => setRole("instructor")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Instructor
             </button>
