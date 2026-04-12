@@ -20,6 +20,11 @@ import InstructorDashboard from "./features/Dashboard/pages/instructorPages/Inst
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
+import UserDashboard from "./features/Dashboard/pages/userPages/UserDashboard";
+import CourseLearningLayout from "./layouts/CourseLearningLayout";
+import LessonContent from "./features/Dashboard/components/LessonContent";
+import AssignmentContent from "./features/Dashboard/components/AssignmentContent";
+
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
@@ -29,6 +34,14 @@ function App() {
     <BrowserRouter>
       <AuthLoginProvider>
         <Routes>
+
+          <Route element={<CourseLearningLayout />}>
+            <Route path="/course" element={<LessonContent />} />
+            <Route path="/course/module1/intro" element={<LessonContent />} />
+            <Route path="/course/module1/internet" element={<LessonContent />} />
+            <Route path="/course/module1/devtools" element={<LessonContent />} />
+            <Route path="/course/module1/assignment" element={<AssignmentContent />} />
+          </Route>
 
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
