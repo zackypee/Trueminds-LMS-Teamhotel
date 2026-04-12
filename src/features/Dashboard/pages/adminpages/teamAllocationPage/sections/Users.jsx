@@ -10,7 +10,7 @@ import usePagination from "../../../../hooks/adminHooks/usePagination";
 import useSelectedUsers from "../../../../hooks/adminHooks/useSelectedUsers";
 import UserCard from "../../../../components/adminComponents/UserCard";
 import { useUsers } from "../../../../hooks/adminHooks/useUsers";
-import useCreateUser, {useCreateUser}  from "../../../../hooks/adminHooks/useCreateUser"
+// import useCreateUser, {useCreateUser}  from "../../../../hooks/adminHooks/useCreateUser"
 
 const Users = () => {
     const {user} = useUsers();

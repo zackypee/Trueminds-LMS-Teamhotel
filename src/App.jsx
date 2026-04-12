@@ -24,6 +24,9 @@ import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout
 import UserDashboard from "./features/Dashboard/pages/UserDashboard";
 import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
 import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
+import CourseLearningLayout from "./features/Dashboard/layout/CourseLearningLayout";
+import LessonContent from "./features/Dashboard/components/LessonContent";
+import AssignmentContent from "./features/Dashboard/components/AssignmentContent";
 
 
 function App() {
@@ -60,6 +63,14 @@ function App() {
 
           <Route path="/dashboard" element={<UserDashboardLayout />}>
             <Route index element={<UserDashboardContent />} />
+          </Route>
+
+          <Route element={<CourseLearningLayout />}>
+            <Route path="/course" element={<LessonContent />} />
+            <Route path="/course/module1/intro" element={<LessonContent />} />
+            <Route path="/course/module1/internet" element={<LessonContent />} />
+            <Route path="/course/module1/devtools" element={<LessonContent />} />
+            <Route path="/course/module1/assignment" element={<AssignmentContent />} />
           </Route>
 
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
