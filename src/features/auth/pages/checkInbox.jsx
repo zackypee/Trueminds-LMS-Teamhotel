@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
+
 export default function CheckInbox() {
+  const navigate = useNavigate();
   const [code, setCode] = useState("");
   const handleSubmit = (finalCode) => {
     console.log("Submitting code:", finalCode);
@@ -62,9 +65,11 @@ export default function CheckInbox() {
         </div>
 
         <div className="mt-6 md:mt-12 flex flex-col items-center md:items-center gap-8">
-          <p className="text-[#7C3AED] text-center md:text-center font-semibold">
+          <p className="text-[#7C3AED] text-center md:text-center font-semibold cursor-pointer"
+              onClick={() => navigate("/login")}
+          > 
             Log into a different account
-          </p>
+          </p> 
 
           <p className="text-center md:text-left font-normal text-[14px] text-[#6B7280]">
             Didn't receive the code?

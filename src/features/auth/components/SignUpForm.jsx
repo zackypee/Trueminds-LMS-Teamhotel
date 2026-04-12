@@ -1,9 +1,58 @@
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
+import { IoMdEyeOff } from "react-icons/io";
+import { IoEye } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
   const [role, setRole] = useState("learner");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!formData.email.includes("@")) {
+      newErrors.email = "Enter a valid email";
+    }
+
+    if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validate()) {
+      console.log("Form submitted:", { ...formData, role });
+    }
+
+    setFormData({ name: "", email: "", password: "" });
+  };
 
   return (
     <div className=" w-full md:w-1/2 p-12 bg-[#FFFFFF]">
@@ -15,7 +64,7 @@ export const SignUpForm = () => {
           Start your learning journey with TalentFlow today.
         </p>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="name"
@@ -27,8 +76,13 @@ export const SignUpForm = () => {
               type="text"
               id="name"
               placeholder="John Doe"
-              className="w-full border border-[#D1D5DB] rounded-md p-3"
+              className="w-full border border-[#D1D5DB] rounded-md p-3 outline none focus:ring-1 focus:ring-[#7C3AED]"
+              value={formData.name}
+              onChange={handleChange}
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name}</p>
+            )}
           </div>
           <div>
             <label
@@ -41,11 +95,16 @@ export const SignUpForm = () => {
               type="email"
               id="email"
               placeholder="email@example.com"
-              className="w-full border border-[#D1D5DB] rounded-md p-3"
+              className="w-full border border-[#D1D5DB] rounded-md p-3 outline none focus:ring-1 focus:ring-[#7C3AED]"
+              value={formData.email}
+              onChange={handleChange}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
           </div>
 
-          <div>
+          <div className="relative">
             <label
               htmlFor="password"
               className="text-[#374151] text-[14px] font-semibold"
@@ -53,11 +112,24 @@ export const SignUpForm = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Min. 8 characters"
-              className="w-full border border-[#D1D5DB] rounded-md p-3"
+              className="w-full border border-[#D1D5DB] rounded-md p-3 outline none focus:ring-1 focus:ring-[#7C3AED]"
+              value={formData.password}
+              onChange={handleChange}
             />
+
+            <button
+              className="absolute top-10 right-5 cursor-pointer"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <IoMdEyeOff /> : <IoEye />}
+            </button>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password}</p>
+            )}
           </div>
 
           <p className="text-[#374151] text-[14px] font-semibold">
@@ -106,7 +178,7 @@ export const SignUpForm = () => {
 
           <p className="text-sm text-gray-500 text-center font-normal max-sm:mt-10">
             Already have an account?{" "}
-            <span className="text-[#7C3AED]">Log in</span>
+            <span className="text-[#7C3AED]"><Link to="/login">Log in</Link></span>
           </p>
 
           <p className="hidden md:block mt-5 font-semibold text-sm text-center text-[#6A6F73]">
