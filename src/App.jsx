@@ -10,60 +10,30 @@ import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
 import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
-import InstructorDashboardLayout from "./features/Dashboard/layout/InstructorDashboardLayout";
-import AssignmentForm from "./features/Dashboard/components/AssignmentForm";
-import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialForm";
+import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
+import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
+import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
-import UserProfile from "./features/Dashboard/pages/UserProfile";
-import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import CourseCatalogue from "./features/Dashboard/pages/userPages/CourseCatalogue";
+import UserProfile from "./features/Dashboard/pages/userpages/UserProfile";
+import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
-import UserDashboardLayout from "./features/Dashboard/layout/UserDashboardLayout";
-import UserDashboard from "./features/Dashboard/pages/UserDashboard";
-import UserDashboardContent from "./features/Dashboard/components/UserDashboardContent";
-import InstructorProfile from "./features/Dashboard/pages/InstructorProfile";
-import CourseLearningLayout from "./features/Dashboard/layout/CourseLearningLayout";
+import UserDashboard from "./features/Dashboard/pages/userPages/UserDashboard";
+import CourseLearningLayout from "./layouts/CourseLearningLayout";
 import LessonContent from "./features/Dashboard/components/LessonContent";
 import AssignmentContent from "./features/Dashboard/components/AssignmentContent";
 
+import UserDashboardLayout from "./layouts/UserDashboardLayout";
+import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcomeback" element={<AuthenticationOne />} />
-        <Route path="/check-inbox" element={<CheckInbox />} />
-        <Route path="/new-password" element={<NewPasswordPage />} />
-      </Routes>
-
       <AuthLoginProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
-          
-          <Route path="admin" element={<AdminLayout/>}>
-            <Route index element={<TeamAllocationPage/>}/>
-          </Route>
-
-          {/* Dashboard Layout — nested routes render inside Outlet */}
-          <Route
-            path="/instructor-dashboard"
-            element={<InstructorDashboardLayout />}
-          >
-            <Route index element={<InstructorDashboard />} /> {/* /dashboard */}
-            <Route path="assignments" element={<AssignmentForm />} />{" "}
-            {/* /dashboard/assignments */}
-            <Route path="upload" element={<CourseMaterialForm />} />{" "}
-            {/* /dashboard/upload */}
-          </Route>
-
-          <Route path="/dashboard" element={<UserDashboardLayout />}>
-            <Route index element={<UserDashboardContent />} />
-          </Route>
 
           <Route element={<CourseLearningLayout />}>
             <Route path="/course" element={<LessonContent />} />
@@ -73,7 +43,36 @@ function App() {
             <Route path="/course/module1/assignment" element={<AssignmentContent />} />
           </Route>
 
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/welcomeback" element={<AuthenticationOne />} />
+          <Route path="/check-inbox" element={<CheckInbox />} />
+          <Route path="/new-password" element={<NewPasswordPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
+
+          {/* Admin Dashboard */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<TeamAllocationPage />} />
+          </Route>
+
+          {/* Instructor Dashboard */}
+          <Route path="/instructor-dashboard" element={<InstructorDashboardLayout />}>
+            <Route index element={<InstructorDashboard />} />
+            <Route path="assignments" element={<AssignmentForm />} />
+            <Route path="upload" element={<CourseMaterialForm />} />
+            <Route path="instructor-profile" element={<InstructorProfile />} />
+          </Route>
+
+          {/* User Dashboard */}
+          <Route path="/user-dashboard" element={<UserDashboardLayout />}>
+            <Route index element={<UserDashboardContent />} />
+            <Route path="user-profile" element={<UserProfile />} />
+          </Route>
+
+          {/* Protected Reset Password Routes */}
           <Route
             element={
               <ResetPasswordProtectedRoute
@@ -82,10 +81,7 @@ function App() {
               />
             }
           >
-            <Route
-              path="/reset-password-auth"
-              element={<ResetPasswordAuthPage />}
-            />
+            <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />} />
           </Route>
 
           <Route
@@ -99,47 +95,8 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
 
-          <Route path="/forget-password" element={<ForgetPasswordPage />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/welcomeback" element={<AuthenticationOne />} />
-          <Route path="/check-inbox" element={<CheckInbox />} />
-          <Route path="/landing" element={<LandingPage />} />
         </Routes>
       </AuthLoginProvider>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        {/* <Route path="/instructor-dashboard" element={<InstructorDashboard />} /> */}
-
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={isEmailVerified}
-              redirectTo="/forget-password"
-            />
-          }
-        >
-          <Route
-            path="/reset-password-auth"
-            element={<ResetPasswordAuthPage />}
-          />
-        </Route>
-        <Route
-          element={
-            <ResetPasswordProtectedRoute
-              check={() => isOtpVerified() && isEmailVerified()}
-              redirectTo="/forget-password"
-            />
-          }
-        >
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-        </Route>
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/welcome-back" element={<AuthenticationOne />} />
-        <Route path="/check-inbox" element={<CheckInbox />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/instructor-profile" element={<InstructorProfile />} />
-      </Routes>
     </BrowserRouter>
   );
 }

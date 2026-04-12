@@ -1,6 +1,6 @@
 import TeamCard from "../../../../components/adminComponents/TeamCard";
 
-export const users = [
+export const usersData = [
   { id: 1, name: "Babalola Zainab", email: "dave@mail.com", role: "UI/UX", team: "Product", isActive:true , img:"/images/zainab-img.svg" },
   { id: 2, name: "Fadeyi Olamide", email: "jane@mail.com", role: "Backend Developer", team: "Engineering", isActive:true, img:"/images/olamide-img.svg"  },
   { id: 3, name: "Olarotimi Blessing", email: "jane@mail.com", role: "Graphic Designer", team: "", isActive: false, img:"/images/blessing-img.svg" },
@@ -17,7 +17,7 @@ export const users = [
 
 const TeamOverview = () => {
 
-   const teamMembers = users.reduce((acc, user) => {
+   const teamMembers = usersData.reduce((acc, user) => {
     if (user.team && !acc[user.team]) {
       acc[user.team] = [];
     }
@@ -30,7 +30,7 @@ const TeamOverview = () => {
   return (
     <section className="team-overview mt-10 mb-10">
       <h2 className="text-[14px] text-[#455F87] leading-5.25 font-semibold mb-4">Team Overview</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 min-[500px]:grid-cols-2 min-[900px]:grid-cols-3 min-[1200px]:grid-cols-4 gap-4">
         {Object.entries(teamMembers).map(([teamName, members]) => (
           <TeamCard key={teamName} teamName={teamName} members={members} />
         ))}

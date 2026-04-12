@@ -1,4 +1,4 @@
-import { users } from "./TeamOverview";
+import { usersData } from "./TeamOverview";
 import UsersTable from "../../../../components/adminComponents/UsersTable";
 import SearchBar from "../../../../components/adminComponents/SearchBar";
 import filterIcon from "../../../../../../assets/filter-icon.svg"
@@ -10,14 +10,18 @@ import usePagination from "../../../../hooks/adminHooks/usePagination";
 import useSelectedUsers from "../../../../hooks/adminHooks/useSelectedUsers";
 import UserCard from "../../../../components/adminComponents/UserCard";
 import { useUsers } from "../../../../hooks/adminHooks/useUsers";
+<<<<<<< HEAD
 // import useCreateUser, {useCreateUser}  from "../../../../hooks/adminHooks/useCreateUser"
+=======
+import useCreateUser from "../../../../hooks/adminHooks/useCreateUser"
+>>>>>>> 64cea2bda210c90f38504543888eda6c9e21a7e0
 
 const Users = () => {
-    const {user} = useUsers();
-    const {useCreatedUser, handleCreateUser} = useCreatedUser();
+    const {users} = useUsers();
+    const {useCreatedUser, handleCreateUser} = useCreateUser();
     const { currentPage, setCurrentPage, itemsPerPage, startIndex}= usePagination();
     const {handleOnChangeSearchByName, handleFilterByTeamChange, handleFilterChange, filteredUsers, searchByName, filterByTeam, filters, clearState} = useUserFilters();
-    const {handleSelectAll, handleSelectUser, selectedUsers} = useSelectedUsers();
+    const {handleSelectAll, handleSelectUser, selectedUsers} = useSelectedUsers(usersData);
     const [toggleFilterButton, setToggleFilterButton] = useState(false);
     
     {/* filtered Users  Or All users */}
@@ -36,17 +40,17 @@ const Users = () => {
     return (
         <section className="users-section border border-[#CCC3D833] rounded-2xl ">
             {/*Section Header*/}
-            <div className="flex items-center justify-between p-5 border-b border-[#CCC3D81A] bg-[#F0F3FF33] relative">
-                <div className="search-container flex items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2 gap-y-4 items-center justify-between p-5 border-b border-[#CCC3D81A] bg-[#F0F3FF33]">
+                <div className="search-container">
                   <SearchBar handleOnChangeSearch ={handleOnChangeSearchByName} value={searchByName} setToggleFilterButton={setToggleFilterButton} placeholder={"Search for Interns by Name.."}/>
-                  
+                </div>
+
+                <div className="flex gap-2 items-center justify-between relative">
                   {/* Team */}
-                   
                    <select
                     value={filterByTeam}
                     onChange={handleFilterByTeamChange}
                     onFocus={()=>setToggleFilterButton(false)}
-                   
                     className="border border-[#CCC3D84D] py-2 text-[12px] rounded-lg focus:outline-none  focus:ring-1 focus:ring-[#0029F5]"
                     >
                         <option value="">All Teams</option>
@@ -58,25 +62,26 @@ const Users = () => {
                     
 
                     <button 
-                        onClick={() => setToggleFilterButton(prev => !prev)}
-                        className=" flex gap-2 border border-[#CCC3D84D] py-2 px-3 rounded-lg text-[12px]  text-[#455F87] leading-4 font-semibold"
+                    onClick={() => setToggleFilterButton(prev => !prev)}
+                    className=" flex gap-2 border border-[#CCC3D84D] py-2 px-3 rounded-lg text-[12px]  text-[#455F87] leading-4 font-semibold"
                     > 
                         <img src={filterIcon} alt="Filter Icon"/>
                         Filter
-                  </button>
+                    </button>
+                    {toggleFilterButton && <FilterBar filters={filters} handleFilterChange={handleFilterChange}/>}
 
-                  <button 
-                    onClick={()=>{
-                        clearState();
-                        setToggleFilterButton(false);
-                    }}
-                    className="border border-[#CCC3D84D] py-2 px-3 rounded-lg text-[12px]  text-[#455F87] leading-4 font-semibold"
-                  >
-                    Reset Filters
-                  </button>
+                    <button 
+                        onClick={()=>{
+                            clearState();
+                            setToggleFilterButton(false);
+                        }}
+                        className="border border-[#CCC3D84D] py-2 px-3 rounded-lg text-[12px]  text-[#455F87] leading-4 font-semibold"
+                    >
+                        Reset Filters
+                    </button>
                 </div>
 
-                {toggleFilterButton && <FilterBar filters={filters} handleFilterChange={handleFilterChange}/>}
+                
 
                 
 
@@ -95,7 +100,7 @@ const Users = () => {
             {/*Section Body*/}
             
             <UsersTable
-              users={users}
+              users={usersData}
               currentUsers={currentUsers} 
               selectedUsers={selectedUsers} 
               handleSelectAll={handleSelectAll} 
@@ -114,7 +119,7 @@ const Users = () => {
 
                 ))}
                 
-            </div>div         
+            </div>      
            
            {/*Section bottom*/}
            <div className="flex justify-between items-center px-6 mb-4 tracking-normal">

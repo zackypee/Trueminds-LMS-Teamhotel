@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function CourseMaterialForm() {
+function InstructorCourseMaterialForm() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -42,9 +43,9 @@ function CourseMaterialForm() {
 
   return (
     <div className="bg-white p-10 max-w-4xl">
-      <p className="text-[#7C3AED] text-sm cursor-pointer mb-6">
+      <Link to="/user-dashboard" className="text-[#7C3AED] text-sm  mb-6 md:hidden">
         ← Back to Dashboard
-      </p>
+      </Link>
       <h1 className="text-4xl font-bold text-[#1F2937] mb-2">
         Upload Course Material
       </h1>
@@ -150,4 +151,4 @@ function CourseMaterialForm() {
   );
 }
 
-export default CourseMaterialForm;
+export default InstructorCourseMaterialForm;

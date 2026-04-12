@@ -92,7 +92,7 @@ export const ResetPasswordAuthForm = () => {
                     <Button 
                       disabled={isLoading}
                       type="submit" 
-                      className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25"
+                      className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25 bg-[#0029F5]"
                     >
                         {isLoading ? 'Confirming OTP...' : 'Confirm'}
                         <img src={forwardIcon} alt="Forward Icon" />

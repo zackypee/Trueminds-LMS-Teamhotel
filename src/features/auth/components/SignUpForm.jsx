@@ -3,6 +3,7 @@ import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
   const [role, setRole] = useState("learner");
@@ -138,14 +139,14 @@ export const SignUpForm = () => {
             <button
               type="button"
               onClick={() => setRole("learner")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Learner
             </button>
             <button
               type="button"
               onClick={() => setRole("instructor")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Instructor
             </button>
@@ -177,7 +178,7 @@ export const SignUpForm = () => {
 
           <p className="text-sm text-gray-500 text-center font-normal max-sm:mt-10">
             Already have an account?{" "}
-            <span className="text-[#7C3AED]">Log in</span>
+            <span className="text-[#7C3AED]"><Link to="/login">Log in</Link></span>
           </p>
 
           <p className="hidden md:block mt-5 font-semibold text-sm text-center text-[#6A6F73]">
