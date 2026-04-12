@@ -45,6 +45,7 @@ function App() {
 
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/welcomeback" element={<AuthenticationOne />} />
@@ -64,6 +65,7 @@ function App() {
             <Route path="assignments" element={<AssignmentForm />} />
             <Route path="upload" element={<CourseMaterialForm />} />
             <Route path="instructor-profile" element={<InstructorProfile />} />
+            <Route path="/" element={<CollaborationHub />} />
           </Route>
 
           {/* User Dashboard */}
@@ -95,6 +97,11 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
           </Route>
 
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/welcomeback" element={<AuthenticationOne />} />
+          <Route path="/check-inbox" element={<CheckInbox />} />
+          <Route path="/landing" element={<LandingPage />} />
         </Routes>
       </AuthLoginProvider>
     </BrowserRouter>

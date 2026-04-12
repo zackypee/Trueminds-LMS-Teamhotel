@@ -24,16 +24,16 @@ export default function CheckInbox() {
   };
 
   return (
-    <section className="flex flex-col md:flex-row justify-center items-center  h-screen  md:px-20 lg:px-40 py-10 md:py-0 gap-10 md:gap-40">
+    <section className="flex bg-gray-100 flex-col md:flex-row justify-center items-center  h-screen  md:px-20 lg:px-40 py-10 md:py-0 gap-10 md:gap-40">
       <div className="">
         <img
           src="/images/truemind.png"
           alt="image"
-          className="w-[400px] mx-auto md:mx-0"
+          className="w-[400px]  shadow-lg rounded-lg mx-auto md:mx-0 "
         />
       </div>
 
-      <div className="px-4 flex flex-col items-center">
+      <div className="px-4 flex flex-col items-center py-4 px-4 bg-gray-50">
         <h1 className="font-bold whitespace-nowrap  text-center text-[30px] lg:text-[36px] mb-2 text-[#1F2937]">
           Check Your Inbox
         </h1>
