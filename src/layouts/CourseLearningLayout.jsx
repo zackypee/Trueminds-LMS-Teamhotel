@@ -64,7 +64,7 @@ export default function CourseLearningLayout() {
               </svg>
             </button>
             
-            <Link to="/dashboard" className="flex items-center gap-2">
+            <Link to="/user-dashboard" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-[#0029F5] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">T</span>
               </div>
