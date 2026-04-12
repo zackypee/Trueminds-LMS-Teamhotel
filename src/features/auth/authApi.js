@@ -1,101 +1,32 @@
-// // API Base Configuration
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+import api from "../../services/api";
 
-// // Helper function for API calls
-// const apiCall = async (endpoint, options = {}) => {
-//   const token = localStorage.getItem('authToken');
-  
-//   const defaultHeaders = {
-//     'Content-Type': 'application/json',
-//     ...(token && { 'Authorization': `Bearer ${token}` }),
-//   };
+//login user 
+export const loginUser = async (userData) => {
+  const response = await api.post("/auth/login", userData);
+  return response.data;
+};
 
-//   const config = {
-//     ...options,
-//     headers: {
-//       ...defaultHeaders,
-//       ...options.headers,
-//     },
-//   };
+//Register new user 
+export const registerNewUser = async (newUserData) => {
+  const response = await api.post("/auth/register", newUserData);
+  return response.data
+};
 
-//   try {
-//     const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-//     const data = await response.json();
+// resetPassword
+export const resetPassword = async (newPasswordData) => {
+  const response = await api.post("/auth/reset-password", newPasswordData);
+  return response.data
+};
 
-//     if (!response.ok) {
-//       throw new Error(data.message || 'Something went wrong');
-//     }
+//authReqPasswordReset
+export const authReqPasswordReset = async (email) => {
+  const response = await api.post("/auth/forgot-password", { email: email });
+  return response.data; 
 
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+};
 
-// // Reset Password API
-// export const resetPasswordAPI = async (passwordData) => {
-//   // Get the reset token from URL or storage
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const token = urlParams.get('token');
-  
-//   if (!token) {
-//     throw new Error('Reset token is missing. Please request a new password reset link.');
-//   }
-
-//   return apiCall('/auth/reset-password', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       token,
-//       password: passwordData.password,
-//       confirmPassword: passwordData.confirmPassword
-//     }),
-//   });
-// };
-
-// // Request Password Reset (Send OTP)
-// export const requestPasswordResetAPI = async (email) => {
-//   return apiCall('/auth/forgot-password', {
-//     method: 'POST',
-//     body: JSON.stringify({ email }),
-//   });
-// };
-
-// // Verify OTP
-// export const verifyOTPAPI = async (email, otp) => {
-//   return apiCall('/auth/verify-otp', {
-//     method: 'POST',
-//     body: JSON.stringify({ email, otp }),
-//   });
-// };
-
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-// Attach token to every request automatically
-api.interceptors.request.use(
-  (config) => {
-    const token = sessionStorage.getItem("authToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// Normalize all error responses globally
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const message = error.response?.data?.message || "Something went wrong";
-    return Promise.reject(new Error(message));
-  }
-);
-
-export default api;
+//verifyResetOtp
+export const verifyResetOtp = async (data) => {
+  const response = await api.post("/auth/verify-reset-otp", data);
+  return response.data; 
+};
