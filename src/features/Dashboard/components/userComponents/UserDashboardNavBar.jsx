@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const UserDashboardNavbar = () => {
+const UserDashboardNavbar = ({ onMenuClick }) => {
   const navigate = useNavigate();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+    console.log("Navbar received onMenuClick:", typeof onMenuClick);
+
 
   return (
     <nav className="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
       <div className="px-4 py-3 mx-auto flex items-center justify-between">
-        {/* Logo Section */}
+        {/* Logo Section with Hamburger Menu */}
         <div className="flex items-center gap-3">
+          {/* Hamburger Menu Button - Mobile only */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-gray-600 hover:text-[#0029F5]"
+            onClick={onMenuClick}
+            className="lg:hidden text-gray-600 hover:text-[#0029F5] focus:outline-none"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -74,7 +77,10 @@ const UserDashboardNavbar = () => {
                   Settings
                 </Link>
                 <hr className="my-1" />
-                <button className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                <button 
+                  onClick={() => navigate('/login')}
+                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                >
                   Logout
                 </button>
               </div>

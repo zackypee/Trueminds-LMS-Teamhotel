@@ -21,8 +21,12 @@ import InstructorDashboard from "./features/Dashboard/pages/instructorPages/Inst
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
-import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import UserDashboard from "./features/Dashboard/pages/userPages/UserDashboard";
+import CourseLearningLayout from "./layouts/CourseLearningLayout";
+import LessonContent from "./features/Dashboard/components/LessonContent";
+import AssignmentContent from "./features/Dashboard/components/AssignmentContent";
+
+import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 

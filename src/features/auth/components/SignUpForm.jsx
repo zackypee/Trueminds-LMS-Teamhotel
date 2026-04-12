@@ -3,9 +3,12 @@ import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
+<<<<<<< HEAD
 import useRegisterNewUser from "../hooks/useRegisterNewUser";
 import inputValidation from "../utils/inputValidation";
 import ErrorMessage from "../../../components/ErrorMessage";
+=======
+>>>>>>> 91c1c5430458271e4e97c010acad7c44e3e4b606
 import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
@@ -164,14 +167,14 @@ export const SignUpForm = () => {
             <button
               type="button"
               onClick={() => setRole("learner")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "learner" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Learner
             </button>
             <button
               type="button"
               onClick={() => setRole("instructor")}
-              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#7C3AED] text-white border border-[#D1D5DB]" : ""}`}
+              className={`flex-1 border border-[#D1D5DB] w-21.25 h-9 md:w-38.75 md:h-14.75 rounded-md text-[#6B7280] cursor-pointer ${role === "instructor" ? "bg-[#0029F5] text-white border border-[#D1D5DB]" : ""}`}
             >
               Instructor
             </button>
