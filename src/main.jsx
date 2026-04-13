@@ -13,7 +13,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
+import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
