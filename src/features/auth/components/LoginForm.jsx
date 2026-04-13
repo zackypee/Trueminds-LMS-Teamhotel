@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
 import inputValidation from "../utils/inputValidation";
 import useLogin from "../hooks/useLogin";
-import { useAuth } from "../context/authLoginContext";
+import { useAuth } from "../context/AuthLoginContext";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
