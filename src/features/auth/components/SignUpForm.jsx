@@ -207,7 +207,7 @@ export const SignUpForm = () => {
 
           <p className="text-sm text-gray-500 text-center font-normal max-sm:mt-10">
             Already have an account?{" "}
-            <Link to="/login" className="text-[#7C3AED]">Log in</Link>
+            <Link to="/login" className="text-[#1E3A5F] hover:underline">Log in</Link>
           </p>
 
           <p className="hidden md:block mt-5 font-semibold text-sm text-center text-[#6A6F73]">
