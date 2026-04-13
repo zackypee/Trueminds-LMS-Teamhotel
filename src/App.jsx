@@ -37,8 +37,8 @@ function App() {
     <BrowserRouter>
     <AuthLoginProvider>
     <Routes>
-      <Route path="/landing" element={<LandingPage />} />
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/forget-password" element={<ForgetPasswordPage />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/welcome-back" element={<AuthenticationOne />} />
