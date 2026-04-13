@@ -4,7 +4,7 @@ const AuthLoginContext = createContext(null);
 
 export const AuthLoginProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const stored = sessionStorage.getItem("user");
+    const stored = localStorage.getItem("user");
     return stored ? JSON.parse(stored) : null;
   });
   const [loading, setLoading] = useState(false);

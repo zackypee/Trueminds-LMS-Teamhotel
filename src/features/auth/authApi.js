@@ -1,34 +1,32 @@
+import api from "../../services/api";
 
+//login user 
+export const loginUser = async (userData) => {
+  const response = await api.post("/auth/login", userData);
+  return response.data;
+};
 
-import axios from "axios";
+//Register new user 
+export const registerNewUser = async (newUserData) => {
+  const response = await api.post("/auth/register", newUserData);
+  return response.data
+};
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+// resetPassword
+export const resetPassword = async (newPasswordData) => {
+  const response = await api.post("/auth/reset-password", newPasswordData);
+  return response.data
+};
 
-// Attach token to every request automatically
-api.interceptors.request.use(
-  (config) => {
-    const token = sessionStorage.getItem("authToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+//authReqPasswordReset
+export const authReqPasswordReset = async (email) => {
+  const response = await api.post("/auth/forgot-password", { email: email });
+  return response.data; 
 
-// Normalize all error responses globally
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const message = error.response?.data?.message || "Something went wrong";
-    return Promise.reject(new Error(message));
-  }
-);
+};
 
-export default api;
-
+//verifyResetOtp
+export const verifyResetOtp = async (data) => {
+  const response = await api.post("/auth/verify-reset-otp", data);
+  return response.data; 
+};

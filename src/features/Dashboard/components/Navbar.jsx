@@ -25,7 +25,7 @@ const Navbar = ({ setSearchQuery }) => {
       </div>
       <div className="flex items-center gap-8">
         <NavLink
-          to="/course-catalogue"
+          to="courses"
           className={({ isActive }) =>
             `text-[14px] font-normal ${
               isActive
@@ -39,7 +39,7 @@ const Navbar = ({ setSearchQuery }) => {
         </NavLink>
 
         <NavLink
-          to="/browse"
+          to="browse"
           className={({ isActive }) =>
             `text-[14px] font-normal ${
               isActive

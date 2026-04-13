@@ -22,8 +22,7 @@ const UserDashboardNavbar = ({ onMenuClick }) => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
-          
-          <Link to="/dashboard" className="flex items-center gap-2">
+          <Link to="dashboard" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#0029F5] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">T</span>
             </div>
@@ -71,10 +70,10 @@ const UserDashboardNavbar = ({ onMenuClick }) => {
             {/* Dropdown Menu */}
             {isProfileOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                <Link to="/dashboard/user-profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <Link to="profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   View Profile
                 </Link>
-                <Link to="/dashboard/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <Link to="settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   Settings
                 </Link>
                 <hr className="my-1" />

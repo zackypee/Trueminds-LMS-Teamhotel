@@ -36,7 +36,6 @@ export const ResetPasswordForm = () => {
         e.preventDefault();
         clearError();
         
-        console.log(formData);
 
         const validationErrors = inputValidation(formData);
 

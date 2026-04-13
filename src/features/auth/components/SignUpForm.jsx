@@ -3,11 +3,18 @@ import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
+<<<<<<< HEAD
+import useRegisterNewUser from "../hooks/useRegisterNewUser";
+import inputValidation from "../utils/inputValidation";
+import ErrorMessage from "../../../components/ErrorMessage";
+=======
+>>>>>>> 91c1c5430458271e4e97c010acad7c44e3e4b606
 import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
   const [role, setRole] = useState("learner");
   const [showPassword, setShowPassword] = useState(false);
+  const {isLoading, error, handleRegisterNewUser, clearError, message} = useRegisterNewUser();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -15,7 +22,7 @@ export const SignUpForm = () => {
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [inputValError, setInputValError] = useState({});
 
   const handleChange = (e) => {
     setFormData({
@@ -24,7 +31,7 @@ export const SignUpForm = () => {
     });
   };
 
-  const validate = () => {
+ /* const validate = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
@@ -42,16 +49,35 @@ export const SignUpForm = () => {
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
-  };
+  };*/
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    clearError();
 
-    if (validate()) {
-      console.log("Form submitted:", { ...formData, role });
+    const validationErrors = inputValidation(formData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setInputValError(validationErrors);
+      return;
+    }
+    
+    const newUserData = {
+      name:formData.name,
+      email:formData.email,
+      password:formData.password,
+      role:role
+    };
+
+    const success = await handleRegisterNewUser(newUserData)
+    console.log("REGISTER RESULT:", success);
+
+    if (error?.includes("time")) {
+      setTimeout(() => {
+          navigate("/", { replace: true });   
+      }, 1500);
     }
 
-    setFormData({ name: "", email: "", password: "" });
   };
 
   return (
@@ -63,6 +89,8 @@ export const SignUpForm = () => {
         <p className="text-[#6A6F73] text-[16px] mb-6">
           Start your learning journey with TalentFlow today.
         </p>
+
+        {error?.includes("time")? <p className="text-green-500">Account Successfully Created.</p> : <ErrorMessage message={error} />}
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -80,8 +108,8 @@ export const SignUpForm = () => {
               value={formData.name}
               onChange={handleChange}
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name}</p>
+            {inputValError.name && (
+              <p className="text-red-500 text-sm">{inputValError.name}</p>
             )}
           </div>
           <div>
@@ -99,8 +127,8 @@ export const SignUpForm = () => {
               value={formData.email}
               onChange={handleChange}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
+            {inputValError.email && (
+              <p className="text-red-500 text-sm">{inputValError.email}</p>
             )}
           </div>
 
@@ -127,8 +155,8 @@ export const SignUpForm = () => {
             >
               {showPassword ? <IoMdEyeOff /> : <IoEye />}
             </button>
-            {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
+            {inputValError.password && (
+              <p className="text-red-500 text-sm">{inputValError.password}</p>
             )}
           </div>
 
@@ -158,7 +186,11 @@ export const SignUpForm = () => {
             tips.
           </label>
 
-          <Button className="w-full max-sm:h-14">Create Account</Button>
+          <Button 
+          className="w-full max-sm:h-14"
+          type={"submit"}
+          disabled={isLoading}
+          >{isLoading? "Creating an account..." : "Create Account"}</Button>
 
           <div className="flex items-center gap-2">
             <hr className="flex-1 border border-[#D1D5DB]" />
@@ -178,7 +210,7 @@ export const SignUpForm = () => {
 
           <p className="text-sm text-gray-500 text-center font-normal max-sm:mt-10">
             Already have an account?{" "}
-            <span className="text-[#7C3AED]"><Link to="/login">Log in</Link></span>
+            <Link to="/" className="text-[#7C3AED]">Log in</Link>
           </p>
 
           <p className="hidden md:block mt-5 font-semibold text-sm text-center text-[#6A6F73]">
