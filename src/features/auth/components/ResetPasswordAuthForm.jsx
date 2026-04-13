@@ -92,13 +92,13 @@ export const ResetPasswordAuthForm = () => {
                     <Button 
                       disabled={isLoading}
                       type="submit" 
-                      className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25"
+                      className=" w-full mt-10 flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25 bg-[#0029F5]"
                     >
                         {isLoading ? 'Confirming OTP...' : 'Confirm'}
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
-                <Link to="/" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
+                <Link to="/login" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-7 text-[#7C3AED]">
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>
