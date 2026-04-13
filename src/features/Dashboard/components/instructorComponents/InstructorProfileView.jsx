@@ -3,7 +3,7 @@ import InstructorImage from "../../../../assets/instructorimage.png"; // Import 
 import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile icon for the details section
 
-export default function ProfileView() {
+export default function InstructorProfileView() {
   const user = {
     name: "Tunde Adeyemi",
     id: "UI/INS/01",

@@ -29,16 +29,16 @@ export default function MyProgress(){
     }]
     return(
         <>
-        <div className=" px-5 md:px-10 pt-5 md:pt-10 md:mb-5 pb-2 md:pb-5 bg-[#1E3A5F]">
-            <h1 className="font-bold md:mb-5 mb-4  text-white text-[24px] md:text-[36px]">My Progress</h1>
+        <div className=" fixed left-0 right-0 mt-16 px-5 md:px-10 pt-5 mb-5 pb-2 md:pb-5 bg-[#1E3A5F]">
+            <h1 className="font-bold mb-4  text-white text-[24px] md:text-[36px]">My Progress</h1>
             <div className="flex justify-between md:justify-start md:gap-10">
-                <p className="text-[16px] text-[#F9FAFB]">All ourses</p>
+                <p className="text-[16px] text-[#F9FAFB]">All Courses</p>
                 <p className="text-[16px] text-[#F9FAFB]">In Progress</p>
                 <p className="text-[16px] text-[#F9FAFB]">Completed</p>
                 <p className="text-[16px] text-[#F9FAFB]">Archived</p>
             </div>
         </div>
-<div className="mx-5 md:mx-10 mt-10 mb-20">
+<div className="mx-5 md:mx-10 mt-60 mb-20">
     <div className="flex flex-col md:border md:border-[#E5E7EB] shadow-sm md:flex-row md:justify-between">
         <div className=" border px-4 py-5 md:border-0 border-[#E5E7EB] rounded">
         <h2 className="font-semibold mb-1 text-[18px] text-[#1F2937]">Start a weekly streak</h2>
@@ -55,8 +55,8 @@ export default function MyProgress(){
         </div>
 
         <div className="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-full border-5 border-gray-200 flex items-center justify-center">
-            <div class="w-6 h-6 rounded-full bg-white border-5 border-[#16A34A]"></div>
+        <div className="w-10 h-10 rounded-full border-5 border-gray-200 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-full bg-white border-5 border-[#16A34A]"></div>
             </div>
         <div className="flex  flex-col gap-4 ">
             <div className="flex gap-1 items-center">
@@ -117,7 +117,9 @@ export default function MyProgress(){
 
     <section className="grid grid-cols-1 md:grid-cols-3 md:gap-4">
      {items.map(i=>(
-        <div className="flex relative flex-col gap-4 mt-4 shadow-lg rounded-b-xl">
+        <div 
+        key={i.name}
+        className="flex relative flex-col gap-4 mt-4 shadow-lg rounded-b-xl">
         
         <div>
           <img src={i.img} className=" rounded-t-xl w-full h-50 object-cover" alt="" />
@@ -131,8 +133,8 @@ export default function MyProgress(){
                 <p className="font-semibold text-[14px] md:text-[15px] mb-2 text-[#1F2937]">{i.title}</p>
                  <p className="text-[13px] md:text-[14px] text-[#1F2937] mb-4" >{i.name}</p>
                 </div>
-                <div class="w-full h-2 bg-gray-300 rounded-full mb-2">
-                <div class="h-2 bg-[#0D9488] rounded-full w-[60%]"></div>
+                <div className="w-full h-2 bg-gray-300 rounded-full mb-2">
+                <div className="h-2 bg-[#0D9488] rounded-full w-[60%]"></div>
                 </div>
                 <div className="flex justify-between items-center">
                     <p className="font-semibold text-[13px] md:text-[14px] text-[#0D9488]" >{i.percent}</p>

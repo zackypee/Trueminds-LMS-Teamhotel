@@ -21,7 +21,8 @@ const CourseSidebar = ({ onClose }) => {
   ];
 
   return (
-    <aside className={`bg-[#F0F3FF] border-r border-gray-200 h-screen pt-20 sticky top-0 transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
+    
+    <aside className={`bg-[#F0F3FF] border-r border-gray-200 h-screen pt-20 fixed top-0 left-0 transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
       <div className="flex flex-col h-full">
         {/* Toggle Button */}
         <button
@@ -157,6 +158,7 @@ const CourseSidebar = ({ onClose }) => {
         </div>
       </div>
     </aside>
+   
   );
 };
 

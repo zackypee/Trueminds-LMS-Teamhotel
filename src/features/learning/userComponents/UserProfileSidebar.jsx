@@ -6,7 +6,7 @@ import ProfileLogo from "../../../../assets/profilelogo.png";
 import LiveLogo from "../../../../assets/livelogo.png";
 import AssignmentLogo from "../../../../assets/assignmentlogo.png";
 
-export default function ProfileSidebar({ activeLink, setActiveLink }) {
+export default function UserProfileSidebar({ activeLink, setActiveLink }) {
   // 1. Store the name of the active link instead of just true/false
 
   const menuItems = [

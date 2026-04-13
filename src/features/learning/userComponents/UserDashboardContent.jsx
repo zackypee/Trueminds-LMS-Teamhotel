@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import chika from '../../../../assets/chika.jpg'; 
-import ejike from '../../../../assets/ejike.jpg';
-import frontend from '../../../../assets/frontend.jpg';
-import languages from '../../../../assets/languages.jpg';
+import chika from '../../../assets/chika.jpg'; 
+import ejike from '../../../assets/ejike.jpg';
+import frontend from '../../../assets/frontend.jpg';
+import languages from '../../../assets/languages.jpg';
 
 
 const UserDashboardContent = () => {
@@ -178,7 +178,7 @@ const UserDashboardContent = () => {
             <div 
               key={course.id}
               className="border border-gray-200 rounded-[10px] bg-[#F0F3FF] p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => navigate(`/courses/${course.id}`)}
+              onClick={() => navigate(`../course`)}
             >
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 {/* Course Image */}

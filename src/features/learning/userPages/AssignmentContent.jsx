@@ -52,7 +52,7 @@ const AssignmentContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 md:py-12 md:-mt-4 bg-white">
+    <div className="max-w-6xl mx-auto px-4 py-6 md:py-12 md:-mt-4 md:pt-30  bg-white">
       {/* Two Column Layout */}
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Left Column - Main Content */}

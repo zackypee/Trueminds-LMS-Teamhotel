@@ -1,13 +1,13 @@
 // 
 
 import React from "react";
-import BadgeLogo from "../../../../assets/badgelogo.png";
-import CalenderLogo from "../../../../assets/calenderlogo.png";
-import TeamPlayer from "../../../../assets/teamplayerlogo.png";
-import PlusLogo from "../../../../assets/pluslogo.png";
-import PortfolioLogo from "../../../../assets/portfoliologo.png";
-import MentorLogo from "../../../../assets/mentorlogo.png";
-import FlowLogo from "../../../../assets/flowlogo.png";
+import BadgeLogo from "../../../assets/badgelogo.png";
+import CalenderLogo from "../../../assets/calenderlogo.png";
+import TeamPlayer from "../../../assets/teamplayerlogo.png";
+import PlusLogo from "../../../assets/pluslogo.png";
+import PortfolioLogo from "../../../assets/portfoliologo.png";
+import MentorLogo from "../../../assets/mentorlogo.png";
+import FlowLogo from "../../../assets/flowlogo.png";
 
 export default function UserProfileDetails() {
   return (

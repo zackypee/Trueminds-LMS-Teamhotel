@@ -3,12 +3,9 @@ import { Button } from "../../../components/Button";
 import google from "../../../assets/google-icon.png";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
-<<<<<<< HEAD
 import useRegisterNewUser from "../hooks/useRegisterNewUser";
 import inputValidation from "../utils/inputValidation";
 import ErrorMessage from "../../../components/ErrorMessage";
-=======
->>>>>>> 91c1c5430458271e4e97c010acad7c44e3e4b606
 import { Link } from "react-router-dom";
 
 export const SignUpForm = () => {
