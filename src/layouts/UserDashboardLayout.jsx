@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import UserSidebarPanel from "../features/learning/userComponents/UserSidebarPanel";
-import Navbar from "../features/Dashboard/components/Navbar";
+import Navbar from "../features/learning/userComponents/Navbar";
 import UserDashboardNavbar from "../features/learning/userComponents/UserDashboardNavBar";
 // import SidePanel from "../components/SidePanel";  // ← Add this import
 export default function UserDashboardLayout() {

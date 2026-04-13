@@ -16,9 +16,11 @@ import { IoMdStar } from "react-icons/io";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { HiClock } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { useSearchQuery } from "../context/SearchContext";
 
-const UserCourses = ({ selectedCategory, searchQuery }) => {
+const UserCourses = ({ selectedCategory}) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
+  const {searchQuery} = useSearchQuery();
   const navigate = useNavigate();
 
   const ongoingClasses = [

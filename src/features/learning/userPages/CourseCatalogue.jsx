@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Navbar from "../../Dashboard/components/Navbar";
+import Navbar from "../userComponents/Navbar";
 import UserCourseCatalogueSidebar from "../userComponents/UserCourseCatalogueSidebar";
 import  UserCourses from "../userComponents/UserCourses";
 
+
 const CourseCatalogue = () => {
   const [category, setCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  
 
   return (
     <div className="min-h-screen pt-25" >
@@ -16,7 +17,7 @@ const CourseCatalogue = () => {
         />
 
         <div className=" ">
-          <UserCourses selectedCategory={category} searchQuery={searchQuery} />
+          <UserCourses selectedCategory={category} />
         </div>
       </div>
     </div>

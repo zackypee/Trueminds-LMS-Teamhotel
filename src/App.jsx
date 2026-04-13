@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { SearchProvider } from "./features/learning/context/SearchContext";
 import { Navigate } from "react-router-dom";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
@@ -40,9 +41,10 @@ function App() {
   return (
     <BrowserRouter>
     <AuthLoginProvider>
+    <SearchProvider>
     <Routes>
-      <Route path="/landing" element={<LandingPage />} />
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/forget-password" element={<ForgetPasswordPage />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/welcome-back" element={<AuthenticationOne />} />
@@ -104,6 +106,7 @@ function App() {
       </Route>
 
     </Routes>
+    </SearchProvider>
     </AuthLoginProvider>
     </BrowserRouter>
   );

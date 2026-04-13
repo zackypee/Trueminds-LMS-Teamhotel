@@ -3,9 +3,12 @@ import { BiSearch } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import bell from "../../../assets/bell.png";
 import profile from "../../../assets/profile.png";
+import { useSearchQuery } from "../context/SearchContext";
 
-const Navbar = ({ setSearchQuery }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { setSearchQuery } = useSearchQuery();
+
 
   return (
     <nav className="px-6 py-4 bg-[#ffffff] h-16 shadow-[0px_1px_2px_0px_rgba(30,58,138,0.05)] flex items-center justify-between fixed left-0 right-0 z-2">
