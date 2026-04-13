@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { SearchProvider } from "./features/learning/context/SearchContext";
 import { Navigate } from "react-router-dom";
 import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
@@ -15,20 +16,24 @@ import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
-import CourseCatalogue from "./features/Dashboard/pages/userPages/CourseCatalogue";
-import UserProfile from "./features/Dashboard/pages/userpages/UserProfile";
+import CourseCatalogue from "./features/learning/userPages/CourseCatalogue";
+import UserProfile from  "./features/learning/userPages/UserProfile"
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
-import UserDashboard from "./features/Dashboard/pages/userPages/UserDashboard";
+import UserDashboard from "./features/learning/userPages/UserDashboard";
 import CourseLearningLayout from "./layouts/CourseLearningLayout";
-import LessonContent from "./features/Dashboard/components/LessonContent";
-import AssignmentContent from "./features/Dashboard/components/AssignmentContent";
+import LessonContent from "./features/learning/userComponents/LessonContent";
+import AssignmentContent from "./features/learning/userPages/AssignmentContent";
+import MyProgress from "./features/learning/userPages/MyProgress";
+import CollaborationHub from "./features/learning/userPages/CollaborationHub";
+
 
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
-import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
+import LessonPage from "./features/learning/userPages/LessonPage";
 
 
 
@@ -36,6 +41,7 @@ function App() {
   return (
     <BrowserRouter>
     <AuthLoginProvider>
+    <SearchProvider>
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
@@ -89,13 +95,18 @@ function App() {
       {/* User */}
       <Route path="learner" element={<UserDashboardLayout />}>
         <Route index element={<Navigate to="dashboard" replace />} />
-
-        <Route path="dashboard" element={<UserDashboardContent />} />
+        <Route path="dashboard" element={<UserDashboard />} />
         <Route path="profile" element={<UserProfile />} />
         <Route path="courses" element={<CourseCatalogue />} />
+        <Route path="course-details" element={<CourseOutline />} />
+        <Route path="assignments" element={<AssignmentContent/>}/>
+        <Route path="progress" element={<MyProgress/>}/>
+        <Route path="collaboration" element={<CollaborationHub/>}/>
+        <Route path="course" element={<LessonPage/>}/>
       </Route>
 
     </Routes>
+    </SearchProvider>
     </AuthLoginProvider>
     </BrowserRouter>
   );

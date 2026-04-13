@@ -18,7 +18,7 @@ function HeroSection() {
           high-end editorial learning experience designed for focus and
           retention.
         </p>
-        <Link to="/login" className="bg-[#0029FD] text-white font-medium text-base px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
+        <Link to="/sign-up" className="bg-[#0029FD] text-white font-medium text-base px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors">
           Get Started →
         </Link>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import ProfileImage from "../../../../assets/profileimage.jpg"; // Import a profile image
-import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile image
-import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
+import ProfileImage from "../../../assets/profileimage.jpg"; // Import a profile image
+import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile image
+import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
 
 export default function UserProfileView() {
   const user = {
@@ -30,7 +30,7 @@ export default function UserProfileView() {
     );
   }
   return (
-    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-[#CCC3D91A] rounded-3xl">
+    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-[#ffffff] rounded-3xl">
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
@@ -44,7 +44,7 @@ export default function UserProfileView() {
           <h1 className="text-3xl md:text-5xl font-bold mb-4">{user.name}</h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
+          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>

@@ -3,7 +3,7 @@ import InstructorProfileSidebar from "../../components/instructorComponents/Inst
 import InstructorProfileView from "../../components/instructorComponents/InstructorProfileView";
 import InstructorProfileDetails from "../../components/instructorComponents/InstructorProfileDetails";
 
-export default function InstructorProfile() {
+function InstructorProfile() {
   const [activeLink, setActiveLink] = React.useState("Dashboard");
 
   return (
@@ -16,3 +16,5 @@ export default function InstructorProfile() {
     </div>
   );
 }
+
+export default InstructorProfile;
