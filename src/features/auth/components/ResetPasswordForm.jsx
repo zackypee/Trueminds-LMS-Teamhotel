@@ -155,7 +155,7 @@ export const ResetPasswordForm = () => {
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
-                <Link to="/" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-12 text-[#7C3AED]">
+                <Link to="/login" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-12 text-[#7C3AED]">
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>

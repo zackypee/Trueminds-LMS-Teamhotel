@@ -1,23 +1,27 @@
 
 import React, { useState } from "react";
-import class1 from "../../../../assets/class1.png";
-import class2 from "../../../../assets/class2.png";
-import class3 from "../../../../assets/class3.png";
-import topPick1 from "../../../../assets/topPick1.png";
-import topPick2 from "../../../../assets/topPick2.png";
-import topPick3 from "../../../../assets/topPick3.png";
-import topPick4 from "../../../../assets/topPick4.png";
-import topPick5 from "../../../../assets/topPick5.png";
-import topPick6 from "../../../../assets/topPick6.png";
+import class1 from "../../../assets/class1.png";
+import class2 from "../../../assets/class2.png";
+import class3 from "../../../assets/class3.png";
+import topPick1 from "../../../assets/topPick1.png";
+import topPick2 from "../../../assets/topPick2.png";
+import topPick3 from "../../../assets/topPick3.png";
+import topPick4 from "../../../assets/topPick4.png";
+import topPick5 from "../../../assets/topPick5.png";
+import topPick6 from "../../../assets/topPick6.png";
 import { Line } from "rc-progress";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { IoMdStar } from "react-icons/io";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { HiClock } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
+import { useSearchQuery } from "../context/SearchContext";
 
-const UserCourses = ({ selectedCategory, searchQuery }) => {
+const UserCourses = ({ selectedCategory}) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
+  const {searchQuery} = useSearchQuery();
+  const navigate = useNavigate();
 
   const ongoingClasses = [
     {
@@ -183,7 +187,7 @@ const UserCourses = ({ selectedCategory, searchQuery }) => {
   });
 
   return (
-    <div className="flex-1 p-6">
+    <div className="flex-1 p-6 ">
       {selectedCategory === "All" && searchQuery === "" && (
         <>
           <h1 className="text-[24px] text-[#000000] font-semibold mb-6">
@@ -222,7 +226,9 @@ const UserCourses = ({ selectedCategory, searchQuery }) => {
                       {cls.completeLessons}/{cls.totalLessons} lessons
                     </span>
                   </div>
-                  <button className="bg-[#7C3AED] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer">
+                  <button
+                  onClick={() => navigate("../course")}
+                  className="bg-[#7C3AED] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer">
                     Continue Learning
                   </button>
                 </div>
@@ -239,6 +245,7 @@ const UserCourses = ({ selectedCategory, searchQuery }) => {
       <div className="grid grid-cols-3 gap-4">
         {filteredCourses.map((course, index) => (
           <div
+            onClick={()=> navigate("../course-details")}
             key={index}
             className=" bg-[#FFFFFF] w-75 h-90 border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5 "
           >

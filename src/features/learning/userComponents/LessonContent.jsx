@@ -7,7 +7,7 @@ const LessonContent = () => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 bg-white">
+    <div className="max-w-4xl mx-auto px-4 py-6 md:py-8 bg-white w-full mt-25 ">
       {/* Course Title */}
       <h1 className="text-[24px] sm:text-[28px] md:text-[32px] font-bold text-[#1F2937] text-center mb-8">
         Frontend Development: HTML, CSS and JavaScript

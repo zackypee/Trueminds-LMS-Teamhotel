@@ -48,10 +48,10 @@ export default function CollaborationHub(){
     }]
     return(
         <>
-<div className=" px-5 md:px-10 pt-5 md:pt-10 md:mb-5 pb-2 md:pb-5 bg-[#1E3A5F]" >
-<h1 className="font-bold md:mb-5 mb-4  text-white text-[24px] md:text-[36px]">Collaboration Hub</h1>
-</div>
-    <div className="px-4 mt-10 md:px-6 mb-10">
+        <div className=" fixed left-0 right-0 mt-16 px-5 md:px-10 pt-5 md:pt-10 md:mb-5 pb-2 md:pb-5 bg-[#1E3A5F]" >
+          <h1 className="font-bold md:mb-5 mb-4  text-white text-[24px] md:text-[36px]">Collaboration Hub</h1>
+        </div>
+      <div className="px-4 mt-60 md:px-6 mb-10">
         <div className="flex flex-col md:flex-row rounded md:rounded-2xl md:py-6 md:px-4 px-4 py-2 border-[#D97706] md:justify-between border">
             <div className="mb-2 md:flex md:gap-4 md:items-center">
                 <BiError className="text-2xl  text-[#D97706] "/>
