@@ -1,31 +1,37 @@
-import axios from "axios";
+import api from "../../services/api";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+//login user 
+export const loginUser = async (userData) => {
+  const response = await api.post("/auth/login", userData);
+  return response.data;
+};
 
-// Attach token to every request automatically
-api.interceptors.request.use(
-  (config) => {
-    const token = sessionStorage.getItem("authToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+export const logoutUser = async (data) => {
+  const response = await api.post("auth/logout", data)
+  return response.data;
+}
 
-// Normalize all error responses globally
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const message = error.response?.data?.message || "Something went wrong";
-    return Promise.reject(new Error(message));
-  }
-);
+//Register new user 
+export const registerNewUser = async (newUserData) => {
+  const response = await api.post("/auth/register", newUserData);
+  return response.data
+};
 
-export default api;
+// resetPassword
+export const resetPassword = async (newPasswordData) => {
+  const response = await api.post("/auth/reset-password", newPasswordData);
+  return response.data
+};
+
+//authReqPasswordReset
+export const authReqPasswordReset = async (email) => {
+  const response = await api.post("/auth/forgot-password", { email: email });
+  return response.data; 
+
+};
+
+//verifyResetOtp
+export const verifyResetOtp = async (data) => {
+  const response = await api.post("/auth/verify-reset-otp", data);
+  return response.data; 
+};

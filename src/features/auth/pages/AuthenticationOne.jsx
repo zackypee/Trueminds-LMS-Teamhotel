@@ -61,23 +61,29 @@ export default function AuthenticationOne() {
 
           {/* Action Area */}
           <div className="mt-10 space-y-4">
-
-            <button 
+            <button
               onClick={() => navigate("/check-inbox")}
-              className="w-full bg-[#7C3AED] cursor-pointer hover:bg-[#3a1b70] text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all active:scale-[0.98]">
+              className="w-full bg-[#0029F5] cursor-pointer hover:bg-[#1E3A5F] text-white font-bold py-4 px-6 rounded-xl transition-all active:scale-[0.98]"
+            >
               Continue
             </button>
 
-            <button className="w-full text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors" onClick={()=>navigate("/")}>
+            <button
+              className="w-full text-sm text-[#0029F5] font-semibold transition-colors cursor-pointer hover:underline"
+              onClick={() => navigate("/")}
+            >
               Log in to a different account
             </button>
           </div>
 
           {/* Footer */}
           <div className="mt-8 pt-8 border-t border-gray-200 text-center">
-            <p className="text-gray-600 text-sm font-medium">
+            <p className="text-[#475569] text-sm font-medium">
               Don't have an account?
-              <Link to="/sign-up" className="text-[#7C3AED] font-bold cursor-pointer hover:text-[#3a1b70] ml-1 transition-colors">
+              <Link
+                to="/sign-up"
+                className="text-[#1E3A5F] font-bold cursor-pointer hover:text-[#3a1b70] ml-1 transition-colors hover:underline"
+              >
                 Sign up
               </Link>
             </p>

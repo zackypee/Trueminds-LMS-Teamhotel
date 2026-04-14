@@ -1,33 +1,50 @@
+
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authLoginContext";
-import { loginUser } from "../authServices";
+import { useAuth } from "../context/AuthLoginContext";
+import { loginUser } from "../authApi";
+import { storeSession } from "../utils/storage";
 
 const useLogin = () => {
   const { setUser, setLoading, setError } = useAuth();
-  const navigate = useNavigate();
 
-  const authLogin = async (email, password, setFieldErrors) => {
+  const handleAuthLogin = async (userData) => {
     setLoading(true);
     setError(null);
 
     try {
-      const { user } = await loginUser(email, password);
-      setUser(user);
-      navigate("/dashboard"); // redirect straight to dashboard on success
-    } catch (err) {
-      if (err.validationErrors) {
-        // Empty fields or bad format → show under the input
-        setFieldErrors(err.validationErrors);
-      } else {
-        // Wrong credentials or network error → show general banner
-        setError(err.message);
+      const response = await loginUser(userData);
+
+      console.log("res", response);
+
+      if(!response?.success){
+        setError(response.message || "Login Failed, Please, try again.");
+        return false
       }
+
+      const {token, user} = response.data;
+      
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      setUser(user);
+
+      return true
+    } catch (err) {
+
+  
+      const message = err.response?.data?.message 
+      || (err.message === "Network Error" ? "Check your internet connection" : err.message)
+      || "Something went wrong, try again.";
+
+      setError(message);
+      return false;
+
     } finally {
       setLoading(false);
     }
   };
 
-  return { authLogin };
+  return { handleAuthLogin };
 };
 
 export default useLogin;
