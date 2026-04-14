@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
+
 const ResetPasswordProtectedRoute = ({check, redirectTo}) => {
 
     const isAllowed = check();

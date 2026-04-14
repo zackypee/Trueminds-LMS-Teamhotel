@@ -53,16 +53,16 @@ export const ResetPasswordForm = () => {
 
         const success = await handleResetPassword({
             newPassword: formData.password,
-            email,
+            email:email,
+           
         });
 
         if (success) {
             setTimeout(() => {
-                navigate("/", { replace: true });   
+                navigate("/login", { replace: true });   
             }, 1500);
 
             sessionStorage.removeItem("resetEmail");
-            sessionStorage.removeItem("verifyResetOtp");
             sessionStorage.removeItem("forgetPasswordSuccess");
             localStorage.removeItem("token");
         }
