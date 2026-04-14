@@ -26,7 +26,7 @@ const Navbar = ({ onMenuClick }) => {
         </button>
 
         <h1 className="font-bold text-[30px] text-[#1E3A5F]">
-          Talent<span className="text-[#7C3AED]">Flow</span>
+          Talent<span className="text-[#0029F5]">Flow</span>
         </h1>
         <div className="hidden md:flex items-center gap-2 p-2.5 rounded-xl border border-[#E5E7EB] max-w-100 w-full h-13.75">
           <BiSearch className="text-[#6B7280] w-4.5 h-4.5" />
