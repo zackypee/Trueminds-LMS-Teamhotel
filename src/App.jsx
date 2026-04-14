@@ -6,7 +6,6 @@ import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-import CheckInbox from "./features/auth/pages/checkInbox";
 import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
@@ -28,7 +27,6 @@ import LessonContent from "./features/learning/userComponents/LessonContent";
 import AssignmentContent from "./features/learning/userPages/AssignmentContent";
 import MyProgress from "./features/learning/userPages/MyProgress";
 import CollaborationHub from "./features/learning/userPages/CollaborationHub";
-import Notification from "./features/learning/userComponents/Notification";
 
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
@@ -47,8 +45,6 @@ function App() {
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
-            <Route path="/check-inbox" element={<CheckInbox />} />
-            <Route path="/notifications" element={<Notification />} />
 
             {/* Protected routes */}
             <Route
