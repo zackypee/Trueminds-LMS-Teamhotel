@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { logoutUser } from "../authApi";
-import { useAuth } from "../context/authLoginContext";
+import { useAuth } from "../context/AuthLoginContext";
 import { useNavigate } from "react-router-dom";
 
 

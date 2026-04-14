@@ -5,7 +5,7 @@ import ejike from '../../../assets/ejike.jpg';
 import frontend from '../../../assets/frontend.jpg';
 import languages from '../../../assets/languages.jpg';
 
-import { useAuth } from '../../auth/context/authLoginContext';
+import { useAuth } from '../../auth/context/AuthLoginContext';
 
 
 const UserDashboardContent = () => {

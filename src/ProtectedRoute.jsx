@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "./features/auth/context/authLoginContext";
+import { useAuth } from "./features/auth/context/AuthLoginContext";
 
 const roleRoutes = {
   admin: "/admin",

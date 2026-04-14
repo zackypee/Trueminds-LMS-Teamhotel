@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useLogoutUser from '../../auth/hooks/useLogoutUser';
-import { useAuth } from '../../auth/context/authLoginContext';
+import { useAuth } from '../../auth/context/AuthLoginContext';
 import ErrorMessage from '../../../components/ErrorMessage';
 
 const UserDashboardNavbar = ({ onMenuClick }) => {

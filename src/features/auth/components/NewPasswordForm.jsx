@@ -364,7 +364,7 @@ export const NewPasswordForm = () => {
             <button
                 type="button"
                 onClick={() => navigate('/login')}
-                className="text-[14px] mb-30 font-semibold text-[#7C3AED] leading-[21px] hover:underline cursor-pointer inline-flex items-center gap-2"
+                className="text-[14px] mb-30 font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer inline-flex items-center gap-2"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
