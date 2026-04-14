@@ -16,6 +16,9 @@ import CourseMaterialForm from "./features/Dashboard/components/CourseMaterialFo
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/Dashboard/pages/CourseCatalogue";
 import InstructorDashboard from "./features/Dashboard/pages/InstructorDashboard";
+import Reports from "./features/Dashboard/pages/Reports";
+import ReportsDashboardLayout from "./features/Dashboard/layout/ReportsDashboardLayout";
+import UserManagement from "./features/Dashboard/pages/UserManagement";
 
 function App() {
   return (
@@ -36,6 +39,13 @@ function App() {
             {/* /dashboard/upload */}
           </Route>
           <Route path="/course-catalogue" element={<CourseCatalogue />} />
+          <Route path="/reports-dashboard" element={<ReportsDashboardLayout />}>
+            {/* Reports Dashboard nested routes */}
+            <Route index element={<Reports />} />
+
+            <Route path="team" element={<div>Team Allocation</div>} />
+            <Route path="users" element={<UserManagement />} />
+          </Route>
           <Route
             element={
               <ResetPasswordProtectedRoute
