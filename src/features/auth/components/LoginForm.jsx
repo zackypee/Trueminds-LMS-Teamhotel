@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
 import inputValidation from "../utils/inputValidation";
 import useLogin from "../hooks/useLogin";
-import { useAuth } from "../context/authLoginContext";
+import { useAuth } from "../context/AuthLoginContext";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
@@ -162,7 +162,7 @@ export const LoginForm = () => {
            <Button
              type="submit"
              disabled={loading}
-             className="w-full bg-[#7C3AED] text-white py-3 rounded-md font-semibold hover:bg-[#6D2ED9] cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+             className="w-full bg-[#0029F5] text-white py-3 rounded-md font-semibold hover:bg-[#1E3A5F] cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
            >
              {loading ? "Logging in..." : "Login"}
            </Button>
@@ -171,13 +171,13 @@ export const LoginForm = () => {
              <button
                type="button"
                onClick={() => navigate("/forget-password")}
-               className="text-[14px] font-semibold text-[#7C3AED] leading-[21px] hover:underline cursor-pointer"
+               className="text-[14px] font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer"
              >
                Forgot Password?
              </button>
            </div>
 
-           <div className="text-center">
+           {/* <div className="text-center">
              <button
                type="button"
                onClick={() => navigate("/login-otp")}
@@ -185,7 +185,7 @@ export const LoginForm = () => {
              >
                Log in with OTP code
              </button>
-           </div>
+            </div>    Zacky commented it out !!!!!  */} 
 
            <div className="text-center pt-4">
              <span className="text-[14px] font-bold text-[#64748B]">
@@ -194,7 +194,7 @@ export const LoginForm = () => {
              <button
                type="button"
                onClick={() => navigate("/sign-up")}
-               className="text-[14px] font-bold text-[#7C3AED] hover:underline cursor-pointer mb-30"
+               className="text-[14px] font-bold text-[#182049] hover:underline cursor-pointer mb-30"
              >
                Sign up
              </button>

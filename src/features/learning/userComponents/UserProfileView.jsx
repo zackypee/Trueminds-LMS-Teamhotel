@@ -2,7 +2,7 @@ import React from "react";
 import ProfileImage from "../../../assets/profileimage.jpg"; // Import a profile image
 import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile image
 import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
-import { useAuth } from "../../auth/context/authLoginContext";
+import { useAuth } from "../../auth/context/AuthLoginContext";
 
 export default function UserProfileView() {
 

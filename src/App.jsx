@@ -6,12 +6,11 @@ import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-
 import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
-import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
+import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
@@ -53,7 +52,6 @@ function App() {
       <Route path="/forget-password" element={<ForgetPasswordPage />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/welcome-back" element={<AuthenticationOne />} />
-    
       
       
       {/* Protected routes */}

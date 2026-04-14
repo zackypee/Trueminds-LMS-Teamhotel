@@ -31,11 +31,11 @@ export default function InstrucDashMain() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 text-sm font-medium text-[#7C3AED] shadow-sm py-2 md:py-4 px-3 md:px-4 rounded-lg">
+            <button className="flex items-center gap-2 text-sm font-medium text-[#0029F5] shadow-sm py-2 md:py-4 px-3 md:px-4 rounded-lg hover:text-[#1E3A5F] cursor-pointer">
               <img src={historyIcon} alt="" className="w-4 h-4" />
               View History
             </button>
-            <button className="bg-[#7C3AED] text-white text-sm font-semibold px-3 md:px-4 py-2 md:py-4 rounded-lg hover:bg-[#6D2ED9] transition-colors">
+            <button className="bg-[#0029F5] text-white text-sm font-semibold px-3 md:px-4 py-2 md:py-4 rounded-lg hover:bg-[#1E3A5F] transition-colors cursor-pointer">
               Full Report
             </button>
           </div>
@@ -51,7 +51,7 @@ export default function InstrucDashMain() {
             <div className="flex flex-col md:flex-row gap-4">
 
               {/* Upload Materials */}
-              <div className="flex-1 bg-[#7C3AED] rounded-2xl p-6 flex flex-col gap-4">
+              <div className="flex-1 bg-[#0029F5] rounded-2xl p-6 flex flex-col gap-4">
                 <div className="w-[28.5px] h-[30px] rounded-xl flex items-center justify-center">
                   <img src={cloudIcon} alt="" />
                 </div>
@@ -61,7 +61,7 @@ export default function InstrucDashMain() {
                     Add new videos, PDFs, or interactive lessons to your course library.
                   </p>
                 </div>
-                <button className="bg-white text-[#630ED4] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:bg-gray-100 transition-colors">
+                <button className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#630ED4] transition-colors cursor-pointer">
                   Start Upload
                 </button>
               </div>
@@ -77,7 +77,7 @@ export default function InstrucDashMain() {
                     Design quizzes, peer reviews, or final projects for your current modules.
                   </p>
                 </div>
-                <button className="bg-white text-[#455F87] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:bg-gray-100 transition-colors">
+                <button className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#455F87] transition-colors cursor-pointer">
                   Create assignment
                 </button>
               </div>
@@ -88,12 +88,12 @@ export default function InstrucDashMain() {
             <div className="flex gap-4 md:gap-8 flex-wrap">
               <div>
                 <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">Total Students</p>
-                <p className="text-xl md:text-2xl font-bold text-[#0F172A] mt-1">
+                <p className="text-xl md:text-2xl font-bold text-[#64748B] mt-1">
                   1,284 <span className="text-sm font-semibold text-green-500">+12%</span>
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wide">Active Courses</p>
+                <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">Active Courses</p>
                 <p className="text-xl md:text-2xl font-bold text-[#0F172A] mt-1">14</p>
               </div>
               <div>
