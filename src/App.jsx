@@ -31,10 +31,14 @@ import CollaborationHub from "./features/learning/userPages/CollaborationHub";
 
 
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
+import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
+import TestAssignmentsPage from './features/Dashboard/pages/TestAssignmentsPage';
 
+// Add this route temporarily for testing
 
 
 function App() {
@@ -48,7 +52,7 @@ function App() {
       <Route path="/forget-password" element={<ForgetPasswordPage />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/welcome-back" element={<AuthenticationOne />} />
-      <Route path="/check-inbox" element={<CheckInbox />} />
+      {/* <Route path="/check-inbox" element={<CheckInbox />} /> */}
       
       
 
@@ -71,6 +75,8 @@ function App() {
       >
         <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Route>
+
+<Route path="/test-assignments" element={<TestAssignmentsPage />} />
 
       {/* Admin */}
       <Route path="admin" element={<AdminLayout />}>
@@ -100,8 +106,8 @@ function App() {
         <Route path="courses" element={<CourseCatalogue />} />
         <Route path="course-details" element={<CourseOutline />} />
         <Route path="assignments" element={<AssignmentContent/>}/>
-        <Route path="progress" element={<MyProgress/>}/>
-        <Route path="collaboration" element={<CollaborationHub/>}/>
+        {/* <Route path="progress" element={<MyProgress/>}/> */}
+        {/* <Route path="collaboration" element={<CollaborationHub/>}/> */}
         <Route path="course" element={<LessonPage/>}/>
       </Route>
 
