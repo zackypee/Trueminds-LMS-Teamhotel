@@ -34,80 +34,87 @@ import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
+import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
+import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
 
 
 
 function App() {
   return (
     <BrowserRouter>
-    <AuthLoginProvider>
-    <SearchProvider>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/forget-password" element={<ForgetPasswordPage />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/welcome-back" element={<AuthenticationOne />} />
-      <Route path="/check-inbox" element={<CheckInbox />} />
-      
-      
+      <AuthLoginProvider>
+        <SearchProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forget-password" element={<ForgetPasswordPage />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/welcome-back" element={<AuthenticationOne />} />
+            <Route path="/check-inbox" element={<CheckInbox />} />
 
-      {/* Protected routes */}
-      <Route 
-        element={ <ResetPasswordProtectedRoute check={isEmailVerified} 
-          redirectTo="/forget-password"/>
-        }
-      >
-        <Route
-          path="/reset-password-auth"
-          element={<ResetPasswordAuthPage />}
-        />
-      </Route>
+            {/* Protected routes */}
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={isEmailVerified}
+                  redirectTo="/forget-password"
+                />
+              }
+            >
+              <Route
+                path="/reset-password-auth"
+                element={<ResetPasswordAuthPage />}
+              />
+            </Route>
 
-      <Route
-        element={<ResetPasswordProtectedRoute check={() => isOtpVerified() && isEmailVerified()}
-          redirectTo="/forget-password"/>
-        }
-      >
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-      </Route>
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={() => isOtpVerified() && isEmailVerified()}
+                  redirectTo="/forget-password"
+                />
+              }
+            >
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
+            </Route>
 
-      {/* Admin */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route index element={<Navigate to="team-allocation" replace />} />
-        
-        <Route path="team-allocation" element={<TeamAllocationPage />} />
-      </Route>
+            {/* Admin */}
+            <Route path="admin" element={<AdminLayout />}>
+              <Route
+                index
+                element={<Navigate to="team-allocation" replace />}
+              />
 
-      {/* Instructor */}
-      <Route
-        path="instructor"
-        element={<InstructorDashboardLayout />}
-      >
-       <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="team-allocation" element={<TeamAllocationPage />} />
+            </Route>
 
-        <Route path="dashboard" element={<InstructorDashboard />} />
-        <Route path="assignments" element={<AssignmentForm />} />
-        <Route path="upload" element={<CourseMaterialForm />} />
-        <Route path="profile" element={<InstructorProfile />} />
-      </Route>
+            {/* Instructor */}
+            <Route path="instructor" element={<InstructorDashboardLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
 
-      {/* User */}
-      <Route path="learner" element={<UserDashboardLayout />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<UserDashboard />} />
-        <Route path="profile" element={<UserProfile />} />
-        <Route path="courses" element={<CourseCatalogue />} />
-        <Route path="course-details" element={<CourseOutline />} />
-        <Route path="assignments" element={<AssignmentContent/>}/>
-        <Route path="progress" element={<MyProgress/>}/>
-        <Route path="collaboration" element={<CollaborationHub/>}/>
-        <Route path="course" element={<LessonPage/>}/>
-      </Route>
+              <Route path="dashboard" element={<InstructorDashboard />} />
+              <Route path="assignments" element={<AssignmentForm />} />
+              <Route path="upload" element={<CourseMaterialForm />} />
+              <Route path="profile" element={<InstructorProfile />} />
+              <Route path="live-sessions" element={<InstructorLiveSession />} />
+            </Route>
 
-    </Routes>
-    </SearchProvider>
-    </AuthLoginProvider>
+            {/* User */}
+            <Route path="learner" element={<UserDashboardLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="dashboard" element={<UserDashboard />} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="courses" element={<CourseCatalogue />} />
+              <Route path="course-details" element={<CourseOutline />} />
+              <Route path="assignments" element={<AssignmentContent />} />
+              <Route path="progress" element={<MyProgress />} />
+              <Route path="collaboration" element={<CollaborationHub />} />
+              <Route path="course" element={<LessonPage />} />
+              <Route path="live-sessions" element={<LearnerLiveSession />} />
+            </Route>
+          </Routes>
+        </SearchProvider>
+      </AuthLoginProvider>
     </BrowserRouter>
   );
 }
