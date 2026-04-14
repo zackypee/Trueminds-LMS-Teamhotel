@@ -1,10 +1,6 @@
-<<<<<<< HEAD
+
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthLoginContext";
-=======
-
-import { useAuth } from "../context/authLoginContext";
->>>>>>> 798432dbc6a232fb4076a7cee51618ce9eb39770
 import { loginUser } from "../authApi";
 import { storeSession } from "../utils/storage";
 
