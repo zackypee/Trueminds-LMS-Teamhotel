@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjustSideBar }) => {
-  const location = useLocation();
-  
 
   const menuItems = [
     { path: 'dashboard', icon: 'M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z', label: 'Dashboard' },
@@ -15,36 +13,21 @@ const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjust
     { path: 'profile', icon: 'M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z', label: 'View Profile' },
   ];
 
-  // Determine if sidebar should be shown (for mobile)
-  const showSidebar = isOpen !== undefined ? isOpen : true;
-
   return (
     <>
-      {/* Mobile Overlay */}
-      {showSidebar && (
-        <div 
-          className="fixed inset-0 bg-opacity-50 z-40 lg:hidden"
-          onClick={onClose}
-        />
-      )}
-
-     <aside
+      <aside
         className={`
           fixed left-0 z-50 bg-[#F0F3FF] border-r border-gray-200
-          transition-transform duration-300
-          ${showSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-          ${isCollapsed ? 'w-20' : 'w-64'}
-
-          ${adjustSideBar
-            ? 'top-49 h-[calc(100vh-200px)]'
-            : 'top-16 h-[calc(100vh-64px)]'
-          }
-
+          transition-all duration-300
+          top-16 h-[calc(100vh-64px)]
           overflow-y-auto overflow-x-hidden
+          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+          ${isCollapsed ? 'w-64 lg:w-20' : 'w-64'}
         `}
       >
         <div className="flex flex-col h-full">
-          {/* Close button for mobile */}
+
+          {/* Close button - mobile only */}
           <div className="flex justify-end lg:hidden p-4">
             <button onClick={onClose} className="p-2 hover:bg-gray-200 rounded-lg">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -53,10 +36,10 @@ const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjust
             </button>
           </div>
 
-          {/* Toggle Button - Desktop only */}
+          {/* Collapse toggle - desktop only */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden lg:block absolute -right-3 top-20 bg-white border border-gray-200 rounded-full p-1.5 shadow-md hover:bg-gray-50"
+            className="hidden lg:flex absolute -right-3 top-20 bg-white border border-gray-200 rounded-full p-1.5 shadow-md hover:bg-gray-50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-4 h-4 transition-transform duration-300 ${isCollapsed ? 'rotate-180' : ''}`}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5" />
@@ -65,14 +48,12 @@ const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjust
 
           {/* Menu Items */}
           <nav className="flex-1 py-6">
-            {/* Learners Dashboard Header */}
-            {!isCollapsed && (
-              <div className="px-4 mb-4">
-                <h3 className="text-sm text-gray-400 tracking-wider mb-10">
-                  Learners Dashboard
-                </h3>
-              </div>
-            )}
+            <div className={`px-4 mb-4 ${isCollapsed ? 'lg:hidden' : ''}`}>
+              <h3 className="text-sm text-gray-400 tracking-wider mb-10">
+                Learners Dashboard
+              </h3>
+            </div>
+
             <ul className="space-y-1">
               {menuItems.map((item) => (
                 <li key={item.path}>
@@ -81,41 +62,39 @@ const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjust
                     onClick={() => onClose && onClose()}
                     className={({ isActive }) => `
                       flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-colors
-                      ${isActive 
-                        ? 'text-[#0029F5] bg-blue-50' 
-                        : 'text-gray-600 hover:bg-gray-100'
-                      }
-                      ${isCollapsed ? 'justify-center' : ''}
+                      ${isActive ? 'text-[#0029F5] bg-blue-50' : 'text-gray-600 hover:bg-gray-100'}
+                      ${isCollapsed ? 'lg:justify-center lg:px-2' : ''}
                     `}
                     title={isCollapsed ? item.label : ''}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 shrink-0">
                       <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                     </svg>
-                    {!isCollapsed && <span className="text-sm font-medium">{item.label}</span>}
+                    <span className={`text-sm font-medium ${isCollapsed ? 'lg:hidden' : ''}`}>
+                      {item.label}
+                    </span>
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Footer Section */}
+          {/* Footer */}
           <div className="p-4 border-t border-gray-200">
-            <div className={`flex items-center gap-3 ${isCollapsed ? 'justify-center' : ''}`}>
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <div className={`flex items-center gap-3 ${isCollapsed ? 'lg:justify-center' : ''}`}>
+              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gray-500">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.87l-.213 1.28c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.49l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.87l.214-1.281Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
               </div>
-              {!isCollapsed && (
-                <div className="flex-1">
-                  <p className="text-xs text-gray-500">Settings</p>
-                  <p className="text-xs font-medium text-gray-700">Preferences</p>
-                </div>
-              )}
+              <div className={`flex-1 ${isCollapsed ? 'lg:hidden' : ''}`}>
+                <p className="text-xs text-gray-500">Settings</p>
+                <p className="text-xs font-medium text-gray-700">Preferences</p>
+              </div>
             </div>
           </div>
+
         </div>
       </aside>
     </>
