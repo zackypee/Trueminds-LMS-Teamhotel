@@ -1,7 +1,3 @@
-// 
-
-
-
 import { NavLink } from "react-router-dom"
 import teamAllocIcon from "../../../../assets/team-icon.svg"
 import userManagementIcon from "../../../../assets/user-management-icon.svg"
@@ -14,15 +10,15 @@ import logoutIcon from "../../../../assets/logout-icon.svg"
 const AdminSideBar = () => {
 
   const navItems = [
-    { id: "admin", label: "Team Allocation", icon: teamAllocIcon },
-    { id: "user-management", label: "User Management", icon: userManagementIcon },
-    { id: "reports", label: "Reports", icon: reportsIcon },
-    { id: "settings", label: "Settings", icon: settingsIcon },
+    { id:"team-allocation", label: "Team Allocation", icon: teamAllocIcon },
+    { id:"user-management", label: "User Management", icon: userManagementIcon },
+    { id:"reports", label: "Reports", icon: reportsIcon },
+    { id:"settings", label: "Settings", icon: settingsIcon },
 
   ];
 
   return (
-    <aside className="hidden min-[768px]:flex min-[768px]:flex-col min-[768px]:justify-between h-screen bg-[#F8FAFC] w-[256px] px-4 py-6 shadow-md min-[768px]:fixed " >
+    <aside className="hidden  min-[768px]:fixed z-2 min-[768px]:flex min-[768px]:flex-col min-[768px]:justify-between h-screen bg-[#F8FAFC] w-[256px] px-4 py-6 shadow-md " >
       
       {/* Top Section */}
       <div className="flex flex-col gap-8">
@@ -37,14 +33,14 @@ const AdminSideBar = () => {
 
             {/* Nav Links */}
             <nav className="flex flex-col gap-2">
-            {navItems?.map((link) => (
+            {navItems.map((link) => (
                <NavLink
                 key={link.id}
-                to={`/${link.id}`}
+                to={link.id}
                 className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors ${
+                    `flex items-center gap-3 px-3 py-2 text-sm w-full transition-colors rounded-md ${
                     isActive
-                        ? "font-semibold text-[#7C3AED]"
+                        ? "font-semibold text-[#7C3AED] bg-[#F3EEFF]"
                         : "text-[#6B7280] hover:bg-[#F3EEFF]"
                     }`
                 }
@@ -61,7 +57,7 @@ const AdminSideBar = () => {
             {/* Help Center*/}
            <nav>
                 <NavLink
-                    to="/help-center"
+                    to="/login"
                     className={`flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors
                     `}
                 >

@@ -7,6 +7,11 @@ import { useAuth } from "../context/authLoginContext";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
+const roleRoutes = {
+  learner:"/learner/dashboard", 
+  instructor:"/instructor/dashboard",
+  admin:"/admin/dashboard"
+}
 
 
 
@@ -44,19 +49,20 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const validationErrors = inputValidation(formData) ;
 
     if (Object.keys(validationErrors).length > 0 ) {
-        setInputValError(validationErrors);
-        return;
+      setInputValError(validationErrors);
+      return;
     }
 
+    const data = await handleAuthLogin(formData) ;
+    const user = data.user;
 
-    const result = await handleAuthLogin(formData) ;
+    const path = roleRoutes[user.role]
 
-    if(result){
-      navigate("/learner/dashboard", { replace: true })
+    if(path){
+      navigate(path, { replace: true })
     } 
   
   };
