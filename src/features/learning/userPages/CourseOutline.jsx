@@ -48,9 +48,9 @@ const [showMore, setShowMore]= useState(false)
 const [readMore, setReadMore] = useState(false);
 const aboutText = "This course is designed to introduce you to the core principles of product design, with a strong focus on UI/UX fundamentals. You will learn how to think like a designer by understanding user needs, defining problems, and creating intuitive, user-centered solutions. From wireframing and prototyping to visual design and usability testing, the course walks you through the entire design process step by step.Whether you are completely new or transitioning into design, you will gain practical skills using industry tools, learn how to structure clean and functional interfaces, and understand the logic behind great user experiences. By the end of the course, you will be able to confidently design simple digital products and build a solid foundation for advancing your UI/UX career."
     return(
-    <div className="px-8 py-4 ">
+    <div className="px-8 py-4 mt-20">
        
-        <img className="object-cover object-top h-110 rounded-t-4xl" src="/images/924ef9b2d1a38298225a32ace1af4e60d1952536.jpg" alt="" />
+        <img className="object-cover object-top h-110 m-auto rounded-t-4xl" src="/images/924ef9b2d1a38298225a32ace1af4e60d1952536.jpg" alt="" />
      
 
        <div className="flex flex-col md:flex-row  md:justify-between gap-10 w-full">

@@ -3,7 +3,7 @@ import InstructorImage from "../../../../assets/instructorimage.png"; // Import 
 import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile icon for the details section
 
-export default function ProfileView() {
+export default function InstructorProfileView() {
   const user = {
     name: "Tunde Adeyemi",
     id: "UI/INS/01",
@@ -44,7 +44,7 @@ export default function ProfileView() {
           <h1 className="text-3xl md:text-5xl font-bold mb-4">{user.name}</h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
+          <button className="bg-[#0029F5] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>

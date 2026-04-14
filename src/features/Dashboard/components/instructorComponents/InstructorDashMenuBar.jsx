@@ -15,19 +15,19 @@ export default function InstrucDashMenuBar() {
       id: "dashboard",
       label: "Dashboard",
       icon: dashboardIcon,
-      path: "/instructor-dashboard",
+      path: "dashboard",
     },
     {
       id: "upload",
       label: "Upload Courses",
       icon: uploadIcon,
-      path: "/instructor-dashboard/upload",
+      path: "upload",
     },
     {
       id: "assignments",
       label: "Assignments",
       icon: assignmentLogo,
-      path: "/instructor-dashboard/assignments",
+      path: "assignments",
     },
   ];
 
@@ -75,8 +75,8 @@ export default function InstrucDashMenuBar() {
               className={`flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors
                 ${
                   location.pathname === item.path
-                    ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#7C3AED]"
-                    : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#7C3AED]"
+                    ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
+                    : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
                 }`}
             >
               <img src={item.icon} alt="" className="size-4.5" />
@@ -86,14 +86,14 @@ export default function InstrucDashMenuBar() {
           <div className="mt-4">
             <hr className="border-[#EDE9FE]" />
             <Link
-              to="/instructor-dashboard/instructor-profile"
+              to="profile"
               onClick={() => setMobileOpen(false)}
               className={`flex mt-2 items-center gap-2 px-3 py-2 text-sm transition-colors
-    ${
-      location.pathname === "/instructor-dashboard/instructor-profile"
-        ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#7C3AED]"
-        : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#7C3AED]"
-    }`}
+              ${
+                location.pathname === "/instructor-dashboard/instructor-profile"
+                  ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
+                  : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
+              }`}
             >
               <span>
                 <img src={userIcon} alt="" />

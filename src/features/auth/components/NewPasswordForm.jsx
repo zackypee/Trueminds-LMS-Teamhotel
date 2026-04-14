@@ -338,7 +338,7 @@ export const NewPasswordForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#7C3AED] text-white py-4 mt-10 rounded-md font-semibold hover:bg-[#6D2ED9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full bg-[#0029F5] text-white py-4 mt-10 rounded-md font-semibold hover:bg-[#6D2ED9] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
           >
             {loading ? (
               <>
@@ -364,7 +364,7 @@ export const NewPasswordForm = () => {
             <button
                 type="button"
                 onClick={() => navigate('/login')}
-                className="text-[14px] mb-30 font-semibold text-[#7C3AED] leading-[21px] hover:underline cursor-pointer inline-flex items-center gap-2"
+                className="text-[14px] mb-30 font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer inline-flex items-center gap-2"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />

@@ -36,7 +36,6 @@ export const ResetPasswordForm = () => {
         e.preventDefault();
         clearError();
         
-        console.log(formData);
 
         const validationErrors = inputValidation(formData);
 
@@ -54,16 +53,16 @@ export const ResetPasswordForm = () => {
 
         const success = await handleResetPassword({
             newPassword: formData.password,
-            email,
+            email:email,
+           
         });
 
         if (success) {
             setTimeout(() => {
-                navigate("/", { replace: true });   
+                navigate("/login", { replace: true });   
             }, 1500);
 
             sessionStorage.removeItem("resetEmail");
-            sessionStorage.removeItem("verifyResetOtp");
             sessionStorage.removeItem("forgetPasswordSuccess");
             localStorage.removeItem("token");
         }
@@ -156,7 +155,7 @@ export const ResetPasswordForm = () => {
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
-                <Link to="/" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-12 text-[#7C3AED]">
+                <Link to="/login" className="goback-link text-[14px] leading-5.25 font-semibold justify-center flex gap-2 m-auto mt-10 mb-12 text-[#0029F5]">
                     <img src={backwardIcon} alt="Back" />
                     Back to Login
                 </Link>

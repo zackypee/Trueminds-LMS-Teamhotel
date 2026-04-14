@@ -15,7 +15,7 @@ function Navbar() {
       {/* Desktop Nav Links */}
       <ul className="hidden md:flex gap-8 list-none">
         <li>
-          <Link to="#" className="text-lg text-[#6B7280] hover:text-[#0029F5]">
+          <Link to="learner/courses" className="text-lg text-[#6B7280] hover:text-[#0029F5]">
             Browse Courses
           </Link>
         </li>
@@ -104,7 +104,7 @@ function Navbar() {
 
           {/* Bottom Auth Buttons */}
           <div className="flex flex-col gap-3 mt-auto">
-            <Link to="/" className="text-lg text-[#6B7280] text-center">
+            <Link to="/login" className="text-lg text-[#6B7280] text-center">
               Sign In
             </Link>
             <Link

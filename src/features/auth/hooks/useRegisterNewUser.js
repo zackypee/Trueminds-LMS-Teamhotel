@@ -1,30 +1,28 @@
+import { registerNewUser } from "../authApi";
 import { useState } from "react";
-import { resetPassword } from "../authApi";
 
-
-
-const useResetPassword = () => {
+const useRegisterNewUser= () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("")
     
 
-    const handleResetPassword = async (newPasswordData) => {
+    const handleRegisterNewUser = async (newUserData) => {
         
         try{
             setIsLoading(true);
             setError(null);
             setMessage("")
-            sessionStorage.removeItem("resetPasswordSuccess");
+           
 
-            const response = await resetPassword(newPasswordData);
+            const response = await registerNewUser(newUserData);
 
             if(!response?.success){
-                throw new Error(response.message || "Password Reset Failed, Please try again");
+                setError(response.message || "Registration Failed, Please, try again.");
+                return false
             }
-
-            sessionStorage.setItem("resetPasswordSuccess", "true");
             setMessage(response.message);
+            console.log("res:", response);
             return true;
         }catch(err){
             const message = err.response?.data?.message 
@@ -32,7 +30,6 @@ const useResetPassword = () => {
             || "Something went wrong, try again.";
 
             setError(message);
-            sessionStorage.removeItem("resetPasswordSuccess");
             return false;
         }finally{
             setIsLoading(false);
@@ -41,7 +38,7 @@ const useResetPassword = () => {
 
     const clearError = () => setError(null);
 
-    return {error, isLoading, handleResetPassword, clearError, message};
+    return {error, isLoading, handleRegisterNewUser, clearError, message};
 }
 
-export default useResetPassword;
+export default useRegisterNewUser;

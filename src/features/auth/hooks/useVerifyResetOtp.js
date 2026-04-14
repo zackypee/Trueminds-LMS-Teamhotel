@@ -1,6 +1,6 @@
 import { useState } from "react";
-// import {verifyResetOtp} from "../authApi";
-import { verifyResetOtp } from "../authServices";
+import {verifyResetOtp} from "../authApi";
+
 
 
 const useVerifyResetOtp = () => {

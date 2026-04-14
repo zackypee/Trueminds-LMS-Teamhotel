@@ -16,8 +16,8 @@ export const SignUpBanner = () => {
         Create Account
       </h3>
       <h1 className="text-[48px] font-extrabold mt-8 mb-8">
-        <span className="text-gray-800">Talent</span>
-        <span className="text-[#7C3AED]">Flow</span>
+        <span className="text-[#1E3A5F]">Talent</span>
+        <span className="text-[#0029F5]">Flow</span>
       </h1>
 
       <img
