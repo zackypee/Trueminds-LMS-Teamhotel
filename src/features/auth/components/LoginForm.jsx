@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
 import inputValidation from "../utils/inputValidation";
@@ -8,10 +8,16 @@ import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
 
+
+
+
+
 export const LoginForm = () => {
   const {handleAuthLogin} = useLogin();
   const {error, loading} = useAuth();
   const navigate = useNavigate();
+
+  
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -35,6 +41,7 @@ export const LoginForm = () => {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,10 +52,11 @@ export const LoginForm = () => {
         return;
     }
 
+
     const result = await handleAuthLogin(formData) ;
 
     if(result){
-      navigate("/dashboard") ;
+      navigate("/learner/dashboard", { replace: true })
     } 
   
   };

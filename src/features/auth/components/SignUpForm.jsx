@@ -7,11 +7,13 @@ import useRegisterNewUser from "../hooks/useRegisterNewUser";
 import inputValidation from "../utils/inputValidation";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
   const [role, setRole] = useState("learner");
   const [showPassword, setShowPassword] = useState(false);
   const {isLoading, error, handleRegisterNewUser, clearError, message} = useRegisterNewUser();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,25 +30,6 @@ export const SignUpForm = () => {
     });
   };
 
- /* const validate = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formData.email.includes("@")) {
-      newErrors.email = "Enter a valid email";
-    }
-
-    if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
-    }
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
-  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,9 +52,9 @@ export const SignUpForm = () => {
     const success = await handleRegisterNewUser(newUserData)
     console.log("REGISTER RESULT:", success);
 
-    if (error?.includes("time")) {
+    if (success) {
       setTimeout(() => {
-          navigate("/", { replace: true });   
+          navigate("/login", { replace: true });   
       }, 1500);
     }
 
@@ -87,7 +70,7 @@ export const SignUpForm = () => {
           Start your learning journey with TalentFlow today.
         </p>
 
-        {error?.includes("time")? <p className="text-green-500">Account Successfully Created.</p> : <ErrorMessage message={error} />}
+        {message? <p className="text-green-500">{message}</p> : <ErrorMessage message={error} />}
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>

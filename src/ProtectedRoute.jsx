@@ -3,23 +3,26 @@ import { useAuth } from "./features/auth/context/authLoginContext";
 
 const roleRoutes = {
   admin: "/admin",
-  instructor: "/instructor-dashboard",
-  learner: "/dashboard",
+  instructor: "/instructor",
+  learner: "/learner/dashboard",
 };
 
-const ProtectedRoute = ({allowedRole}) =>{
+const ProtectedRoute = ({ allowedRole }) => {
+  const { user, loading } = useAuth();
 
-    const {user} = useAuth();
+  
+  if (loading) return null;
 
-    if(!user){
-       return <Navigate to="/" replace />
-    }
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
-    if(allowedRole && !(allowedRole=== user.role)){
-        const redirectPath = roleRoutes[user.role] || "/";
-       return <Navigate to={redirectPath} replace/>
-    }
+  if (allowedRole && !allowedRole.includes(user.role)) {
+    const redirectPath = roleRoutes[user.role] || "/login";
+    return <Navigate to={redirectPath} replace />;
+  }
 
-   return <Outlet/>
+  return <Outlet />;
+};
 
-}
+export default ProtectedRoute;
