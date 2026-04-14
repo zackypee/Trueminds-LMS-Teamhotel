@@ -4,10 +4,13 @@ import { Link, NavLink } from "react-router-dom";
 import bell from "../../../assets/bell.png";
 import profile from "../../../assets/profile.png";
 import { useSearchQuery } from "../context/SearchContext";
+import useLogoutUser from "../../auth/hooks/useLogoutUser";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
+  const {onHandleLogout} = useLogoutUser();
 
 
   return (
@@ -98,7 +101,9 @@ const Navbar = () => {
             <Link>Account Settings</Link>
             <Link>Language</Link>
             <Link>Help and Support</Link>
-            <Link>Logout</Link>
+            <Link
+             onClick={onHandleLogout}
+            >Logout</Link>
             <Link>Contact Us</Link>
           </div>
         </div>
