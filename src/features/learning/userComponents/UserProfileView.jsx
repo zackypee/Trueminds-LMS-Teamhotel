@@ -2,9 +2,12 @@ import React from "react";
 import ProfileImage from "../../../assets/profileimage.jpg"; // Import a profile image
 import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile image
 import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
+import { useAuth } from "../../auth/context/AuthLoginContext";
 
 export default function UserProfileView() {
-  const user = {
+
+  const {user}= useAuth();
+  const userData = {
     name: "Chika Okafor",
     id: "UI/2026/050",
     email: "chikaokafor91@gmail.com",
@@ -34,8 +37,8 @@ export default function UserProfileView() {
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
-          src={user.profileImage}
-          alt={user.name}
+          src={userData.profileImage}
+          alt={userData.name}
           className="w-24 h-24 md:w-35 md:h-35 rounded-full object-cover border-4 border-white shadow-sm"
         />
 
@@ -44,7 +47,7 @@ export default function UserProfileView() {
           <h1 className="text-3xl md:text-5xl font-bold mb-4">{user.name}</h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
+          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>
@@ -57,10 +60,10 @@ export default function UserProfileView() {
               {user.id}
             </p>
             <p className="text-gray-600 bg-[#E9DDFF] px-4 py-2 rounded-full">
-              {user.status}
+              {userData.status}
             </p>
             <p className="text-gray-600 bg-[#BB9EFF] px-4 py-2 rounded-full">
-              {user.role}
+              {userData.role}
             </p>
           </div>
         </div>
@@ -82,16 +85,16 @@ export default function UserProfileView() {
         {/* Responsive Grid: 1 column on mobile, 2 columns on tablets/desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
           <DetailItem label="Email Address" value={user.email} />
-          <DetailItem label="Phone Number" value={user.phone} />
-          <DetailItem label="Location" value={user.location} />
-          <DetailItem label="Date of Birth" value={user.dob} />
+          <DetailItem label="Phone Number" value={userData.phone} />
+          <DetailItem label="Location" value={userData.location} />
+          <DetailItem label="Date of Birth" value={userData.dob} />
         </div>
 
         <div className="mt-8">
           <p className="uppercase text-xs font-bold text-[#7B7488] mb-2 tracking-wider">
             Bio:
           </p>
-          <p className="text-gray-700 leading-relaxed">{user.bio}</p>
+          <p className="text-gray-700 leading-relaxed">{userData.bio}</p>
         </div>
       </div>
     </main>
