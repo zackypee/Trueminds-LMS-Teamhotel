@@ -6,6 +6,11 @@ export const loginUser = async (userData) => {
   return response.data;
 };
 
+export const logoutUser = async (data) => {
+  const response = await api.post("auth/logout", data)
+  return response.data;
+}
+
 //Register new user 
 export const registerNewUser = async (newUserData) => {
   const response = await api.post("/auth/register", newUserData);
