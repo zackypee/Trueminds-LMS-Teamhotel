@@ -10,7 +10,7 @@ import logoutIcon from "../../../../assets/logout-icon.svg";
 
 const AdminSideBar = () => {
   const navItems = [
-    { id: "admin", label: "Team Allocation", icon: teamAllocIcon },
+    { id: "team-allocation", label: "Team Allocation", icon: teamAllocIcon },
     {
       id: "user-management",
       label: "User Management",
@@ -39,7 +39,7 @@ const AdminSideBar = () => {
           {navItems?.map((link) => (
             <NavLink
               key={link.id}
-              to={`/${link.id}`}
+              to={`${link.id}`}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors ${
                   isActive
