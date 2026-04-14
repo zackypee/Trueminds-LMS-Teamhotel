@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthLoginContext";
+=======
+
+import { useAuth } from "../context/authLoginContext";
+>>>>>>> 798432dbc6a232fb4076a7cee51618ce9eb39770
 import { loginUser } from "../authApi";
+import { storeSession } from "../utils/storage";
 
 const useLogin = () => {
   const { setUser, setLoading, setError } = useAuth();
@@ -20,15 +26,16 @@ const useLogin = () => {
       }
 
       const {token, user} = response.data;
-      storeSession(token, user);
+      
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
       setUser(user);
 
       return true
     } catch (err) {
 
-      console.log("FULL ERROR:", err); // 👈 add this
-      console.log("ERROR DATA:", err.response?.data); // 👈 add this
-      console.log("STATUS:", err.response?.status);
+  
       const message = err.response?.data?.message 
       || (err.message === "Network Error" ? "Check your internet connection" : err.message)
       || "Something went wrong, try again.";

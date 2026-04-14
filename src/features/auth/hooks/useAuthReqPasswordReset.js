@@ -24,8 +24,7 @@ const useAuthReqPasswordReset =  () => {
 
             sessionStorage.setItem("forgetPasswordSuccess", "true");
             sessionStorage.setItem("resetEmail", email);
-            console.log(response.success)
-
+            
             return true
     
         }catch(err){
@@ -36,10 +35,7 @@ const useAuthReqPasswordReset =  () => {
             setError(message);
             sessionStorage.removeItem("forgetPasswordSuccess");
             sessionStorage.removeItem("resetEmail");
-            console.log("Handled error:", {
-            status: err.response?.status,
-            message,
-            });
+            
             return false
         }finally{
             setIsLoading(false);

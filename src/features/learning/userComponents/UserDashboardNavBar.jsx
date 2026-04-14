@@ -1,15 +1,32 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useLogoutUser from '../../auth/hooks/useLogoutUser';
+import { useAuth } from '../../auth/context/AuthLoginContext';
+import ErrorMessage from '../../../components/ErrorMessage';
 
 const UserDashboardNavbar = ({ onMenuClick }) => {
+  const {loading, error} = useAuth();
+  const {onHandleLogout} = useLogoutUser();
+
   const navigate = useNavigate();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-    console.log("Navbar received onMenuClick:", typeof onMenuClick);
+  console.log("Navbar received onMenuClick:", typeof onMenuClick);
+
+  const handleLogout = async () => {
+
+    const token = localStorage.getItem("token");
+    const success = await onHandleLogout({token:token})
+
+    if(success){
+      navigate("/login", { replace:true })
+    }
+  }
 
 
   return (
     <nav className="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+       <ErrorMessage message={error}/>
       <div className="px-4 py-3 mx-auto flex items-center justify-between">
         {/* Logo Section with Hamburger Menu */}
         <div className="flex items-center gap-3">
@@ -78,7 +95,7 @@ const UserDashboardNavbar = ({ onMenuClick }) => {
                 </Link>
                 <hr className="my-1" />
                 <button 
-                  onClick={() => navigate('/login')}
+                  onClick={handleLogout}
                   className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                 >
                   Logout

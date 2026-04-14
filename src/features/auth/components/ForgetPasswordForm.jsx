@@ -29,7 +29,7 @@ export const ForgetPasswordForm = () => {
         const result = await handleAuthReqPasswordReset(email) ;
 
         if(result){
-            navigate("/reset-password-auth") ;
+            navigate("/reset-password") ;
     
         } 
 
@@ -77,7 +77,7 @@ export const ForgetPasswordForm = () => {
                       disabled={isLoading}
                       className=" w-full flex gap-2 justify-center py-4 reset-btn-text font-semibold text-[16px] leading-5.25 mt-10"
                     >
-                        {isLoading ? "Sending OTP..." : "Send OTP"}
+                        {isLoading ? "Verifying Email..." : "Verify Email"}
                         <img src={forwardIcon} alt="Forward Icon" />
                     </Button>
                 </form>
