@@ -9,7 +9,7 @@ import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
-import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
+import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";

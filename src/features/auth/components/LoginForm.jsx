@@ -202,7 +202,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
-import { useAuth } from "../context/authLoginContext";
+import { useAuth } from "../context/AuthLoginContext";
 import useLogin from "../hooks/useLogin";
 
 export const LoginForm = () => {
