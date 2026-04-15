@@ -82,6 +82,8 @@ function App() {
               />
 
               <Route path="team-allocation" element={<TeamAllocationPage />} />
+              <Route path="user-management" element={<UserManagement />} />
+              <Route path="reports" element={<Reports />} />
             </Route>
 
             {/* Instructor */}
