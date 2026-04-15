@@ -42,7 +42,6 @@ import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import UserSidebarPanel from "../features/learning/userComponents/UserSidebarPanel";
 import Navbar from "../features/learning/userComponents/Navbar";
-
 export default function UserDashboardLayout() {
   const location = useLocation();
   const courseSideBar = ["/learner/courses", "/learner/course"];
