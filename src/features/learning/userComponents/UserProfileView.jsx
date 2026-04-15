@@ -1,12 +1,26 @@
-import React, { use, useEffect } from "react";
-import ProfileImage from "../../../assets/profileimage.jpg"; // Import a profile image
-import ProfileLogo from "../../../assets/profilelogo.png"; // Import a profile image
-import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon for editing
-
+import React, {  useState } from "react";
+import ProfileImage from "../../../assets/profileimage.jpg";
+import ProfileLogo from "../../../assets/profilelogo.png";
+import PencilImage from "../../../assets/pencil.png";
+import UserEditProfileModal from "./UserEditProfileModal";
 import { useNavigate } from "react-router-dom";
+import useUserProfile from "../userHooks/useUserProfile";
 
-export default function UserProfileView({ userProfile, loading, error }) {
+ export default function UserProfileView() {
+
+  const { userProfile, setRefresh, loading, error, handleUpdate } = useUserProfile();
+
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleModalOpen() {
+    setModalOpen(true);
+  }
+  function handleCloseModal(){
+    setModalOpen(false)
+    setRefresh(prev=>!prev)
+  }
+
 
   // 1. Handle Loading
   if (loading) return <div className="text-center">Loading profile...</div>;
@@ -31,8 +45,8 @@ export default function UserProfileView({ userProfile, loading, error }) {
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
-          src={userProfile.image}
-          alt={userProfile.name}
+          src={userProfile?.image}
+          alt={userProfile?.name}
           className="w-24 h-24 md:w-35 md:h-35 rounded-full object-cover border-4 border-white shadow-sm"
         />
 
@@ -43,7 +57,10 @@ export default function UserProfileView({ userProfile, loading, error }) {
           </h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors cursor-pointer">
+          <button
+            onClick={handleModalOpen}
+            className="bg-[#0029F5] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#1E3A5F] transition-colors cursor-pointer"
+          >
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>
@@ -93,6 +110,28 @@ export default function UserProfileView({ userProfile, loading, error }) {
           <p className="text-gray-700 leading-relaxed">{userProfile.bio}</p>
         </div>
       </div>
+
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          {/* Modal Container */}
+          <div className="bg-white w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-lg overflow-hidden flex flex-col">
+            {/* Modal Header (Sticky) */}
+            <div className="flex justify-end p-4 border-b">
+              <button
+                className="bg-[#0029F5] text-white px-4 py-2 rounded-md hover:bg-[#1E3A5F] transition-colors"
+                onClick={() => setModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+
+            {/* Modal Content (Scrollable) */}
+            <div className="overflow-y-auto">
+              <UserEditProfileModal  onClose={handleCloseModal} onUpdate={handleUpdate } />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
