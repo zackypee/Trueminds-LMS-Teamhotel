@@ -28,6 +28,8 @@ import AssignmentContent from "./features/learning/userPages/AssignmentContent";
 import MyProgress from "./features/learning/userPages/MyProgress";
 import CollaborationHub from "./features/learning/userPages/CollaborationHub";
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
+// import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";

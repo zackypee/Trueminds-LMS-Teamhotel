@@ -1,3 +1,4 @@
+/*
 import { useState } from "react"
 import { FaStar} from "react-icons/fa";
 import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
@@ -59,7 +60,6 @@ const aboutText = "This course is designed to introduce you to the core principl
 
 
 
-            {/* IMAGE */}
 
             <img
 
@@ -73,13 +73,13 @@ const aboutText = "This course is designed to introduce you to the core principl
 
 
 
-            {/* TEXT */}
+           
 
             <div className="flex flex-col w-full">
 
 
 
-            {/* TOP ROW */}
+           
 
             <div className="flex justify-between items-center">
 
@@ -91,7 +91,6 @@ const aboutText = "This course is designed to introduce you to the core principl
 
 
 
-            {/* BOTTOM ROW */}
 
             <div className="flex justify-between items-center">
 
@@ -172,3 +171,25 @@ const aboutText = "This course is designed to introduce you to the core principl
         
 )
 }
+*/
+import { useParams } from "react-router-dom";
+import useGetCourseDetails from "../userHooks/useGetCourseDetail";
+import useEnrollInCourse from "../userHooks/useEnrollInCourse";
+const CourseOutline = () => {
+const { id } = useParams();
+const { course, loading, error } = useGetCourseDetails(id);
+const { enroll, loading: enrolling } = useEnrollInCourse();
+if (loading) return <p>Loading...</p>;
+if (error) return <p>{error}</p>;
+return (
+<div>
+<h2>{course?.title}</h2>
+<button onClick={() => enroll(id)}>
+{enrolling ? "Enrolling..." : "Enroll"}
+</button>
+</div>
+);
+};
+
+
+export default CourseOutline;
