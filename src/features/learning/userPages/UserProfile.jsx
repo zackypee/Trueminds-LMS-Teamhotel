@@ -6,7 +6,7 @@ function UserProfile() {
   const { userProfile, loading, error } = useUserProfile();
 
   return (
-    <div className="flex w-full mt-16 gap-5 p-4">
+    <div className="flex w-full gap-5 p-4">
       <UserProfileView
         userProfile={userProfile}
         loading={loading}

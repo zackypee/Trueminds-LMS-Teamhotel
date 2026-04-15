@@ -14,19 +14,6 @@ export default function UserProfileView({ userProfile, loading, error }) {
   // 2. Handle Errors
   if (error) return <div className="text-center">Error: {error}</div>;
 
-  // const userData = {
-  //   name: "Chika Okafor",
-  //   id: "UI/2026/050",
-  //   email: "chikaokafor91@gmail.com",
-  //   phone: "+234 812 345 6789",
-  //   location: "Lagos, Nigeria",
-  //   dob: "14 october 1998",
-  //   bio: "Passionate UI/UX designer focused on creating accessible and delightful digital experiences. Currently honing skills in user research and motion design.",
-  //   profileImage: ProfileImage,
-  //   role: "UI/UX Designer",
-  //   status: "Learner Intern",
-  // };
-
   function DetailItem({ label, value }) {
     return (
       <div>
@@ -56,7 +43,7 @@ export default function UserProfileView({ userProfile, loading, error }) {
           </h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
+          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors cursor-pointer">
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>
