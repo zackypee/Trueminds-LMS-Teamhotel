@@ -7,6 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserProfileView({ userProfile }) {
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  function handleModalOpen() {
+    setModalOpen(true);
+  }
 
   function DetailItem({ label, value }) {
     return (
@@ -37,7 +42,10 @@ export default function UserProfileView({ userProfile }) {
           </h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors cursor-pointer">
+          <button
+            onClick={handleModalOpen}
+            className="bg-[#7C3AED] rounded-md  py-3 px-4 w-full  flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors cursor-pointer"
+          >
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>
@@ -87,6 +95,23 @@ export default function UserProfileView({ userProfile }) {
           <p className="text-gray-700 leading-relaxed">{userProfile.bio}</p>
         </div>
       </div>
+
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
+            <p className="text-gray-600 mb-4">
+              This is a placeholder for the edit profile modal.
+            </p>
+            <button
+              className="bg-[#7C3AED] text-white px-4 py-2 rounded-md hover:bg-[#6D28D9] transition-colors"
+              onClick={() => setModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
