@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-
+//Import Providers Components
 import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import { SearchProvider } from "./features/learning/context/SearchContext";
 
@@ -47,6 +47,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+
 
 function App() {
   return (

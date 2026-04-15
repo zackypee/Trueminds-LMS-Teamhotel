@@ -13,10 +13,13 @@ export const getUserProfile = async () => {
 
 export const updateUserApi = async (newData) => {
   try {
-    const response = await api.put("/users/profile", newData);
+    const response = await api.patch("/users/profile", newData);
     return response.data;
   } catch (error) {
     console.error("Update Profile Error:", error);
     throw error; // Pass the error up so your UI can show a notification
   }
 };
+
+
+

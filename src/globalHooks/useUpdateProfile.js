@@ -9,14 +9,11 @@ export default function useUpdateProfile() {
     setIsUpdating(true);
     setUpdateError(null);
     try {
-      const response = await updateUserApi(newData);
-      if (!response) {
-        throw new Error("Update failed");
-      }
-      return { success: true, data: response.data };
+      const data = await updateUserApi(newData);
+       return data;
     } catch (err) {
       setUpdateError(err.message || "Failed to update profile");
-      return { success: false, error: err.message };
+      throw err;
     } finally {
       setIsUpdating(false);
     }
