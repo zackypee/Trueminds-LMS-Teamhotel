@@ -5,9 +5,14 @@ import ejike from '../../../assets/ejike.jpg';
 import frontend from '../../../assets/frontend.jpg';
 import languages from '../../../assets/languages.jpg';
 
+import { useAuth } from '../../auth/context/AuthLoginContext';
+
 
 const UserDashboardContent = () => {
   const navigate = useNavigate();
+  const {user} = useAuth();
+
+ 
   const [userData, setUserData] = useState({
     name: 'Chika Okafor',
     email: 'chika@example.com',
@@ -150,7 +155,7 @@ const UserDashboardContent = () => {
     <div className="mb-6 sm:mb-8">
       <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-bold leading-tight mt-16 sm:mt-18 md:mt-20">
         <span className="text-[#1F2937]">Welcome back, </span>
-        <span className="text-[#0029F5] block inline">{userData.name}</span>
+        <span className="text-[#0029F5] block inline">{user.name}</span>
         <span className="text-[#1F2937] hidden sm:inline">!</span>
       </h1>
       <p className="text-[14px] font-normal text-[#6B7280] mt-2">
@@ -237,7 +242,7 @@ const UserDashboardContent = () => {
           <h3 className="text-[16px] sm:text-[18px] font-extrabold leading-[28px]">Ready for more?</h3>
           <p className="text-[10px] sm:text-[14px] font-normal mt-1">Explore 50+ new specialized tracks released today.</p>
           <button 
-            onClick={() => navigate('/catalogue')}
+            onClick={() => navigate('../courses')}
             className="mt-4 bg-white text-[#1F2937] w-full sm:w-auto px-6 sm:px-16 py-2 rounded-[6px] cursor-pointer font-semibold text-[14px] hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2"
           >
             Browse Courses

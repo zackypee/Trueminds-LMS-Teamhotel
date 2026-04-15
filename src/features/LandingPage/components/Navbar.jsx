@@ -104,7 +104,7 @@ function Navbar() {
 
           {/* Bottom Auth Buttons */}
           <div className="flex flex-col gap-3 mt-auto">
-            <Link to="/" className="text-lg text-[#6B7280] text-center">
+            <Link to="/login" className="text-lg text-[#6B7280] text-center">
               Sign In
             </Link>
             <Link

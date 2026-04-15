@@ -6,7 +6,6 @@ import ResetPasswordPage from "./features/auth/pages/ResetPasswordPage";
 import SignUp from "./features/auth/pages/SignUp";
 import AuthenticationOne from "./features/auth/pages/AuthenticationOne";
 import Login from "./features/auth/pages/Login";
-import CheckInbox from "./features/auth/pages/checkInbox";
 import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
@@ -33,8 +32,7 @@ import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
-import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
-import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -47,7 +45,6 @@ function App() {
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
-            <Route path="/check-inbox" element={<CheckInbox />} />
 
             {/* Protected routes */}
             <Route
@@ -67,7 +64,7 @@ function App() {
             <Route
               element={
                 <ResetPasswordProtectedRoute
-                  check={() => isOtpVerified() && isEmailVerified()}
+                  check={isEmailVerified}
                   redirectTo="/forget-password"
                 />
               }
@@ -93,21 +90,23 @@ function App() {
               <Route path="assignments" element={<AssignmentForm />} />
               <Route path="upload" element={<CourseMaterialForm />} />
               <Route path="profile" element={<InstructorProfile />} />
-              <Route path="live-sessions" element={<InstructorLiveSession />} />
             </Route>
 
             {/* User */}
-            <Route path="learner" element={<UserDashboardLayout />}>
-              <Route index element={<Navigate to="dashboard" replace />} />
-              <Route path="dashboard" element={<UserDashboard />} />
-              <Route path="profile" element={<UserProfile />} />
-              <Route path="courses" element={<CourseCatalogue />} />
-              <Route path="course-details" element={<CourseOutline />} />
-              <Route path="assignments" element={<AssignmentContent />} />
-              <Route path="progress" element={<MyProgress />} />
-              <Route path="collaboration" element={<CollaborationHub />} />
-              <Route path="course" element={<LessonPage />} />
-              <Route path="live-sessions" element={<LearnerLiveSession />} />
+
+            {/* LEARNER (PROTECTED) */}
+            <Route element={<ProtectedRoute allowedRole={["learner"]} />}>
+              <Route path="learner" element={<UserDashboardLayout />}>
+                <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<UserDashboard />} />
+                <Route path="profile" element={<UserProfile />} />
+                <Route path="courses" element={<CourseCatalogue />} />
+                <Route path="course-details" element={<CourseOutline />} />
+                <Route path="assignments" element={<AssignmentContent />} />
+                <Route path="progress" element={<MyProgress />} />
+                <Route path="collaboration" element={<CollaborationHub />} />
+                <Route path="course" element={<LessonPage />} />
+              </Route>
             </Route>
           </Routes>
         </SearchProvider>

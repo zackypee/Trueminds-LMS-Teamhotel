@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "../../../assets/avatar-icon.png";
 import inputValidation from "../utils/inputValidation";
@@ -7,10 +7,20 @@ import { useAuth } from "../context/AuthLoginContext";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> fdd65b7aae5ce9e2a0c3fef9f0935622c584bf55
 export const LoginForm = () => {
   const { handleAuthLogin } = useLogin();
   const { error, loading } = useAuth();
   const navigate = useNavigate();
+
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,6 +44,7 @@ export const LoginForm = () => {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,11 +55,21 @@ export const LoginForm = () => {
       return;
     }
 
+<<<<<<< HEAD
     const result = await handleAuthLogin(formData);
 
     if (result) {
       navigate("/dashboard");
     }
+=======
+
+    const result = await handleAuthLogin(formData) ;
+
+    if(result){
+      navigate("/learner/dashboard", { replace: true })
+    } 
+  
+>>>>>>> fdd65b7aae5ce9e2a0c3fef9f0935622c584bf55
   };
 
   const togglePasswordVisibility = () => {
@@ -170,6 +191,7 @@ export const LoginForm = () => {
             )}
           </div>
 
+<<<<<<< HEAD
           <Button
             type="submit"
             disabled={loading}
@@ -210,6 +232,48 @@ export const LoginForm = () => {
               Sign up
             </button>
           </div>
+=======
+           <Button
+             type="submit"
+             disabled={loading}
+             className="w-full bg-[#0029F5] text-white py-3 rounded-md font-semibold hover:bg-[#1E3A5F] cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+           >
+             {loading ? "Logging in..." : "Login"}
+           </Button>
+
+           <div className="flex justify-end">
+             <button
+               type="button"
+               onClick={() => navigate("/forget-password")}
+               className="text-[14px] font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer"
+             >
+               Forgot Password?
+             </button>
+           </div>
+
+           {/* <div className="text-center">
+             <button
+               type="button"
+               onClick={() => navigate("/login-otp")}
+               className="text-[14px] font-semibold text-[#7C3AED] leading-[21px] hover:underline cursor-pointer"
+             >
+               Log in with OTP code
+             </button>
+            </div>    Zacky commented it out !!!!!  */} 
+
+           <div className="text-center pt-4">
+             <span className="text-[14px] font-bold text-[#64748B]">
+               Don't have an account?{" "}
+             </span>
+             <button
+               type="button"
+               onClick={() => navigate("/sign-up")}
+               className="text-[14px] font-bold text-[#182049] hover:underline cursor-pointer mb-30"
+             >
+               Sign up
+             </button>
+           </div>
+>>>>>>> fdd65b7aae5ce9e2a0c3fef9f0935622c584bf55
         </form>
       </div>
     </div>

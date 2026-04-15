@@ -164,7 +164,7 @@ function InstructorAssignmentForm() {
         </button>
         <button
           onClick={handleSubmit}
-          className="bg-[#7C3AED] text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#6D28D9] transition-colors cursor-pointer"
+          className="bg-[#0029F5] text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#1E3A5F] transition-colors cursor-pointer"
         >
           Publish Assignment
         </button>
