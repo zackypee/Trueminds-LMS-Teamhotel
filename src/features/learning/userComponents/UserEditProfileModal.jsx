@@ -1,17 +1,15 @@
 import React from "react";
 import EditPersonalDetails from "./EditPersonalDetails";
-import useUpdateProfile from "../userHooks/useUpdateProfile";
-import useUserProfile from "../userHooks/useUserProfile";
 import EditProfileDetails from "./EditProfileDetails";
+import useUpdateProfile from "../../../globalHooks/useUpdateProfile";
 
-export default function UserEditProfileModal({ onUpdate, onClose }) {
-  const { userProfile, fetchUserProfile } = useUserProfile();
-  const { updateProfile, isUpdating, updateError } = useUpdateProfile();
+export default function UserEditProfileModal({ onClose, userProfile, setRefresh }) {
+  const { handleUpdateProfile, updateError, isUpdating } = useUpdateProfile();
 
   const handleSave = async (formData) => {
     try {
-      await updateProfile(formData);
-      await fetchUserProfile(); // refresh profile after update
+      await handleUpdateProfile(formData);
+      setRefresh(prev=>!prev)
       onClose();                // close modal on success
     } catch (err) {
       console.error(err.message);
@@ -31,7 +29,9 @@ export default function UserEditProfileModal({ onUpdate, onClose }) {
         <EditProfileDetails userProfile={userProfile} />  {/* ✅ pass profile data */}
         <EditPersonalDetails
           onSave={handleSave}
-          onCancel={onClose}   //  closes modal on cancel
+          onCancel={onClose} 
+          isUpdating={isUpdating} 
+          
         />
       </div>
     </div>

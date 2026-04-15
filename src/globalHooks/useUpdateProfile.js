@@ -5,7 +5,7 @@ export default function useUpdateProfile() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateError, setUpdateError] = useState(null);
 
-  const updateProfile = async (newData) => {
+  const handleUpdateProfile = async (newData) => {
     setIsUpdating(true);
     setUpdateError(null);
     try {
@@ -19,5 +19,5 @@ export default function useUpdateProfile() {
     }
   };
 
-  return { updateProfile, isUpdating, updateError };
+  return {handleUpdateProfile, isUpdating, updateError };
 }

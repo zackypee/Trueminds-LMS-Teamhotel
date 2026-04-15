@@ -88,7 +88,7 @@ const useUserProfile = () => {
 
   }, [refresh]);
 
-  return { userProfile, loading, error, fetchUserProfile };
+  return { userProfile, loading, error, fetchUserProfile, setRefresh };
 };
 
 export default useUserProfile;
