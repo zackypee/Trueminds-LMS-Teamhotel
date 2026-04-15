@@ -33,6 +33,8 @@ import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
 import ProtectedRoute from "./ProtectedRoute";
+import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
+import Reports from "./features/Dashboard/pages/adminpages/Reports";
 
 function App() {
   return (
@@ -80,6 +82,8 @@ function App() {
               />
 
               <Route path="team-allocation" element={<TeamAllocationPage />} />
+              <Route path="user-management" element={<UserManagement />} />
+              <Route path="reports" element={<Reports />} />
             </Route>
 
             {/* Instructor */}

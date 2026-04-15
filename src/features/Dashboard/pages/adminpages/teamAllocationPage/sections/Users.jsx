@@ -11,9 +11,10 @@ import useSelectedUsers from "../../../../hooks/adminHooks/useSelectedUsers";
 import UserCard from "../../../../components/adminComponents/UserCard";
 import { useUsers } from "../../../../hooks/adminHooks/useUsers";
 import useCreateUser from "../../../../hooks/adminHooks/useCreateUser";
+import { useEffect } from "react";
 
 const Users = () => {
-  const { users } = useUsers();
+  const { users, loading, error, fetchUsers } = useUsers();
   const { useCreatedUser, handleCreateUser } = useCreateUser();
   const { currentPage, setCurrentPage, itemsPerPage, startIndex } =
     usePagination();
@@ -26,15 +27,20 @@ const Users = () => {
     filterByTeam,
     filters,
     clearState,
-  } = useUserFilters();
+  } = useUserFilters(users);
   const { handleSelectAll, handleSelectUser, selectedUsers } =
-    useSelectedUsers(usersData);
+    useSelectedUsers(users);
   const [toggleFilterButton, setToggleFilterButton] = useState(false);
+
+  //fetch users
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   {
     /* filtered Users  Or All users */
   }
-  const displayedUsers = filteredUsers;
+  const displayedUsers = filteredUsers.length ? filteredUsers : users;
   {
     /*Users display on a page */
   }
@@ -48,10 +54,14 @@ const Users = () => {
   const totalPages = Math.ceil(displayedUsers.length / itemsPerPage);
 
   const handleSubmit = async (e) => {
-    e.preventDefault;
+    e.preventDefault();
 
     // await handleCreateUser(data);
   };
+
+  //Loading and error states
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <section className="users-section border border-[#CCC3D833] rounded-2xl ">
@@ -123,7 +133,7 @@ const Users = () => {
       {/*Section Body*/}
 
       <UsersTable
-        users={usersData}
+        users={users}
         currentUsers={currentUsers}
         selectedUsers={selectedUsers}
         handleSelectAll={handleSelectAll}
