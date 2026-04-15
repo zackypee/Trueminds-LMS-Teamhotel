@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateUserApi } from "../userApi"; // Import the real API function we discussed
+import { updateUserApi } from "../userApi";
 
 export default function useUpdateProfile() {
   const [isUpdating, setIsUpdating] = useState(false);
@@ -9,14 +9,11 @@ export default function useUpdateProfile() {
     setIsUpdating(true);
     setUpdateError(null);
     try {
-      const response = await updateUserApi(newData);
-      if (!response) {
-        throw new Error("Update failed");
-      }
-      return { success: true, data: response.data };
+      const data = await updateUserApi(newData);
+       return data;
     } catch (err) {
       setUpdateError(err.message || "Failed to update profile");
-      return { success: false, error: err.message };
+      throw err;
     } finally {
       setIsUpdating(false);
     }
