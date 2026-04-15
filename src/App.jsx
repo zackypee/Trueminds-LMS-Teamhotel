@@ -11,13 +11,13 @@ import NewPasswordPage from "./features/auth/pages/NewPasswordPage";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
-import { AuthLoginProvider } from "./features/auth/context/authLoginContext";
+import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/learning/userPages/CourseCatalogue";
-import UserProfile from  "./features/learning/userPages/UserProfile"
+import UserProfile from "./features/learning/userPages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import AdminLayout from "./layouts/AdminLayout";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
@@ -29,15 +29,12 @@ import AssignmentContent from "./features/learning/userPages/AssignmentContent";
 import MyProgress from "./features/learning/userPages/MyProgress";
 import CollaborationHub from "./features/learning/userPages/CollaborationHub";
 
-
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
 import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
 import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
-
-
 
 function App() {
   return (
