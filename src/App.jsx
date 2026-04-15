@@ -27,9 +27,6 @@ import LessonContent from "./features/learning/userComponents/LessonContent";
 import AssignmentContent from "./features/learning/userPages/AssignmentContent";
 import MyProgress from "./features/learning/userPages/MyProgress";
 import CollaborationHub from "./features/learning/userPages/CollaborationHub";
-import Reports from "./features/Dashboard/pages/adminpages/Reports";
-import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
-
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
@@ -83,8 +80,6 @@ function App() {
               />
 
               <Route path="team-allocation" element={<TeamAllocationPage />} />
-              <Route path="reports" element={<Reports />} />
-              <Route path="user-management" element={<UserManagement />} />
             </Route>
 
             {/* Instructor */}
