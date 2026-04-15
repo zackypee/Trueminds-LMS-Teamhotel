@@ -31,36 +31,16 @@ import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
-import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
+// import UserDashboardContent from "./features/Dashboard/components/userComponents/UserDashboardContent";
 
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
-<<<<<<< HEAD
-import TestAssignmentsPage from './features/Dashboard/pages/TestAssignmentsPage';
-
-// Add this route temporarily for testing
-
-=======
 import ProtectedRoute from "./ProtectedRoute";
->>>>>>> 886aad8ce06727c76162e0e73df255eac556853d
 
 function App() {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
-    <AuthLoginProvider>
-    <SearchProvider>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/forget-password" element={<ForgetPasswordPage />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/welcome-back" element={<AuthenticationOne />} />
-      {/* <Route path="/check-inbox" element={<CheckInbox />} /> */}
-      
-      
-=======
       <AuthLoginProvider>
         <SearchProvider>
           <Routes>
@@ -69,7 +49,6 @@ function App() {
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
->>>>>>> 886aad8ce06727c76162e0e73df255eac556853d
 
             {/* Protected routes */}
             <Route
@@ -97,23 +76,12 @@ function App() {
               <Route path="/reset-password" element={<ResetPasswordPage />} />
             </Route>
 
-<<<<<<< HEAD
-<Route path="/test-assignments" element={<TestAssignmentsPage />} />
-
-      {/* Admin */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route index element={<Navigate to="team-allocation" replace />} />
-        
-        <Route path="team-allocation" element={<TeamAllocationPage />} />
-      </Route>
-=======
             {/* Admin */}
             <Route path="admin" element={<AdminLayout />}>
               <Route
                 index
                 element={<Navigate to="team-allocation" replace />}
               />
->>>>>>> 886aad8ce06727c76162e0e73df255eac556853d
 
               <Route path="team-allocation" element={<TeamAllocationPage />} />
               <Route path="reports" element={<Reports />} />
@@ -124,26 +92,11 @@ function App() {
             <Route path="instructor" element={<InstructorDashboardLayout />}>
               <Route index element={<Navigate to="dashboard" replace />} />
 
-<<<<<<< HEAD
-      {/* User */}
-      <Route path="learner" element={<UserDashboardLayout />}>
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<UserDashboard />} />
-        <Route path="profile" element={<UserProfile />} />
-        <Route path="courses" element={<CourseCatalogue />} />
-        <Route path="course-details" element={<CourseOutline />} />
-        <Route path="assignments" element={<AssignmentContent/>}/>
-        {/* <Route path="progress" element={<MyProgress/>}/> */}
-        {/* <Route path="collaboration" element={<CollaborationHub/>}/> */}
-        <Route path="course" element={<LessonPage/>}/>
-      </Route>
-=======
               <Route path="dashboard" element={<InstructorDashboard />} />
               <Route path="assignments" element={<AssignmentForm />} />
               <Route path="upload" element={<CourseMaterialForm />} />
               <Route path="profile" element={<InstructorProfile />} />
             </Route>
->>>>>>> 886aad8ce06727c76162e0e73df255eac556853d
 
             {/* User */}
 
