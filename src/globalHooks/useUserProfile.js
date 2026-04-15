@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getUserProfile } from "../userApi";
-import { updateUserApi } from "../userApi";
+import { getUserProfile } from "../globalApi/userApi";
+
 
 const useUserProfile = () => {
   const [userProfile, setUserProfile] = useState({});
@@ -33,25 +33,11 @@ const useUserProfile = () => {
 
   console.log("Fetched user profile:", userProfile);
 
-  const handleUpdate = async (formattedData) => {
-    try {
-      const updatedUser = await updateUserApi(formattedData);
-      // Success! Now update the local state so the UI reflects changes immediately
-      setUserProfile(updatedUser.data);
-      return { success: true, data: updatedUser.data };
-    } catch (err) {
-      const errorMessage =
-        err.response?.data?.message || "Failed to update profile";
-      setError(errorMessage);
-      return { success: false, error: errorMessage };
-    }
-  };
-
   return {
     userProfile,
     loading,
     error,
-    handleUpdate, // Expose the update function to the component
+    
   };
 };
 

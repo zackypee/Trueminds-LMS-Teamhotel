@@ -5,8 +5,10 @@ import reportsIcon from "../../../../assets/report-icon.svg";
 import settingsIcon from "../../../../assets/settings-icon.svg";
 import supportIcon from "../../../../assets/support-icon.svg";
 import logoutIcon from "../../../../assets/logout-icon.svg";
+import useLogoutUser from "../../../auth/hooks/useLogoutUser";
 
 const AdminSideBar = () => {
+  const {onHandleLogout} =useLogoutUser();
   const navItems = [
     { id: "team-allocation", label: "Team Allocation", icon: teamAllocIcon },
     { id: "user-management", label: "User Management", icon: userManagementIcon,},
@@ -65,8 +67,8 @@ const AdminSideBar = () => {
 
         {/* Logout */}
         <button
-          className={`flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors
-                `}
+          className={`flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors `}
+          onClick={onHandleLogout}
         >
           <img src={logoutIcon} alt="" className="w-5 h-5" />
           Logout

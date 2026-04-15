@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateUserApi } from "../userApi"; // Import the real API function we discussed
+import { updateUserApi } from "../globalApi/userApi"; // Import the real API function we discussed
 
 export default function useUpdateProfile() {
   const [isUpdating, setIsUpdating] = useState(false);

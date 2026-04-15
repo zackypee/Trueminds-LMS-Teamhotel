@@ -5,14 +5,8 @@ import PencilImage from "../../../assets/pencil.png"; // Import a pencil icon fo
 
 import { useNavigate } from "react-router-dom";
 
-export default function UserProfileView({ userProfile, loading, error }) {
+export default function UserProfileView({ userProfile }) {
   const navigate = useNavigate();
-
-  // 1. Handle Loading
-  if (loading) return <div className="text-center">Loading profile...</div>;
-
-  // 2. Handle Errors
-  if (error) return <div className="text-center">Error: {error}</div>;
 
   function DetailItem({ label, value }) {
     return (

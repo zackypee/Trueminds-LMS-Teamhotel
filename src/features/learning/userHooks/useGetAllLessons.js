@@ -1,4 +1,4 @@
-import { getAllLessons } from "../userApi";
+import { getAllLessons } from "../../../globalApi/userApi";
 import { useState, useEffect } from "react";
 
 const useGetAllLessons = () => {
