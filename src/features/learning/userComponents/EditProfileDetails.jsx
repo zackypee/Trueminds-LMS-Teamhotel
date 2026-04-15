@@ -10,11 +10,11 @@ const CameraIcon = () => (
 
 const programData = [
   { label: 'Assigned Mentor', value: 'Tunde Adeyemi' },
-  { label: 'Cohort Group',    value: 'Design Alpha-24' },
-  { label: 'Enrolled Date',   value: 'Jan 12, 2026' },
+  { label: 'Cohort Group', value: 'Design Alpha-24' },
+  { label: 'Enrolled Date', value: 'Jan 12, 2026' },
 ]
 
-export default function EditProfileDetails() {
+export default function EditProfileDetails({ userProfile }) {
   return (
     <div className="w-full lg:w-72 flex-shrink-0 flex flex-col gap-5">
 
@@ -22,8 +22,8 @@ export default function EditProfileDetails() {
       <div className="bg-white rounded-2xl p-6 flex flex-col items-center gap-3 shadow-sm">
         <div className="relative">
           <img
-            src={editProfileImg}
-            alt="Chika Okafor"
+            src={userProfile?.image || editProfileImg}
+            alt={userProfile?.name || "User"}
             className="w-28 h-28 rounded-full object-cover ring-4 ring-white shadow"
           />
           <button
@@ -36,8 +36,12 @@ export default function EditProfileDetails() {
         </div>
 
         <div className="text-center">
-          <p className="font-semibold text-[#001C3B] text-base">Chika Okafor</p>
-          <p className="text-sm text-gray-500 mt-0.5">Lagos, Nigeria</p>
+          <p className="font-semibold text-[#001C3B] text-base">
+            {userProfile?.name || "N/A"}
+          </p>
+          <p className="text-sm text-gray-500 mt-0.5">
+            {userProfile?.location || "N/A"}
+          </p>
         </div>
 
         <button

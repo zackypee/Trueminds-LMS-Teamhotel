@@ -32,7 +32,7 @@ import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
 import ProtectedRoute from "./ProtectedRoute";
-import UserEditProfile from "./features/learning/userPages/UserEditProfile";
+import UserEditProfile from "./features/learning/userComponents/UserEditProfileModal";
 
 function App() {
   return (
@@ -40,7 +40,7 @@ function App() {
       <AuthLoginProvider>
         <SearchProvider>
           <Routes>
-            <Route path="/" element={<UserEditProfile />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
