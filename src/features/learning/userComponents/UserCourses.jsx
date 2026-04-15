@@ -18,7 +18,7 @@ import { HiClock } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useSearchQuery } from "../context/SearchContext";
 
-const UserCourses = ({ selectedCategory}) => {
+const UserCourses = ({ selectedCategory, allCourses}) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
   const {searchQuery} = useSearchQuery();
   const navigate = useNavigate();
@@ -175,7 +175,9 @@ const UserCourses = ({ selectedCategory}) => {
     },
   ];
 
-  const filteredCourses = courses.filter((course) => {
+  const availableCourses =  allCourses.length > 0? allCourses : courses;
+
+  const filteredCourses = availableCourses.filter((course) => {
     const matchesCategory =
       selectedCategory === "All" || course.category === selectedCategory;
 
@@ -187,7 +189,7 @@ const UserCourses = ({ selectedCategory}) => {
   });
 
   return (
-    <div className="flex-1 p-6 ">
+    <div className="flex-1 px-6 py-10">
       {selectedCategory === "All" && searchQuery === "" && (
         <>
           <h1 className="text-[24px] text-[#000000] font-semibold mb-6">
@@ -245,7 +247,7 @@ const UserCourses = ({ selectedCategory}) => {
       <div className="grid grid-cols-3 gap-4">
         {filteredCourses.map((course, index) => (
           <div
-            onClick={()=> navigate("../course-details")}
+            onClick={() => navigate(`../course-details/${index+1}`)}
             key={index}
             className=" bg-[#FFFFFF] w-75 h-90 border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5 "
           >

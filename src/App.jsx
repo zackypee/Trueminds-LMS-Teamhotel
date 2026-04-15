@@ -101,7 +101,7 @@ function App() {
                 <Route path="dashboard" element={<UserDashboard />} />
                 <Route path="profile" element={<UserProfile />} />
                 <Route path="courses" element={<CourseCatalogue />} />
-                <Route path="course-details" element={<CourseOutline />} />
+                <Route path="course-details/:id" element={<CourseOutline />} />
                 <Route path="assignments" element={<AssignmentContent />} />
                 <Route path="progress" element={<MyProgress />} />
                 <Route path="collaboration" element={<CollaborationHub />} />

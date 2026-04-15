@@ -146,7 +146,7 @@ const UserDashboardContent = () => {
   }
 
   return (
-  <div className="bg-white min-h-full p-4 sm:p-6 md:p-8">
+  <div className="bg-white min-h-full p-4 sm:px-6 md:px-8">
     {/* Welcome Section */}
     <div className="mb-6 sm:mb-8">
       <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-bold leading-tight mt-16 sm:mt-18 md:mt-20">
