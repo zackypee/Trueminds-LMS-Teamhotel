@@ -16,7 +16,7 @@ import AssignmentForm from "./features/Dashboard/components/instructorComponents
 import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import { isOtpVerified, isEmailVerified } from "./features/auth/utils/storage";
 import CourseCatalogue from "./features/learning/userPages/CourseCatalogue";
-import UserProfile from  "./features/learning/userPages/UserProfile"
+import UserProfile from "./features/learning/userPages/UserProfile";
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import LandingPage from "./features/LandingPage/pages/LandingPage";
@@ -27,7 +27,6 @@ import AssignmentContent from "./features/learning/userPages/AssignmentContent";
 import MyProgress from "./features/learning/userPages/MyProgress";
 import CollaborationHub from "./features/learning/userPages/CollaborationHub";
 
-
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
@@ -35,83 +34,83 @@ import LessonPage from "./features/learning/userPages/LessonPage";
 import ProtectedRoute from "./ProtectedRoute";
 import { AdminLayout } from "./layouts/AdminLayout";
 
-
-
-
 function App() {
-
-   
   return (
     <BrowserRouter>
-    <AuthLoginProvider>
-    <SearchProvider>
+      <AuthLoginProvider>
+        <SearchProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forget-password" element={<ForgetPasswordPage />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/welcome-back" element={<AuthenticationOne />} />
 
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/forget-password" element={<ForgetPasswordPage />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/welcome-back" element={<AuthenticationOne />} />
-      
-      
-      {/* Protected routes */}
-      <Route 
-        element={ <ResetPasswordProtectedRoute check={isEmailVerified} 
-          redirectTo="/forget-password"/>
-        }
-      >
-        <Route
-          path="/reset-password-auth"
-          element={<ResetPasswordAuthPage />}
-        />
-      </Route>
+            {/* Protected routes */}
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={isEmailVerified}
+                  redirectTo="/forget-password"
+                />
+              }
+            >
+              <Route
+                path="/reset-password-auth"
+                element={<ResetPasswordAuthPage />}
+              />
+            </Route>
 
-      <Route
-        element={<ResetPasswordProtectedRoute check={isEmailVerified}
-          redirectTo="/forget-password"/>
-        }
-      >
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-      </Route>
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={isEmailVerified}
+                  redirectTo="/forget-password"
+                />
+              }
+            >
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
+            </Route>
 
-      {/* Admin */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route index element={<Navigate to="team-allocation" replace />} />
+            {/* Admin */}
+            <Route path="admin" element={<AdminLayout />}>
+              <Route
+                index
+                element={<Navigate to="team-allocation" replace />}
+              />
 
-        <Route path="team-allocation" element={<TeamAllocationPage />} />
-        <Route path="reports" element={<AssignmentForm />} />
+              <Route path="team-allocation" element={<TeamAllocationPage />} />
+            </Route>
 
-      </Route>
+            {/* Instructor */}
+            <Route path="instructor" element={<InstructorDashboardLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
 
-      {/* Instructor (Protected) */}
-      <Route element={<ProtectedRoute allowedRole={["instructor"]}/>}>
-        <Route path="instructor" element={<InstructorDashboardLayout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<InstructorDashboard />} />
-          <Route path="assignments" element={<AssignmentForm />} />
-          <Route path="upload" element={<CourseMaterialForm />} />
-          <Route path="profile" element={<InstructorProfile />} />
-        </Route>
-      </Route>
+              <Route path="dashboard" element={<InstructorDashboard />} />
+              <Route path="assignments" element={<AssignmentForm />} />
+              <Route path="upload" element={<CourseMaterialForm />} />
+              <Route path="profile" element={<InstructorProfile />} />
+            </Route>
 
-      {/* LEARNER (PROTECTED) */}
-      <Route element={<ProtectedRoute allowedRole={["learner"]} />}>
-        <Route path="learner" element={<UserDashboardLayout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<UserDashboard />} />
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="courses" element={<CourseCatalogue />} />
-          <Route path="course-details" element={<CourseOutline />} />
-          <Route path="assignments" element={<AssignmentContent />} />
-          <Route path="progress" element={<MyProgress />} />
-          <Route path="collaboration" element={<CollaborationHub />} />
-          <Route path="course" element={<LessonPage />} />
-        </Route>
-      </Route>
+            {/* User */}
 
-    </Routes>
-    </SearchProvider>
-    </AuthLoginProvider>
+            {/* LEARNER (PROTECTED) */}
+            <Route element={<ProtectedRoute allowedRole={["learner"]} />}>
+              <Route path="learner" element={<UserDashboardLayout />}>
+                <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<UserDashboard />} />
+                <Route path="profile" element={<UserProfile />} />
+                <Route path="courses" element={<CourseCatalogue />} />
+                <Route path="course-details" element={<CourseOutline />} />
+                <Route path="assignments" element={<AssignmentContent />} />
+                <Route path="progress" element={<MyProgress />} />
+                <Route path="collaboration" element={<CollaborationHub />} />
+                <Route path="course" element={<LessonPage />} />
+              </Route>
+            </Route>
+          </Routes>
+        </SearchProvider>
+      </AuthLoginProvider>
     </BrowserRouter>
   );
 }
