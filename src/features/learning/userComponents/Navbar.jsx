@@ -5,11 +5,17 @@ import bell from "../../../assets/bell.png";
 import profile from "../../../assets/profile.png";
 import { useSearchQuery } from "../context/SearchContext";
 import useLogoutUser from "../../auth/hooks/useLogoutUser";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ onMenuClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
   const { onHandleLogout } = useLogoutUser();
+  const navigate = useNavigate();
+
+  function handleNotificationsClick() {
+    navigate("../notifications");
+  }
 
   return (
     <nav className="px-6 py-4 bg-[#ffffff] h-16 shadow-[0px_1px_2px_0px_rgba(30,58,138,0.05)] flex items-center justify-between fixed left-0 right-0 z-2">
@@ -67,7 +73,12 @@ const Navbar = ({ onMenuClick }) => {
         </NavLink>
 
         <div className="relative inline-block cursor-pointer">
-          <img src={bell} alt="Bell" className="h-6 w-6 text-gray-600" />
+          <img
+            onClick={handleNotificationsClick}
+            src={bell}
+            alt="Bell"
+            className="h-6 w-6 text-gray-600"
+          />
           <span className="absolute -top-0.5 -right-0.5 bg-[#D97706] text-white text-[10px] font-bold rounded-xl h-4 w-4 flex items-center justify-center">
             2
           </span>
