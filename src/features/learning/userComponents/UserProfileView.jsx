@@ -1,13 +1,20 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import ProfileImage from "../../../assets/profileimage.jpg";
 import ProfileLogo from "../../../assets/profilelogo.png";
 import PencilImage from "../../../assets/pencil.png";
 
-
-
-export default function UserProfileView({handleModalOpen, userProfile}) {
-  
-
+export default function UserProfileView({ handleModalOpen, userProfile }) {
+  const defaultProfile = {
+    image: ProfileImage,
+    name: "John Doe",
+    id: "123456",
+    status: "UI/UX Design",
+    role: "Learner Intern",
+    number: "+234 812 345 6789",
+    dob: "January 1, 1990",
+    location: "Lagos, Nigeria",
+    bio: "Passionate UI/UX designer focused on creating accessible and delightful digital experiences. Currently honing skills in user research and motion design.",
+  };
 
   function DetailItem({ label, value }) {
     return (
@@ -26,7 +33,7 @@ export default function UserProfileView({handleModalOpen, userProfile}) {
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
-          src={userProfile?.image}
+          src={defaultProfile?.image}
           alt={userProfile?.name}
           className="w-24 h-24 md:w-35 md:h-35 rounded-full object-cover border-4 border-white shadow-sm"
         />
@@ -54,10 +61,10 @@ export default function UserProfileView({handleModalOpen, userProfile}) {
               {userProfile.id}
             </p>
             <p className="text-gray-600 bg-[#E9DDFF] px-4 py-2 rounded-full">
-              {userProfile.status}
+              {defaultProfile.role}
             </p>
             <p className="text-gray-600 bg-[#BB9EFF] px-4 py-2 rounded-full">
-              {userProfile.role}
+              {defaultProfile.status}
             </p>
           </div>
         </div>
@@ -79,16 +86,16 @@ export default function UserProfileView({handleModalOpen, userProfile}) {
         {/* Responsive Grid: 1 column on mobile, 2 columns on tablets/desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
           <DetailItem label="Email Address" value={userProfile.email} />
-          <DetailItem label="Phone Number" value={userProfile.phone} />
-          <DetailItem label="Location" value={userProfile.location} />
-          <DetailItem label="Date of Birth" value={userProfile.dob} />
+          <DetailItem label="Phone Number" value={defaultProfile.number} />
+          <DetailItem label="Location" value={defaultProfile.location} />
+          <DetailItem label="Date of Birth" value={defaultProfile.dob} />
         </div>
 
         <div className="mt-8">
           <p className="uppercase text-xs font-bold text-[#7B7488] mb-2 tracking-wider">
             Bio:
           </p>
-          <p className="text-gray-700 leading-relaxed">{userProfile.bio}</p>
+          <p className="text-gray-700 leading-relaxed">{defaultProfile.bio}</p>
         </div>
       </div>
     </main>
