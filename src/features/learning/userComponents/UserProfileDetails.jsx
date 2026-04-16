@@ -8,12 +8,13 @@ import PlusLogo from "../../../assets/pluslogo.png";
 import PortfolioLogo from "../../../assets/portfoliologo.png";
 import MentorLogo from "../../../assets/mentorlogo.png";
 import FlowLogo from "../../../assets/flowlogo.png";
+import briefcaseIcon from "../../../assets/bag-icon.png";
 
 export default function UserProfileDetails({ userProfile, loading, error }) {
   return (
     <main className="max-w-full w-full flex flex-col gap-6 p-4 md:p-5">
       {/* Earned Badges Section */}
-      <div className="bg-[#EDE9FE] p-4 md:p-6 rounded-3xl">
+      <div className="bg-[#f2f4fe] p-4 md:p-6 rounded-3xl">
         <p className="mb-5 font-medium">Earned Badges</p>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
           <span className="text-center flex flex-col items-center">
@@ -52,21 +53,21 @@ export default function UserProfileDetails({ userProfile, loading, error }) {
       </div>
 
       {/* Professional Details Section */}
-      <div className="bg-[#FFFFFF] p-5 rounded-2xl shadow-sm border border-gray-100">
+      <div className="bg-[#f2f4fe] p-5 rounded-2xl shadow-sm border border-gray-100">
         <span className="flex gap-4">
-          <img src={PortfolioLogo} alt="badge" className="w-6 h-6" />
+          <img src={briefcaseIcon} alt="badge" className="w-6 h-6" />
           <h2 className="font-bold text-lg">Professional Details</h2>
         </span>
         <div>
-          <p className="uppercase mt-8 text-[#7B7488] text-sm">
+          <p className="uppercase mt-8 text-[#0029F5] text-sm">
             Primary Skills
           </p>
           <span className="flex flex-wrap gap-3 text-sm mt-2">
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md">Figma</p>
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md">
+            <p className="font-medium bg-[#D9D9D9] p-2 rounded-md">Figma</p>
+            <p className="font-medium bg-[#D9D9D9] p-2 rounded-md">
               User Research
             </p>
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md">Wireframe</p>
+            <p className="font-medium bg-[#D9D9D9] p-2 rounded-md">Wireframe</p>
           </span>
           <div className="mt-5 grid grid-cols-2 sm:grid-cols-2 gap-6">
             <span>
@@ -76,10 +77,10 @@ export default function UserProfileDetails({ userProfile, loading, error }) {
               <p className="font-semibold">junior(intern)</p>
             </span>
             <span>
-              <p className="uppercase mt-4 text-xs text-[#7B7488]">
+              <p className="uppercase mt-4 text-xs text-[#0029F5]">
                 Portfolio Link
               </p>
-              <p className="font-semibold text-[#660FE6] break-all">
+              <p className="font-semibold text-[#0029F5] break-all">
                 Chika.intern
               </p>
             </span>
@@ -88,7 +89,7 @@ export default function UserProfileDetails({ userProfile, loading, error }) {
       </div>
 
       {/* Talent Flow Details Section */}
-      <div className="bg-[#CCC3D91A] p-5 rounded-2xl">
+      <div className="bg-[#f2f4fe] p-5 rounded-2xl">
         <span className="flex gap-4">
           <img src={FlowLogo} alt="badge" className="w-6 h-6" />
           <p className="font-bold text-lg">Talent Flow Details</p>
