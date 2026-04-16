@@ -58,7 +58,9 @@
 // export default useUserProfile;
 
 import { useEffect, useState } from "react";
-import { getUserProfile } from "../userApi";
+import { getUserProfile } from "../globalApi/userApi";
+
+
 
 const useUserProfile = () => {
   const [userProfile, setUserProfile] = useState({});
@@ -86,7 +88,7 @@ const useUserProfile = () => {
 
   }, [refresh]);
 
-  return { userProfile, loading, error, fetchUserProfile };
+  return { userProfile, loading, error, fetchUserProfile, setRefresh };
 };
 
 export default useUserProfile;

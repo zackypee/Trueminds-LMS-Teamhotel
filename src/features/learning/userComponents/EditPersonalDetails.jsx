@@ -4,6 +4,7 @@ import briefcaseIcon from "../../../assets/bag-icon.png";
 import { useNavigate } from "react-router-dom";
 
 
+
 const LinkIcon = () => (
 
   <svg
@@ -27,7 +28,7 @@ const inputClass =
   "w-full bg-[#F3F5F8] rounded-xl px-4 py-3 text-sm text-[#1F2937] border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition placeholder:text-gray-400";
 const labelClass = "block text-xs font-medium text-[#6B7A95] mb-1.5";
 
-export default function EditPersonalDetails({ onSave, onCancel, setModalOpen, onClose }) {
+export default function EditPersonalDetails({ onSave, onCancel, isUpdating}) {
 
   const navigate = useNavigate()
   // ✅ ALL hooks inside the component
@@ -204,15 +205,12 @@ export default function EditPersonalDetails({ onSave, onCancel, setModalOpen, on
       {/* Action Buttons */}
       <div className="flex flex-col gap-3 pb-6">
         <button
-          
+          disabled={isUpdating}
           type="button"
-          onClick={() =>
-            {onSave({ ...formData, skills } ),onClose(), navigate("../profile");
-           }
-           }
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3.5 text-sm font-semibold transition-colors"
+          onClick={() =>onSave({ ...formData, skills })}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3.5 text-sm font-semibold transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Save Changes
+          {isUpdating? "Saving Changes": "Save Changes"}
         </button>
         <button
           type="button"

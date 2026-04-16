@@ -3,7 +3,7 @@ import CourseSidebar from "../userComponents/CourseSidebar"
 
 const LessonPage = () => {
     return(
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full pl-60">
             <CourseSidebar/>
             <LessonContent/>
         </div>

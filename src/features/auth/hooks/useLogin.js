@@ -14,8 +14,6 @@ const useLogin = () => {
     try {
       const response = await loginUser(userData);
 
-      console.log("res", response);
-
       if(!response?.success){
         setError(response.message || "Login Failed, Please, try again.");
         return false
@@ -28,7 +26,7 @@ const useLogin = () => {
       localStorage.setItem("token", token);
       setUser(user);
 
-      return true
+      return response.data;
     } catch (err) {
 
   

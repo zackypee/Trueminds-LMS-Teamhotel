@@ -2,7 +2,8 @@ import { Outlet } from "react-router-dom";
 import AdminSideBar from "../features/Dashboard/components/adminComponents/AdminSideBar";
 import AdminTopBar from "../features/Dashboard/components/adminComponents/AdminTopBar";
 
-const AdminLayout = () => {
+
+export const AdminLayout = () => {
   return (
     <div className="admin-layout relative flex  ">
       <AdminSideBar />

@@ -16,8 +16,8 @@ import { useEffect } from "react";
 const Users = () => {
   const { users, loading, error, fetchUsers } = useUsers();
   const { useCreatedUser, handleCreateUser } = useCreateUser();
-  const { currentPage, setCurrentPage, itemsPerPage, startIndex } =
-    usePagination();
+  const { currentPage, setCurrentPage, itemsPerPage, startIndex } = usePagination();
+
   const {
     handleOnChangeSearchByName,
     handleFilterByTeamChange,
@@ -48,9 +48,7 @@ const Users = () => {
     startIndex,
     startIndex + itemsPerPage,
   );
-  {
-    /*total num of pages */
-  }
+  
   const totalPages = Math.ceil(displayedUsers.length / itemsPerPage);
 
   const handleSubmit = async (e) => {
@@ -156,11 +154,13 @@ const Users = () => {
       <div className="flex justify-between items-center px-6 mb-4 tracking-normal">
         <p className="text-[12px] leading-4 text-[#455F87]">
           Showing{" "}
-          <span className="text-[12px] leading-[100%] font-bold text[#001C3B]">
-            {startIndex + 1} -{" "}
-            {Math.min(startIndex + itemsPerPage, users.length)}
+          <span className="text-[12px] leading-[100%] font-bold text-[#001C3B]">
+            {displayedUsers.length === 0 ? 0 : startIndex + 1} -{" "}
+            {displayedUsers.length === 0
+              ? 0
+              : Math.min(startIndex + itemsPerPage, displayedUsers.length)}
           </span>{" "}
-          of {users.length} Interns
+          of {displayedUsers.length} Interns
         </p>
         <Pagination
           totalPages={totalPages}

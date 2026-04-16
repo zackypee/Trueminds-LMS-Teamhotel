@@ -2,31 +2,12 @@ import React, {  useState } from "react";
 import ProfileImage from "../../../assets/profileimage.jpg";
 import ProfileLogo from "../../../assets/profilelogo.png";
 import PencilImage from "../../../assets/pencil.png";
-import UserEditProfileModal from "./UserEditProfileModal";
-import { useNavigate } from "react-router-dom";
-import useUserProfile from "../userHooks/useUserProfile";
-
- export default function UserProfileView() {
-
-  const { userProfile, setRefresh, loading, error, handleUpdate } = useUserProfile();
-
-  const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
-
-  function handleModalOpen() {
-    setModalOpen(true);
-  }
-  function handleCloseModal(){
-    setModalOpen(false)
-    setRefresh(prev=>!prev)
-  }
 
 
-  // 1. Handle Loading
-  if (loading) return <div className="text-center">Loading profile...</div>;
 
-  // 2. Handle Errors
-  if (error) return <div className="text-center">Error: {error}</div>;
+export default function UserProfileView({handleModalOpen, userProfile}) {
+  
+
 
   function DetailItem({ label, value }) {
     return (
@@ -110,28 +91,6 @@ import useUserProfile from "../userHooks/useUserProfile";
           <p className="text-gray-700 leading-relaxed">{userProfile.bio}</p>
         </div>
       </div>
-
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          {/* Modal Container */}
-          <div className="bg-white w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-lg overflow-hidden flex flex-col">
-            {/* Modal Header (Sticky) */}
-            <div className="flex justify-end p-4 border-b">
-              <button
-                className="bg-[#0029F5] text-white px-4 py-2 rounded-md hover:bg-[#1E3A5F] transition-colors"
-                onClick={() => setModalOpen(false)}
-              >
-                Close
-              </button>
-            </div>
-
-            {/* Modal Content (Scrollable) */}
-            <div className="overflow-y-auto">
-              <UserEditProfileModal  onClose={handleCloseModal} onUpdate={handleUpdate } />
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
