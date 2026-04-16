@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProfileImage from "../../../assets/profileimage.jpg";
 import ProfileLogo from "../../../assets/profilelogo.png";
 import PencilImage from "../../../assets/pencil.png";
+import personIcon from "../../../assets/person-icon.png";
 
 export default function UserProfileView({ handleModalOpen, userProfile }) {
   const defaultProfile = {
@@ -29,7 +30,7 @@ export default function UserProfileView({ handleModalOpen, userProfile }) {
     );
   }
   return (
-    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-[#ffffff] rounded-3xl">
+    <main className="max-w-full w-full flex flex-col gap-6 py-10 px-6 md:py-15 md:px-10 bg-white rounded-3xl">
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
@@ -57,13 +58,13 @@ export default function UserProfileView({ handleModalOpen, userProfile }) {
 
           {/* Badges: Wrap on small screens */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs md:text-sm font-semibold">
-            <p className="text-gray-600 bg-[#EDE5F5] px-4 py-2 rounded-full truncate">
+            <p className="text-gray-600 bg-[#f2f4fe] px-4 py-2 rounded-full truncate">
               {userProfile.id}
             </p>
-            <p className="text-gray-600 bg-[#E9DDFF] px-4 py-2 rounded-full">
+            <p className="text-gray-600 bg-[#f2f4fe] px-4 py-2 rounded-full">
               {defaultProfile.role}
             </p>
-            <p className="text-gray-600 bg-[#BB9EFF] px-4 py-2 rounded-full">
+            <p className="text-gray-600 bg-[#f2f4fe] px-4 py-2 rounded-full">
               {defaultProfile.status}
             </p>
           </div>
@@ -76,9 +77,9 @@ export default function UserProfileView({ handleModalOpen, userProfile }) {
       <div>
         <span className="flex items-center gap-4 mb-5">
           <img
-            src={ProfileLogo}
+            src={personIcon}
             alt=""
-            className="w-8 h-8 bg-[#F3EBFA] p-1.5 rounded-md"
+            className="w-8 h-8 p-1.5 rounded-md"
           />
           <h2 className="font-semibold text-lg">Personal Details</h2>
         </span>

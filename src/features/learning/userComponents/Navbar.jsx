@@ -6,6 +6,7 @@ import profile from "../../../assets/profile.png";
 import { useSearchQuery } from "../context/SearchContext";
 import useLogoutUser from "../../auth/hooks/useLogoutUser";
 import { useNavigate } from "react-router-dom";
+import ProfileImage from "../../../assets/profileimage.jpg";
 
 const Navbar = ({ onMenuClick }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,8 +51,8 @@ const Navbar = ({ onMenuClick }) => {
           className={({ isActive }) =>
             `hidden md:block text-[14px] font-normal ${
               isActive
-                ? "text-[#7C3AED] border-b-2 border-[#7C3AED] pb-1 font-semibold"
-                : "text-[#475569]"
+                ? "text-[#0029F5] border-b-2 border-[#0029F5] pb-1 font-semibold"
+                : "text-[#0029F5]"
             }`
           }
           end
@@ -64,8 +65,8 @@ const Navbar = ({ onMenuClick }) => {
           className={({ isActive }) =>
             `hidden md:block text-[14px] font-normal ${
               isActive
-                ? "text-[#7C3AED] border-b-2 border-[#7C3AED] pb-1 font-semibold"
-                : "text-[#475569]"
+                ? "text-[#0029F5] border-b-2 border-[#0029F5] pb-1 font-semibold"
+                : "text-[#0029F5]"
             }`
           }
         >
@@ -85,7 +86,7 @@ const Navbar = ({ onMenuClick }) => {
         </div>
 
         <img
-          src={profile}
+          src={ProfileImage}
           alt="Profile"
           className="h-8 w-8 rounded-xl cursor-pointer"
           onClick={() => setIsOpen(true)}
@@ -104,7 +105,7 @@ const Navbar = ({ onMenuClick }) => {
           >
             ✕
           </button>
-          <div className="p-4 mt-5 flex flex-col gap-4 text-[16px] text-[#000000] font-normal">
+          <div className=" p-4 mt-5 flex flex-col gap-4 text-[16px] z-100 text-[#000000] font-normal">
             <Link to="profile">My Profile</Link>
             <Link to="notification">Notifications</Link>
             <Link className="flex items-center justify-between">
