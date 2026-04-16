@@ -105,20 +105,20 @@ const Navbar = ({ onMenuClick }) => {
             ✕
           </button>
           <div className="p-4 mt-5 flex flex-col gap-4 text-[16px] text-[#000000] font-normal">
-            <Link>My Profile</Link>
-            <Link>Notifications</Link>
+            <Link to="profile">My Profile</Link>
+            <Link to="notification">Notifications</Link>
             <Link className="flex items-center justify-between">
               <p>Messages</p>
               <span className="bg-[#E8651A] text-white text-[16px] font-bold rounded-xl h-6 w-6 flex items-center justify-center">
                 2
               </span>
             </Link>
-            <Link>My dashboard</Link>
-            <Link>My learning Progress</Link>
+            <Link to="dashboard">My dashboard</Link>
+            <Link to="progress">My learning Progress</Link>
             <Link>View team</Link>
-            <Link>Collaboration hub</Link>
-            <Link>View Course Catalogue</Link>
-            <Link>Account Settings</Link>
+            <Link to="collaboration">Collaboration hub</Link>
+            <Link to="courses">View Course Catalogue</Link>
+            <Link >Account Settings</Link>
             <Link>Language</Link>
             <Link>Help and Support</Link>
             <Link onClick={onHandleLogout}>Logout</Link>
