@@ -4,7 +4,7 @@ import Bellicon from "../../../assets/bellicon.png";
 import MessageIcon from "../../../assets/messageicon.png";
 import AshBellIcon from "../../../assets/ashbellicon.png";
 import AshmessageIcon from "../../../assets/ashmessageicon.png";
-import bookIcon from "../../../../src/assets/book-icon"
+import bookIcon from "../../../../src/assets/book-icon.png"
 
 export default function Notification() {
   const navigate = useNavigate();
