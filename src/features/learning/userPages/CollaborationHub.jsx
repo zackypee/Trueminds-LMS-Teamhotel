@@ -50,7 +50,7 @@ export default function CollaborationHub(){
     return(
         <div className="flex flex-col min-h-screen">
             {/* Header - sticky so it stays below navbar */}
-            <div className="sticky top-16 z-10 px-5 md:px-10 pt-5 md:pt-10 pb-4 md:pb-6 bg-[#1E3A5F]">
+            <div className="sticky top-16  px-5 md:px-10 pt-5 md:pt-10 pb-4 md:pb-6 bg-[#1E3A5F]">
                 <h1 className="font-bold mb-0 text-white text-[24px] md:text-[36px]">Collaboration Hub</h1>
             </div>
 
@@ -70,29 +70,29 @@ export default function CollaborationHub(){
                 </div>
 
                 <div className="flex flex-col md:gap-4 justify-center md:flex-row md:justify-between items-center gap-2 mt-4">
-                    <div className="flex flex-col border w-full justify-center py-3 md:py-12 md:rounded-2xl items-center rounded border-[#E5E7EB]">
+                    <a href="https://app.slack.com/client/T0A9LDUUBG9/C0ALJH8B89Z" target="_blank" rel="noopener noreferrer" className="flex flex-col border w-full justify-center py-3 md:py-12 md:rounded-2xl items-center rounded border-[#E5E7EB] hover:shadow-xl">
                         <div className="flex items-center mb-1 gap-1 md:gap-2">
                             <FaSlack className="text-xl md:text-2xl text-[#4A154B]"/>
                             <p className="text-[#1F2937] text-[14px] font-semibold md:text-[20px]">Slack</p>
                         </div>
                         <p className="text-[13px] text-[#6B7280] md:text-[14px]">Open Slack</p>
-                    </div>
+                    </a>
 
-                    <div className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]">
+                    <a href="https://www.zoom.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB] hover:shadow-xl">
                         <div className="flex items-center mb-1 gap-1 md:gap-2">
                             <img className="w-[28px] h-[28px] md:w-[40px] md:h-[40px]" src="/images/3ab00b467c8bd9f8f32337a4b62fe69d9e1f1272.png" alt="" />
                             <p className="text-[#1F2937] text-[14px] md:text-[20px] font-semibold">Zoom</p>
                         </div>
                         <p className="text-[13px] md:text-[14px] text-[#6B7280]">Open Zoom</p>
-                    </div>
+                    </a>
 
-                    <div className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]">
+                    <a href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener noreferrer" className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB] hover:shadow-xl">
                         <div className="flex items-center mb-1 gap-1 md:gap-2">
                             <RiDriveLine className="text-xl md:text-2xl text-[#1A73E8]"/>
                             <p className="text-[#1F2937] text-[14px] font-semibold md:text-[20px]">Google Drive</p>
                         </div>
                         <p className="text-[13px] text-[#6B7280] md:text-[14px]">Open Drive</p>
-                    </div>
+                    </a>
                 </div>
 
                 <div className="mb-2 md:mb-4 mt-4 md:mt-8">

@@ -229,7 +229,7 @@ const UserCourses = ({ selectedCategory, allCourses}) => {
                   </div>
                   <button
                   onClick={() => navigate("../course")}
-                  className="bg-[#7C3AED] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer">
+                  className="bg-[#0029F5] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer">
                     Continue Learning
                   </button>
                 </div>
@@ -277,7 +277,7 @@ const UserCourses = ({ selectedCategory, allCourses}) => {
               {course.tools.map((tool, idx) => (
                 <span
                   key={idx}
-                  className={` text-[#1F2937] font-semibold text-[14px] p-2.5 rounded-2xl mr-2  ${idx !== course.tools.length - 1 ? "bg-[#EDE9FE]" : ""}`}
+                  className={` text-[#1F2937] font-semibold text-[14px] p-2.5 rounded-lg mr-2  ${idx !== course.tools.length - 1 ? "bg-[#f2f4fe]" : ""}`}
                 >
                   {tool}
                 </span>

@@ -129,13 +129,13 @@ export default function CourseOutline() {
                         <div onClick={()=> setShowMore(!showMore)}>
                             {showMore ? (<div className="flex items-center">
                         
-                            <p className="text-[16px] text-[#7C3AED]">Read Less</p>
-                            <RiArrowDropUpLine className="text-[16px] text-[#7C3AED]" />
+                            <p className="text-[16px] text-[#0029F5]">Read Less</p>
+                            <RiArrowDropUpLine className="text-[16px] text-[#0029F5]" />
                         </div>):(
                         <div className="flex items-center">
                             
-                            <p className="text-[16px] text-[#7C3AED]">Read More</p>
-                            <RiArrowDropDownLine  className="text-[26px] text-[#7C3AED]"/>
+                            <p className="text-[16px] text-[#0029F5]">Read More</p>
+                            <RiArrowDropDownLine  className="text-[26px] text-[#0029F5]"/>
                         </div> 
                         )}
                     </div>
@@ -152,13 +152,13 @@ export default function CourseOutline() {
                 <p onClick={() => setReadMore(!readMore)} >
                     {readMore?(
                     <div className="flex items-center">
-                        <p className="text-[16px] text-[#7C3AED]">Read Less</p>
-                        <RiArrowDropUpLine className="text-[16px] text-[#7C3AED]" />
+                        <p className="text-[16px] text-[#0029F5]">Read Less</p>
+                        <RiArrowDropUpLine className="text-[16px] text-[#0029F5]" />
                     </div>)
                     :(
                     <div className="flex items-center">  
-                        <p className="text-[16px] text-[#7C3AED]">Read More</p>
-                        <RiArrowDropDownLine  className="text-[26px] text-[#7C3AED]"/>
+                        <p className="text-[16px] text-[#0029F5]">Read More</p>
+                        <RiArrowDropDownLine  className="text-[26px] text-[#0029F5]"/>
                     </div> 
                     )}
                 </p>
