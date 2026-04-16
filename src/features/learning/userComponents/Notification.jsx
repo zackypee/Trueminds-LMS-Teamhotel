@@ -95,7 +95,7 @@ export default function Notification() {
         "Introduction to Prototyping - This lesson covers component variants and prototype flows in Figma.",
       time: "1 week ago",
       type: "success",
-      icon: Bookicon,
+      icon: bookIcon,
       button: {
         label: "Browse Course",
         link: "/learner/profile",
