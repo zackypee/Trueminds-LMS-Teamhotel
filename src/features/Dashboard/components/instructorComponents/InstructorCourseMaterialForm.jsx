@@ -1,152 +1,245 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useUploadCourseMaterial from "../../hooks/instructorHooks/useUploadCourseMaterial";
 
 function InstructorCourseMaterialForm() {
   const [formData, setFormData] = useState({
+    courseId: "",
     title: "",
-    description: "",
-    file: null,
+    content: "",
+    orderNumber: "",
+    videoUrl: "",
+    documentUrl: "",
   });
+  const [errors, setErrors] = useState({});
+
+  const { handleUpload, loading, error, success } = useUploadCourseMaterial(
+    formData.courseId.trim(),
+  );
+
+  const isValidUrl = (value) => {
+    try {
+      new URL(value);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, file: e.target.files[0] });
-  };
-
-  const [errors, setErrors] = useState({});
-
   const validate = () => {
-    let newErrors = {};
+    const newErrors = {};
 
+    if (!formData.courseId.trim()) {
+      newErrors.courseId = "Course ID is required";
+    }
     if (!formData.title.trim()) {
       newErrors.title = "Material title is required";
     }
-    if (!formData.description.trim()) {
-      newErrors.description = "Description is required";
+    if (!formData.content.trim()) {
+      newErrors.content = "Lesson content is required";
     }
-    if (!formData.file) {
-      newErrors.file = "Please upload a PDF file";
+    if (!formData.orderNumber) {
+      newErrors.orderNumber = "Lesson order number is required";
+    }
+    if (!formData.videoUrl.trim()) {
+      newErrors.videoUrl = "Video URL is required";
+    } else if (!isValidUrl(formData.videoUrl.trim())) {
+      newErrors.videoUrl = "Please enter a valid video URL";
+    }
+    if (!formData.documentUrl.trim()) {
+      newErrors.documentUrl = "Document URL is required";
+    } else if (!isValidUrl(formData.documentUrl.trim())) {
+      newErrors.documentUrl = "Please enter a valid document URL";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      console.log("Form submitted:", formData);
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
+    await handleUpload({
+      title: formData.title.trim(),
+      content: formData.content.trim(),
+      video_url: formData.videoUrl.trim(),
+      document_url: formData.documentUrl.trim(),
+      order_number: Number(formData.orderNumber),
+    });
   };
+
+  useEffect(() => {
+    if (success) {
+      setFormData((prev) => ({
+        ...prev,
+        title: "",
+        content: "",
+        orderNumber: "",
+        videoUrl: "",
+        documentUrl: "",
+      }));
+      setErrors({});
+    }
+  }, [success]);
 
   return (
     <div className="bg-white p-10 max-w-4xl">
-      <Link to="/user-dashboard" className="text-[#7C3AED] text-sm  mb-6 md:hidden">
+      <Link
+        to="/instructor/dashboard"
+        className="text-[#7C3AED] text-sm mb-6 md:hidden"
+      >
         ← Back to Dashboard
       </Link>
+
       <h1 className="text-4xl font-bold text-[#1F2937] mb-2">
         Upload Course Material
       </h1>
       <p className="text-sm text-[#6B7280] mb-10">
-        Provide new course with detailed insights, with materials and instruments for their reusal
+        Add lesson resources with URLs for video and document content.
       </p>
 
-      <div className="mb-6">
-        <label className="block text-sm font-bold text-[#1F2937] mb-2">
-          Course Title
-        </label>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="e.g. Advanced UX Research Methodologies"
-          className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
-        />
-        {errors.title && (
-          <p className="text-red-500 text-xs mt-11">{errors.title}</p>
-        )}
-      </div>
+      {success && (
+        <div className="mb-6 rounded-lg bg-emerald-50 border border-emerald-200 p-4 text-emerald-700">
+          Course material uploaded successfully.
+        </div>
+      )}
+      {error && (
+        <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-red-700">
+          {error}
+        </div>
+      )}
 
-      <div className="mb-6">
-        <label className="block text-sm font-bold text-[#1F2937] mb-2">
-          Course Details/Outline
-        </label>
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Provide insights on the course, what the learner will be coming across by the end of the course study, as well as a listed out step by step curriculum of the course"
-          className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none h-36 resize-none"
-        />
-        {errors.description && (
-          <p className="text-red-500 text-xs mt-1">{errors.description}</p>
-        )}
-      </div>
-
-      <div className="mb-8">
-        <label className="block text-sm font-bold text-[#1F2937] mb-3">
-          Material Upload Zone
-        </label>
-        <div className="border-2 border-dashed border-[#E5E7EB] rounded-xl p-10 flex flex-col items-center justify-center bg-white">
-          {/* Cloud upload icon */}
-          <div className="bg-[#EDE9FE] p-4 rounded-xl mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 text-[#7C3AED]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-              />
-            </svg>
+      <form onSubmit={handleSubmit}>
+        <div className="grid gap-6">
+          <div>
+            <label className="block text-sm font-bold text-[#1F2937] mb-2">
+              Course ID
+            </label>
+            <input
+              type="text"
+              name="courseId"
+              value={formData.courseId}
+              onChange={handleChange}
+              placeholder="Enter the course ID"
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+            />
+            {errors.courseId && (
+              <p className="text-red-500 text-xs mt-1">{errors.courseId}</p>
+            )}
           </div>
 
-          <p className="text-sm font-medium text-[#1F2937] mb-1">
-            Drag and drop your PDF here
-          </p>
-          <p className="text-xs text-[#6B7280] mb-4">
-            Course references, videos, reading materials e.t.c (Max
-            25MB)
-          </p>
+          <div>
+            <label className="block text-sm font-bold text-[#1F2937] mb-2">
+              Lesson Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              placeholder="e.g. Advanced UX Research Methodologies"
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+            />
+            {errors.title && (
+              <p className="text-red-500 text-xs mt-1">{errors.title}</p>
+            )}
+          </div>
 
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={handleFileChange}
-            id="fileInput"
-            className="hidden"
-          />
-          <button
-            onClick={() => document.getElementById("fileInput").click()}
-            className="border border-[#7C3AED] text-[#7C3AED] text-sm px-6 py-2 rounded-lg hover:bg-[#EDE9FE] transition-colors"
-          >
-            Select File
-          </button>
-          {errors.file && (
-            <p className="text-red-500 text-xs mt-2">{errors.file}</p>
-          )}
+          <div>
+            <label className="block text-sm font-bold text-[#1F2937] mb-2">
+              Lesson Content
+            </label>
+            <textarea
+              name="content"
+              value={formData.content}
+              onChange={handleChange}
+              placeholder="Enter the lesson summary or notes for students."
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none h-36 resize-none"
+            />
+            {errors.content && (
+              <p className="text-red-500 text-xs mt-1">{errors.content}</p>
+            )}
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label className="block text-sm font-bold text-[#1F2937] mb-2">
+                Lesson Order Number
+              </label>
+              <input
+                type="number"
+                min="1"
+                name="orderNumber"
+                value={formData.orderNumber}
+                onChange={handleChange}
+                placeholder="e.g. 1"
+                className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+              />
+              {errors.orderNumber && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.orderNumber}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-[#1F2937] mb-2">
+                Video URL
+              </label>
+              <input
+                type="url"
+                name="videoUrl"
+                value={formData.videoUrl}
+                onChange={handleChange}
+                placeholder="https://example.com/course-video"
+                className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+              />
+              {errors.videoUrl && (
+                <p className="text-red-500 text-xs mt-1">{errors.videoUrl}</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-[#1F2937] mb-2">
+              Document URL
+            </label>
+            <input
+              type="url"
+              name="documentUrl"
+              value={formData.documentUrl}
+              onChange={handleChange}
+              placeholder="https://example.com/lesson-document.pdf"
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+            />
+            {errors.documentUrl && (
+              <p className="text-red-500 text-xs mt-1">{errors.documentUrl}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-4 md:flex-row md:justify-end md:items-center mt-2">
+            <button
+              type="button"
+              className="text-[#0029F5] text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#EDE9FE] transition-colors"
+            >
+              Save Draft
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-[#0029F5] disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#1E3A5F] transition-colors"
+            >
+              {loading ? "Publishing..." : "Publish Material"}
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div className="flex justify-end gap-4 mt-6">
-        <button className="text-[#7C3AED] text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#EDE9FE] transition-colors cursor-pointer">
-          Save Draft
-        </button>
-        <button
-          onClick={handleSubmit}
-          className="bg-[#0029F5] text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#1E3A5F] transition-colors cursor-pointer"
-        >
-          Publish Assignment
-        </button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -33,6 +33,8 @@ import CourseOutline from "./features/learning/userPages/CourseOutline";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import LessonPage from "./features/learning/userPages/LessonPage";
 import ProtectedRoute from "./ProtectedRoute";
+import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
+import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
 
 function App() {
   return (
@@ -87,9 +89,16 @@ function App() {
               <Route index element={<Navigate to="dashboard" replace />} />
 
               <Route path="dashboard" element={<InstructorDashboard />} />
-              <Route path="assignments" element={<AssignmentForm />} />
-              <Route path="upload" element={<CourseMaterialForm />} />
+              <Route
+                path="assignments"
+                element={<AssignmentForm />}
+              />
+              <Route
+                path="upload"
+                element={<CourseMaterialForm />}
+              />
               <Route path="profile" element={<InstructorProfile />} />
+              <Route path="live-sessions" element={<InstructorLiveSession />} />
             </Route>
 
             {/* User */}
@@ -106,6 +115,7 @@ function App() {
                 <Route path="progress" element={<MyProgress />} />
                 <Route path="collaboration" element={<CollaborationHub />} />
                 <Route path="course" element={<LessonPage />} />
+                <Route path="live-sessions" element={<LearnerLiveSession />} />
               </Route>
             </Route>
           </Routes>

@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { uploadCourseMaterial } from "../../api/instructorApi";
+import { createAssignment } from "../../api/instructorApi";
 
-const useUploadCourseMaterial = (courseId) => {
+const useCreateAssignment = (courseId) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const handleUpload = async (lessonData) => {
+  const handleCreateAssignment = async (assignmentData) => {
     setLoading(true);
     setError(null);
     setSuccess(false);
 
     try {
-      await uploadCourseMaterial(courseId, lessonData);
+      await createAssignment(courseId, assignmentData);
       setSuccess(true);
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
@@ -21,7 +21,7 @@ const useUploadCourseMaterial = (courseId) => {
     }
   };
 
-  return { handleUpload, loading, error, success };
+  return { handleCreateAssignment, loading, error, success };
 };
 
-export default useUploadCourseMaterial;
+export default useCreateAssignment;
