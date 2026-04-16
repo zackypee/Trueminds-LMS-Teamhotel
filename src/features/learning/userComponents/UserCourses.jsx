@@ -26,8 +26,7 @@ const UserCourses = ({ selectedCategory, allCourses}) => {
   const ongoingClasses = [
     {
       imgg: class1,
-      topic:
-        "Natural Language Processing (NLP): Teaching computers to understand...",
+      topic:"Natural Language Processing (NLP): Teaching computers to understand...",
       tutor: "Sola Afeni",
       percentage: "30",
       totalLessons: "10",
