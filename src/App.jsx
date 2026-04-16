@@ -18,7 +18,7 @@ import Login from "./features/auth/pages/Login";
 import ForgetPasswordPage from "./features/auth/pages/ForgetPasswordPage";
 import ResetPasswordAuthPage from "./features/auth/pages/ResetPasswordAuthPage";
 import ResetPasswordProtectedRoute from "./features/auth/protectedRoute/ResetPasswordProtectedRoute";
-import {isEmailVerified } from "./features/auth/utils/storage";
+import { isEmailVerified } from "./features/auth/utils/storage";
 
 import CourseLearningLayout from "./layouts/CourseLearningLayout";
 import LessonContent from "./features/learning/userComponents/LessonContent";
@@ -33,8 +33,7 @@ import LessonPage from "./features/learning/userPages/LessonPage";
 import CourseCatalogue from "./features/learning/userPages/CourseCatalogue";
 import UserProfile from "./features/learning/userPages/UserProfile";
 import UserDashboard from "./features/learning/userPages/UserDashboard";
-
-
+import UserNotification from "./features/learning/userPages/UserNotification";
 //Import Learner Components
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
@@ -48,7 +47,6 @@ import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -60,32 +58,47 @@ function App() {
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
+            <Route path="/notifications" element={<UserNotification />} />
 
             {/* Protected Reset Password routes */}
-            <Route element={<ResetPasswordProtectedRoute check={isEmailVerified} 
-              redirectTo="/forget-password"/>}
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={isEmailVerified}
+                  redirectTo="/forget-password"
+                />
+              }
             >
-              <Route path="/reset-password-auth" element={<ResetPasswordAuthPage />}/>
+              <Route
+                path="/reset-password-auth"
+                element={<ResetPasswordAuthPage />}
+              />
             </Route>
 
-            <Route element={<ResetPasswordProtectedRoute check={isEmailVerified}
-              redirectTo="/forget-password"/>}
+            <Route
+              element={
+                <ResetPasswordProtectedRoute
+                  check={isEmailVerified}
+                  redirectTo="/forget-password"
+                />
+              }
             >
               <Route path="/reset-password" element={<ResetPasswordPage />} />
             </Route>
 
-
             {/* Admin */}
             <Route path="admin" element={<AdminLayout />}>
-              <Route index element={<Navigate to="team-allocation" replace />} />
+              <Route
+                index
+                element={<Navigate to="team-allocation" replace />}
+              />
               <Route path="team-allocation" element={<TeamAllocationPage />} />
               <Route path="reports" element={<Reports />} />
               <Route path="user-management" element={<UserManagement />} />
- 
             </Route>
 
             {/* Instructor (Protected) */}
-            <Route element={<ProtectedRoute allowedRole={["instructor"]}/>}>
+            <Route element={<ProtectedRoute allowedRole={["instructor"]} />}>
               <Route path="instructor" element={<InstructorDashboardLayout />}>
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<InstructorDashboard />} />
@@ -109,10 +122,9 @@ function App() {
                 <Route path="course" element={<LessonPage />} />
               </Route>
             </Route>
-
           </Routes>
-       </SearchProvider>
-     </AuthLoginProvider>
+        </SearchProvider>
+      </AuthLoginProvider>
     </BrowserRouter>
   );
 }
