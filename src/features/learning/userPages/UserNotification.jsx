@@ -1,4 +1,4 @@
-import Notification from "../userComponents/Notification";
+import Notification from "../userComponents/Notification"
 export default function UserNotification() {
   return (
     <div>
