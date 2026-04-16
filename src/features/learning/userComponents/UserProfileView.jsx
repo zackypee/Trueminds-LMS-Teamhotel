@@ -8,7 +8,6 @@ import PencilImage from "../../../assets/pencil.png";
 export default function UserProfileView({handleModalOpen, userProfile}) {
   
 
-
   function DetailItem({ label, value }) {
     return (
       <div>
@@ -54,7 +53,7 @@ export default function UserProfileView({handleModalOpen, userProfile}) {
               {userProfile.id}
             </p>
             <p className="text-gray-600 bg-[#E9DDFF] px-4 py-2 rounded-full">
-              {userProfile.status}
+              {userProfile?.status}
             </p>
             <p className="text-gray-600 bg-[#BB9EFF] px-4 py-2 rounded-full">
               {userProfile.role}
