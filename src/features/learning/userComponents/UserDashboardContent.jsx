@@ -4,6 +4,7 @@ import chika from '../../../assets/chika.jpg';
 import ejike from '../../../assets/ejike.jpg';
 import frontend from '../../../assets/frontend.jpg';
 import languages from '../../../assets/languages.jpg';
+import LoadingState from '../../../components/LoadingState';
 
 import { useAuth } from '../../auth/context/AuthLoginContext';
 
@@ -140,17 +141,12 @@ const UserDashboardContent = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full bg-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0029F5] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
-        </div>
-      </div>
+      <LoadingState/>
     );
   }
 
   return (
-  <div className="bg-white min-h-full p-4 sm:p-6 md:p-8">
+  <div className="bg-white min-h-full p-4 sm:px-6 md:px-8">
     {/* Welcome Section */}
     <div className="mb-6 sm:mb-8">
       <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-bold leading-tight mt-16 sm:mt-18 md:mt-20">
