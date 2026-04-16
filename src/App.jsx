@@ -46,6 +46,9 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+import HowInternetWorks from "./features/learning/userComponents/HowInternetWorks";
+import DevToolsLearningPage from "./features/learning/userComponents/DevToolLearningPage";
+import ViewAssignmentsPage from "./features/learning/userComponents/ViewAssigmentPage";
 
 function App() {
   return (
