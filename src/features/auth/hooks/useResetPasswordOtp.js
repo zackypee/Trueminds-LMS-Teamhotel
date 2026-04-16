@@ -45,4 +45,4 @@ const useResetPasswordOtp = (length = 4) => {
   };
 };
 
-export default useResetPasswordOtp
+export default useResetPasswordOtp;

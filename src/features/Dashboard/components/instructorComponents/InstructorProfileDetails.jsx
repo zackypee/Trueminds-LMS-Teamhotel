@@ -2,7 +2,9 @@ import React from "react";
 import PortfolioLogo from "../../../../assets/portfoliologo.png"; // Import a portfolio icon for showcasing work
 import MentorLogo from "../../../../assets/mentorlogo.png"; // Import a mentor icon for guidance
 import FlowLogo from "../../../../assets/flowlogo.png"; // Import a flow icon for workflow
-export default function ProfileDetails() {
+import { enrollDateFormat } from "../../../../globalUtils/utils";
+
+export default function ProfileDetails({userProfile}) {
   return (
     <main className="max-w-full w-full flex flex-col gap-6 p-4 md:p-5">
       {/* Professional Details Section */}
@@ -81,7 +83,7 @@ export default function ProfileDetails() {
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
               Enrolled Date
             </p>
-            <p className="font-medium"> Jan 12, 2026 </p>
+            <p className="font-medium"> {enrollDateFormat(userProfile.created_at)}</p>
           </span>
           <span>
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
