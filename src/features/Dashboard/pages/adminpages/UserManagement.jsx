@@ -9,9 +9,13 @@ import user2 from "../../../../assets/user2.png";
 import user3 from "../../../../assets/user3.png";
 import user4 from "../../../../assets/user4.png";
 import { useUsers } from "../../hooks/adminHooks/useUsers";
+import CreateAccountForm from "../../components/adminComponents/CreateAccountForm";
 
 const UserManagement = () => {
   const { users: apiUsers, loading, error, fetchUsers } = useUsers();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log("API USERS:", apiUsers);
 
   const [filters, setFilters] = useState({
     name: "",
@@ -26,12 +30,29 @@ const UserManagement = () => {
     fetchUsers();
   }, []);
 
-  const users = apiUsers || [];
+  const users = apiUsers?.data?.users || [];
+
+  const mappedUsers = users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+
+    imgg: user.avatar || `https://i.pravatar.cc/150?u=${user.id}`,
+
+    role: user.role,
+
+    allocation: user.allocation || "Not Assigned",
+
+    status: user.is_verified ? "Active" : "Pending",
+  }));
 
   const ITEMS_PER_PAGE = 4;
-  const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(mappedUsers.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentUsers = users.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentUsers = mappedUsers.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
   // const users = [
   //   {
@@ -250,12 +271,33 @@ const UserManagement = () => {
           <h1 className="text-[#FFFFFF] text-[20px] font-semibold">
             Scale your team further
           </h1>
-          <button className="rounded w-full border border-[#E5E7EB] h-13.25 mt-4 text-[#FFFFFF] text-[14px] font-semibold flex items-center gap-3 justify-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="rounded w-full border border-[#E5E7EB] h-13.25 mt-4 text-[#FFFFFF] text-[14px] font-semibold flex items-center gap-3 justify-center cursor-pointer"
+          >
             <FiUserPlus />
             Add New User
           </button>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white rounded-xl w-full max-w-md p-8 relative">
+            {/* close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-3 right-3"
+            >
+              ✕
+            </button>
+
+            <CreateAccountForm
+              onClose={() => setIsModalOpen(false)}
+              onSuccess={fetchUsers}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="bg-[#ffffff] border-b border-[#E7EEFF] flex items-center justify-between h-19.5 mb-4 py-5 px-8">
         <div className="flex items-center gap-3">
