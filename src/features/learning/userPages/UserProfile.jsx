@@ -5,8 +5,7 @@ import UserProfileDetails from "../userComponents/UserProfileDetails";
 import useUserProfile from "../../../globalHooks/useUserProfile";
 import LoadingState from "../../../components/LoadingState";
 import ErrorMessage from "../../../components/ErrorMessage";
-import UserEditProfileModal from "../userComponents/UserEditProfileModal"
-
+import UserEditProfileModal from "../userComponents/UserEditProfileModal";
 
 function UserProfile() {
   const { userProfile, loading, error, setRefresh } = useUserProfile();
@@ -17,31 +16,30 @@ function UserProfile() {
     setModalOpen(true);
   }
 
-  function handleCloseModal(){
-    setModalOpen(false)
-  }
- 
-  if(loading){
-   return (
-     <LoadingState/>
-    )
+  function handleCloseModal() {
+    setModalOpen(false);
   }
 
-  if(error){
-   return (
-     <ErrorMessage message={error} className="flex items-center justify-center h-full bg-white"/>
-    )
+  if (loading) {
+    return <LoadingState />;
+  }
+
+  if (error) {
+    return (
+      <ErrorMessage
+        message={error}
+        className="flex items-center justify-center h-full bg-white"
+      />
+    );
   }
 
   return (
-    <div className="flex w-full gap-5 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5 p-4">
       <UserProfileView
         userProfile={userProfile}
         handleModalOpen={handleModalOpen}
       />
-      <UserProfileDetails
-        userProfile={userProfile}
-      />
+      <UserProfileDetails userProfile={userProfile} />
 
       {modalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -59,7 +57,11 @@ function UserProfile() {
 
             {/* Modal Content (Scrollable) */}
             <div className="overflow-y-auto">
-              <UserEditProfileModal  onClose={handleCloseModal} UserProfile={userProfile} setRefresh={setRefresh} />
+              <UserEditProfileModal
+                onClose={handleCloseModal}
+                userProfile={userProfile}
+                setRefresh={setRefresh}
+              />
             </div>
           </div>
         </div>

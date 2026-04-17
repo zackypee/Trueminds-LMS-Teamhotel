@@ -20,24 +20,14 @@ const UserDashboardContent = () => {
     progress: 62
   });
   const [loading, setLoading] = useState(true);
-  const [activeCourses, setActiveCourses] = useState([
-    {
-      id: 1,
-      title: 'Natural Language Processing (NLP): Teaching computers to understand...',
-      module: 'Module 4: User Research Methods',
-      progress: 30,
-      image: languages,
-      color: '#0D9488'
-    },
-    {
-      id: 2,
-      title: 'Frontend Development: HTML, CSS and JavaScript focus',
-      module: 'Module 2: Editorial Layouts',
-      progress: 65,
-      image: frontend,
-      color: '#0D9488'
-    }
-  ]);
+
+  const [activeCourses, setActiveCourses] = useState([]);
+    useEffect(() => {
+      const storedCourses = JSON.parse(localStorage.getItem("ongoingCourses")) || [];
+      setActiveCourses(storedCourses);
+  }, []);
+
+
   const [upcomingTasks, setUpcomingTasks] = useState([
     {
       id: 1,
@@ -184,7 +174,7 @@ const UserDashboardContent = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 {/* Course Image */}
                 <img 
-                  src={course.image} 
+                  src={course.imgg} 
                   alt={course.title}
                   className="w-full sm:w-[108px] h-[98px] object-cover rounded"
                 />
@@ -197,7 +187,7 @@ const UserDashboardContent = () => {
                     </h3>
                     <div className="flex items-center gap-2">
                       <span className="text-[14px] font-extrabold text-[#001C3B]">
-                        {course.progress}%
+                        {course.percentage}%
                       </span>
                       <button 
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
@@ -221,8 +211,8 @@ const UserDashboardContent = () => {
                       <div 
                         className="h-2 rounded-full transition-all duration-500"
                         style={{ 
-                          width: `${course.progress}%`,
-                          backgroundColor: course.color 
+                          width: `${course.percentage}%`,
+                          backgroundColor: "#0D9488"
                         }}
                       />
                     </div>

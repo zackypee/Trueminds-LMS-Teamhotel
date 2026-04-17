@@ -29,7 +29,7 @@ const CourseCatalogue = () => {
 
   return (
     <div className="min-h-screen " >
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-4">
         <UserCourseCatalogueSidebar
           setCategory={setCategory}
           selectedCategory={category}

@@ -17,6 +17,8 @@ const UserManagement = () => {
 
   console.log("API USERS:", apiUsers);
 
+  console.log("Users", users)
+
   const [filters, setFilters] = useState({
     name: "",
     email: "",
