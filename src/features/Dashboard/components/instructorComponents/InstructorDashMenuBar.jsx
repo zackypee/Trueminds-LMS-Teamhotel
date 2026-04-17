@@ -7,10 +7,12 @@ import dashboardIcon from "../../../../assets/dashboard-icon.png"
 import uploadIcon from "../../../../assets/upload-icon.png"
 import userIcon from "../../../../assets/user-profile-logo.png"
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
+import LogOutModal from "../../../../components/LogOutModal";
 
-export default function InstrucDashMenuBar() {
+export default function InstrucDashMenuBar({ onMenuClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const {onHandleLogout} = useLogoutUser();
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
   const location = useLocation(); 
 
   const navItems = [
@@ -110,12 +112,21 @@ export default function InstrucDashMenuBar() {
       {/* Bottom Section */}
       <div className="flex flex-col gap-4">
         {/* Logout */}
-        <button 
-        onClick={onHandleLogout}
+        <button
+          onClick={() => setIsLogOutOpen(true)}
         className="flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors text-[#6B7280] hover:text-red-500 hover:bg-red-50 hover:border-r-4 hover:border-red-500">
           <img src={logOutLogo} alt="" className="w-5 h-5" />
           Logout
         </button>
+        {isLogOutOpen && (
+              <LogOutModal
+                onClose={() => setIsLogOutOpen(false)}
+                onConfirm={() => {
+                  onHandleLogout();
+                  setIsLogOutOpen(false);
+                }}
+              />
+            )}
 
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">

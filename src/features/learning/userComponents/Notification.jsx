@@ -5,6 +5,7 @@ import MessageIcon from "../../../assets/messageicon.png";
 import AshBellIcon from "../../../assets/ashbellicon.png";
 import AshmessageIcon from "../../../assets/ashmessageicon.png";
 import bookIcon from "../../../../src/assets/book-icon.png"
+import backIcon from "../../../../src/assets/arrow-back-icon.png"
 
 export default function Notification() {
   const navigate = useNavigate();
@@ -141,6 +142,9 @@ export default function Notification() {
       <h2 className="text-[32px] font-bold mb-6 bg-[#1E3A5F] p-8 text-white">
         Notifications
       </h2>
+      <button className="flex gap-2 items-center text-[#0029F5] cursor-pointer mb-4 px-4"
+      onClick={()=> {navigate("/learner")}}
+      ><span><img src={backIcon} alt="" /></span> Back to Dashboard</button>
 
       {notifications.length === 0 ? (
         <div className="text-center py-20 bg-gray-50 rounded-lg border-2 border-dashed">

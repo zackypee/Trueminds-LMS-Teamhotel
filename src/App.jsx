@@ -55,12 +55,14 @@ function App() {
       <AuthLoginProvider>
         <SearchProvider>
           <Routes>
-            <Route path="/" element={<Certificate />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
             <Route path="/notifications" element={<UserNotification />} />
+            <Route path="/certificate" element={<Certificate />} />
+            
 
             {/* Protected Reset Password routes */}
             <Route
