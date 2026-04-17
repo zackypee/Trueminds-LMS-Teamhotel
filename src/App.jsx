@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
+
+import { ScrollToTop } from "./components/ScrollToTop";
 //Import Providers Components
 import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import { SearchProvider } from "./features/learning/context/SearchContext";
@@ -54,6 +56,7 @@ function App() {
     <BrowserRouter>
       <AuthLoginProvider>
         <SearchProvider>
+          <ScrollToTop/>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />

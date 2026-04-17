@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import bell from "../../../assets/bell.png";
@@ -7,10 +7,14 @@ import { useSearchQuery } from "../context/SearchContext";
 import useLogoutUser from "../../auth/hooks/useLogoutUser";
 import { useNavigate } from "react-router-dom";
 import ProfileImage from "../../../assets/profileimage.jpg";
+import useUserProfile from "../../../globalHooks/useUserProfile";
 import LogOutModal from "../../../components/LogOutModal";
 
 
 const Navbar = ({ onMenuClick }) => {
+
+  const {userProfile } = useUserProfile();
+  
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
   const { onHandleLogout } = useLogoutUser();
@@ -90,7 +94,7 @@ const Navbar = ({ onMenuClick }) => {
         </div>
 
         <img
-          src={ProfileImage}
+          src={userProfile?.avatar || ProfileImage}
           alt="Profile"
           className="h-8 w-8 rounded-xl cursor-pointer"
           onClick={() => setIsOpen(true)}

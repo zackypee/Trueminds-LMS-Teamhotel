@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import assignmentLogo from "../../../../assets/assignment-icon.png"
 import logOutLogo from "../../../../assets/logout-icon.png"
@@ -7,13 +7,16 @@ import dashboardIcon from "../../../../assets/dashboard-icon.png"
 import uploadIcon from "../../../../assets/upload-icon.png"
 import userIcon from "../../../../assets/user-profile-logo.png"
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
+import useUserProfile from "../../../../globalHooks/useUserProfile";
 import LogOutModal from "../../../../components/LogOutModal";
 
 export default function InstrucDashMenuBar({ onMenuClick }) {
+  const {userProfile} = useUserProfile();
   const [mobileOpen, setMobileOpen] = useState(false);
   const {onHandleLogout} = useLogoutUser();
   const [isLogOutOpen, setIsLogOutOpen] = useState(false)
   const location = useLocation(); 
+
 
   const navItems = [
     {
@@ -132,11 +135,11 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
         <div className="flex items-center gap-3 px-3 py-3">
           <img
             src={profileImg}
-            alt=""
+            alt={userProfile?.name}
             className="w-9 h-9 rounded-full object-cover"
           />
           <div>
-            <h2 className="text-xs font-bold text-[#111827]">Tunde Adeyemi</h2>
+            <h2 className="text-xs font-bold text-[#111827]">{userProfile.name}</h2>
             <p className="text-[10px] text-[#9CA3AF]">
               Nexus cohort instructor
             </p>
