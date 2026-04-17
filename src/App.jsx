@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
+
+import { ScrollToTop } from "./components/ScrollToTop";
 //Import Providers Components
 import { AuthLoginProvider } from "./features/auth/context/AuthLoginContext";
 import { SearchProvider } from "./features/learning/context/SearchContext";
@@ -46,6 +48,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+import Certificate from "./features/learning/userPages/Certificate";
 
 
 function App() {
@@ -53,6 +56,7 @@ function App() {
     <BrowserRouter>
       <AuthLoginProvider>
         <SearchProvider>
+          <ScrollToTop/>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
@@ -60,6 +64,8 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
             <Route path="/notifications" element={<UserNotification />} />
+            <Route path="/certificate" element={<Certificate />} />
+            
 
             {/* Protected Reset Password routes */}
             <Route
@@ -89,10 +95,7 @@ function App() {
 
             {/* Admin */}
             <Route path="admin" element={<AdminLayout />}>
-              <Route
-                index
-                element={<Navigate to="team-allocation" replace />}
-              />
+              <Route index element={<Navigate to="team-allocation" replace />}/>
               <Route path="team-allocation" element={<TeamAllocationPage />} />
               <Route path="reports" element={<Reports />} />
               <Route path="user-management" element={<UserManagement />} />

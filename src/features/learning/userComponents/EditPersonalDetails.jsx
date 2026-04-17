@@ -31,7 +31,7 @@ const labelClass = "block text-xs font-medium text-[#6B7A95] mb-1.5";
 export default function EditPersonalDetails({ onSave, onCancel, isUpdating}) {
 
   const navigate = useNavigate()
-  // ✅ ALL hooks inside the component
+  // ALL hooks inside the component
   const [formData, setFormData] = useState({
     name: "",
     email: "",

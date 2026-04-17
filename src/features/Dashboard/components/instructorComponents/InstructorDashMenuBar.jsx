@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import assignmentLogo from "../../../../assets/assignment-icon.png"
 import logOutLogo from "../../../../assets/logout-icon.png"
@@ -7,11 +7,16 @@ import dashboardIcon from "../../../../assets/dashboard-icon.png"
 import uploadIcon from "../../../../assets/upload-icon.png"
 import userIcon from "../../../../assets/user-profile-logo.png"
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
+import useUserProfile from "../../../../globalHooks/useUserProfile";
+import LogOutModal from "../../../../components/LogOutModal";
 
-export default function InstrucDashMenuBar() {
+export default function InstrucDashMenuBar({ onMenuClick }) {
+  const {userProfile} = useUserProfile();
   const [mobileOpen, setMobileOpen] = useState(false);
   const {onHandleLogout} = useLogoutUser();
-  const location = useLocation(); // ← tracks current URL
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
+  const location = useLocation(); 
+
 
   const navItems = [
     {
@@ -78,8 +83,8 @@ export default function InstrucDashMenuBar() {
               className={`flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors
                 ${
                   location.pathname === item.path
-                    ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
-                    : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
+                    ? "text-[#64748B] bg-[#ebeffb] border-r-4 border-[#0029F5]"
+                    : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
                 }`}
             >
               <img src={item.icon} alt="" className="size-4.5" />
@@ -94,8 +99,8 @@ export default function InstrucDashMenuBar() {
               className={`flex mt-2 items-center gap-2 px-3 py-2 text-sm transition-colors
               ${
                 location.pathname === "/instructor-dashboard/instructor-profile"
-                  ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
-                  : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
+                  ? "text-[#64748B] bg-[#0029F5] border-r-4 border-[#0029F5]"
+                  : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
               }`}
             >
               <span>
@@ -110,22 +115,31 @@ export default function InstrucDashMenuBar() {
       {/* Bottom Section */}
       <div className="flex flex-col gap-4">
         {/* Logout */}
-        <button 
-        onClick={onHandleLogout}
+        <button
+          onClick={() => setIsLogOutOpen(true)}
         className="flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors text-[#6B7280] hover:text-red-500 hover:bg-red-50 hover:border-r-4 hover:border-red-500">
           <img src={logOutLogo} alt="" className="w-5 h-5" />
           Logout
         </button>
+        {isLogOutOpen && (
+              <LogOutModal
+                onClose={() => setIsLogOutOpen(false)}
+                onConfirm={() => {
+                  onHandleLogout();
+                  setIsLogOutOpen(false);
+                }}
+              />
+            )}
 
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">
           <img
             src={profileImg}
-            alt=""
+            alt={userProfile?.name}
             className="w-9 h-9 rounded-full object-cover"
           />
           <div>
-            <h2 className="text-xs font-bold text-[#111827]">Tunde Adeyemi</h2>
+            <h2 className="text-xs font-bold text-[#111827]">{userProfile.name}</h2>
             <p className="text-[10px] text-[#9CA3AF]">
               Nexus cohort instructor
             </p>

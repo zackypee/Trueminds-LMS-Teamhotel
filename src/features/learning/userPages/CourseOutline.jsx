@@ -4,6 +4,7 @@ import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
 import useGetCourseDetails from "../userHooks/useGetCourseDetail";
 import useEnrollInCourse from "../userHooks/useEnrollInCourse";
 import { Button } from "../../../components/Button";
+import { courses } from "../lessonsData";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -18,11 +19,24 @@ export default function CourseOutline() {
     console.log("error", error)
 
     const OnHandleClick = async () => {
-        //if logic to be updated
-       await handleEnroll(id);
-       navigate("/learner/dashboard")
+        await handleEnroll(id);
 
-    }
+        const course = courses.find(course => course.id === Number(id));
+
+        if (course) {
+            const existingCourses =
+            JSON.parse(localStorage.getItem("ongoingCourses")) || [];
+
+            // prevent duplicates
+            const alreadyExists = existingCourses.some(c => c.id === id);
+
+            if (!alreadyExists) {
+                const updatedCourses = [...existingCourses, course];
+                localStorage.setItem("ongoingCourses",JSON.stringify(updatedCourses));
+            }
+        }
+        navigate("/learner/dashboard");
+    };
 
   const list=[
     {
@@ -149,19 +163,19 @@ export default function CourseOutline() {
                 <p className="text-[16px] text-[#000000] font-normal leading-[28.8px] ">
                 {readMore ? aboutText : aboutText.slice(0, 408)}...
                 </p>
-                <p onClick={() => setReadMore(!readMore)} >
+                <div onClick={() => setReadMore(!readMore)} >
                     {readMore?(
-                    <div className="flex items-center">
-                        <p className="text-[16px] text-[#0029F5]">Read Less</p>
+                    <p className="flex items-center">
+                        <span className="text-[16px] text-[#0029F5]">Read Less</span>
                         <RiArrowDropUpLine className="text-[16px] text-[#0029F5]" />
-                    </div>)
+                    </p>)
                     :(
-                    <div className="flex items-center">  
-                        <p className="text-[16px] text-[#0029F5]">Read More</p>
+                    <p className="flex items-center">  
+                        <span className="text-[16px] text-[#0029F5]">Read More</span>
                         <RiArrowDropDownLine  className="text-[26px] text-[#0029F5]"/>
-                    </div> 
+                    </p> 
                     )}
-                </p>
+                </div>
             </div>
        </div>
 

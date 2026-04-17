@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import chika from '../../../assets/chika.jpg'; 
 import ejike from '../../../assets/ejike.jpg';
-import frontend from '../../../assets/frontend.jpg';
-import languages from '../../../assets/languages.jpg';
 import LoadingState from '../../../components/LoadingState';
-
 import { useAuth } from '../../auth/context/AuthLoginContext';
 
 
@@ -20,24 +17,19 @@ const UserDashboardContent = () => {
     progress: 62
   });
   const [loading, setLoading] = useState(true);
-  const [activeCourses, setActiveCourses] = useState([
-    {
-      id: 1,
-      title: 'Natural Language Processing (NLP): Teaching computers to understand...',
-      module: 'Module 4: User Research Methods',
-      progress: 30,
-      image: languages,
-      color: '#0D9488'
-    },
-    {
-      id: 2,
-      title: 'Frontend Development: HTML, CSS and JavaScript focus',
-      module: 'Module 2: Editorial Layouts',
-      progress: 65,
-      image: frontend,
-      color: '#0D9488'
-    }
-  ]);
+  
+  const [activeCourses, setActiveCourses] = useState([]);
+  useEffect(() => {
+    const storedCourses = JSON.parse(localStorage.getItem("ongoingCourses")) || [];
+    setActiveCourses(storedCourses);
+
+  }, []);
+
+  useEffect(() => {
+      
+    }, []);
+
+
   const [upcomingTasks, setUpcomingTasks] = useState([
     {
       id: 1,
@@ -163,10 +155,12 @@ const UserDashboardContent = () => {
     <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
       {/* Left Column - Active Learning */}
       <div className="w-full lg:w-[60%]">
+        { activeCourses.length > 0 && (
+        <>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
           <h2 className="text-[20px] sm:text-[22px] md:text-[24px] font-semibold text-[#1F2937]">Active Learning</h2>
           <button 
-            onClick={() => navigate('/courses')}
+            onClick={() => navigate('../courses')}
             className="text-[14px] font-semibold text-[#0029F5] hover:underline cursor-pointer"
           >
             View All Courses
@@ -184,7 +178,7 @@ const UserDashboardContent = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 {/* Course Image */}
                 <img 
-                  src={course.image} 
+                  src={course.imgg} 
                   alt={course.title}
                   className="w-full sm:w-[108px] h-[98px] object-cover rounded"
                 />
@@ -197,7 +191,7 @@ const UserDashboardContent = () => {
                     </h3>
                     <div className="flex items-center gap-2">
                       <span className="text-[14px] font-extrabold text-[#001C3B]">
-                        {course.progress}%
+                        {course.percentage}%
                       </span>
                       <button 
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
@@ -221,8 +215,8 @@ const UserDashboardContent = () => {
                       <div 
                         className="h-2 rounded-full transition-all duration-500"
                         style={{ 
-                          width: `${course.progress}%`,
-                          backgroundColor: course.color 
+                          width: `${course.percentage}%`,
+                          backgroundColor: "#0D9488"
                         }}
                       />
                     </div>
@@ -232,7 +226,8 @@ const UserDashboardContent = () => {
             </div>
           ))}
         </div>
-
+        </>
+        )}
         {/* Ready for More Box */}
         <div className="mt-6 sm:mt-8 md:mt-12 bg-gradient-to-r from-[#455F87] to-[#0D9488] rounded-[8px] p-4 sm:p-6 text-white md:w-xs">
           <h3 className="text-[16px] sm:text-[18px] font-extrabold leading-[28px]">Ready for more?</h3>
