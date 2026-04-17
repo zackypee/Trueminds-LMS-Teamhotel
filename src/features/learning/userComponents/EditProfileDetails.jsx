@@ -1,5 +1,6 @@
 import React from 'react'
 import editProfileImg from '../../../assets/edit-profile-img.png'
+import { enrollDateFormat } from '../../../globalUtils/utils'
 
 const CameraIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -8,13 +9,17 @@ const CameraIcon = () => (
   </svg>
 )
 
-const programData = [
-  { label: 'Assigned Mentor', value: 'Tunde Adeyemi' },
-  { label: 'Cohort Group', value: 'Design Alpha-24' },
-  { label: 'Enrolled Date', value: 'Jan 12, 2026' },
-]
+
 
 export default function EditProfileDetails({ userProfile }) {
+
+  const enrollDate = enrollDateFormat(userProfile.created_at)
+
+  const programData = [
+    { label: 'Assigned Mentor', value: 'Tunde Adeyemi' },
+    { label: 'Cohort Group', value: 'Design Alpha-24' },
+    { label: 'Enrolled Date', value: enrollDate },
+  ]
   return (
     <div className="w-full lg:w-72 flex-shrink-0 flex flex-col gap-5">
 

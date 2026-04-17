@@ -89,10 +89,7 @@ function App() {
 
             {/* Admin */}
             <Route path="admin" element={<AdminLayout />}>
-              <Route
-                index
-                element={<Navigate to="team-allocation" replace />}
-              />
+              <Route index element={<Navigate to="team-allocation" replace />}/>
               <Route path="team-allocation" element={<TeamAllocationPage />} />
               <Route path="reports" element={<Reports />} />
               <Route path="user-management" element={<UserManagement />} />

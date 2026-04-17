@@ -26,7 +26,7 @@ export default function UserEditProfileModal({ onClose, userProfile, setRefresh 
       </div>
       {updateError && <p className="text-red-500 text-sm mb-4">{updateError}</p>}
       <div className="flex flex-col lg:flex-row gap-5 items-start">
-        <EditProfileDetails userProfile={userProfile} />  {/* ✅ pass profile data */}
+        <EditProfileDetails userProfile={userProfile} />  
         <EditPersonalDetails
           onSave={handleSave}
           onCancel={onClose} 

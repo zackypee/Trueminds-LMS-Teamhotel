@@ -10,7 +10,7 @@ import { Button } from "../../../components/Button";
 const roleRoutes = {
   learner:"/learner/dashboard", 
   instructor:"/instructor/dashboard",
-  admin:"/admin/dashboard"
+  admin:"/admin/team-allocation"
 }
 
 

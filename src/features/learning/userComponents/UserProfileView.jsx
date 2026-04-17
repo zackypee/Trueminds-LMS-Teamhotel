@@ -3,6 +3,7 @@ import ProfileImage from "../../../assets/profileimage.jpg";
 import ProfileLogo from "../../../assets/profilelogo.png";
 import PencilImage from "../../../assets/pencil.png";
 import personIcon from "../../../assets/person-icon.png";
+import { enrollDateFormat } from "../../../globalUtils/utils";
 
 export default function UserProfileView({ handleModalOpen, userProfile }) {
   const defaultProfile = {

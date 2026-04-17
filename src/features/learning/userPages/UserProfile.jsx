@@ -59,7 +59,7 @@ function UserProfile() {
             <div className="overflow-y-auto">
               <UserEditProfileModal
                 onClose={handleCloseModal}
-                UserProfile={userProfile}
+                userProfile={userProfile}
                 setRefresh={setRefresh}
               />
             </div>
