@@ -12,8 +12,7 @@ const AdminSideBar = () => {
   const navItems = [
     { id: "team-allocation", label: "Team Allocation", icon: teamAllocIcon },
     { id: "user-management", label: "User Management", icon: userManagementIcon,},
-    { id: "reports", label: "Reports", icon: reportsIcon },
-    { id: "settings", label: "Settings", icon: settingsIcon },
+    { id: "reports", label: "Reports", icon: reportsIcon }
   ];
 
   return (
