@@ -16,7 +16,7 @@ export const courses = [
       id:1, 
       imgg: class3,
       title: "Frontend Development: HTML, CSS and JavaScript focus",
-      percentage: "65",
+      percentage: "5",
       totalLessons: "20",
       completeLessons: "12",
       instructor: "Oscar Audu",
