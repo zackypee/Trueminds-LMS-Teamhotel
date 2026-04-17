@@ -8,6 +8,7 @@ import useLogoutUser from "../../auth/hooks/useLogoutUser";
 import { useNavigate } from "react-router-dom";
 import ProfileImage from "../../../assets/profileimage.jpg";
 import useUserProfile from "../../../globalHooks/useUserProfile";
+import LogOutModal from "../../../components/LogOutModal";
 
 
 const Navbar = ({ onMenuClick }) => {
@@ -17,11 +18,13 @@ const Navbar = ({ onMenuClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
   const { onHandleLogout } = useLogoutUser();
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
   const navigate = useNavigate();
 
   function handleNotificationsClick() {
     navigate("../notifications");
   }
+  
 
   return (
     <nav className="px-6 py-4 bg-[#ffffff] h-16 shadow-[0px_1px_2px_0px_rgba(30,58,138,0.05)] flex items-center justify-between fixed left-0 right-0 z-2">
@@ -127,12 +130,27 @@ const Navbar = ({ onMenuClick }) => {
             <Link >Account Settings</Link>
             <Link>Language</Link>
             <Link>Help and Support</Link>
-            <Link onClick={onHandleLogout}>Logout</Link>
+            <Link
+             onClick={() => {
+                  setIsOpen(false);        
+                  setIsLogOutOpen(true);   
+                }}
+             >Logout</Link>
             <Link>Contact Us</Link>
           </div>
         </div>
       )}
+      {isLogOutOpen && (
+      <LogOutModal
+        onClose={() => setIsLogOutOpen(false)}
+        onConfirm={() => {
+          onHandleLogout();
+          setIsLogOutOpen(false);
+        }}
+      />
+    )}
     </nav>
+     
   );
 };
 
