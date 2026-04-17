@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useCreateAssignment from "../../hooks/instructorHooks/useCreateAssignment";
 
-function InstructorAssignmentForm() {
+function InstructorAssignmentForm({ courseId = "" }) {
   const [formData, setFormData] = useState({
-    courseId: "",
     title: "",
     description: "",
     dueDate: "",
@@ -12,7 +11,7 @@ function InstructorAssignmentForm() {
   const [errors, setErrors] = useState({});
 
   const { handleCreateAssignment, loading, error, success } =
-    useCreateAssignment(formData.courseId.trim());
+    useCreateAssignment();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,9 +20,6 @@ function InstructorAssignmentForm() {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.courseId.trim()) {
-      newErrors.courseId = "Course ID is required";
-    }
     if (!formData.title.trim()) {
       newErrors.title = "Assignment title is required";
     }
@@ -43,7 +39,7 @@ function InstructorAssignmentForm() {
 
     if (!validate()) return;
 
-    await handleCreateAssignment({
+    await handleCreateAssignment(courseId, {
       title: formData.title.trim(),
       description: formData.description.trim(),
       due_date: new Date(formData.dueDate).toISOString(),
@@ -91,23 +87,6 @@ function InstructorAssignmentForm() {
 
       <form onSubmit={handleSubmit}>
         <div className="grid gap-6">
-          <div>
-            <label className="block text-sm font-bold text-[#1F2937] mb-2">
-              Course ID
-            </label>
-            <input
-              type="text"
-              name="courseId"
-              value={formData.courseId}
-              onChange={handleChange}
-              placeholder="Enter the course ID"
-              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
-            />
-            {errors.courseId && (
-              <p className="text-red-500 text-xs mt-1">{errors.courseId}</p>
-            )}
-          </div>
-
           <div>
             <label className="block text-sm font-bold text-[#1F2937] mb-2">
               Assignment Title

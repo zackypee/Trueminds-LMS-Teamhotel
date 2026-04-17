@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { createAssignment } from "../../api/instructorApi";
 
-const useCreateAssignment = (courseId) => {
+const useCreateAssignment = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const handleCreateAssignment = async (assignmentData) => {
+  const handleCreateAssignment = async (courseId, assignmentData) => {
+    if (!courseId) {
+      setLoading(false);
+      setError("Course ID is required");
+      return;
+    }
     setLoading(true);
     setError(null);
     setSuccess(false);

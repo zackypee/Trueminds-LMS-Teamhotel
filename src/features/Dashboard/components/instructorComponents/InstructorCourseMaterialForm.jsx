@@ -2,20 +2,16 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useUploadCourseMaterial from "../../hooks/instructorHooks/useUploadCourseMaterial";
 
-function InstructorCourseMaterialForm() {
+function InstructorCourseMaterialForm({ courseId = "" }) {
   const [formData, setFormData] = useState({
-    courseId: "",
     title: "",
     content: "",
-    orderNumber: "",
     videoUrl: "",
     documentUrl: "",
   });
   const [errors, setErrors] = useState({});
 
-  const { handleUpload, loading, error, success } = useUploadCourseMaterial(
-    formData.courseId.trim(),
-  );
+  const { handleUpload, loading, error, success } = useUploadCourseMaterial();
 
   const isValidUrl = (value) => {
     try {
@@ -33,17 +29,11 @@ function InstructorCourseMaterialForm() {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.courseId.trim()) {
-      newErrors.courseId = "Course ID is required";
-    }
     if (!formData.title.trim()) {
       newErrors.title = "Material title is required";
     }
     if (!formData.content.trim()) {
       newErrors.content = "Lesson content is required";
-    }
-    if (!formData.orderNumber) {
-      newErrors.orderNumber = "Lesson order number is required";
     }
     if (!formData.videoUrl.trim()) {
       newErrors.videoUrl = "Video URL is required";
@@ -65,12 +55,11 @@ function InstructorCourseMaterialForm() {
 
     if (!validate()) return;
 
-    await handleUpload({
+    await handleUpload(courseId, {
       title: formData.title.trim(),
       content: formData.content.trim(),
       video_url: formData.videoUrl.trim(),
       document_url: formData.documentUrl.trim(),
-      order_number: Number(formData.orderNumber),
     });
   };
 
@@ -80,7 +69,6 @@ function InstructorCourseMaterialForm() {
         ...prev,
         title: "",
         content: "",
-        orderNumber: "",
         videoUrl: "",
         documentUrl: "",
       }));
@@ -119,23 +107,6 @@ function InstructorCourseMaterialForm() {
         <div className="grid gap-6">
           <div>
             <label className="block text-sm font-bold text-[#1F2937] mb-2">
-              Course ID
-            </label>
-            <input
-              type="text"
-              name="courseId"
-              value={formData.courseId}
-              onChange={handleChange}
-              placeholder="Enter the course ID"
-              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
-            />
-            {errors.courseId && (
-              <p className="text-red-500 text-xs mt-1">{errors.courseId}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-[#1F2937] mb-2">
               Lesson Title
             </label>
             <input
@@ -167,43 +138,21 @@ function InstructorCourseMaterialForm() {
             )}
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <label className="block text-sm font-bold text-[#1F2937] mb-2">
-                Lesson Order Number
-              </label>
-              <input
-                type="number"
-                min="1"
-                name="orderNumber"
-                value={formData.orderNumber}
-                onChange={handleChange}
-                placeholder="e.g. 1"
-                className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
-              />
-              {errors.orderNumber && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.orderNumber}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-[#1F2937] mb-2">
-                Video URL
-              </label>
-              <input
-                type="url"
-                name="videoUrl"
-                value={formData.videoUrl}
-                onChange={handleChange}
-                placeholder="https://example.com/course-video"
-                className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
-              />
-              {errors.videoUrl && (
-                <p className="text-red-500 text-xs mt-1">{errors.videoUrl}</p>
-              )}
-            </div>
+          <div>
+            <label className="block text-sm font-bold text-[#1F2937] mb-2">
+              Video URL
+            </label>
+            <input
+              type="url"
+              name="videoUrl"
+              value={formData.videoUrl}
+              onChange={handleChange}
+              placeholder="https://example.com/course-video"
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+            />
+            {errors.videoUrl && (
+              <p className="text-red-500 text-xs mt-1">{errors.videoUrl}</p>
+            )}
           </div>
 
           <div>

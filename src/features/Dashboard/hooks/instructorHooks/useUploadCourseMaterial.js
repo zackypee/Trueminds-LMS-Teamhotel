@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { uploadCourseMaterial } from "../../api/instructorApi";
 
-const useUploadCourseMaterial = (courseId) => {
+const useUploadCourseMaterial = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const handleUpload = async (lessonData) => {
+  const handleUpload = async (courseId, lessonData) => {
+    if (!courseId) {
+      setLoading(false);
+      setError("Course ID is required");
+      return;
+    }
     setLoading(true);
     setError(null);
     setSuccess(false);

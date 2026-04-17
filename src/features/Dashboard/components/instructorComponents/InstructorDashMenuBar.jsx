@@ -6,6 +6,7 @@ import profileImg from "../../../../assets/profile-img.png"
 import dashboardIcon from "../../../../assets/dashboard-icon.png"
 import uploadIcon from "../../../../assets/upload-icon.png"
 import userIcon from "../../../../assets/user-profile-logo.png"
+import liveIcon from "../../../../assets/livelogo.png"
 export default function InstrucDashMenuBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation(); // ← tracks current URL
@@ -28,6 +29,12 @@ export default function InstrucDashMenuBar() {
       label: "Assignments",
       icon: assignmentLogo,
       path: "assignments",
+    },
+    {
+      id: "live-sessions",
+      label: "Live Sessions",
+      icon: liveIcon,
+      path: "live-sessions",
     },
   ];
 
@@ -74,7 +81,7 @@ export default function InstrucDashMenuBar() {
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors
                 ${
-                  location.pathname === item.path
+                  location.pathname.endsWith(item.path)
                     ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
                     : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
                 }`}
@@ -90,7 +97,7 @@ export default function InstrucDashMenuBar() {
               onClick={() => setMobileOpen(false)}
               className={`flex mt-2 items-center gap-2 px-3 py-2 text-sm transition-colors
               ${
-                location.pathname === "/instructor-dashboard/instructor-profile"
+                location.pathname.endsWith("profile")
                   ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
                   : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
               }`}
