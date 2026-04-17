@@ -1,7 +1,7 @@
 import LessonContent from "../userComponents/LessonContent"
 import CourseSidebar from "../userComponents/CourseSidebar"
 import { useState } from "react"
-import lessons from "../lessonsData"
+import {lessons} from "../lessonsData"
 
 const LessonPage = () => {
     const [activeLessonIndex, setActiveLessonIndex] = useState(0);

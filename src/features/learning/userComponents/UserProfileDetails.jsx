@@ -9,6 +9,7 @@ import PortfolioLogo from "../../../assets/portfoliologo.png";
 import MentorLogo from "../../../assets/mentorlogo.png";
 import FlowLogo from "../../../assets/flowlogo.png";
 import briefcaseIcon from "../../../assets/bag-icon.png";
+import { enrollDateFormat } from "../../../globalUtils/utils";
 
 export default function UserProfileDetails({ userProfile, loading, error }) {
   return (
@@ -118,7 +119,7 @@ export default function UserProfileDetails({ userProfile, loading, error }) {
             <p className="uppercase mt-4 text-[#7B7488] text-sm">
               Enrolled Date
             </p>
-            <p className="font-medium">Jan 12, 2026</p>
+            <p className="font-medium">{enrollDateFormat(userProfile.created_at)}</p>
           </span>
           <span>
             <p className="uppercase mt-4 text-[#7B7488] text-sm">

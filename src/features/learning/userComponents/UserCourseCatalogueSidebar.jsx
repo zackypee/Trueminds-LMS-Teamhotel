@@ -22,7 +22,7 @@ const UserCourseCatalogueSidebar = ({ selectedCategory, setCategory }) => {
     <div>
       {/* desktop screen */}
       <div className="mt-20 hidden md:block">
-        <div className="fixed top-20 left-0 overflow-x-auto border-r border-[#00000033]  max-h-screen py-5 pb-25  px-10  flex flex-col">
+        <div className="fixed top-20 left-0 overflow-x-auto border-r border-[#00000033] w-[250px]  max-h-screen py-5 pb-25  px-10  flex flex-col">
           {menuItems.map((item) => {
             return (
               <div

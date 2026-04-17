@@ -13,6 +13,8 @@ import { useUsers } from "../../hooks/adminHooks/useUsers";
 const UserManagement = () => {
   const { users: apiUsers, loading, error, fetchUsers } = useUsers();
 
+  console.log("Users", users)
+
   const [filters, setFilters] = useState({
     name: "",
     email: "",
