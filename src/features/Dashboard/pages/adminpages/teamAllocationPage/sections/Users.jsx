@@ -1,4 +1,4 @@
-import { usersData } from "./TeamOverview";
+// import { usersData } from "./TeamOverview";
 import UsersTable from "../../../../components/adminComponents/UsersTable";
 import SearchBar from "../../../../components/adminComponents/SearchBar";
 import filterIcon from "../../../../../../assets/filter-icon.svg";
@@ -13,10 +13,38 @@ import { useUsers } from "../../../../hooks/adminHooks/useUsers";
 import useCreateUser from "../../../../hooks/adminHooks/useCreateUser";
 import { useEffect } from "react";
 
-const Users = () => {
-  const { users, loading, error, fetchUsers } = useUsers();
+const Users = ({ users, loading, error, fetchUsers }) => {
+  console.log(users);
+
+  const rawUsers = users?.data?.users || [];
+  const mappedUsers = useMemo(() => {
+    return rawUsers.map((user) => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+
+      img: user.avatar || `https://i.pravatar.cc/150?u=${user.id}`,
+
+      role: user.role,
+      team: user.team || "Unassigned",
+      isActive: user.is_verified ?? false,
+
+      createdAt: user.created_at,
+    }));
+  }, [rawUsers]);
+
   const { useCreatedUser, handleCreateUser } = useCreateUser();
-  const { currentPage, setCurrentPage, itemsPerPage, startIndex } = usePagination();
+  const { currentPage, setCurrentPage, itemsPerPage, startIndex } =
+    usePagination();
+
+  const { handleSelectAll, handleSelectUser, selectedUsers } =
+    useSelectedUsers(mappedUsers);
+  const [toggleFilterButton, setToggleFilterButton] = useState(false);
+
+  //fetch users
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const {
     handleOnChangeSearchByName,
@@ -27,28 +55,18 @@ const Users = () => {
     filterByTeam,
     filters,
     clearState,
-  } = useUserFilters(users);
-  const { handleSelectAll, handleSelectUser, selectedUsers } =
-    useSelectedUsers(users);
-  const [toggleFilterButton, setToggleFilterButton] = useState(false);
-
-  //fetch users
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  } = useUserFilters(mappedUsers);
 
   {
     /* filtered Users  Or All users */
   }
-  const displayedUsers = filteredUsers.length ? filteredUsers : users;
-  {
-    /*Users display on a page */
-  }
+  const displayedUsers = filteredUsers;
+
   const currentUsers = displayedUsers.slice(
     startIndex,
     startIndex + itemsPerPage,
   );
-  
+
   const totalPages = Math.ceil(displayedUsers.length / itemsPerPage);
 
   const handleSubmit = async (e) => {
@@ -131,7 +149,7 @@ const Users = () => {
       {/*Section Body*/}
 
       <UsersTable
-        users={users}
+        users={mappedUsers}
         currentUsers={currentUsers}
         selectedUsers={selectedUsers}
         handleSelectAll={handleSelectAll}

@@ -23,6 +23,7 @@ const CreateAccountForm = ({ onClose, onSuccess }) => {
       await handleCreateUser(formData);
       onSuccess?.();
       onClose?.(); // close modal on success
+      alert("user-Created-successfully");
     } catch (err) {
       console.log(err);
     }

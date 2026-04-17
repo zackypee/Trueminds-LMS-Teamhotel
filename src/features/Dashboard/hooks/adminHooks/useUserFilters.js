@@ -1,12 +1,10 @@
 import { useState, useMemo } from "react";
-import { usersData } from "../../pages/adminpages/teamAllocationPage/sections/TeamOverview";
 
-const useUserFilters = () => {
+const useUserFilters = (users = []) => {
   const [searchByName, setSearchByName] = useState("");
   const [filterByTeam, setFilterByTeam] = useState("");
   const [filters, setFilters] = useState({ role: "", status: "" });
 
-  
   const handleOnChangeSearchByName = (e) => {
     setSearchByName(e.target.value.toLowerCase().trim());
   };
@@ -30,9 +28,9 @@ const useUserFilters = () => {
     setFilters({ role: "", status: "" });
   };
 
-  // ✅ THE ONLY FILTER YOU NEED
+  // ✅ FILTER REAL USERS (NOT dummy data)
   const filteredUsers = useMemo(() => {
-    return usersData.filter((user) => {
+    return users.filter((user) => {
       const nameMatch = searchByName
         ? user.name.toLowerCase().includes(searchByName)
         : true;
@@ -51,9 +49,7 @@ const useUserFilters = () => {
 
       return nameMatch && teamMatch && roleMatch && statusMatch;
     });
-  }, [searchByName, filterByTeam, filters]);
-
- 
+  }, [users, searchByName, filterByTeam, filters]);
 
   return {
     handleOnChangeSearchByName,
