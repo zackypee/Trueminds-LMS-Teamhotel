@@ -6,15 +6,7 @@ import personIcon from "../../../assets/person-icon.png";
 
 
 export default function UserProfileView({ handleModalOpen, userProfile }) {
-  const [profileImg, setProfileImg]=useState(null);
   
-  useEffect(()=>{
-    const savedImage = localStorage.getItem("profileImage");
-    
-    if (savedImage) {
-      setProfileImg(savedImage);
-    }
-  }, []);
   
 
   const defaultProfile = {
@@ -46,7 +38,7 @@ export default function UserProfileView({ handleModalOpen, userProfile }) {
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
-          src={ profileImg || defaultProfile?.image}
+          src={ userProfile?.avatar || defaultProfile?.image}
           alt={userProfile?.name}
           className="w-24 h-24 md:w-35 md:h-35 rounded-full object-cover border-4 border-white shadow-sm"
         />

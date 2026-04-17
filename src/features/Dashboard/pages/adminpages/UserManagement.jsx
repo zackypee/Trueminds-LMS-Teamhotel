@@ -15,9 +15,7 @@ const UserManagement = () => {
   const { users: apiUsers, loading, error, fetchUsers } = useUsers();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("API USERS:", apiUsers);
-
-  console.log("Users",users)
+  
 
   const [filters, setFilters] = useState({
     name: "",

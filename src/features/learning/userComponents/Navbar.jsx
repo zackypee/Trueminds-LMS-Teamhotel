@@ -7,20 +7,12 @@ import { useSearchQuery } from "../context/SearchContext";
 import useLogoutUser from "../../auth/hooks/useLogoutUser";
 import { useNavigate } from "react-router-dom";
 import ProfileImage from "../../../assets/profileimage.jpg";
+import useUserProfile from "../../../globalHooks/useUserProfile";
+
 
 const Navbar = ({ onMenuClick }) => {
 
-  const [avatar, setAvatar]=useState(null);
-  
-  useEffect(()=>{
-    const savedImage = localStorage.getItem("profileImage");
-    
-    if (savedImage) {
-      setAvatar(savedImage);
-    }
-
-  })
-
+  const {userProfile } = useUserProfile();
   
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
@@ -99,7 +91,7 @@ const Navbar = ({ onMenuClick }) => {
         </div>
 
         <img
-          src={avatar || ProfileImage}
+          src={userProfile?.avatar || ProfileImage}
           alt="Profile"
           className="h-8 w-8 rounded-xl cursor-pointer"
           onClick={() => setIsOpen(true)}

@@ -1,7 +1,7 @@
 import React from 'react'
 import editProfileImg from '../../../assets/edit-profile-img.png'
 import { enrollDateFormat } from '../../../globalUtils/utils'
-import { useState } from 'react'
+import { useRef } from 'react'
 
 const CameraIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -14,8 +14,7 @@ const CameraIcon = () => (
 
 export default function EditProfileDetails({ userProfile, handleImageChange, preview }) {
 
-  
-
+  const fileInputRef = useRef(null);
   const enrollDate = enrollDateFormat(userProfile.created_at)
 
   const programData = [
@@ -23,6 +22,7 @@ export default function EditProfileDetails({ userProfile, handleImageChange, pre
     { label: 'Cohort Group', value: 'Design Alpha-24' },
     { label: 'Enrolled Date', value: enrollDate },
   ]
+  
   return (
     <div className="w-full lg:w-72 flex-shrink-0 flex flex-col gap-5">
 
@@ -31,7 +31,7 @@ export default function EditProfileDetails({ userProfile, handleImageChange, pre
         <div className="relative w-28 h-28">
           {/* Profile Image */}
           <img
-            src={preview || editProfileImg}
+            src={preview || userProfile?.avatar || editProfileImg}
             alt={userProfile?.name || "User"}
             className="w-28 h-28 rounded-full object-cover ring-4 ring-white shadow"
           />
@@ -46,6 +46,7 @@ export default function EditProfileDetails({ userProfile, handleImageChange, pre
 
           {/* Hidden Input */}
           <input
+            ref={fileInputRef}
             id="profile-upload"
             type="file"
             accept="image/*"
@@ -65,6 +66,7 @@ export default function EditProfileDetails({ userProfile, handleImageChange, pre
 
         <button
           type="button"
+          onClick={() => fileInputRef.current.click()}
           className="w-full rounded-xl border border-gray-200 py-2.5 px-4 text-sm font-medium text-[#1F2937] hover:bg-gray-50 transition"
         >
           Upload New Photo

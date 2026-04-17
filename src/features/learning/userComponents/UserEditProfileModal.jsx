@@ -3,65 +3,51 @@ import EditPersonalDetails from "./EditPersonalDetails";
 import EditProfileDetails from "./EditProfileDetails";
 import useUpdateProfile from "../../../globalHooks/useUpdateProfile";
 import { useState, useEffect } from "react";
+import { uploadToCloudinary } from "../../../globalApi/cloudinaryApi";
 
 export default function UserEditProfileModal({ onClose, userProfile, setRefresh }) {
   const { handleUpdateProfile, updateError, isUpdating } = useUpdateProfile();
 
   const [imageFile, setImageFile] = useState(null);
-   const [preview, setPreview] = useState(null);
-
-  // Load image from localStorage on mount
-  useEffect(() => {
-    const savedImage = localStorage.getItem("profileImage");
-
-    if (savedImage) {
-      setPreview(savedImage);
-    }
-  }, []);
+  const [preview, setPreview] = useState(null);
+  
   
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
-    if (file){
-     const reader = new FileReader();
 
-      reader.onloadend = () => {
-        const base64 = reader.result;
-
-        // save to localStorage
-        localStorage.setItem("profileImage", base64);
-
-        // update preview
-        setPreview(base64);
-
-      }
-
-      reader.readAsDataURL(file);
-
+    if (file) {
+      setPreview(URL.createObjectURL(file));
     }
-
   };
 
   const handleSave = async (formData) => {
     try {
-      
-      const data = new FormData();
+      let avatarUrl = null;
 
-      data.append("name", formData.name)
-      data.append("email", formData.email);
-      data.append("phone", formData.phone);
-      data.append("location", formData.location);
-      data.append("dob", formData.dob);
-      data.append("bio", formData.bio);
+      // Upload image to Cloudinary
       if (imageFile) {
-        data.append("avatar", imageFile); 
+        avatarUrl = await uploadToCloudinary(imageFile);
       }
 
-      await handleUpdateProfile(data);
-      setRefresh(prev=>!prev)
-      onClose();                // close modal on success
+      // Send ONLY URL to backend 
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        location: formData.location,
+        dob: formData.dob,
+        bio: formData.bio,
+        avatar: avatarUrl, 
+      };
+
+      await handleUpdateProfile(payload);
+
+      setRefresh((prev) => !prev);
+      onClose();
+
     } catch (err) {
-      console.error(err.message);
+      console.error("Update Error:", err.response?.data || err.message);
     }
   };
 
