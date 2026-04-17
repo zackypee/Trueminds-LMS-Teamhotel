@@ -1,6 +1,7 @@
 import React from 'react'
 import editProfileImg from '../../../assets/edit-profile-img.png'
 import { enrollDateFormat } from '../../../globalUtils/utils'
+import { useState } from 'react'
 
 const CameraIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -11,7 +12,9 @@ const CameraIcon = () => (
 
 
 
-export default function EditProfileDetails({ userProfile }) {
+export default function EditProfileDetails({ userProfile, handleImageChange, preview }) {
+
+  
 
   const enrollDate = enrollDateFormat(userProfile.created_at)
 
@@ -25,19 +28,30 @@ export default function EditProfileDetails({ userProfile }) {
 
       {/* ── Photo Card ── */}
       <div className="bg-white rounded-2xl p-6 flex flex-col items-center gap-3 shadow-sm">
-        <div className="relative">
+        <div className="relative w-28 h-28">
+          {/* Profile Image */}
           <img
-            src={userProfile?.image || editProfileImg}
+            src={preview || editProfileImg}
             alt={userProfile?.name || "User"}
             className="w-28 h-28 rounded-full object-cover ring-4 ring-white shadow"
           />
-          <button
-            type="button"
-            aria-label="Change photo"
-            className="absolute bottom-1 right-1 bg-blue-600 hover:bg-blue-700 transition rounded-xl p-1.5 shadow"
+
+          {/* Camera Button */}
+          <label
+            htmlFor="profile-upload"
+            className="absolute bottom-1 right-1 bg-blue-600 hover:bg-blue-700 transition rounded-xl p-2 shadow cursor-pointer flex items-center justify-center"
           >
             <CameraIcon />
-          </button>
+          </label>
+
+          {/* Hidden Input */}
+          <input
+            id="profile-upload"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="hidden"
+          />
         </div>
 
         <div className="text-center">

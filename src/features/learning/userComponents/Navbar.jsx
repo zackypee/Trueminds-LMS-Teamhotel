@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import bell from "../../../assets/bell.png";
@@ -9,6 +9,19 @@ import { useNavigate } from "react-router-dom";
 import ProfileImage from "../../../assets/profileimage.jpg";
 
 const Navbar = ({ onMenuClick }) => {
+
+  const [avatar, setAvatar]=useState(null);
+  
+  useEffect(()=>{
+    const savedImage = localStorage.getItem("profileImage");
+    
+    if (savedImage) {
+      setAvatar(savedImage);
+    }
+
+  })
+
+  
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
   const { onHandleLogout } = useLogoutUser();
@@ -86,7 +99,7 @@ const Navbar = ({ onMenuClick }) => {
         </div>
 
         <img
-          src={ProfileImage}
+          src={avatar || ProfileImage}
           alt="Profile"
           className="h-8 w-8 rounded-xl cursor-pointer"
           onClick={() => setIsOpen(true)}
