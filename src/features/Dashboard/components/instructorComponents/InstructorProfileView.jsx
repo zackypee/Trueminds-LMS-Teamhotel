@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import InstructorImage from "../../../../assets/instructorimage.png"; // Import a profile image
 import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile icon for the details section
 //import { DateOfBirthFormat } from "../../../../globalUtils/utils";
-export default function InstructorProfileView({userProfile}) {
+import bagIcon from "../../../../assets/bag-icon.png";
+import instructorIcon from "../../../../assets/instructor-icon.png";
+import InstructorEditProfileModal from "./InstructorEditProfileModal";
+export default function InstructorProfileView({  userProfile, setRefresh  }) {
   const user = {
     name: "Tunde Adeyemi",
     id: "UI/INS/01",
@@ -16,6 +19,7 @@ export default function InstructorProfileView({userProfile}) {
     role: "Senior PD&M",
     status: "Instructor",
   };
+  const [showEditModal, setShowEditModal] = useState(false);
 
   function DetailItem({ label, value }) {
     return (
@@ -41,25 +45,37 @@ export default function InstructorProfileView({userProfile}) {
 
         <div className="text-center md:text-left flex-1">
           {/* Reduced font size for mobile, 5xl for desktop */}
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">{userProfile.name}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
+            {userProfile.name}
+          </h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
-          <button className="bg-[#0029F5] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
+          <button
+            onClick={() => setShowEditModal(true)}
+            className="bg-[#0029F5] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#1E3A5F] transition-colors"
+          >
             <span>
               <img src={PencilImage} alt="" aria-hidden="true" />
             </span>
             Edit Profile
           </button>
+          {showEditModal && (
+            <InstructorEditProfileModal
+              onClose={() => setShowEditModal(false)}
+              userProfile={userProfile}
+              setRefresh={setRefresh}
+            />
+          )}
 
           {/* Badges: Wrap on small screens */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs md:text-sm font-semibold">
-            <p className="text-gray-600 bg-[#EDE5F5] px-4 py-2 rounded-full">
+            <p className="teet-[#7B7488] bg-[#f2f4fe] px-4 py-2 rounded-full">
               {user.id}
             </p>
-            <p className="text-gray-600 bg-[#E9DDFF] px-4 py-2 rounded-full">
+            <p className="text-[#7B7488] bg-[#f2f4fe] px-4 py-2 rounded-full">
               {user.status}
             </p>
-            <p className="text-gray-600 bg-[#BB9EFF] px-4 py-2 rounded-full">
+            <p className="text-[#7B7488] bg-[#f2f4fe] px-4 py-2 rounded-full">
               {user.role}
             </p>
           </div>
@@ -72,9 +88,9 @@ export default function InstructorProfileView({userProfile}) {
       <div>
         <span className="flex items-center gap-4 mb-5">
           <img
-            src={ProfileLogo}
+            src={instructorIcon}
             alt=""
-            className="w-8 h-8 bg-[#F3EBFA] p-1.5 rounded-md"
+            className="w-8 h-8  p-1.5 rounded-md"
           />
           <h2 className="font-semibold text-lg">Personal Details</h2>
         </span>
