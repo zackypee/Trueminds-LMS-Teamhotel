@@ -46,6 +46,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+import Certificate from "./features/learning/userPages/Certificate";
 
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
       <AuthLoginProvider>
         <SearchProvider>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<Certificate />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgetPasswordPage />} />
             <Route path="/sign-up" element={<SignUp />} />

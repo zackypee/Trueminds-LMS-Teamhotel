@@ -5,7 +5,7 @@ import logOutIcon from "../assets/logout-icon-orange.png";
 
 export default function LogOutModal({onClose, onConfirm }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-2000">
       <div className="bg-[#ffffff] items-center justify-center flex max-w-xs  gap-4 flex-col py-4 px-4 rounded-lg">
         <button>
           <img src={logOutIcon} alt="" />
