@@ -5,6 +5,7 @@ import shareLogo from "../../../assets/share-icon.png";
 import downloadLogo from "../../../assets/download-icon.png";
 import arrowBack from "../../../assets/arrow-back-icon.png";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../userComponents/Navbar";
 
 export default function Certificate() {
   const navigate = useNavigate();
@@ -19,8 +20,9 @@ export default function Certificate() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center py-12 px-4">
-
+   <div className="min-h-screen ">
+    <Navbar />
+     <div className="bg-[#F8FAFC] flex flex-col items-center justify-center py-12 px-4 mt-4">
       {/* Header */}
       <div className="text-center max-w-2xl mb-8">
         <div className="flex justify-center mb-4">
@@ -155,5 +157,6 @@ export default function Certificate() {
         Back to Dashboard
       </button>
     </div>
+   </div>
   );
 }

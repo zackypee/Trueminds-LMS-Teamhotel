@@ -20,12 +20,12 @@ export default function ProfileDetails({userProfile}) {
           </p>
           {/* flex-wrap ensures skills stack on mobile */}
           <span className="flex flex-wrap gap-3 text-sm mt-2">
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md"> Figma </p>
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md">
+            <p className="font-medium bg-[#eceefe] p-2 rounded-md"> Figma </p>
+            <p className="font-medium bg-[#eceefe] p-2 rounded-md">
               {" "}
               User Research{" "}
             </p>
-            <p className="font-medium bg-[#F3EBFA] p-2 rounded-md">
+            <p className="font-medium bg-[#eceefe] p-2 rounded-md">
               {" "}
               Wireframe{" "}
             </p>
@@ -43,7 +43,7 @@ export default function ProfileDetails({userProfile}) {
               <p className="uppercase mt-4 text-xs text-[#7B7488]">
                 Portfolio Link
               </p>
-              <p className="font-semibold text-[#660FE6] break-all">
+              <p className="font-semibold text-[#0029F5] break-all">
                 {" "}
                 Ade.portfolio
               </p>

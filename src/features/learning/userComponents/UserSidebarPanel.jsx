@@ -25,7 +25,7 @@ const UserSidebarPanel = ({ isOpen, onClose, isCollapsed, setIsCollapsed, adjust
           ${isCollapsed ? 'w-64 lg:w-20' : 'w-64'}
         `}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full ">
 
           {/* Close button - mobile only */}
           <div className="flex justify-end lg:hidden p-4">

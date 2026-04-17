@@ -105,7 +105,11 @@ export default function CollaborationHub() {
         </div>
 
         <div className="flex flex-col md:gap-4 justify-center md:flex-row md:justify-between items-center gap-2 mt-4">
-          <div className="flex flex-col border w-full justify-center py-3 md:py-12 md:rounded-2xl items-center rounded border-[#E5E7EB]">
+          <a
+            href="https://app.slack.com/client/T0A9LDUUBG9/D0AQVRQ1C73"
+            rel="noopener noreferrer"
+            className=" hover:shadow-lg  cursor-pointer flex flex-col border w-full justify-center py-3 md:py-12 md:rounded-2xl items-center rounded border-[#E5E7EB]"
+          >
             <div className="flex items-center mb-1 gap-1 md:gap-2">
               <FaSlack className="text-xl md:text-2xl text-[#4A154B]" />
               <p className="text-[#1F2937] text-[14px] font-semibold md:text-[20px]">
@@ -115,10 +119,15 @@ export default function CollaborationHub() {
             <p className="text-[13px] text-[#6B7280] md:text-[14px]">
               Open Slack
             </p>
-          </div>
+          </a>
 
-          <div className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]">
-            <div className="flex items-center mb-1 gap-1 md:gap-2">
+          <a
+            href="https://www.zoom.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" hover:shadow-lg  cursor-pointer flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]"
+          >
+            <div className="flex items-center mb-1 gap-1 md:gap-2 shadow-lg  ">
               <img
                 className="w-[28px] h-[28px] md:w-[40px] md:h-[40px]"
                 src="/images/3ab00b467c8bd9f8f32337a4b62fe69d9e1f1272.png"
@@ -131,9 +140,13 @@ export default function CollaborationHub() {
             <p className="text-[13px] md:text-[14px] text-[#6B7280]">
               Open Zoom
             </p>
-          </div>
-
-          <div className="flex flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]">
+          </a>
+          <a
+            href="https://drive.google.com/drive/my-drive"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex hover:shadow-lg flex-col border md:py-12 md:rounded-2xl w-full justify-center py-3 items-center rounded border-[#E5E7EB]"
+          >
             <div className="flex items-center mb-1 gap-1 md:gap-2">
               <RiDriveLine className="text-xl md:text-2xl text-[#1A73E8]" />
               <p className="text-[#1F2937] text-[14px] font-semibold md:text-[20px]">
@@ -143,7 +156,7 @@ export default function CollaborationHub() {
             <p className="text-[13px] text-[#6B7280] md:text-[14px]">
               Open Drive
             </p>
-          </div>
+          </a>
         </div>
 
         <div className="mb-2 md:mb-4 mt-4 md:mt-8">

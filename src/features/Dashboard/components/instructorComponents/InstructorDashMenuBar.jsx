@@ -46,8 +46,8 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
         {/* Logo + X button on mobile */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[30px] font-bold text-[#0F172A]">
-              Talent <span className="text-[#7C3AED]">Flow</span>
+            <h1 className="text-[30px] font-bold text-[#1E3A5F]">
+              Talent <span className="text-[#0029F5]">Flow</span>
             </h1>
             <p className="text-sm text-[#6B7280] mt-1">Instructor Dashboard</p>
           </div>
@@ -82,7 +82,7 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors
                 ${
-                  location.pathname === item.path
+                  location.pathname.includes(item.path)
                     ? "text-[#64748B] bg-[#ebeffb] border-r-4 border-[#0029F5]"
                     : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
                 }`}
@@ -98,8 +98,8 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
               onClick={() => setMobileOpen(false)}
               className={`flex mt-2 items-center gap-2 px-3 py-2 text-sm transition-colors
               ${
-                location.pathname === "/instructor-dashboard/instructor-profile"
-                  ? "text-[#64748B] bg-[#0029F5] border-r-4 border-[#0029F5]"
+                location.pathname.includes("profile")
+                  ? "text-[#64748B] bg-[#ebeffb] border-r-4 border-[#0029F5]"
                   : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
               }`}
             >
