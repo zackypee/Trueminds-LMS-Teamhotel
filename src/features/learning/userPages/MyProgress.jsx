@@ -49,7 +49,7 @@ export default function MyProgress() {
 
   return (
     <>
-      <div className="sticky top-16  px-5 md:px-10 pt-5 mb-5 pb-2 md:pb-5 bg-[#1E3A5F]">
+      <div className="sticky top-16  px-5 md:px-10 pt-5 mb-5 pb-2 md:pb-5 bg-[#1E3A5F] z-10">
         <h1 className="font-bold mb-4 text-white text-[24px] md:text-[36px]">
           My Progress
         </h1>

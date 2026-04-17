@@ -10,6 +10,7 @@ import Navbar from "../userComponents/Navbar";
 export default function Certificate() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
+  const [isDownloaded, setIsDownloaded] = useState(false)
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -126,15 +127,27 @@ export default function Certificate() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full max-w-lg justify-center">
-        <button className="flex items-center px-4 gap-2 text-[15px] font-semibold text-white bg-[#0D9488] hover:bg-[#0b7d73] transition-colors rounded-lg py-2">
+        <button 
+          onClick={()=>{
+            setTimeout(()=>{
+              setIsDownloaded(true)
+            }, 2000)
+          }}
+        className="flex items-center px-4 gap-2 text-[15px] font-semibold text-white bg-[#0D9488] hover:bg-[#0b7d73] transition-colors rounded-lg py-2">
           <img src={downloadLogo} alt="" />
           Download Certificate
         </button>
+
+        
         <button className="flex items-center px-6 gap-4 text-[15px] font-semibold text-[#1F2937] bg-white hover:bg-gray-50 transition-colors border border-[#E5E7EB] rounded-lg py-2">
           <img src={shareLogo} />
           Share to LinkedIn
         </button>
       </div>
+      {isDownloaded && 
+      <p
+       className="text-[#0D9488]"
+      > Downloaded Successfully</p>}
 
       <button
         onClick={() => navigate("/learner")}
