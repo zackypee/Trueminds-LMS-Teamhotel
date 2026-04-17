@@ -8,13 +8,14 @@ import { useUsers } from "../../../hooks/adminHooks/useUsers";
 
 const TeamAllocationPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { fetchUsers } = useUsers();
+  // const { fetchUsers } = useUsers();
+  const usersHook = useUsers();
 
   return (
     <div>
       <TeamAllocPageHeader />
       <TeamOverview />
-      <Users />
+      <Users {...usersHook} />
       <div className="flex justify-end mt-10">
         <button
           onClick={() => setIsModalOpen(true)}
@@ -38,7 +39,7 @@ const TeamAllocationPage = () => {
 
             <CreateAccountForm
               onClose={() => setIsModalOpen(false)}
-              onSuccess={fetchUsers}
+              onSuccess={usersHook.fetchUsers}
             />
           </div>
         </div>
