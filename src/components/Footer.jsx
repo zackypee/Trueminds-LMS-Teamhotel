@@ -48,8 +48,8 @@ const Footer = () => {
         <div className=" flex flex-col gap-24 px-20">
           <div className="flex justify-between ">
             <div className="flex flex-col gap-5">
-              <h2 className="font-bold text-black">
-                Talent<span className="text-[#7C3AED]">Flow</span>
+              <h2 className="font-bold text-[#1E3A5F]">
+                Talent<span className="text-[#0029F5]">Flow</span>
               </h2>
               <p className="text-left max-w-sm text-[#64748B] text-sm font-normal">
                 Empowering learners through real-world product development and

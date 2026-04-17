@@ -6,8 +6,10 @@ import { IoFilter } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 export default function MyProgress() {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState("All Courses");
 
   const tabs = ["All Courses", "In Progress", "Completed", "Archived"];
@@ -216,6 +218,7 @@ export default function MyProgress() {
                     </p>
                   </div>
                   <button
+                   onClick={() => { navigate("/certificate") }}
                     className={`mb-4 mt-4 py-3 rounded font-semibold text-white w-full ${
                       i.status === "Completed"
                         ? "bg-green-600 hover:bg-green-700"

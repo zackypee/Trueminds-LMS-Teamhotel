@@ -7,11 +7,13 @@ import dashboardIcon from "../../../../assets/dashboard-icon.png"
 import uploadIcon from "../../../../assets/upload-icon.png"
 import userIcon from "../../../../assets/user-profile-logo.png"
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
+import LogOutModal from "../../../../components/LogOutModal";
 
-export default function InstrucDashMenuBar() {
+export default function InstrucDashMenuBar({ onMenuClick }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const {onHandleLogout} = useLogoutUser();
-  const location = useLocation(); // ← tracks current URL
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
+  const location = useLocation(); 
 
   const navItems = [
     {
@@ -78,8 +80,8 @@ export default function InstrucDashMenuBar() {
               className={`flex items-center gap-3 px-3 py-2 text-sm font-normal w-full transition-colors
                 ${
                   location.pathname === item.path
-                    ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
-                    : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
+                    ? "text-[#64748B] bg-[#ebeffb] border-r-4 border-[#0029F5]"
+                    : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
                 }`}
             >
               <img src={item.icon} alt="" className="size-4.5" />
@@ -94,8 +96,8 @@ export default function InstrucDashMenuBar() {
               className={`flex mt-2 items-center gap-2 px-3 py-2 text-sm transition-colors
               ${
                 location.pathname === "/instructor-dashboard/instructor-profile"
-                  ? "text-[#7C3AED] bg-[#F3EEFF] border-r-4 border-[#0029F5]"
-                  : "text-[#6B7280] hover:text-[#7C3AED] hover:bg-[#F3EEFF] hover:border-r-4 hover:border-[#0029F5]"
+                  ? "text-[#64748B] bg-[#0029F5] border-r-4 border-[#0029F5]"
+                  : "text-[#64748B] hover:text-[#0029F5] hover:bg-[#ebeffb] hover:border-r-4 hover:border-[#0029F5]"
               }`}
             >
               <span>
@@ -110,12 +112,21 @@ export default function InstrucDashMenuBar() {
       {/* Bottom Section */}
       <div className="flex flex-col gap-4">
         {/* Logout */}
-        <button 
-        onClick={onHandleLogout}
+        <button
+          onClick={() => setIsLogOutOpen(true)}
         className="flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors text-[#6B7280] hover:text-red-500 hover:bg-red-50 hover:border-r-4 hover:border-red-500">
           <img src={logOutLogo} alt="" className="w-5 h-5" />
           Logout
         </button>
+        {isLogOutOpen && (
+              <LogOutModal
+                onClose={() => setIsLogOutOpen(false)}
+                onConfirm={() => {
+                  onHandleLogout();
+                  setIsLogOutOpen(false);
+                }}
+              />
+            )}
 
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">

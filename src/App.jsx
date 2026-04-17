@@ -46,6 +46,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
 import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement";
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
+import Certificate from "./features/learning/userPages/Certificate";
 
 
 function App() {
@@ -60,6 +61,8 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/welcome-back" element={<AuthenticationOne />} />
             <Route path="/notifications" element={<UserNotification />} />
+            <Route path="/certificate" element={<Certificate />} />
+            
 
             {/* Protected Reset Password routes */}
             <Route
