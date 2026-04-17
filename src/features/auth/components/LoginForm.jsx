@@ -7,17 +7,17 @@ import { useAuth } from "../context/AuthLoginContext";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { Button } from "../../../components/Button";
 
-
-
-
-
+const roleRoutes = {
+  learner: "/learner/dashboard",
+  instructor: "/instructor/dashboard",
+  admin: "/admin/team-allocation",
+};
 
 export const LoginForm = () => {
   const { handleAuthLogin } = useLogin();
   const { error, loading } = useAuth();
   const navigate = useNavigate();
 
-  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -41,10 +41,8 @@ export const LoginForm = () => {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const validationErrors = inputValidation(formData);
 
     if (Object.keys(validationErrors).length > 0) {
@@ -52,13 +50,14 @@ export const LoginForm = () => {
       return;
     }
 
+    const data = await handleAuthLogin(formData);
+    const user = data.user;
 
-    const result = await handleAuthLogin(formData) ;
+    const path = roleRoutes[user.role];
 
-    if(result){
-      navigate("/learner/dashboard", { replace: true })
-    } 
-  
+    if (path) {
+      navigate(path, { replace: true });
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -180,25 +179,25 @@ export const LoginForm = () => {
             )}
           </div>
 
-           <Button
-             type="submit"
-             disabled={loading}
-             className="w-full bg-[#0029F5] text-white py-3 rounded-md font-semibold hover:bg-[#1E3A5F] cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-           >
-             {loading ? "Logging in..." : "Login"}
-           </Button>
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#0029F5] text-white py-3 rounded-md font-semibold hover:bg-[#1E3A5F] cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
 
-           <div className="flex justify-end">
-             <button
-               type="button"
-               onClick={() => navigate("/forget-password")}
-               className="text-[14px] font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer"
-             >
-               Forgot Password?
-             </button>
-           </div>
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => navigate("/forget-password")}
+              className="text-[14px] font-semibold text-[#0029F5] leading-[21px] hover:underline cursor-pointer"
+            >
+              Forgot Password?
+            </button>
+          </div>
 
-           {/* <div className="text-center">
+          {/* <div className="text-center">
              <button
                type="button"
                onClick={() => navigate("/login-otp")}
@@ -206,20 +205,20 @@ export const LoginForm = () => {
              >
                Log in with OTP code
              </button>
-            </div>    Zacky commented it out !!!!!  */} 
+            </div>    Zacky commented it out !!!!!  */}
 
-           <div className="text-center pt-4">
-             <span className="text-[14px] font-bold text-[#64748B]">
-               Don't have an account?{" "}
-             </span>
-             <button
-               type="button"
-               onClick={() => navigate("/sign-up")}
-               className="text-[14px] font-bold text-[#182049] hover:underline cursor-pointer mb-30"
-             >
-               Sign up
-             </button>
-           </div>
+          <div className="text-center pt-4">
+            <span className="text-[14px] font-bold text-[#64748B]">
+              Don't have an account?{" "}
+            </span>
+            <button
+              type="button"
+              onClick={() => navigate("/sign-up")}
+              className="text-[14px] font-bold text-[#182049] hover:underline cursor-pointer mb-30"
+            >
+              Sign up
+            </button>
+          </div>
         </form>
       </div>
     </div>

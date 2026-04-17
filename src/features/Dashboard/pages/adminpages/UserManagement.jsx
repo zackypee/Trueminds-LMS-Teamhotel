@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoFilterOutline } from "react-icons/io5";
 import { FiUserPlus } from "react-icons/fi";
@@ -8,8 +8,17 @@ import user1 from "../../../../assets/user1.png";
 import user2 from "../../../../assets/user2.png";
 import user3 from "../../../../assets/user3.png";
 import user4 from "../../../../assets/user4.png";
+import { useUsers } from "../../hooks/adminHooks/useUsers";
+import CreateAccountForm from "../../components/adminComponents/CreateAccountForm";
 
 const UserManagement = () => {
+  const { users: apiUsers, loading, error, fetchUsers } = useUsers();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log("API USERS:", apiUsers);
+
+  console.log("Users", users)
+
   const [filters, setFilters] = useState({
     name: "",
     email: "",
@@ -17,128 +26,156 @@ const UserManagement = () => {
     status: "Active",
   });
 
-  const users = [
-    {
-      imgg: user1,
-      name: "Alex Rivera",
-      email: "alex.rivera@talentflow.edu",
-      role: "Learner",
-      allocation: "UX Research Core (Cohort 2024-B)",
-      status: "Active",
-    },
-    {
-      imgg: user2,
-      name: "Marcus Chen",
-      email: "m.chen@talentflow.edu",
-      role: "Instructor",
-      allocation: "Backend Systems (Tech Faculty)",
-      status: "Active",
-    },
-    {
-      imgg: user3,
-      name: "Sarah Jenkins",
-      email: "s.jenkins@talentflow.edu",
-      role: "Admin",
-      allocation: "Global Operations (System Root)",
-      status: "On Leave",
-    },
-    {
-      imgg: user4,
-      name: "Jordan Wu",
-      email: "jordan.wu@talentflow.edu",
-      role: "Learner",
-      allocation: "Data Analytics (Cohort 2024-C)",
-      status: "Active",
-    },
+  const [currentPage, setCurrentPage] = useState(1);
 
-    {
-      imgg: user1,
-      name: "Emily Carter",
-      email: "e.carter@talentflow.edu",
-      role: "Learner",
-      allocation: "Product Design (Cohort 2024-A)",
-      status: "Active",
-    },
-    {
-      imgg: user2,
-      name: "Daniel Park",
-      email: "d.park@talentflow.edu",
-      role: "Instructor",
-      allocation: "Frontend Engineering (Tech Faculty)",
-      status: "Active",
-    },
-    {
-      imgg: user3,
-      name: "Olivia Martinez",
-      email: "o.martinez@talentflow.edu",
-      role: "Admin",
-      allocation: "Admissions (System Root)",
-      status: "Inactive",
-    },
-    {
-      imgg: user4,
-      name: "Liam Johnson",
-      email: "l.johnson@talentflow.edu",
-      role: "Learner",
-      allocation: "Cybersecurity (Cohort 2024-D)",
-      status: "Active",
-    },
-    {
-      imgg: user3,
-      name: "Sophia Lee",
-      email: "s.lee@talentflow.edu",
-      role: "Learner",
-      allocation: "AI & Machine Learning (Cohort 2024-E)",
-      status: "On Leave",
-    },
-    {
-      imgg: user2,
-      name: "Noah Brown",
-      email: "n.brown@talentflow.edu",
-      role: "Instructor",
-      allocation: "Cloud Computing (Tech Faculty)",
-      status: "Active",
-    },
-    {
-      imgg: user2,
-      name: "Ava Patel",
-      email: "a.patel@talentflow.edu",
-      role: "Admin",
-      allocation: "Finance Operations (System Root)",
-      status: "Active",
-    },
-    {
-      imgg: user4,
-      name: "Ethan Davis",
-      email: "e.davis@talentflow.edu",
-      role: "Learner",
-      allocation: "Mobile Development (Cohort 2024-F)",
-      status: "Inactive",
-    },
-    {
-      imgg: user1,
-      name: "Mia Thompson",
-      email: "m.thompson@talentflow.edu",
-      role: "Learner",
-      allocation: "UX Writing (Cohort 2024-B)",
-      status: "Active",
-    },
-    {
-      imgg: user3,
-      name: "James Wilson",
-      email: "j.wilson@talentflow.edu",
-      role: "Instructor",
-      allocation: "DevOps Engineering (Tech Faculty)",
-      status: "Active",
-    },
-  ];
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const users = apiUsers?.data?.users || [];
+
+  const mappedUsers = users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+
+    imgg: user.avatar || `https://i.pravatar.cc/150?u=${user.id}`,
+
+    role: user.role,
+
+    allocation: user.allocation || "Not Assigned",
+
+    status: user.is_verified ? "Active" : "Pending",
+  }));
+
+  const ITEMS_PER_PAGE = 4;
+  const totalPages = Math.ceil(mappedUsers.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentUsers = mappedUsers.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
+
+  // const users = [
+  //   {
+  //     imgg: user1,
+  //     name: "Alex Rivera",
+  //     email: "alex.rivera@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "UX Research Core (Cohort 2024-B)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user2,
+  //     name: "Marcus Chen",
+  //     email: "m.chen@talentflow.edu",
+  //     role: "Instructor",
+  //     allocation: "Backend Systems (Tech Faculty)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user3,
+  //     name: "Sarah Jenkins",
+  //     email: "s.jenkins@talentflow.edu",
+  //     role: "Admin",
+  //     allocation: "Global Operations (System Root)",
+  //     status: "On Leave",
+  //   },
+  //   {
+  //     imgg: user4,
+  //     name: "Jordan Wu",
+  //     email: "jordan.wu@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "Data Analytics (Cohort 2024-C)",
+  //     status: "Active",
+  //   },
+
+  //   {
+  //     imgg: user1,
+  //     name: "Emily Carter",
+  //     email: "e.carter@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "Product Design (Cohort 2024-A)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user2,
+  //     name: "Daniel Park",
+  //     email: "d.park@talentflow.edu",
+  //     role: "Instructor",
+  //     allocation: "Frontend Engineering (Tech Faculty)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user3,
+  //     name: "Olivia Martinez",
+  //     email: "o.martinez@talentflow.edu",
+  //     role: "Admin",
+  //     allocation: "Admissions (System Root)",
+  //     status: "Inactive",
+  //   },
+  //   {
+  //     imgg: user4,
+  //     name: "Liam Johnson",
+  //     email: "l.johnson@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "Cybersecurity (Cohort 2024-D)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user3,
+  //     name: "Sophia Lee",
+  //     email: "s.lee@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "AI & Machine Learning (Cohort 2024-E)",
+  //     status: "On Leave",
+  //   },
+  //   {
+  //     imgg: user2,
+  //     name: "Noah Brown",
+  //     email: "n.brown@talentflow.edu",
+  //     role: "Instructor",
+  //     allocation: "Cloud Computing (Tech Faculty)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user2,
+  //     name: "Ava Patel",
+  //     email: "a.patel@talentflow.edu",
+  //     role: "Admin",
+  //     allocation: "Finance Operations (System Root)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user4,
+  //     name: "Ethan Davis",
+  //     email: "e.davis@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "Mobile Development (Cohort 2024-F)",
+  //     status: "Inactive",
+  //   },
+  //   {
+  //     imgg: user1,
+  //     name: "Mia Thompson",
+  //     email: "m.thompson@talentflow.edu",
+  //     role: "Learner",
+  //     allocation: "UX Writing (Cohort 2024-B)",
+  //     status: "Active",
+  //   },
+  //   {
+  //     imgg: user3,
+  //     name: "James Wilson",
+  //     email: "j.wilson@talentflow.edu",
+  //     role: "Instructor",
+  //     allocation: "DevOps Engineering (Tech Faculty)",
+  //     status: "Active",
+  //   },
+  // ];
 
   //pagination
-  const ITEMS_PER_PAGE = 4;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentUsers = users.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className=" p-8 bg-[#F0F3FF80] min-h-screen">
@@ -236,12 +273,33 @@ const UserManagement = () => {
           <h1 className="text-[#FFFFFF] text-[20px] font-semibold">
             Scale your team further
           </h1>
-          <button className="rounded w-full border border-[#E5E7EB] h-13.25 mt-4 text-[#FFFFFF] text-[14px] font-semibold flex items-center gap-3 justify-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="rounded w-full border border-[#E5E7EB] h-13.25 mt-4 text-[#FFFFFF] text-[14px] font-semibold flex items-center gap-3 justify-center cursor-pointer"
+          >
             <FiUserPlus />
             Add New User
           </button>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+          <div className="bg-white rounded-xl w-full max-w-md p-8 relative">
+            {/* close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-3 right-3"
+            >
+              ✕
+            </button>
+
+            <CreateAccountForm
+              onClose={() => setIsModalOpen(false)}
+              onSuccess={fetchUsers}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="bg-[#ffffff] border-b border-[#E7EEFF] flex items-center justify-between h-19.5 mb-4 py-5 px-8">
         <div className="flex items-center gap-3">

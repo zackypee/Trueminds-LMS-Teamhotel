@@ -1,4 +1,4 @@
-import { usersData } from "./TeamOverview";
+// import { usersData } from "./TeamOverview";
 import UsersTable from "../../../../components/adminComponents/UsersTable";
 import SearchBar from "../../../../components/adminComponents/SearchBar";
 import filterIcon from "../../../../../../assets/filter-icon.svg";
@@ -11,12 +11,41 @@ import useSelectedUsers from "../../../../hooks/adminHooks/useSelectedUsers";
 import UserCard from "../../../../components/adminComponents/UserCard";
 import { useUsers } from "../../../../hooks/adminHooks/useUsers";
 import useCreateUser from "../../../../hooks/adminHooks/useCreateUser";
+import { useEffect } from "react";
 
-const Users = () => {
-  const { users } = useUsers();
+const Users = ({ users, loading, error, fetchUsers }) => {
+  console.log(users);
+
+  const rawUsers = users?.data?.users || [];
+  const mappedUsers = useMemo(() => {
+    return rawUsers.map((user) => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+
+      img: user.avatar || `https://i.pravatar.cc/150?u=${user.id}`,
+
+      role: user.role,
+      team: user.team || "Unassigned",
+      isActive: user.is_verified ?? false,
+
+      createdAt: user.created_at,
+    }));
+  }, [rawUsers]);
+
   const { useCreatedUser, handleCreateUser } = useCreateUser();
   const { currentPage, setCurrentPage, itemsPerPage, startIndex } =
     usePagination();
+
+  const { handleSelectAll, handleSelectUser, selectedUsers } =
+    useSelectedUsers(mappedUsers);
+  const [toggleFilterButton, setToggleFilterButton] = useState(false);
+
+  //fetch users
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   const {
     handleOnChangeSearchByName,
     handleFilterByTeamChange,
@@ -26,32 +55,29 @@ const Users = () => {
     filterByTeam,
     filters,
     clearState,
-  } = useUserFilters();
-  const { handleSelectAll, handleSelectUser, selectedUsers } =
-    useSelectedUsers(usersData);
-  const [toggleFilterButton, setToggleFilterButton] = useState(false);
+  } = useUserFilters(mappedUsers);
 
   {
     /* filtered Users  Or All users */
   }
   const displayedUsers = filteredUsers;
-  {
-    /*Users display on a page */
-  }
+
   const currentUsers = displayedUsers.slice(
     startIndex,
     startIndex + itemsPerPage,
   );
-  {
-    /*total num of pages */
-  }
+
   const totalPages = Math.ceil(displayedUsers.length / itemsPerPage);
 
   const handleSubmit = async (e) => {
-    e.preventDefault;
+    e.preventDefault();
 
     // await handleCreateUser(data);
   };
+
+  //Loading and error states
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <section className="users-section border border-[#CCC3D833] rounded-2xl ">
@@ -123,7 +149,7 @@ const Users = () => {
       {/*Section Body*/}
 
       <UsersTable
-        users={usersData}
+        users={mappedUsers}
         currentUsers={currentUsers}
         selectedUsers={selectedUsers}
         handleSelectAll={handleSelectAll}
@@ -146,11 +172,13 @@ const Users = () => {
       <div className="flex justify-between items-center px-6 mb-4 tracking-normal">
         <p className="text-[12px] leading-4 text-[#455F87]">
           Showing{" "}
-          <span className="text-[12px] leading-[100%] font-bold text[#001C3B]">
-            {startIndex + 1} -{" "}
-            {Math.min(startIndex + itemsPerPage, users.length)}
+          <span className="text-[12px] leading-[100%] font-bold text-[#001C3B]">
+            {displayedUsers.length === 0 ? 0 : startIndex + 1} -{" "}
+            {displayedUsers.length === 0
+              ? 0
+              : Math.min(startIndex + itemsPerPage, displayedUsers.length)}
           </span>{" "}
-          of {users.length} Interns
+          of {displayedUsers.length} Interns
         </p>
         <Pagination
           totalPages={totalPages}

@@ -9,7 +9,7 @@ export const getUserById = (id) => {
 };
 
 export const createUser = (data) => {
-  return api.post("/users", data);
+  return api.post("/auth/register", data);
 };
 
 export const updateUser = (id, data) => {
@@ -19,4 +19,3 @@ export const updateUser = (id, data) => {
 export const deleteUser = (id) => {
   return api.delete(`/users/${id}`);
 };
-

@@ -2,8 +2,8 @@ import React from "react";
 import InstructorImage from "../../../../assets/instructorimage.png"; // Import a profile image
 import PencilImage from "../../../../assets/pencil.png"; // Import a pencil icon for editing
 import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profile icon for the details section
-
-export default function InstructorProfileView() {
+//import { DateOfBirthFormat } from "../../../../globalUtils/utils";
+export default function InstructorProfileView({userProfile}) {
   const user = {
     name: "Tunde Adeyemi",
     id: "UI/INS/01",
@@ -35,13 +35,13 @@ export default function InstructorProfileView() {
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
           src={user.profileImage}
-          alt={user.name}
+          alt={userProfile.name}
           className="w-24 h-24 flex md:w-35 md:h-35 rounded-full object-cover shadow-sm"
         />
 
         <div className="text-center md:text-left flex-1">
           {/* Reduced font size for mobile, 5xl for desktop */}
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">{user.name}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">{userProfile.name}</h1>
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
           <button className="bg-[#0029F5] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#6D28D9] transition-colors">
@@ -81,7 +81,7 @@ export default function InstructorProfileView() {
 
         {/* Responsive Grid: 1 column on mobile, 2 columns on tablets/desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-2 gap-6">
-          <DetailItem label="Email Address" value={user.email} />
+          <DetailItem label="Email Address" value={userProfile.email} />
           <DetailItem label="Phone Number" value={user.phone} />
           <DetailItem label="Location" value={user.location} />
           <DetailItem label="Date of Birth" value={user.dob} />

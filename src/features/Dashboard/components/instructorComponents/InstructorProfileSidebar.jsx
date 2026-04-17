@@ -42,8 +42,8 @@ export default function InstructorProfileSidebar({
             key={item.name}
             className={`flex items-center cursor-pointer transition-all duration-200 rounded-lg p-3 ${
               activeLink === item.name
-                ? "bg-[#EDE9FE] text-[#7C3AED]"
-                : "hover:bg-gray-200"
+                ? "bg-[#ebeffb] text-[#0029F5]"
+                : "hover:bg-[#ebeffb]"
             }`}
             onClick={() => setActiveLink(item.name)}
           >
@@ -65,8 +65,8 @@ export default function InstructorProfileSidebar({
         <span
           className={`flex items-center cursor-pointer transition-all duration-200 rounded-lg p-3 ${
             activeLink === "Profile"
-              ? "bg-[#EDE9FE] text-[#7C3AED]"
-              : "hover:bg-gray-200"
+              ? "bg-[#ebeffb] text-[#0029F5]"
+              : "hover:bg-[#ebeffb]"
           }`}
           onClick={() => setActiveLink("Profile")}
         >

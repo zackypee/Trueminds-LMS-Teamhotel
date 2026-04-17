@@ -5,16 +5,26 @@ import bell from "../../../assets/bell.png";
 import profile from "../../../assets/profile.png";
 import { useSearchQuery } from "../context/SearchContext";
 import useLogoutUser from "../../auth/hooks/useLogoutUser";
+import { useNavigate } from "react-router-dom";
+import ProfileImage from "../../../assets/profileimage.jpg";
+import LogOutModal from "../../../components/LogOutModal";
+
 
 const Navbar = ({ onMenuClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { setSearchQuery } = useSearchQuery();
   const { onHandleLogout } = useLogoutUser();
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
+  const navigate = useNavigate();
+
+  function handleNotificationsClick() {
+    navigate("../notifications");
+  }
+  
 
   return (
     <nav className="px-6 py-4 bg-[#ffffff] h-16 shadow-[0px_1px_2px_0px_rgba(30,58,138,0.05)] flex items-center justify-between fixed left-0 right-0 z-2">
       <div className="flex items-center gap-6">
-
         {/* Hamburger - mobile only */}
         <button
           onClick={onMenuClick}
@@ -45,8 +55,8 @@ const Navbar = ({ onMenuClick }) => {
           className={({ isActive }) =>
             `hidden md:block text-[14px] font-normal ${
               isActive
-                ? "text-[#7C3AED] border-b-2 border-[#7C3AED] pb-1 font-semibold"
-                : "text-[#475569]"
+                ? "text-[#0029F5] border-b-2 border-[#0029F5] pb-1 font-semibold"
+                : "text-[#0029F5]"
             }`
           }
           end
@@ -59,8 +69,8 @@ const Navbar = ({ onMenuClick }) => {
           className={({ isActive }) =>
             `hidden md:block text-[14px] font-normal ${
               isActive
-                ? "text-[#7C3AED] border-b-2 border-[#7C3AED] pb-1 font-semibold"
-                : "text-[#475569]"
+                ? "text-[#0029F5] border-b-2 border-[#0029F5] pb-1 font-semibold"
+                : "text-[#0029F5]"
             }`
           }
         >
@@ -68,14 +78,19 @@ const Navbar = ({ onMenuClick }) => {
         </NavLink>
 
         <div className="relative inline-block cursor-pointer">
-          <img src={bell} alt="Bell" className="h-6 w-6 text-gray-600" />
+          <img
+            onClick={handleNotificationsClick}
+            src={bell}
+            alt="Bell"
+            className="h-6 w-6 text-gray-600"
+          />
           <span className="absolute -top-0.5 -right-0.5 bg-[#D97706] text-white text-[10px] font-bold rounded-xl h-4 w-4 flex items-center justify-center">
             2
           </span>
         </div>
 
         <img
-          src={profile}
+          src={ProfileImage}
           alt="Profile"
           className="h-8 w-8 rounded-xl cursor-pointer"
           onClick={() => setIsOpen(true)}
@@ -94,29 +109,44 @@ const Navbar = ({ onMenuClick }) => {
           >
             ✕
           </button>
-          <div className="p-4 mt-5 flex flex-col gap-4 text-[16px] text-[#000000] font-normal">
-            <Link>My Profile</Link>
-            <Link>Notifications</Link>
+          <div className=" p-4 mt-5 flex flex-col gap-4 text-[16px] z-100 text-[#000000] font-normal">
+            <Link to="profile">My Profile</Link>
+            <Link to="notification">Notifications</Link>
             <Link className="flex items-center justify-between">
               <p>Messages</p>
               <span className="bg-[#E8651A] text-white text-[16px] font-bold rounded-xl h-6 w-6 flex items-center justify-center">
                 2
               </span>
             </Link>
-            <Link>My dashboard</Link>
-            <Link>My learning Progress</Link>
+            <Link to="dashboard">My dashboard</Link>
+            <Link to="progress">My learning Progress</Link>
             <Link>View team</Link>
-            <Link>Collaboration hub</Link>
-            <Link>View Course Catalogue</Link>
-            <Link>Account Settings</Link>
+            <Link to="collaboration">Collaboration hub</Link>
+            <Link to="courses">View Course Catalogue</Link>
+            <Link >Account Settings</Link>
             <Link>Language</Link>
             <Link>Help and Support</Link>
-            <Link onClick={onHandleLogout}>Logout</Link>
+            <Link
+             onClick={() => {
+                  setIsOpen(false);        
+                  setIsLogOutOpen(true);   
+                }}
+             >Logout</Link>
             <Link>Contact Us</Link>
           </div>
         </div>
       )}
+      {isLogOutOpen && (
+      <LogOutModal
+        onClose={() => setIsLogOutOpen(false)}
+        onConfirm={() => {
+          onHandleLogout();
+          setIsLogOutOpen(false);
+        }}
+      />
+    )}
     </nav>
+     
   );
 };
 
