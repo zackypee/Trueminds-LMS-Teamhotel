@@ -7,6 +7,7 @@ function InstructorAssignmentForm({ courseId = "" }) {
     title: "",
     description: "",
     dueDate: "",
+    orderNumber: "1",
   });
   const [errors, setErrors] = useState({});
 
@@ -43,6 +44,7 @@ function InstructorAssignmentForm({ courseId = "" }) {
       title: formData.title.trim(),
       description: formData.description.trim(),
       due_date: new Date(formData.dueDate).toISOString(),
+      order_number: parseInt(formData.orderNumber),
     });
   };
 

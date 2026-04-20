@@ -38,9 +38,8 @@ import UserNotification from "./features/learning/userPages/UserNotification";
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
-import AssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
-import CourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
-
+import InstructorAssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
+import InstructorCourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 //Import Admin Components
 import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
@@ -48,6 +47,9 @@ import UserManagement from "./features/Dashboard/pages/adminpages/UserManagement
 import TeamAllocationPage from "./features/Dashboard/pages/adminpages/teamAllocationPage/TeamAllocationPage";
 import Certificate from "./features/learning/userPages/Certificate";
 
+//Import Live Session Components
+import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
+import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
 
 function App() {
   return (
@@ -62,7 +64,6 @@ function App() {
             <Route path="/welcome-back" element={<AuthenticationOne />} />
             <Route path="/notifications" element={<UserNotification />} />
             <Route path="/certificate" element={<Certificate />} />
-            
 
             {/* Protected Reset Password routes */}
             <Route
@@ -92,7 +93,10 @@ function App() {
 
             {/* Admin */}
             <Route path="admin" element={<AdminLayout />}>
-              <Route index element={<Navigate to="team-allocation" replace />}/>
+              <Route
+                index
+                element={<Navigate to="team-allocation" replace />}
+              />
               <Route path="team-allocation" element={<TeamAllocationPage />} />
               <Route path="reports" element={<Reports />} />
               <Route path="user-management" element={<UserManagement />} />
@@ -103,9 +107,16 @@ function App() {
               <Route path="instructor" element={<InstructorDashboardLayout />}>
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<InstructorDashboard />} />
-                <Route path="assignments" element={<AssignmentForm />} />
-                <Route path="upload" element={<CourseMaterialForm />} />
+                <Route
+                  path="assignments"
+                  element={<InstructorAssignmentForm />}
+                />
+                <Route path="upload" element={<InstructorCourseMaterialForm courseId="4ea12acd-edcd-4a05-8dc4-67fa0b98fa2d" />} />
                 <Route path="profile" element={<InstructorProfile />} />
+                <Route
+                  path="live-sessions"
+                  element={<InstructorLiveSession />}
+                />
               </Route>
             </Route>
 

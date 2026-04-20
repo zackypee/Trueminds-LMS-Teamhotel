@@ -8,6 +8,7 @@ function InstructorCourseMaterialForm({ courseId = "" }) {
     content: "",
     videoUrl: "",
     documentUrl: "",
+    orderNumber: "1",
   });
   const [errors, setErrors] = useState({});
 
@@ -60,6 +61,7 @@ function InstructorCourseMaterialForm({ courseId = "" }) {
       content: formData.content.trim(),
       video_url: formData.videoUrl.trim(),
       document_url: formData.documentUrl.trim(),
+      order_number: parseInt(formData.orderNumber),
     });
   };
 
