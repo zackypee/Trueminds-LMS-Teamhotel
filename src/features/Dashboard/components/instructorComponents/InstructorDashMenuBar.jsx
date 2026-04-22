@@ -1,11 +1,12 @@
 import React, { useState} from "react";
 import { Link, useLocation } from "react-router-dom";
-import assignmentLogo from "../../../../assets/assignment-icon.png"
-import logOutLogo from "../../../../assets/logout-icon.png"
-import profileImg from "../../../../assets/profile-img.png"
-import dashboardIcon from "../../../../assets/dashboard-icon.png"
-import uploadIcon from "../../../../assets/upload-icon.png"
-import userIcon from "../../../../assets/user-profile-logo.png"
+import assignmentLogo from "../../../../assets/assignment-icon.png";
+import logOutLogo from "../../../../assets/logout-icon.png";
+import profileImg from "../../../../assets/profile-img.png";
+import dashboardIcon from "../../../../assets/dashboard-icon.png";
+import uploadIcon from "../../../../assets/upload-icon.png";
+import userIcon from "../../../../assets/user-profile-logo.png";
+import liveIcon from "../../../../assets/livelogo.png";
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
 import useUserProfile from "../../../../globalHooks/useUserProfile";
 import LogOutModal from "../../../../components/LogOutModal";
@@ -13,9 +14,9 @@ import LogOutModal from "../../../../components/LogOutModal";
 export default function InstrucDashMenuBar({ onMenuClick }) {
   const {userProfile} = useUserProfile();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const {onHandleLogout} = useLogoutUser();
-  const [isLogOutOpen, setIsLogOutOpen] = useState(false)
-  const location = useLocation(); 
+  const { onHandleLogout } = useLogoutUser();
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false);
+  const location = useLocation();
 
 
   const navItems = [
@@ -36,6 +37,12 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
       label: "Assignments",
       icon: assignmentLogo,
       path: "assignments",
+    },
+    {
+      id: "live-sessions",
+      label: "Live Sessions",
+      icon: liveIcon,
+      path: "live-sessions",
     },
   ];
 
@@ -117,19 +124,20 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
         {/* Logout */}
         <button
           onClick={() => setIsLogOutOpen(true)}
-        className="flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors text-[#6B7280] hover:text-red-500 hover:bg-red-50 hover:border-r-4 hover:border-red-500">
+          className="flex items-center gap-3 px-3 py-2 text-sm font-medium w-full transition-colors text-[#6B7280] hover:text-red-500 hover:bg-red-50 hover:border-r-4 hover:border-red-500"
+        >
           <img src={logOutLogo} alt="" className="w-5 h-5" />
           Logout
         </button>
         {isLogOutOpen && (
-              <LogOutModal
-                onClose={() => setIsLogOutOpen(false)}
-                onConfirm={() => {
-                  onHandleLogout();
-                  setIsLogOutOpen(false);
-                }}
-              />
-            )}
+          <LogOutModal
+            onClose={() => setIsLogOutOpen(false)}
+            onConfirm={() => {
+              onHandleLogout();
+              setIsLogOutOpen(false);
+            }}
+          />
+        )}
 
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">
