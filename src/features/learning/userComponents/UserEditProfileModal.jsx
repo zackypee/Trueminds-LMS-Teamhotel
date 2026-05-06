@@ -72,6 +72,7 @@ export default function UserEditProfileModal({ onClose, userProfile, setRefresh 
           onSave={handleSave}
           onCancel={onClose} 
           isUpdating={isUpdating} 
+          userProfile={userProfile}
           
         />
       </div>
