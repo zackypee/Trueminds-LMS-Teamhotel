@@ -36,12 +36,13 @@ import CourseCatalogue from "./features/learning/userPages/CourseCatalogue";
 import UserProfile from "./features/learning/userPages/UserProfile";
 import UserDashboard from "./features/learning/userPages/UserDashboard";
 import UserNotification from "./features/learning/userPages/UserNotification";
-//Import Learner Components
+//Import Instructor Components
 import InstructorProfile from "./features/Dashboard/pages/instructorPages/InstructorProfile";
 import InstructorDashboard from "./features/Dashboard/pages/instructorPages/InstructorDashboard";
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import InstructorAssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import InstructorCourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
+import LessonFormPage from "./features/Dashboard/pages/instructorPages/LessonFormPage";
 //Import Admin Components
 import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
@@ -110,16 +111,11 @@ function App() {
               <Route path="instructor" element={<InstructorDashboardLayout />}>
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<InstructorDashboard />} />
-                <Route
-                  path="assignments"
-                  element={<InstructorAssignmentForm />}
-                />
+                <Route path="assignments" element={<InstructorAssignmentForm />}/>
                 <Route path="upload" element={<InstructorCourseMaterialForm courseId="4ea12acd-edcd-4a05-8dc4-67fa0b98fa2d" />} />
                 <Route path="profile" element={<InstructorProfile />} />
-                <Route
-                  path="live-sessions"
-                  element={<InstructorLiveSession />}
-                />
+                <Route path="live-sessions" element={<InstructorLiveSession />} />
+                <Route path="add-lesson" element={<LessonFormPage />} />
               </Route>
             </Route>
 
