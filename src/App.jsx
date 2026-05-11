@@ -42,6 +42,9 @@ import InstructorDashboard from "./features/Dashboard/pages/instructorPages/Inst
 import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import InstructorAssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import InstructorCourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
+import CourseList from "./features/Dashboard/pages/instructorPages/CourseList";
+import CreateCourse from "./features/Dashboard/pages/instructorPages/CreateCourse";
+import ManageCourse from "./features/Dashboard/pages/instructorPages/ManageCourse";
 //Import Admin Components
 import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
@@ -58,7 +61,7 @@ function App() {
     <BrowserRouter>
       <AuthLoginProvider>
         <SearchProvider>
-          <ScrollToTop/>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
@@ -114,11 +117,22 @@ function App() {
                   path="assignments"
                   element={<InstructorAssignmentForm />}
                 />
-                <Route path="upload" element={<InstructorCourseMaterialForm courseId="4ea12acd-edcd-4a05-8dc4-67fa0b98fa2d" />} />
+                <Route
+                  path="upload"
+                  element={
+                    <InstructorCourseMaterialForm courseId="4ea12acd-edcd-4a05-8dc4-67fa0b98fa2d" />
+                  }
+                />
                 <Route path="profile" element={<InstructorProfile />} />
                 <Route
                   path="live-sessions"
                   element={<InstructorLiveSession />}
+                />
+                <Route path="courses" element={<CourseList />} />
+                <Route path="courses/create" element={<CreateCourse />} />
+                <Route
+                  path="courses/:courseId/manage"
+                  element={<ManageCourse />}
                 />
               </Route>
             </Route>
