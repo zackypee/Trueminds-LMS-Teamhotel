@@ -50,6 +50,12 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
       icon: liveIcon,
       path: "live-sessions",
     },
+    {
+      id: "Submission",
+      label: "Submission",
+      icon: liveIcon,
+      path: "submission-page",
+    },
   ];
 
   const SidebarContent = () => (
