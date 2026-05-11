@@ -43,6 +43,10 @@ import InstructorDashboardLayout from "./layouts/InstructorDashboardLayout";
 import InstructorAssignmentForm from "./features/Dashboard/components/instructorComponents/InstructorAssignmentForm";
 import InstructorCourseMaterialForm from "./features/Dashboard/components/instructorComponents/InstructorCourseMaterialForm";
 import LessonFormPage from "./features/Dashboard/pages/instructorPages/LessonFormPage";
+import CourseList from "./features/Dashboard/pages/instructorPages/CourseList";
+import CreateCourse from "./features/Dashboard/pages/instructorPages/CreateCourse";
+import ManageCourse from "./features/Dashboard/pages/instructorPages/ManageCourse";
+
 //Import Admin Components
 import { AdminLayout } from "./layouts/AdminLayout";
 import Reports from "./features/Dashboard/pages/adminpages/Reports";
@@ -59,7 +63,7 @@ function App() {
     <BrowserRouter>
       <AuthLoginProvider>
         <SearchProvider>
-          <ScrollToTop/>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
@@ -116,6 +120,13 @@ function App() {
                 <Route path="profile" element={<InstructorProfile />} />
                 <Route path="live-sessions" element={<InstructorLiveSession />} />
                 <Route path="add-lesson" element={<LessonFormPage />} />
+                <Route path="courses" element={<CourseList />} />
+                <Route path="courses/create" element={<CreateCourse />} />
+                <Route
+                  path="courses/:courseId/manage"
+                  element={<ManageCourse />}
+                />
+
               </Route>
             </Route>
 

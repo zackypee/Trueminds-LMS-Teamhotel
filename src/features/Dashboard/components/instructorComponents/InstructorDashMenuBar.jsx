@@ -27,6 +27,12 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
       path: "dashboard",
     },
     {
+      id: "courses",
+      label: "My Courses",
+      icon: uploadIcon,
+      path: "courses",
+    },
+    {
       id: "upload",
       label: "Upload Courses",
       icon: uploadIcon,
