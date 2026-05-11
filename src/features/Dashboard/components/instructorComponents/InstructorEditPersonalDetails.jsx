@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import personIcon from "../../../../assets/person-icon.png";
 import briefcaseIcon from "../../../../assets/bag-icon.png";
-import { useNavigate } from "react-router-dom";
+
 
 
 
 const LinkIcon = () => (
+  
 
   <svg
     width="14"
@@ -28,17 +29,18 @@ const inputClass =
   "w-full bg-[#F3F5F8] rounded-xl px-4 py-3 text-sm text-[#1F2937] border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition placeholder:text-gray-400";
 const labelClass = "block text-xs font-medium text-[#6B7A95] mb-1.5";
 
-export default function EditPersonalDetails({ onSave, onCancel, isUpdating}) {
+export default function EditPersonalDetails({ onSave, onCancel, isUpdating, userProfile}) {
 
-  const navigate = useNavigate()
+
+
   // ALL hooks inside the component
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    dob: "",
-    bio: "",
+    name: userProfile.name || "",
+    email: userProfile.email || "",
+    phone: userProfile.phone || "",
+    location: userProfile.location || "",
+    dob: userProfile.dob || "",
+    bio: userProfile.bio || "",
   });
   const [skills, setSkills] = useState(INITIAL_SKILLS);
   const [addingSkill, setAddingSkill] = useState(false);

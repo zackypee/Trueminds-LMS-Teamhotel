@@ -148,7 +148,7 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">
           <img
-            src={profileImg}
+            src={ userProfile.avatar || profileImg}
             alt={userProfile?.name}
             className="w-9 h-9 rounded-full object-cover"
           />
