@@ -34,9 +34,9 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
     },
     {
       id: "upload",
-      label: "Upload Courses",
+      label: "Create Courses",
       icon: uploadIcon,
-      path: "upload",
+      path: "courses/create",
     },
     {
       id: "assignments",

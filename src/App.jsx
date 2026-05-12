@@ -116,10 +116,10 @@ function App() {
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<InstructorDashboard />} />
                 <Route path="assignments" element={<InstructorAssignmentForm />}/>
-                <Route path="upload" element={<InstructorCourseMaterialForm courseId="4ea12acd-edcd-4a05-8dc4-67fa0b98fa2d" />} />
+                <Route path="/instructor/courses/:courseId/add-lesson" element={<InstructorCourseMaterialForm />} />
                 <Route path="profile" element={<InstructorProfile />} />
                 <Route path="live-sessions" element={<InstructorLiveSession />} />
-                <Route path="add-lesson" element={<LessonFormPage />} />
+               {/*<Route path="/instructor/courses/:courseId/add-lesson" element={<LessonFormPage />} />*/}
                 <Route path="courses" element={<CourseList />} />
                 <Route path="courses/create" element={<CreateCourse />} />
                 <Route

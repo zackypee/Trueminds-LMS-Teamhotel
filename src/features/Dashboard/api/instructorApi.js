@@ -15,6 +15,7 @@ export const createAssignment = async (courseId, assignmentData) => {
 // Get all courses
 export const getCourses = async () => {
   const response = await api.get("/courses");
+  console.log("LIST OF COURSES", response.data)
   return response.data;
 };
 
@@ -47,3 +48,4 @@ export const getCourseAssignments = async (courseId) => {
   const response = await api.get(`/assignments/courses/${courseId}/assignments`);
   return response.data;
 };
+

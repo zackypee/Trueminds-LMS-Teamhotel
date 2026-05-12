@@ -1,7 +1,14 @@
 import { useState } from "react";
 import LessonForm from "../../components/instructorComponents/LessonForm";
+import useAddLesson from "../../hooks/instructorHooks/useAddLesson";
+import { useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import LoadingState from "../../../../components/LoadingState";
+import ErrorMessage from "../../../../components/ErrorMessage";
 
 const LessonFormPage = () => {
+    const { handleAddLesson, isLoading, error, success } = useAddLesson();
+    const { courseId } = useParams();
     const [lessonData, setLessonData] = useState({
         title: "",
         overview: "",
@@ -47,9 +54,17 @@ const LessonFormPage = () => {
         }))
     }
 
-    const handleLessonSubmit = (lessonData) => {
+    const handleLessonSubmit =  async (lessonData, courseId) => {
         console.log("Lesson Data Submitted:", lessonData);
+       const response = await handleAddLesson(courseId, lessonData);
+         if(response){
+            Navigate(`/instructor/course/${courseId}`, { replace: true });
+         }
     }
+    
+    if(isLoading) return <LoadingState/>
+    if(error) return <ErrorMessage message={error} className="flex items-center justify-center h-full bg-white"/>
+    if(success) return <p className="text-green-500 ">{success}</p>
 
     return (
         <div className="bg-white p-10 max-w-4xl">
