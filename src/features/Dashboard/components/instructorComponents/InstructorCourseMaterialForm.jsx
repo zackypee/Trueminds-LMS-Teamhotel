@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useUploadCourseMaterial from "../../hooks/instructorHooks/useUploadCourseMaterial";
+import { useParams } from "react-router-dom";
 
-function InstructorCourseMaterialForm({ courseId = "" }) {
+function InstructorCourseMaterialForm() {
+  const { courseId } = useParams();
   const [formData, setFormData] = useState({
     title: "",
     content: "",

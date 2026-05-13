@@ -5,9 +5,11 @@ import UploadIcon from "../../../../assets/uploadicon.png";
 import ProfileLogo from "../../../../assets/profilelogo.png";
 import LiveLogo from "../../../../assets/livelogo.png";
 import AssignmentLogo from "../../../../assets/assignmentlogo.png";
+import useUserProfile from "../../../../globalHooks/useUserProfile";
 
 export default function InstructorProfileSidebar() {
   const [activeLink, setActiveLink] = useState("Dashboard");
+  const { userProfile } = useUserProfile();
 
   const menuItems = [
     { name: "Dashboard", icon: DashboardLogo },
@@ -54,7 +56,7 @@ export default function InstructorProfileSidebar() {
           onClick={() => setActiveLink("Profile")}
         >
           <img
-            src={ProfileLogo}
+            src={ userProfile.avatar || ProfileLogo}
             alt=""
             aria-hidden="true"
             className={`w-5 h-5 shrink-0 ${

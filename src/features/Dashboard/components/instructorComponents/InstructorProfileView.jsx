@@ -5,8 +5,8 @@ import ProfileLogo from "../../../../assets/profilelogo.png"; // Import a profil
 //import { DateOfBirthFormat } from "../../../../globalUtils/utils";
 import bagIcon from "../../../../assets/bag-icon.png";
 import instructorIcon from "../../../../assets/instructor-icon.png";
-import InstructorEditProfileModal from "./InstructorEditProfileModal";
-export default function InstructorProfileView({  userProfile, setRefresh  }) {
+
+export default function InstructorProfileView({  userProfile,  handleModalOpen  }) {
   const user = {
     name: "Tunde Adeyemi",
     id: "UI/INS/01",
@@ -19,7 +19,7 @@ export default function InstructorProfileView({  userProfile, setRefresh  }) {
     role: "Senior PD&M",
     status: "Instructor",
   };
-  const [showEditModal, setShowEditModal] = useState(false);
+
 
   function DetailItem({ label, value }) {
     return (
@@ -38,7 +38,7 @@ export default function InstructorProfileView({  userProfile, setRefresh  }) {
       {/* Profile Header Section: Centered on mobile, row on desktop */}
       <div className="flex flex-col md:flex-col items-center md:items-start gap-6">
         <img
-          src={user.profileImage}
+          src={userProfile.avatar || user.profileImage}
           alt={userProfile.name}
           className="w-24 h-24 flex md:w-35 md:h-35 rounded-full object-cover shadow-sm"
         />
@@ -51,7 +51,7 @@ export default function InstructorProfileView({  userProfile, setRefresh  }) {
 
           {/* Responsive Button: full width on mobile, auto width on desktop */}
           <button
-            onClick={() => setShowEditModal(true)}
+            onClick={handleModalOpen}
             className="bg-[#0029F5] rounded-md py-3 px-6 md:px-33 w-full md:w-auto flex justify-center items-center gap-3 mb-5 text-white uppercase font-medium hover:bg-[#1E3A5F] transition-colors"
           >
             <span>
@@ -59,13 +59,6 @@ export default function InstructorProfileView({  userProfile, setRefresh  }) {
             </span>
             Edit Profile
           </button>
-          {showEditModal && (
-            <InstructorEditProfileModal
-              onClose={() => setShowEditModal(false)}
-              userProfile={userProfile}
-              setRefresh={setRefresh}
-            />
-          )}
 
           {/* Badges: Wrap on small screens */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs md:text-sm font-semibold">

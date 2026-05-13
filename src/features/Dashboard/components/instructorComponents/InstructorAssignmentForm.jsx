@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useCreateAssignment from "../../hooks/instructorHooks/useCreateAssignment";
+import { useParams } from "react-router-dom";
 
-function InstructorAssignmentForm({ courseId = "" }) {
+function InstructorAssignmentForm() {
+  const { courseId } = useParams();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     dueDate: "",
     orderNumber: "1",
+    attachment: null,
   });
   const [errors, setErrors] = useState({});
 
@@ -15,7 +18,12 @@ function InstructorAssignmentForm({ courseId = "" }) {
     useCreateAssignment();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === "attachment") {
+      setFormData({ ...formData, attachment: files[0] || null });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const validate = () => {
@@ -40,12 +48,18 @@ function InstructorAssignmentForm({ courseId = "" }) {
 
     if (!validate()) return;
 
-    await handleCreateAssignment(courseId, {
+    const assignmentFormData = {
       title: formData.title.trim(),
       description: formData.description.trim(),
       due_date: new Date(formData.dueDate).toISOString(),
       order_number: parseInt(formData.orderNumber),
-    });
+    };
+
+    if (formData.attachment) {
+      assignmentFormData.attachment = formData.attachment;
+    }
+
+    await handleCreateAssignment(courseId, assignmentFormData);
   };
 
   useEffect(() => {
@@ -55,6 +69,7 @@ function InstructorAssignmentForm({ courseId = "" }) {
         title: "",
         description: "",
         dueDate: "",
+        attachment: null,
       }));
       setErrors({});
     }
@@ -136,6 +151,20 @@ function InstructorAssignmentForm({ courseId = "" }) {
             {errors.dueDate && (
               <p className="text-red-500 text-xs mt-1">{errors.dueDate}</p>
             )}
+          </div>
+
+          {/* Attachment (Optional) */}
+          <div>
+            <label className="block text-xs font-bold text-[#1F2937] uppercase tracking-wider mb-2">
+              Attachment (Optional)
+            </label>
+            <input
+              type="file"
+              name="attachment"
+              accept=".pdf,.doc,.docx,image/*"
+              onChange={handleChange}
+              className="w-full bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-4 py-3 text-sm text-[#1F2937] outline-none"
+            />
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:justify-end md:items-center mt-2">

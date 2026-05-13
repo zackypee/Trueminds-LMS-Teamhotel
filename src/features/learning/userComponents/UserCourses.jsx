@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Line } from "rc-progress";
 import { CiBookmark } from "react-icons/ci";
@@ -10,18 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { useSearchQuery } from "../context/SearchContext";
 import { courses } from "../lessonsData";
 
-const UserCourses = ({ selectedCategory, allCourses}) => {
+const UserCourses = ({ selectedCategory, allCourses }) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
   const [ongoingCourses, setOngoingCourses] = useState([]);
-  const {searchQuery} = useSearchQuery();
+  const { searchQuery } = useSearchQuery();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedCourses = JSON.parse(localStorage.getItem("ongoingCourses")) || [];
+    const storedCourses =
+      JSON.parse(localStorage.getItem("ongoingCourses")) || [];
     setOngoingCourses(storedCourses);
   }, []);
-
-
 
   const availableCourses = courses;
 
@@ -40,68 +38,66 @@ const UserCourses = ({ selectedCategory, allCourses}) => {
     <div className="flex-1 pr-8 py-10">
       {selectedCategory === "All" && searchQuery === "" && (
         <>
-        {ongoingCourses.length > 0 && (
-        <> 
-          <h1 className="text-[24px] text-[#000000] font-semibold mb-6">
-            Ongoing Classes
-          </h1>
-          <div className="flex items-center space-between gap-4 mb-8">
-            {ongoingCourses.map((cls, index) => (
-              <div
-                key={index}
-                className="w-75  border border-[#E5E7EB] shadow-sm rounded-lg "
-              >
-                <img
-                  src={cls.imgg}
-                  alt={cls.title}
-                  className="w-full h-40 rounded-tr-lg rounded-tl-lg"
-                />
-                <div className="p-4">
-                  <h2 className="text-[16px] font-semibold text-[#1F2937] line-clamp-2">
-                    {cls.title}
-                  </h2>
-                  <p className="text-[#1F2937] font-normal text-[14px] my-3 ">
-                    {cls.instructor}
-                  </p>
-                  <Line
-                    percent={cls.percentage}
-                    strokeWidth={2}
-                    strokeColor="#0D9488"
-                    trailColor="#F3F4F6"
-                    className="mb-2"
-                  />
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[#0D9488] font-semibold text-[14px]">
-                      {cls.percentage}% complete
-                    </span>
-                    <span className="text-[#6B7280] font-normal text-[14px] ">
-                      {cls.completeLessons}/{cls.totalLessons} lessons
-                    </span>
+          {ongoingCourses.length > 0 && (
+            <>
+              <h1 className="text-[24px] text-[#000000] font-semibold mb-6">
+                Ongoing Classes
+              </h1>
+              <div className="flex items-center space-between gap-4 mb-8">
+                {ongoingCourses.map((cls, index) => (
+                  <div
+                    key={index}
+                    className="w-75  border border-[#E5E7EB] shadow-sm rounded-lg "
+                  >
+                    <img
+                      src={cls.imgg}
+                      alt={cls.title}
+                      className="w-full h-40 rounded-tr-lg rounded-tl-lg"
+                    />
+                    <div className="p-4">
+                      <h2 className="text-[16px] font-semibold text-[#1F2937] line-clamp-2">
+                        {cls.title}
+                      </h2>
+                      <p className="text-[#1F2937] font-normal text-[14px] my-3 ">
+                        {cls.instructor}
+                      </p>
+                      <Line
+                        percent={cls.percentage}
+                        strokeWidth={2}
+                        strokeColor="#0D9488"
+                        trailColor="#F3F4F6"
+                        className="mb-2"
+                      />
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[#0D9488] font-semibold text-[14px]">
+                          {cls.percentage}% complete
+                        </span>
+                        <span className="text-[#6B7280] font-normal text-[14px] ">
+                          {cls.completeLessons}/{cls.totalLessons} lessons
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => navigate("../course")}
+                        className="bg-[#0029F5] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer"
+                      >
+                        Continue Learning
+                      </button>
+                    </div>
                   </div>
-                  <button
-                  onClick={() => navigate("../course")}
-                  className="bg-[#0029F5] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer">
-                    Continue Learning
-                  </button>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </>
-        )}
+            </>
+          )}
         </>
       )}
-
       <h1 className="mt-10 text-[24px] font-semibold mb-6 text-[#000000]">
         Top Picks
       </h1>
-
       <div className="grid grid-cols-3 gap-4">
         {filteredCourses.map((course, index) => (
           <div
             onClick={() => {
               navigate(`../course-details/${course.id}`);
-              
             }}
             key={index}
             className=" bg-[#FFFFFF] w-75 h-90 border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5 "
@@ -160,6 +156,4 @@ const UserCourses = ({ selectedCategory, allCourses}) => {
   );
 };
 
-
 export default UserCourses;
-
