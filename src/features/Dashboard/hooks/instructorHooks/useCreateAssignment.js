@@ -6,7 +6,7 @@ const useCreateAssignment = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const handleCreateAssignment = async (courseId, assignmentData) => {
+  const handleCreateAssignment = async (courseId, assignmentFormData) => {
     if (!courseId) {
       setLoading(false);
       setError("Course ID is required");
@@ -17,7 +17,7 @@ const useCreateAssignment = () => {
     setSuccess(false);
 
     try {
-      await createAssignment(courseId, assignmentData);
+      await createAssignment(courseId, assignmentFormData);
       setSuccess(true);
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");

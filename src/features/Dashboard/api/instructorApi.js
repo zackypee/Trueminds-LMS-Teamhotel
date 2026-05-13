@@ -7,8 +7,8 @@ export const uploadCourseMaterial = async (courseId, lessonData) => {
 };
 
 // Create Assignment
-export const createAssignment = async (courseId, assignmentData) => {
-  const response = await api.post(`/assignments/courses/${courseId}/assignments`, assignmentData);
+export const createAssignment = async (courseId, assignmentFormData) => {
+  const response = await api.post(`/assignments/courses/${courseId}/assignments`, assignmentFormData);
   return response.data;
 };
 

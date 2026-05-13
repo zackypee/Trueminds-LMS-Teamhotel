@@ -116,7 +116,7 @@ function App() {
               <Route path="instructor" element={<InstructorDashboardLayout />}>
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<InstructorDashboard />} />
-                <Route path="assignments" element={<InstructorAssignmentForm />}/>
+                <Route path="/instructor/courses/:courseId/add-assignment" element={<InstructorAssignmentForm />}/>
                 <Route path="/instructor/courses/:courseId/add-lesson" element={<InstructorCourseMaterialForm />} />
                 <Route path="profile" element={<InstructorProfile />} />
                 <Route path="live-sessions" element={<InstructorLiveSession />} />

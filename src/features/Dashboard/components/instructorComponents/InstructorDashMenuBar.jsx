@@ -40,12 +40,6 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
       path: "courses/create",
     },
     {
-      id: "assignments",
-      label: "Assignments",
-      icon: assignmentLogo,
-      path: "assignments",
-    },
-    {
       id: "live-sessions",
       label: "Live Sessions",
       icon: liveIcon,
