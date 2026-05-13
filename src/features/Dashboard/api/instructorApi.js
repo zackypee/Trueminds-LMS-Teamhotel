@@ -7,14 +7,15 @@ export const uploadCourseMaterial = async (courseId, lessonData) => {
 };
 
 // Create Assignment
-export const createAssignment = async (courseId, assignmentData) => {
-  const response = await api.post(`/assignments/courses/${courseId}/assignments`, assignmentData);
+export const createAssignment = async (courseId, assignmentFormData) => {
+  const response = await api.post(`/assignments/courses/${courseId}/assignments`, assignmentFormData);
   return response.data;
 };
 
 // Get all courses
 export const getCourses = async () => {
   const response = await api.get("/courses");
+  console.log("LIST OF COURSES", response.data)
   return response.data;
 };
 
@@ -47,3 +48,4 @@ export const getCourseAssignments = async (courseId) => {
   const response = await api.get(`/assignments/courses/${courseId}/assignments`);
   return response.data;
 };
+

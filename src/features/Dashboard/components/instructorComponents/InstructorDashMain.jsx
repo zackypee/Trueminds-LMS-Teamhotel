@@ -4,8 +4,11 @@ import historyIcon from "../../../../assets/history-icon.png";
 import cloudIcon from "../../../../assets/cloud-icon.png";
 import noteIcon from "../../../../assets/note-icon.png";
 import arrowIcon from "../../../../assets/arrow-icon.png";
+import { useNavigate } from "react-router-dom";
 
 export default function InstrucDashMain() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col flex-1 bg-white">
       {/* Search Bar */}
@@ -55,15 +58,17 @@ export default function InstrucDashMain() {
                 </div>
                 <div>
                   <h2 className="text-white font-extrabold text-[20px] md:text-[24px]">
-                    Upload Materials
+                    Create New Course
                   </h2>
                   <p className="text-[#F9FAFB] text-sm mt-2">
-                    Add new videos, PDFs, or interactive lessons to your course
+                    Add new courses to your course
                     library.
                   </p>
                 </div>
-                <button className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#630ED4] transition-colors cursor-pointer">
-                  Start Upload
+                <button 
+                  onClick={() => navigate("/instructor/courses/create")}
+                 className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#630ED4] transition-colors cursor-pointer">
+                  Add Course
                 </button>
               </div>
 
@@ -74,15 +79,16 @@ export default function InstrucDashMain() {
                 </div>
                 <div>
                   <h2 className="text-[#F9FAFB] font-extrabold text-[20px] md:text-[24px]">
-                    Create Assignment
+                    All Courses
                   </h2>
                   <p className="text-[#F9FAFB] text-sm mt-2">
-                    Design quizzes, peer reviews, or final projects for your
-                    current modules.
+                    View and manage all your courses in the course library.
                   </p>
                 </div>
-                <button className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#455F87] transition-colors cursor-pointer">
-                  Create assignment
+                <button 
+                  onClick={() => navigate("/instructor/courses")}
+                  className="bg-white text-[#1E3A5F] text-sm font-semibold px-4 py-2 rounded-lg w-fit hover:text-[#455F87] transition-colors cursor-pointer">
+                  View Courses
                 </button>
               </div>
             </div>
@@ -164,7 +170,10 @@ export default function InstrucDashMain() {
               </div>
             </div>
 
-            <button className="bg-[#D97706] text-white text-sm font-semibold py-3 rounded-xl hover:bg-[#B45309] transition-colors w-full mt-auto">
+            <button 
+              onClick={() => navigate("/instructor/submission-page")}
+              className="bg-[#D97706] text-white text-sm font-semibold py-3 rounded-xl hover:bg-[#B45309] transition-colors w-full mt-auto"
+            >
               Grade All Now
             </button>
           </div>

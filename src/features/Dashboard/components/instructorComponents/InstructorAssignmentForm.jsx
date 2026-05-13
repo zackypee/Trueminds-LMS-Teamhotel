@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useCreateAssignment from "../../hooks/instructorHooks/useCreateAssignment";
+import { useParams } from "react-router-dom";
 
-function InstructorAssignmentForm({ courseId = "" }) {
+function InstructorAssignmentForm() {
+  const { courseId } = useParams();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -46,7 +48,7 @@ function InstructorAssignmentForm({ courseId = "" }) {
 
     if (!validate()) return;
 
-    const submit = {
+    const assignmentFormData = {
       title: formData.title.trim(),
       description: formData.description.trim(),
       due_date: new Date(formData.dueDate).toISOString(),
@@ -54,10 +56,10 @@ function InstructorAssignmentForm({ courseId = "" }) {
     };
 
     if (formData.attachment) {
-      submit.attachment = formData.attachment;
+      assignmentFormData.attachment = formData.attachment;
     }
 
-    await handleCreateAssignment(courseId, payload);
+    await handleCreateAssignment(courseId, assignmentFormData);
   };
 
   useEffect(() => {
