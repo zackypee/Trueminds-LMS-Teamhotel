@@ -57,6 +57,7 @@ import Certificate from "./features/learning/userPages/Certificate";
 //Import Live Session Components
 import LearnerLiveSession from "./features/LiveSession/components/LearnerLiveSession";
 import InstructorLiveSession from "./features/LiveSession/components/InstructorLiveSession";
+import SubmissionsPage from "./features/Dashboard/pages/instructorPages/SubmissionsPage";
 
 function App() {
   return (
@@ -121,6 +122,7 @@ function App() {
                 <Route path="live-sessions" element={<InstructorLiveSession />} />
                {/*<Route path="/instructor/courses/:courseId/add-lesson" element={<LessonFormPage />} />*/}
                 <Route path="courses" element={<CourseList />} />
+                <Route path ="submission-page" element={<SubmissionsPage />} />
                 <Route path="courses/create" element={<CreateCourse />} />
                 <Route
                   path="courses/:courseId/manage"

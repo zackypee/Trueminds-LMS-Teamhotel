@@ -10,6 +10,7 @@ import liveIcon from "../../../../assets/livelogo.png";
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
 import useUserProfile from "../../../../globalHooks/useUserProfile";
 import LogOutModal from "../../../../components/LogOutModal";
+import submissionIcon from "../../../../assets/submission-icon.png"
 
 export default function InstrucDashMenuBar({ onMenuClick }) {
   const {userProfile} = useUserProfile();
@@ -49,6 +50,12 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
       label: "Live Sessions",
       icon: liveIcon,
       path: "live-sessions",
+    },
+    {
+      id: "Submission",
+      label: "Submission",
+      icon: submissionIcon,
+      path: "submission-page",
     },
   ];
 
