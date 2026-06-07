@@ -103,7 +103,7 @@ const Navbar = ({ onMenuClick }) => {
 
       {isOpen && (
         <div
-          className={`fixed z-30 top-0 right-0 h-175 w-62.5 bg-white shadow-lg transform transition-transform duration-300 ${
+          className={`fixed top-0 right-0 h-175 w-62.5 z-10000 bg-white shadow-lg transform transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -114,22 +114,22 @@ const Navbar = ({ onMenuClick }) => {
             ✕
           </button>
           <div className=" p-4 mt-5 flex flex-col gap-4 text-[16px] z-100 text-[#000000] font-normal">
-            <Link to="profile">My Profile</Link>
-            <Link to="notification">Notifications</Link>
+            <Link to="profile" onClick={() => setIsOpen(false)}>My Profile</Link>
+            <Link to="/notifications"  onClick={() => setIsOpen(false)}>Notifications</Link>
             <Link className="flex items-center justify-between">
               <p>Messages</p>
               <span className="bg-[#E8651A] text-white text-[16px] font-bold rounded-xl h-6 w-6 flex items-center justify-center">
                 2
               </span>
             </Link>
-            <Link to="dashboard">My dashboard</Link>
-            <Link to="progress">My learning Progress</Link>
-            <Link>View team</Link>
-            <Link to="collaboration">Collaboration hub</Link>
-            <Link to="courses">View Course Catalogue</Link>
-            <Link >Account Settings</Link>
-            <Link>Language</Link>
-            <Link>Help and Support</Link>
+            <Link to="dashboard" onClick={() => setIsOpen(false)}>My dashboard</Link>
+            <Link to="progress" onClick={() => setIsOpen(false)}>My learning Progress</Link>
+            <Link onClick={() => setIsOpen(false)}>View team</Link>
+            <Link to="collaboration" onClick={() => setIsOpen(false)}>Collaboration hub</Link>
+            <Link to="courses" onClick={() => setIsOpen(false)}>View Course Catalogue</Link>
+            <Link onClick={() => setIsOpen(false)}>Account Settings</Link>
+            <Link onClick={() => setIsOpen(false)}>Language</Link>
+            <Link onClick={() => setIsOpen(false)}>Help and Support</Link>
             <Link
              onClick={() => {
                   setIsOpen(false);        

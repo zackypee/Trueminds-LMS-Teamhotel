@@ -7,14 +7,20 @@ export const getAllCourses = async () => {
 //  Get single course details
 export const getCourseDetails = async (courseId) => {
   const response = await api.get(`/courses/${courseId}`);
+    
   return response.data;
+
+
 };
+
+
 
 // Enroll in course
 export const enrollInCourse = async (courseId) => {
   const response = await api.post(`/courses/${courseId}/enroll`);
   return response.data;
 };
+
 
 // discussion APIs
 export const getDiscussions = async (courseId) => {

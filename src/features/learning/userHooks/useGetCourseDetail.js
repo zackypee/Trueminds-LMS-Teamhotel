@@ -15,8 +15,9 @@ const useGetCourseDetails = (courseId) => {
         const fetchCourse = async () => {
         try {
             const res = await getCourseDetails(courseId);
-            setCourse(res.data);
+            setCourse(res.data.course);
             setSuccess(res.message)
+            
             return true;
         } catch (err) {
             setError(err.response?.data?.message || "Failed to fetch course details");
@@ -30,4 +31,5 @@ const useGetCourseDetails = (courseId) => {
 
     return { course, loading, error, success };
 };
+
 export default useGetCourseDetails;

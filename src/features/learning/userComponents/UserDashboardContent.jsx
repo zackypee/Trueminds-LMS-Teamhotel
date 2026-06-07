@@ -25,10 +25,14 @@ const UserDashboardContent = () => {
 
   }, []);
 
-  useEffect(() => {
-      
-    }, []);
+  
+  const updatedActiveCourses = activeCourses.map(course => ({
+    ...course,
+    percentage: Math.min(0 , 100), 
+    module: `Module 1: ${course.title}`
+  }));
 
+  
 
   const [upcomingTasks, setUpcomingTasks] = useState([
     {
@@ -169,7 +173,7 @@ const UserDashboardContent = () => {
 
         {/* Course Cards */}
         <div className="space-y-4">
-          {activeCourses.map((course) => (
+          {updatedActiveCourses.map((course) => (
             <div 
               key={course.id}
               className="border border-gray-200 rounded-[10px] bg-[#F0F3FF] p-3 sm:p-4 hover:shadow-lg transition-shadow cursor-pointer"
@@ -178,7 +182,7 @@ const UserDashboardContent = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 {/* Course Image */}
                 <img 
-                  src={course.imgg} 
+                  src={course.thumbnail} 
                   alt={course.title}
                   className="w-full sm:w-[108px] h-[98px] object-cover rounded"
                 />
@@ -299,8 +303,8 @@ const UserDashboardContent = () => {
 
         {/* All Assignments Link */}
         <div className="mt-4 text-center">
-          <button 
-            onClick={() => navigate('/assignments')}
+          <button
+            onClick={() => navigate('../assignments')}
             className="w-full border border-[#E5E7EB] rounded-[6px] py-2.5 sm:py-3 text-[13px] sm:text-[14px] font-semibold text-[#4A4455] hover:bg-gray-50 transition-colors"
           >
             All Assignments
@@ -311,7 +315,9 @@ const UserDashboardContent = () => {
         <div className="mt-6 bg-[#F0F3FF] rounded-[6px] p-4 sm:p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-[16px] sm:text-[18px] font-extrabold text-[#001C3B]">Collaboration Hub</h3>
-            <button className="border-2 border-[#0029F5] rounded-full p-1 hover:bg-[#0029F5] hover:text-white transition-colors">
+            <button className="border-2 border-[#0029F5] rounded-full p-1 hover:bg-[#0029F5] hover:text-white transition-colors"
+              onClick={() => navigate('../collaboration')}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3 sm:w-4 sm:h-4 text-[#0029F5] hover:text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
