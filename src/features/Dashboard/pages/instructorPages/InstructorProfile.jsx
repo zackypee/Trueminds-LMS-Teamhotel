@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InstructorProfileSidebar from "../../components/instructorComponents/InstructorProfileSidebar";
+// import InstructorProfileSidebar from "../../components/instructorComponents/InstructorProfileSidebar";
 import InstructorProfileView from "../../components/instructorComponents/InstructorProfileView";
 import InstructorProfileDetails from "../../components/instructorComponents/InstructorProfileDetails";
 import useUserProfile from "../../../../globalHooks/useUserProfile";

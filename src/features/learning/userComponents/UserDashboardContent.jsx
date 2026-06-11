@@ -138,12 +138,12 @@ const UserDashboardContent = () => {
   }
 
   return (
-  <div className="bg-white min-h-full p-4 sm:px-6 md:px-8 ">
+  <div className="bg-white min-h-full p-4 pt-0 sm:px-6 md:px-8 ">
     {/* Welcome Section */}
     <div className="mb-6 sm:mb-8">
       <h1 className="text-[28px] sm:text-[32px] md:text-[36px] font-bold leading-tight mt-16 sm:mt-18 md:mt-20">
         <span className="text-[#1F2937]">Welcome back, </span>
-        <span className="text-[#0029F5] block inline">{user.name}</span>
+        <span className="text-[#0029F5] block sm:inline">{user.name}</span>
         <span className="text-[#1F2937] hidden sm:inline">!</span>
       </h1>
       <p className="text-[14px] font-normal text-[#6B7280] mt-2">
