@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import assignmentLogo from "../../../../assets/assignment-icon.png";
 import logOutLogo from "../../../../assets/logout-icon.png";
@@ -10,15 +10,14 @@ import liveIcon from "../../../../assets/livelogo.png";
 import useLogoutUser from "../../../auth/hooks/useLogoutUser";
 import useUserProfile from "../../../../globalHooks/useUserProfile";
 import LogOutModal from "../../../../components/LogOutModal";
-import submissionIcon from "../../../../assets/submission-icon.png"
+import submissionIcon from "../../../../assets/submission-icon.png";
 
 export default function InstrucDashMenuBar({ onMenuClick }) {
-  const {userProfile} = useUserProfile();
+  const { userProfile } = useUserProfile();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { onHandleLogout } = useLogoutUser();
   const [isLogOutOpen, setIsLogOutOpen] = useState(false);
   const location = useLocation();
-
 
   const navItems = [
     {
@@ -67,14 +66,14 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
           </div>
           {/* X close button — mobile only */}
           <button
-            className="md:hidden text-[#6B7280] hover:text-[#0F172A]"
             onClick={() => setMobileOpen(false)}
+            className="md:hidden flex items-center justify-center w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2}
               stroke="currentColor"
               className="w-6 h-6"
             >
@@ -149,12 +148,14 @@ export default function InstrucDashMenuBar({ onMenuClick }) {
         {/* Profile */}
         <div className="flex items-center gap-3 px-3 py-3">
           <img
-            src={ userProfile.avatar || profileImg}
+            src={userProfile.avatar || profileImg}
             alt={userProfile?.name}
             className="w-9 h-9 rounded-full object-cover"
           />
           <div>
-            <h2 className="text-xs font-bold text-[#111827]">{userProfile.name}</h2>
+            <h2 className="text-xs font-bold text-[#111827]">
+              {userProfile.name}
+            </h2>
             <p className="text-[10px] text-[#9CA3AF]">
               Nexus cohort instructor
             </p>
