@@ -28,19 +28,28 @@ const CourseCatalogue = () => {
   
 
   return (
-    <div className="min-h-screen " >
-      <div className="flex justify-between gap-4">
+  <div className="min-h-screen">
+    <div className="flex">
+
+      {/* Sidebar wrapper MUST exist in layout */}
+      <div className="hidden md:block w-[260px] shrink-0">
         <UserCourseCatalogueSidebar
           setCategory={setCategory}
           selectedCategory={category}
         />
-
-        <div className=" ">
-          <UserCourses selectedCategory={category} allCourses={courses} />
-        </div>
       </div>
+
+      {/* Main content */}
+      <div className="flex-1 min-w-0">
+        <UserCourses
+          selectedCategory={category}
+          allCourses={courses}
+        />
+      </div>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default CourseCatalogue;
