@@ -4,8 +4,9 @@ import { RiArrowDropUpLine, RiArrowDropDownLine } from "react-icons/ri";
 import useGetCourseDetails from "../userHooks/useGetCourseDetail";
 import useEnrollInCourse from "../userHooks/useEnrollInCourse";
 import { Button } from "../../../components/Button";
-import { courses } from "../lessonsData";
-
+import { mockCoursesData } from "../lessonsData";
+import LoadingState  from "../../../components/LoadingState";
+import  ErrorMessage from "../../../components/ErrorMessage";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function CourseOutline() {
@@ -14,14 +15,14 @@ export default function CourseOutline() {
   const { course, loading, error, success } = useGetCourseDetails(id);
   const { handleEnroll, isEnrolling } = useEnrollInCourse();
 
-    console.log("courseDetail", course)
-    console.log("couDetailSucess", success)
-    console.log("error", error)
+
 
     const OnHandleClick = async () => {
-        await handleEnroll(id);
+        const result = await handleEnroll(id);
 
-        const course = courses.find(course => course.id === Number(id));
+        console.log("Enroll Result::", result)
+
+    
 
         if (course) {
             const existingCourses =
@@ -83,12 +84,25 @@ export default function CourseOutline() {
    
    ]
 
-   const availableCoursedetails = course?.length > 0? course : list;
+   const availableCoursedetails =  list;
 
     const [showMore, setShowMore]= useState(false)
     const [readMore, setReadMore] = useState(false);
     const aboutText = "This course is designed to introduce you to the core principles of product design, with a strong focus on UI/UX fundamentals. You will learn how to think like a designer by understanding user needs, defining problems, and creating intuitive, user-centered solutions. From wireframing and prototyping to visual design and usability testing, the course walks you through the entire design process step by step.Whether you are completely new or transitioning into design, you will gain practical skills using industry tools, learn how to structure clean and functional interfaces, and understand the logic behind great user experiences. By the end of the course, you will be able to confidently design simple digital products and build a solid foundation for advancing your UI/UX career."
     
+    if (loading) {
+        return <LoadingState />;
+    }
+
+    if (error) {
+        return (
+        <ErrorMessage
+            message={error}
+            className="flex items-center justify-center h-full bg-white"
+        />
+        );
+    }
+
     return(
     <div className="px-8 py-4 mt-20">
         <img className="object-cover object-top h-110 m-auto rounded-t-4xl" src="/images/924ef9b2d1a38298225a32ace1af4e60d1952536.jpg" alt="" />
@@ -128,7 +142,10 @@ export default function CourseOutline() {
 
                 <div className="bg-[#0D94880A] p-4 rounded ">
                     <h4 className="text-[24px] font-semibold mb-4 text-[#000000]">Course Outline</h4> 
+                    <p className="text-[16px] font-extrabold ">{course?.title}</p>
+                    <p className="text-[14px] font-semibold mb-3">{course?.description}</p>
                     <p className="text-[16px] mb-4 font-semibold">13 Lessons</p>
+                    
                     <div>
                         <ul className="flex flex-col gap-4">
                             {(showMore ? availableCoursedetails : availableCoursedetails.slice(0,5)).map((item)=>(

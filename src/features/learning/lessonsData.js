@@ -10,7 +10,7 @@ import topPick6 from "../../assets/topPick6.png";
 
 
 
-export const courses = [
+export const mockCoursesData = [
 
     {
       id:1, 

@@ -7,12 +7,15 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 import { HiClock } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useSearchQuery } from "../context/SearchContext";
-import { courses } from "../lessonsData";
+import useGetAllCourses from "../userHooks/useGetAllCourses";
+import { mockCoursesData } from "../lessonsData";
+import placeholderImage from "../../../assets/class3.png";
 
-const UserCourses = ({ selectedCategory, allCourses }) => {
+const UserCourses = ({ selectedCategory }) => {
   const [bookmarkedCourse, setBookmarkedCourse] = useState(null);
   const [ongoingCourses, setOngoingCourses] = useState([]);
   const { searchQuery } = useSearchQuery();
+  const { courses, loading, error } = useGetAllCourses();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,18 +24,28 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
     setOngoingCourses(storedCourses);
   }, []);
 
-  const availableCourses = courses;
+  // Normalize API data
+  const availableCourses = courses.map((course) => ({
+    ...course,
+    instructor: course.instructor ?? "N/A",
+    rating: course.rating ?? "N/A",
+    students: course.students ?? "N/A",
+    duration: course.duration ?? "N/A",
+    tools: course.tools ?? [],
+    category: course.category ?? "All",
+  }));
 
   const filteredCourses = availableCourses.filter((course) => {
     const matchesCategory =
       selectedCategory === "All" || course.category === selectedCategory;
 
     const matchesSearch =
-      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.instructor.toLowerCase().includes(searchQuery.toLowerCase());
+      course.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.instructor?.toLowerCase().includes(searchQuery.toLowerCase());
 
     return matchesCategory && matchesSearch;
   });
+
 
   return (
     <div className="flex-1 px-4 md:px-0 md:pr-8 py-10">
@@ -50,32 +63,38 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
                     className="w-full md:w-[300px] border border-[#E5E7EB] shadow-sm rounded-lg"
                   >
                     <img
-                      src={cls.imgg}
+                      src={cls.thumbnail}
                       alt={cls.title}
                       className="w-full h-40 rounded-tr-lg rounded-tl-lg"
                     />
+
                     <div className="p-4">
                       <h2 className="text-[16px] font-semibold text-[#1F2937] line-clamp-2">
                         {cls.title}
                       </h2>
-                      <p className="text-[#1F2937] font-normal text-[14px] my-3 ">
-                        {cls.instructor}
+
+                      <p className="text-[#1F2937] font-normal text-[14px] my-3">
+                        {cls.instructor|| "N/A"}
                       </p>
+
                       <Line
-                        percent={cls.percentage}
+                        percent={cls.percentage|| 0}
                         strokeWidth={2}
                         strokeColor="#0D9488"
                         trailColor="#F3F4F6"
                         className="mb-2"
                       />
+
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[#0D9488] font-semibold text-[14px]">
-                          {cls.percentage}% complete
+                          {cls.percentage|| 0}% complete
                         </span>
-                        <span className="text-[#6B7280] font-normal text-[14px] ">
-                          {cls.completeLessons}/{cls.totalLessons} lessons
+
+                        <span className="text-[#6B7280] font-normal text-[14px]">
+                          {cls.completeLessons|| 0}/{cls.totalLessons|| 0 } lessons
                         </span>
                       </div>
+
                       <button
                         onClick={() => navigate("../course")}
                         className="bg-[#0029F5] w-full h-10 text-[#FFFFFF] text-[14px] font-semibold rounded-md cursor-pointer"
@@ -90,6 +109,7 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
           )}
         </>
       )}
+
       <h1 className="mt-10 text-[24px] font-semibold mb-6 text-[#000000]">
         Top Picks
       </h1>
@@ -103,19 +123,25 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
             className="bg-[#FFFFFF] w-full border border-[#E5E7EB] shadow-sm rounded-lg cursor-pointer mt-5"
           >
             <img
-              src={course.imgg}
+              src={
+                course.thumbnail || placeholderImage}
               alt={course.title}
               className="w-full h-48 object-cover rounded-t-lg"
             />
+
             <div className="p-4 relative">
               <h2 className="text-[16px] font-semibold text-[#1F2937] line-clamp-2">
                 {course.title}
               </h2>
+
               <button
-                onClick={() =>
-                  setBookmarkedCourse(bookmarkedCourse === index ? null : index)
-                }
-                className="absolute top-3 right-3 "
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setBookmarkedCourse(
+                    bookmarkedCourse === index ? null : index
+                  );
+                }}
+                className="absolute top-3 right-3"
               >
                 {bookmarkedCourse === index ? (
                   <FaBookmark size={20} />
@@ -123,7 +149,8 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
                   <CiBookmark size={20} />
                 )}
               </button>
-              <p className="text-[#1F2937] font-normal text-[14px] mt-3 mb-5 ">
+
+              <p className="text-[#1F2937] font-normal text-[14px] mt-3 mb-5">
                 {course.instructor}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
@@ -138,21 +165,27 @@ const UserCourses = ({ selectedCategory, allCourses }) => {
               </div>
               <div className="flex items-center justify-between mt-6 text-[14px] font-semibold ">
                 <p className="flex items-center gap-2">
-                  <IoMdStar /> <span>{course.rating}</span>
+                  <IoMdStar />
+                  <span>{course.rating}</span>
                 </p>
+
                 <p className="flex items-center gap-2">
-                  <MdOutlinePersonOutline /> <span>{course.students}</span>
+                  <MdOutlinePersonOutline />
+                  <span>{course.students}</span>
                 </p>
+
                 <p className="flex items-center gap-2">
-                  <HiClock /> <span>{course.duration}</span>
+                  <HiClock />
+                  <span>{course.duration}</span>
                 </p>
               </div>
             </div>
           </div>
         ))}
       </div>
+
       {filteredCourses.length === 0 && (
-        <p className="text-gray-500">No courses found</p>
+        <p className="text-gray-500 mt-4">No courses found</p>
       )}
     </div>
   );
